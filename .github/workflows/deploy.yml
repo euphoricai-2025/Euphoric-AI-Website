@@ -38,5 +38,5 @@ jobs:
           git pull origin main
           npm ci
           npm run build
-          docker cp dist/. web-euphoric:/usr/share/nginx/html/
-          docker exec web-euphoric nginx -s reload
+          docker cp dist/. euphoric-web-ssl:/usr/share/nginx/html/
+          docker restart euphoric-web-ssl
