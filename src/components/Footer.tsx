@@ -11,11 +11,11 @@ const Footer = () => {
             <div className="flex items-center mb-4">
               <Link to="/" className="flex items-center focus:outline-none">
                 <img
-                  src="/euphoric-ai-logo.svg"
+                  src="/logo-zoomed.png"
                   alt="Euphoric AI"
                   className="h-15 w-118"
                   onError={(e) => {
-                    e.currentTarget.src = "/euphoric-ai-logo.svg";
+                    e.currentTarget.src = "/Euphoric Logo.jpeg";
                   }}
                 />
               </Link>
