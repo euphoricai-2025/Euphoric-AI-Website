@@ -8,6 +8,7 @@ interface AuthContextType {
   isLoading: boolean;
   signIn: (email: string, password: string) => Promise<void>;
   signUp: (email: string, password: string, fullName: string) => Promise<void>;
+  signInWithGoogle: () => Promise<void>;
   signOut: () => Promise<void>;
 }
 
@@ -41,6 +42,22 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       setSession(session);
       setUser(session?.user ?? null);
       setIsLoading(false);
+
+      // Handle OAuth sign in success - redirect to Calendly for new registrations
+      if (event === 'SIGNED_IN' && session?.user) {
+        // Check if this is a new user registration (created_at is recent)
+        const userCreatedAt = new Date(session.user.created_at);
+        const now = new Date();
+        const timeDifference = now.getTime() - userCreatedAt.getTime();
+        const isNewUser = timeDifference < 60000; // Less than 1 minute ago
+
+        if (isNewUser) {
+          // Store session data
+          localStorage.setItem('supabase.auth.token', JSON.stringify(session));
+          // Redirect to Calendly for new registrations
+          window.location.href = 'https://calendly.com/euphoricai-aivoiceagents-demo/30min';
+        }
+      }
     });
 
     return () => subscription.unsubscribe();
@@ -89,14 +106,32 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         // Store session data for dashboard access
         localStorage.setItem('supabase.auth.token', JSON.stringify(data.session));
         
-        // Redirect to dashboard with session
-        window.location.href = 'https://storied-licorice-8355d7.netlify.app/';
+        // Redirect to Calendly for onboarding
+        window.location.href = 'https://calendly.com/euphoricai-aivoiceagents-demo/30min';
       }
     } catch (error) {
       if (error instanceof Error && error.message === 'User already registered') {
         throw new Error('An account with this email already exists. Please sign in or reset your password.');
       }
       throw new Error(error instanceof Error ? error.message : 'Sign up failed');
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const signInWithGoogle = async () => {
+    setIsLoading(true);
+    try {
+      const { data, error } = await supabase.auth.signInWithOAuth({
+        provider: 'google',
+        options: {
+          redirectTo: window.location.origin
+        }
+      });
+
+      if (error) throw error;
+    } catch (error) {
+      throw new Error(error instanceof Error ? error.message : 'Google sign in failed');
     } finally {
       setIsLoading(false);
     }
@@ -120,6 +155,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     isLoading,
     signIn,
     signUp,
+    signInWithGoogle,
     signOut,
   };
 

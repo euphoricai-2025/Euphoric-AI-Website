@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Twitter, Linkedin, Mail, Github } from 'lucide-react';
+import { Instagram, Linkedin, Mail, Facebook } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -24,16 +24,16 @@ const Footer = () => {
               Hire specialized AI voice agents for your business. Transform customer communication with intelligent automation that works 24/7.
             </p>
             <div className="flex space-x-3">
-              <a href="#" className="icon-badge">
-                <Twitter className="w-4 h-4" />
-              </a>
-              <a href="#" className="icon-badge">
+              <a href="https://www.linkedin.com/company/euphoricai" target="_blank" rel="noopener noreferrer" className="icon-badge">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="#" className="icon-badge">
-                <Github className="w-4 h-4" />
+              <a href="https://www.instagram.com/euphoricai_official/" target="_blank" rel="noopener noreferrer" className="icon-badge">
+                <Instagram className="w-4 h-4" />
               </a>
-              <a href="mailto:support@euphoricai.com" className="icon-badge">
+              <a href="https://www.facebook.com/profile.php?id=61579584882789" target="_blank" rel="noopener noreferrer" className="icon-badge">
+                <Facebook className="w-4 h-4" />
+              </a>
+              <a href="mailto:support@euphoricai.io" className="icon-badge">
                 <Mail className="w-4 h-4" />
               </a>
             </div>

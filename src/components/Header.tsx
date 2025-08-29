@@ -4,8 +4,9 @@ import { Menu, X } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Header = () => {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const location = useLocation();
 
   const navItems = [
@@ -19,6 +20,19 @@ const Header = () => {
     { name: 'About', path: '/about' },
     { name: 'FAQ', path: '/faq' },
   ];
+
+  const handleSignOut = async () => {
+    try {
+      await signOut();
+      setIsUserMenuOpen(false);
+    } catch (error) {
+      console.error('Sign out error:', error);
+    }
+  };
+
+  const getUserDisplayName = () => {
+    return user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'User';
+  };
 
   return (
     <header className="fixed w-full top-0 z-50 glass-nav">
@@ -76,18 +90,34 @@ const Header = () => {
           {/* Actions */}
           <div className="flex items-center space-x-3">
             <div className="hidden md:flex items-center space-x-3">
-              <Link
-                to="/signin"
-                className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-brand-teal transition-colors rounded-lg hover:bg-white/20 focus:outline-none"
-              >
-                Sign In
-              </Link>
-              <Link
-                to="/signup"
-                className="btn-gold text-sm focus:outline-none"
-              >
-                Register
-              </Link>
+              {user ? (
+                <div className="flex items-center space-x-3">
+                  <span className="text-sm font-medium text-gray-700">
+                    Welcome, {getUserDisplayName()}
+                  </span>
+                  <button
+                    onClick={handleSignOut}
+                    className="btn-gold text-sm focus:outline-none"
+                  >
+                    Sign Out
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <Link
+                    to="/signin"
+                    className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-brand-teal transition-colors rounded-lg hover:bg-white/20 focus:outline-none"
+                  >
+                    Sign In
+                  </Link>
+                  <Link
+                    to="/signup"
+                    className="btn-gold text-sm focus:outline-none"
+                  >
+                    Register
+                  </Link>
+                </>
+              )}
             </div>
 
             {/* Mobile menu button */}
@@ -138,20 +168,38 @@ const Header = () => {
                 </div>
               ))}
               <div className="pt-4 space-y-2 border-t border-white/20">
-                <Link
-                  to="/signin"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                >
-                  Sign In
-                </Link>
-                <Link
-                  to="/signup"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-3 py-2 btn-gold text-sm text-center focus:outline-none"
-                >
-                  Register
-                </Link>
+                {user ? (
+                  <>
+                    <div className="flex items-center justify-between px-3 py-2">
+                      <span className="text-sm font-medium text-gray-700">
+                        Welcome, {getUserDisplayName()}
+                      </span>
+                      <button
+                        onClick={handleSignOut}
+                        className="btn-gold text-sm focus:outline-none ml-3"
+                      >
+                        Sign Out
+                      </button>
+                    </div>
+                  </>
+                ) : (
+                  <>
+                    <Link
+                      to="/signin"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                    >
+                      Sign In
+                    </Link>
+                    <Link
+                      to="/signup"
+                      onClick={() => setIsMenuOpen(false)}
+                      className="block px-3 py-2 btn-gold text-sm text-center focus:outline-none"
+                    >
+                      Register
+                    </Link>
+                  </>
+                )}
               </div>
             </nav>
           </div>

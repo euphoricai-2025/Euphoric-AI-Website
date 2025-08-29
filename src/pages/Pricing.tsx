@@ -1,9 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check, ArrowRight, Phone, Zap, Shield, BarChart3 } from 'lucide-react';
+import { Check, ArrowRight, Phone, Zap, Shield, BarChart3, CheckCircle } from 'lucide-react';
 
 const Pricing = () => {
+  const [isQuarterly, setIsQuarterly] = useState(false);
+  
+  const getDisplayPrice = (basePrice) => {
+    return isQuarterly ? Math.round(basePrice * 0.9) : basePrice;
+  };
+  
   const plans = [
     {
       name: 'Starter AI Calling Agent',
@@ -12,24 +18,21 @@ const Pricing = () => {
       description: 'Perfect for small businesses getting started with AI calling',
       popular: false,
       features: [
-        '24 hours of calling per month',
-        'Self-setup in 30 minutes',
+        'Self-setup',
         'Twilio phone number integration',
         'Basic analytics dashboard',
         'Email support',
-        'Secure Stripe payments',
-        'Single domain specialization'
+        'Secure Stripe payments'
       ]
     },
     {
       name: 'Standard AI Calling Agent',
-      price: 449,
+      price: 499,
       hours: 48,
       description: 'Ideal for growing businesses with higher call volumes',
       popular: true,
       features: [
-        '48 hours of calling per month',
-        'Self-setup in 30 minutes',
+        'Assisted setup in 30 minutes',
         'Twilio phone number integration',
         'Advanced analytics & reporting',
         'Priority email support',
@@ -46,11 +49,10 @@ const Pricing = () => {
       description: 'For enterprise businesses requiring maximum calling capacity',
       popular: false,
       features: [
-        '60 hours of calling per month',
-        'Self-setup in 30 minutes',
+        'Assisted setup in 30 minutes',
         'Twilio phone number integration',
         'Real-time analytics dashboard',
-        'Dedicated support manager',
+        'Dedicated account manager',
         'Secure Stripe payments',
         'All domain specializations',
         'Advanced voice customization',
@@ -108,61 +110,130 @@ const Pricing = () => {
             </motion.p>
           </div>
 
-          {/* Pricing Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
-            {plans.map((plan, index) => (
-              <motion.div
-                key={plan.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className={`glass p-8 card-hover relative ${
-                  plan.popular ? 'gradient-border' : ''
+          {/* Billing Period Toggle */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center justify-center mb-12"
+          >
+            <div className="glass-soft p-4 rounded-2xl inline-flex items-center gap-6">
+              <span className={`text-lg font-semibold transition-colors ${!isQuarterly ? 'text-gray-900' : 'text-gray-500'}`}>
+                Monthly
+              </span>
+              <button
+                onClick={() => setIsQuarterly(!isQuarterly)}
+                className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-brand-teal focus:ring-offset-2 ${
+                  isQuarterly ? 'bg-brand-teal' : 'bg-gray-300'
                 }`}
               >
-                {plan.popular && (
-                  <div className="absolute -top-4 left-1/2 transform -translate-x-1/2">
-                    <span className="popular-badge">
-                      Most Popular
-                    </span>
-                  </div>
-                )}
-
-                <div className="text-center mb-8">
-                  <h3 className="text-2xl font-bold text-gray-900 mb-2 tracking-tight">{plan.name}</h3>
-                  <p className="text-gray-600 mb-4 leading-relaxed">{plan.description}</p>
-                  <div className="mb-6">
-                    <span className="text-5xl font-bold text-euphoric-gradient">${plan.price}</span>
-                    <span className="text-gray-500 ml-2">/month</span>
-                  </div>
-                  <p className="text-lg text-gray-700 font-medium">
-                    {plan.hours} hours of calling per month
-                  </p>
-                </div>
-
-                <ul className="space-y-4 mb-8">
-                  {plan.features.map((feature, featureIndex) => (
-                    <li key={featureIndex} className="flex items-start gap-3">
-                      <div className="w-5 h-5 rounded-full bg-brand-teal flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <Check className="w-3 h-3 text-white" />
-                      </div>
-                      <span className="text-gray-600 text-sm leading-relaxed">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-
-                <Link
-                  to="/signup"
-                  className={`block w-full py-4 rounded-xl font-semibold text-center transition-all duration-200 ${
-                    plan.popular
-                      ? 'btn-gold'
-                      : 'btn-primary'
+                <span
+                  className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${
+                    isQuarterly ? 'translate-x-7' : 'translate-x-1'
                   }`}
-                >
-                  Get Started
-                </Link>
-              </motion.div>
-            ))}
+                />
+              </button>
+              <div className="flex items-center gap-3">
+                <span className={`text-lg font-semibold transition-colors ${isQuarterly ? 'text-gray-900' : 'text-gray-500'}`}>
+                  Quarterly
+                </span>
+                <span className="text-sm font-bold text-brand-teal bg-brand-teal/10 px-3 py-1.5 rounded-full">
+                  Save 10%
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Pricing Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            {/* Starter Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0 }}
+              className="glass p-8 card-hover"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-2 tracking-tight">{plans[0].name}</h3>
+              <div className="mb-6">
+                <span className="text-5xl font-bold text-euphoric-gradient">${getDisplayPrice(plans[0].price)}</span>
+                <span className="text-gray-500 ml-2">/{isQuarterly ? 'quarter' : 'month'}</span>
+              </div>
+              <p className="text-gray-600 mb-6">Includes {plans[0].hours} hours/mo of calling</p>
+
+              <div className="space-y-4 mb-8">
+                {plans[0].features.map((feature, featureIndex) => (
+                  <div key={featureIndex} className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-brand-teal" />
+                    <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link to="/signup" className="btn-primary w-full text-center">
+                Get Started
+              </Link>
+            </motion.div>
+
+            {/* Standard AI Calling Agent */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="glass p-12 card-hover relative transform scale-125"
+            >
+              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
+                <span className="popular-badge">
+                  Most Popular
+                </span>
+              </div>
+              <h3 className="text-2xl font-bold text-gray-900 mb-2 tracking-tight">{plans[1].name}</h3>
+              <div className="mb-6">
+                <span className="text-5xl font-bold text-euphoric-gradient">${getDisplayPrice(plans[1].price)}</span>
+                <span className="text-gray-500 ml-2">/{isQuarterly ? 'quarter' : 'month'}</span>
+              </div>
+              <p className="text-gray-600 mb-6">Includes {plans[1].hours} hours/mo of calling</p>
+
+              <div className="space-y-4 mb-8">
+                {plans[1].features.map((feature, featureIndex) => (
+                  <div key={featureIndex} className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-brand-teal" />
+                    <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link to="/signup" className="btn-gold w-full text-center">
+                Get Started
+              </Link>
+            </motion.div>
+
+            {/* Premium Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="glass p-8 card-hover"
+            >
+              <h3 className="text-2xl font-bold text-gray-900 mb-2 tracking-tight">{plans[2].name}</h3>
+              <div className="mb-6">
+                <span className="text-5xl font-bold text-euphoric-gradient">${getDisplayPrice(plans[2].price)}</span>
+                <span className="text-gray-500 ml-2">/{isQuarterly ? 'quarter' : 'month'}</span>
+              </div>
+              <p className="text-gray-600 mb-6">Includes {plans[2].hours} hours/mo of calling</p>
+
+              <div className="space-y-4 mb-8">
+                {plans[2].features.map((feature, featureIndex) => (
+                  <div key={featureIndex} className="flex items-center gap-3">
+                    <CheckCircle className="w-5 h-5 text-brand-teal" />
+                    <span className="text-gray-700 text-sm leading-relaxed">{feature}</span>
+                  </div>
+                ))}
+              </div>
+
+              <Link to="/signup" className="btn-primary w-full text-center">
+                Get Started
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>

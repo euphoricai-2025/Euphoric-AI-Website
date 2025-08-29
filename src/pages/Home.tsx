@@ -1,11 +1,20 @@
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Play, FileText, Heart, ShoppingBag, Phone, CreditCard, Globe, BarChart3, Languages, Clock, ArrowRight, CheckCircle } from 'lucide-react';
 import { TypingAnimation } from '../components/magicui/typing-animation';
 import { TextAnimate } from '../components/magicui/text-animate';
 import { Highlighter } from '../components/magicui/highlighter';
+import { useAuth } from '../contexts/AuthContext';
 
 const Home = () => {
+  const { user } = useAuth();
+  const [isQuarterly, setIsQuarterly] = useState(false);
+  
+  const getDisplayPrice = (basePrice) => {
+    return isQuarterly ? Math.round(basePrice * 0.9) : basePrice;
+  };
+
   return (
     <div className="pt-16">
       {/* Hero Section */}
@@ -27,20 +36,34 @@ const Home = () => {
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-8 leading-relaxed no-word-break">
+              <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
                 <TextAnimate animation="blurInUp" by="word" once>
-                  Get specialized AI voice agents that handle outbound calling, qualify leads, answer from your knowledge base, route to humans when needed, book appointments, and update your CRM - all available 24/7.
+                  Get specialized AI voice agents that handle inbound and outbound calling, qualify leads, answer from your knowledge base, route to humans when needed, book appointments, and update your CRM - all available 24/7.
                 </TextAnimate>
               </p>
 
+              <p className="text-lg text-gray-500 mb-8 leading-relaxed">
+                Our <span className="font-bold">multilingual</span> agents support 30+ languages, allowing you to serve customers globally with authentic communication.
+              </p>
+
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
-                <Link
-                  to="/signup"
-                  className="btn-gold inline-flex items-center justify-center gap-2 group"
-                >
-                  Start Building Now
-                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                </Link>
+                {user ? (
+                  <a
+                    href="https://app.euphoricai.io/"
+                    className="btn-gold inline-flex items-center justify-center gap-2 group"
+                  >
+                    Go to Dashboard
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </a>
+                ) : (
+                  <Link
+                    to="/signup"
+                    className="btn-gold inline-flex items-center justify-center gap-2 group"
+                  >
+                    Get Started
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                  </Link>
+                )}
                 <Link
                   to="/contact"
                   className="btn-outline inline-flex items-center justify-center gap-2"
@@ -286,9 +309,15 @@ const Home = () => {
               </span>{" "}
               to automate their calling processes and boost conversions.
             </p>
-            <Link to="/signup" className="btn-gold">
-              Start Your Free Trial
-            </Link>
+            {user ? (
+              <a href="https://app.euphoricai.io/login" className="btn-gold">
+                Go to Dashboard
+              </a>
+            ) : (
+              <Link to="/signup" className="btn-gold">
+                Start Your Free Trial
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -307,33 +336,71 @@ const Home = () => {
             </p>
           </div>
 
+          {/* Billing Period Toggle */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center justify-center mb-20"
+          >
+            <div className="glass-soft p-4 rounded-2xl inline-flex items-center gap-6">
+              <span className={`text-lg font-semibold transition-colors ${!isQuarterly ? 'text-gray-900' : 'text-gray-500'}`}>
+                Monthly
+              </span>
+              <button
+                onClick={() => setIsQuarterly(!isQuarterly)}
+                className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-brand-teal focus:ring-offset-2 ${
+                  isQuarterly ? 'bg-brand-teal' : 'bg-gray-300'
+                }`}
+              >
+                <span
+                  className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${
+                    isQuarterly ? 'translate-x-7' : 'translate-x-1'
+                  }`}
+                />
+              </button>
+              <div className="flex items-center gap-3">
+                <span className={`text-lg font-semibold transition-colors ${isQuarterly ? 'text-gray-900' : 'text-gray-500'}`}>
+                  Quarterly
+                </span>
+                <span className="text-sm font-bold text-brand-teal bg-brand-teal/10 px-3 py-1.5 rounded-full">
+                  Save 10%
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
 
             {/* Starter Plan */}
             <div className="glass p-8 card-hover">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Starter AI Calling Agent</h3>
               <div className="mb-6">
-                <span className="text-5xl font-bold text-euphoric-gradient">$299</span>
-                <span className="text-gray-500 ml-2">/month</span>
+                <span className="text-5xl font-bold text-euphoric-gradient">${getDisplayPrice(299)}</span>
+                <span className="text-gray-500 ml-2">/{isQuarterly ? 'quarter' : 'month'}</span>
               </div>
-              <p className="text-gray-600 mb-6">Includes 24 hours/mo of calling</p>
+              <p className="text-gray-600 mb-6">Perfect for small businesses getting started with AI calling</p>
 
               <div className="space-y-4 mb-8">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Self-setup in 30 minutes</span>
+                  <span className="text-gray-700">Self-setup</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Twilio number purchase & assignment</span>
+                  <span className="text-gray-700">Twilio phone number integration</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Stripe payment integration</span>
+                  <span className="text-gray-700">Basic analytics dashboard</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Access to all domain agents</span>
+                  <span className="text-gray-700">Email support</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">Secure Stripe payments</span>
                 </div>
               </div>
 
@@ -351,27 +418,43 @@ const Home = () => {
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Standard AI Calling Agent</h3>
               <div className="mb-6">
-                <span className="text-5xl font-bold text-euphoric-gradient">$449</span>
-                <span className="text-gray-500 ml-2">/month</span>
+                <span className="text-5xl font-bold text-euphoric-gradient">${getDisplayPrice(499)}</span>
+                <span className="text-gray-500 ml-2">/{isQuarterly ? 'quarter' : 'month'}</span>
               </div>
-              <p className="text-gray-600 mb-6">Includes 48 hours/mo of calling</p>
+              <p className="text-gray-600 mb-6">Ideal for growing businesses with higher call volumes</p>
 
               <div className="space-y-4 mb-8">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Self-setup in 30 minutes</span>
+                  <span className="text-gray-700">Assisted setup in 30 minutes</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Twilio number purchase & assignment</span>
+                  <span className="text-gray-700">Twilio phone number integration</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Stripe payment integration</span>
+                  <span className="text-gray-700">Advanced analytics & reporting</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Access to all domain agents</span>
+                  <span className="text-gray-700">Priority email support</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">Secure Stripe payments</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">Multi-domain support</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">Custom voice training</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">API access</span>
                 </div>
               </div>
 
@@ -384,27 +467,47 @@ const Home = () => {
             <div className="glass p-8 card-hover">
               <h3 className="text-2xl font-bold text-gray-900 mb-2">Premium AI Calling Agent</h3>
               <div className="mb-6">
-                <span className="text-5xl font-bold text-euphoric-gradient">$599</span>
-                <span className="text-gray-500 ml-2">/month</span>
+                <span className="text-5xl font-bold text-euphoric-gradient">${getDisplayPrice(599)}</span>
+                <span className="text-gray-500 ml-2">/{isQuarterly ? 'quarter' : 'month'}</span>
               </div>
-              <p className="text-gray-600 mb-6">Includes 60 hours/mo of calling</p>
+              <p className="text-gray-600 mb-6">For enterprise businesses requiring maximum calling capacity</p>
 
               <div className="space-y-4 mb-8">
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Self-setup in 30 minutes</span>
+                  <span className="text-gray-700">Assisted setup in 30 minutes</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Twilio number purchase & assignment</span>
+                  <span className="text-gray-700">Twilio phone number integration</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Stripe payment integration</span>
+                  <span className="text-gray-700">Real-time analytics dashboard</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <CheckCircle className="w-5 h-5 text-brand-teal" />
-                  <span className="text-gray-700">Access to all domain agents</span>
+                  <span className="text-gray-700">Dedicated account manager</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">Secure Stripe payments</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">All domain specializations</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">Advanced voice customization</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">Full API access</span>
+                </div>
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700">Priority feature requests</span>
                 </div>
               </div>
 
