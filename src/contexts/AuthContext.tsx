@@ -78,7 +78,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.setItem('supabase.auth.token', JSON.stringify(data.session));
         
         // Redirect to dashboard with session
-        window.location.href = 'https://storied-licorice-8355d7.netlify.app/';
+        window.location.href = 'https://app.euphoricai.io/';
       }
     } catch (error) {
       throw new Error(error instanceof Error ? error.message : 'Sign in failed');

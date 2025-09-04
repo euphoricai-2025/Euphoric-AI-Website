@@ -318,6 +318,21 @@ audio::-webkit-media-controls-pause-button {
   animation: fadeInUp 0.6s ease-out;
 }
 
+@keyframes spotlight {
+  0% {
+    opacity: 0;
+    transform: translate(-72%, -62%) scale(0.5);
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -40%) scale(1);
+  }
+}
+
+.animate-spotlight {
+  animation: spotlight 2s ease .75s 1 forwards;
+}
+
 @keyframes spin {
   from {
     transform: rotate(0deg);
