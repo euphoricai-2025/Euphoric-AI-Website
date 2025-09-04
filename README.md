@@ -240,8 +240,8 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 **Built with ❤️ by the Euphoric AI Team**
 
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/company/euphoric-ai)
-[![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=flat-square&logo=instagram)](https://instagram.com/euphoricai)
-[![Facebook](https://img.shields.io/badge/Facebook-Like-1877F2?style=flat-square&logo=facebook)](https://facebook.com/euphoricai)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-blue?style=flat-square&logo=linkedin)](https://linkedin.com/company/euphoricai)
+[![Instagram](https://img.shields.io/badge/Instagram-Follow-E4405F?style=flat-square&logo=instagram)](https://instagram.com/euphoricai_official)
+[![Facebook](https://img.shields.io/badge/Facebook-Like-1877F2?style=flat-square&logo=facebook)](https://www.facebook.com/profile.php?id=61579584882789)
 
 </div>
