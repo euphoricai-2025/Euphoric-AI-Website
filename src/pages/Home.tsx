@@ -966,27 +966,23 @@ const Home = () => {
               <div className="space-y-4 text-sm flex-grow mb-8">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">1,440 mins of calling per month</span>
+                  <span className="text-gray-700">50 mins</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Self-setup</span>
+                  <span className="text-gray-700">5 Concurrent Calls</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Twilio phone number integration</span>
+                  <span className="text-gray-700">Voice API, LLM, transcriber costs</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Basic analytics dashboard</span>
+                  <span className="text-gray-700">API & Integrations</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Email support</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Secure Stripe payments</span>
+                  <span className="text-gray-700">Real-Time Booking, Human Transfer & More Actions</span>
                 </div>
               </div>
               
