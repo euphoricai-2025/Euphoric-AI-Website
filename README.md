@@ -20,7 +20,7 @@
 ## ✨ Features
 
 ### 🤖 AI Voice Agents
-- **Multilingual Support** - 30+ languages with authentic communication
+- **Multilingual Support** - 35+ languages with authentic communication
 - **Industry-Specific** - Real Estate, Healthcare, Ecommerce specializations
 - **24/7 Availability** - Always-on service with 99.9% uptime guarantee
 - **Smart Routing** - Qualify leads, route to humans when needed

@@ -12,6 +12,8 @@ import Pricing from './pages/Pricing';
 import FAQ from './pages/FAQ';
 import SignIn from './pages/SignIn';
 import SignUp from './pages/SignUp';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import TermsConditions from './pages/TermsConditions';
 import RealEstate from './pages/domains/RealEstate';
 import Healthcare from './pages/domains/Healthcare';
 import Ecommerce from './pages/domains/Ecommerce';
@@ -33,6 +35,8 @@ function App() {
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/signin" element={<SignIn />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/terms-conditions" element={<TermsConditions />} />
                 <Route path="/real-estate" element={<RealEstate />} />
                 <Route path="/healthcare" element={<Healthcare />} />
                 <Route path="/ecommerce" element={<Ecommerce />} />
