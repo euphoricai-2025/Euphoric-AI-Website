@@ -41,9 +41,9 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center focus:outline-none">
             <img 
-              src="/logo.svg" 
+              src="/logo.png" 
               alt="Euphoric AI" 
-              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto"
+              className="h-40 w-55"
               onError={(e) => {
                 e.currentTarget.src = "/Euphoric Logo.jpeg";
               }}

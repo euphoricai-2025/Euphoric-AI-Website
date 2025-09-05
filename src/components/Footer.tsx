@@ -11,9 +11,9 @@ const Footer = () => {
             <div className="flex items-center mb-4">
               <Link to="/" className="flex items-center focus:outline-none">
                 <img
-                  src="/logo-zoomed.png"
+                  src="/logo-zoomed.svg"
                   alt="Euphoric AI"
-                  className="h-15 w-118"
+                  className="h-14 sm:h-16 md:h-20 lg:h-24 w-auto"
                   onError={(e) => {
                     e.currentTarget.src = "/Euphoric Logo.jpeg";
                   }}
