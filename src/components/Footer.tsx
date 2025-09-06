@@ -5,9 +5,9 @@ const Footer = () => {
   return (
     <footer className="glass-nav border-t border-white/10 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-4 justify-items-start" style={{ columnGap: 'clamp(2rem, 8vw, 6rem)' }}>
           {/* Logo and Description */}
-          <div className="col-span-1 relative">
+          <div className="relative">
             <div className="flex items-center mb-4">
               <Link to="/" className="flex items-center focus:outline-none">
                 <img

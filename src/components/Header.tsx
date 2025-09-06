@@ -11,11 +11,43 @@ const Header = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { name: 'Domains', path: '#', dropdown: [
-      { name: 'Real Estate', path: '/real-estate' },
-      { name: 'Healthcare', path: '/healthcare' },
-      { name: 'Ecommerce', path: '/ecommerce' }
-    ]},
+    { 
+      name: 'Domains', 
+      path: '#', 
+      megaDropdown: {
+        industries: [
+          { name: 'Healthcare', path: '/healthcare' },
+          { name: 'Financial Services', path: '/financial-services' },
+          { name: 'Insurance', path: '/insurance' },
+          { name: 'Logistics', path: '/logistics' },
+          { name: 'Home Services', path: '/home-services' },
+          { name: 'Retail & Consumer', path: '/retail-consumer' },
+          { name: 'Travel & Hospitality', path: '/travel-hospitality' },
+          { name: 'Debt Collection', path: '/debt-collection' },
+          { name: 'Real Estate', path: '/real-estate' },
+          { name: 'Customer Support', path: '/customer-support' }
+        ],
+        useCases: [
+          { name: 'Healthcare', path: '/use-cases/healthcare' },
+          { name: 'Finance Services', path: '/use-cases/finance' },
+          { name: 'Insurance', path: '/use-cases/insurance' },
+          { name: 'Home Services', path: '/use-cases/home-services' },
+          { name: 'Real Estate', path: '/use-cases/real-estate' },
+          { name: 'Customer Support', path: '/use-cases/customer-support' }
+        ],
+        integrations: [
+          { name: 'Cal.com', path: '/integrations/cal-com' },
+          { name: 'Custom LLM', path: '/integrations/custom-llm' },
+          { name: 'Make', path: '/integrations/make' },
+          { name: 'Twillio', path: '/integrations/twillio' },
+          { name: 'Telnyx', path: '/integrations/telnyx' },
+          { name: 'Airtel', path: '/integrations/airtel' },
+          { name: 'n8n', path: '/integrations/n8n' },
+          { name: 'Go High Level', path: '/integrations/go-high-level' },
+          { name: 'See All Integrations', path: '/integrations', isButton: true }
+        ]
+      }
+    },
     { name: 'Pricing', path: '/pricing' },
     { name: 'About', path: '/about' },
     { name: 'FAQ', path: '/faq' },
@@ -54,7 +86,79 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-8">
             {navItems.map((item) => (
               <div key={item.name} className="relative group">
-                {item.dropdown ? (
+                {item.megaDropdown ? (
+                  <>
+                    <button className="text-sm font-medium text-gray-700 hover:text-brand-teal transition-colors duration-200 focus:outline-none">
+                      {item.name}
+                    </button>
+                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-2 w-[800px] bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                      <div className="p-6">
+                        <div className="grid grid-cols-3 gap-8">
+                          {/* Industries Column */}
+                          <div>
+                            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">INDUSTRIES</h3>
+                            <div className="space-y-2">
+                              {item.megaDropdown.industries.map((subItem) => (
+                                <Link
+                                  key={subItem.name}
+                                  to={subItem.path}
+                                  className="block text-sm text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-1"
+                                >
+                                  {subItem.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          {/* Use Cases Column */}
+                          <div>
+                            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">USE CASES</h3>
+                            <div className="space-y-2">
+                              {item.megaDropdown.useCases.map((subItem) => (
+                                <Link
+                                  key={subItem.name}
+                                  to={subItem.path}
+                                  className="block text-sm text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-1"
+                                >
+                                  {subItem.name}
+                                </Link>
+                              ))}
+                            </div>
+                          </div>
+                          
+                          {/* Integrations Column */}
+                          <div>
+                            <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">INTEGRATIONS</h3>
+                            <div className="space-y-2">
+                              {item.megaDropdown.integrations.map((subItem) => (
+                                subItem.isButton ? (
+                                  <Link
+                                    key={subItem.name}
+                                    to={subItem.path}
+                                    className="inline-flex items-center px-4 py-2 bg-gray-100 text-gray-700 rounded-lg text-sm font-medium hover:bg-gray-200 transition-colors focus:outline-none mt-4"
+                                  >
+                                    {subItem.name}
+                                    <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                    </svg>
+                                  </Link>
+                                ) : (
+                                  <Link
+                                    key={subItem.name}
+                                    to={subItem.path}
+                                    className="block text-sm text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-1"
+                                  >
+                                    {subItem.name}
+                                  </Link>
+                                )
+                              ))}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </>
+                ) : item.dropdown ? (
                   <>
                     <button className="text-sm font-medium text-gray-700 hover:text-brand-teal transition-colors duration-200 focus:outline-none">
                       {item.name}
@@ -136,7 +240,62 @@ const Header = () => {
             <nav className="flex flex-col space-y-2">
               {navItems.map((item) => (
                 <div key={item.name}>
-                  {item.dropdown ? (
+                  {item.megaDropdown ? (
+                    <div className="space-y-1">
+                      <div className="px-3 py-2 text-sm font-medium text-gray-700">
+                        {item.name}
+                      </div>
+                      
+                      {/* Industries */}
+                      <div className="ml-3">
+                        <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">INDUSTRIES</div>
+                        {item.megaDropdown.industries.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            to={subItem.path}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="block px-6 py-1 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                      
+                      {/* Use Cases */}
+                      <div className="ml-3">
+                        <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">USE CASES</div>
+                        {item.megaDropdown.useCases.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            to={subItem.path}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="block px-6 py-1 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                      
+                      {/* Integrations */}
+                      <div className="ml-3">
+                        <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">INTEGRATIONS</div>
+                        {item.megaDropdown.integrations.map((subItem) => (
+                          <Link
+                            key={subItem.name}
+                            to={subItem.path}
+                            onClick={() => setIsMenuOpen(false)}
+                            className={`block px-6 py-1 text-sm transition-colors focus:outline-none rounded-lg ${
+                              subItem.isButton 
+                                ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium' 
+                                : 'text-gray-600 hover:text-brand-teal hover:bg-white/20'
+                            }`}
+                          >
+                            {subItem.name}
+                          </Link>
+                        ))}
+                      </div>
+                    </div>
+                  ) : item.dropdown ? (
                     <div className="space-y-1">
                       <div className="px-3 py-2 text-sm font-medium text-gray-700">
                         {item.name}

@@ -114,7 +114,7 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="pt-16 bg-euphoric-surface min-h-screen">
+    <div className="pt-16 bg-gray-50 min-h-screen">
       {/* Hero Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -145,27 +145,27 @@ const Pricing = () => {
             transition={{ delay: 0.2 }}
             className="flex items-center justify-center mb-12"
           >
-            <div className="glass-soft p-4 rounded-2xl inline-flex items-center gap-6">
-              <span className={`text-lg font-semibold transition-colors ${!isQuarterly ? 'text-gray-900' : 'text-gray-500'}`}>
+            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl inline-flex items-center gap-6 border border-brand-teal/20 shadow-lg">
+              <span className={`text-lg font-semibold transition-all duration-300 ${!isQuarterly ? 'text-brand-teal' : 'text-gray-500'}`}>
                 Monthly
               </span>
               <button
                 onClick={() => setIsQuarterly(!isQuarterly)}
-                className={`relative inline-flex h-8 w-14 items-center rounded-full transition-colors focus:outline-none focus:ring-2 focus:ring-brand-teal focus:ring-offset-2 ${
-                  isQuarterly ? 'bg-brand-teal' : 'bg-gray-300'
+                className={`relative inline-flex h-8 w-16 items-center rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-teal/50 focus:ring-offset-2 shadow-inner ${
+                  isQuarterly ? 'bg-brand-teal' : 'bg-gray-200 hover:bg-gray-300'
                 }`}
               >
                 <span
-                  className={`inline-block h-6 w-6 transform rounded-full bg-white transition-transform ${
-                    isQuarterly ? 'translate-x-7' : 'translate-x-1'
+                  className={`inline-block h-7 w-7 transform rounded-full bg-white transition-all duration-300 ease-in-out shadow-md ${
+                    isQuarterly ? 'translate-x-8 scale-105' : 'translate-x-0.5 scale-100'
                   }`}
                 />
               </button>
               <div className="flex items-center gap-3">
-                <span className={`text-lg font-semibold transition-colors ${isQuarterly ? 'text-gray-900' : 'text-gray-500'}`}>
+                <span className={`text-lg font-semibold transition-all duration-300 ${isQuarterly ? 'text-brand-teal' : 'text-gray-500'}`}>
                   Quarterly
                 </span>
-                <span className="text-sm font-bold text-brand-teal bg-brand-teal/10 px-3 py-1.5 rounded-full">
+                <span className="text-sm font-bold text-white bg-brand-teal px-3 py-1.5 rounded-full shadow-sm animate-pulse">
                   Save 10%
                 </span>
               </div>
@@ -243,6 +243,10 @@ const Pricing = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">15 concurrent calls</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
                   <span className="text-gray-700">Self-setup</span>
                 </div>
                 <div className="flex items-center gap-2">
@@ -289,11 +293,15 @@ const Pricing = () => {
               <div className="space-y-4 text-sm flex-grow mb-8">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All Standard features, plus:</span>
+                  <span className="text-gray-700">2,800 mins, then $0.16/min</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">2,800 mins, then $0.22/min</span>
+                  <span className="text-gray-700">25 concurrent calls</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">All Standard features, plus:</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -352,11 +360,15 @@ const Pricing = () => {
               <div className="space-y-4 text-sm flex-grow mb-8">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All Pro features, plus:</span>
+                  <span className="text-gray-700">3,600 mins, then $0.16/min</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">3,600 mins, then $0.22/min</span>
+                  <span className="text-gray-700">50 concurrent calls</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">All Pro features, plus:</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -450,6 +462,420 @@ const Pricing = () => {
         </div>
       </section>
 
+
+      {/* Compare Plans Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16 flex justify-center">
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="text-4xl md:text-5xl font-bold mb-6 tracking-tight whitespace-nowrap"
+            >
+              <span className="text-gray-900">Compare Plans and </span>
+              <span className="text-euphoric-gradient">Make the Right Choice</span>
+            </motion.h1>
+          </div>
+
+          {/* Billing Period Toggle */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2 }}
+            className="flex items-center justify-center mb-12"
+          >
+            <div className="bg-white/80 backdrop-blur-sm p-4 rounded-2xl inline-flex items-center gap-6 border border-brand-teal/20 shadow-lg">
+                <span className={`text-lg font-semibold transition-all duration-300 ${!isQuarterly ? 'text-brand-teal' : 'text-gray-500'}`}>
+                  Monthly
+                </span>
+                <button
+                  onClick={() => setIsQuarterly(!isQuarterly)}
+                  className={`relative inline-flex h-8 w-16 items-center rounded-full transition-all duration-300 ease-in-out focus:outline-none focus:ring-2 focus:ring-brand-teal/50 focus:ring-offset-2 shadow-inner ${
+                    isQuarterly ? 'bg-brand-teal' : 'bg-gray-200 hover:bg-gray-300'
+                  }`}
+                >
+                  <span
+                    className={`inline-block h-7 w-7 transform rounded-full bg-white transition-all duration-300 ease-in-out shadow-md ${
+                      isQuarterly ? 'translate-x-8 scale-105' : 'translate-x-0.5 scale-100'
+                    }`}
+                  />
+                </button>
+                <div className="flex items-center gap-3">
+                  <span className={`text-lg font-semibold transition-all duration-300 ${isQuarterly ? 'text-brand-teal' : 'text-gray-500'}`}>
+                    Quarterly
+                  </span>
+                  <span className="text-sm font-bold text-white bg-brand-teal px-3 py-1.5 rounded-full shadow-sm animate-pulse">
+                    Save 10%
+                  </span>
+                </div>
+              </div>
+          </motion.div>
+
+          {/* Comparison Table */}
+          <div className="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden">
+            {/* Header Row */}
+            <div className="grid grid-cols-6 gap-6 p-8 bg-gradient-to-r from-brand-teal/5 to-brand-teal/10 border-b border-brand-teal/20">
+              <div className="flex items-end pb-4">
+                <div>
+                  {/* Empty space for features column header */}
+                </div>
+              </div>
+              
+              {/* Starter Plan */}
+              <div className="text-center">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Starter</h3>
+                  <div className="text-2xl font-bold mb-1 text-brand-teal">$29</div>
+                  <div className="text-xs text-gray-900 mb-3">/month</div>
+                  <button className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap">
+                    Get Started
+                  </button>
+                </div>
+              </div>
+              
+              {/* Standard Plan */}
+              <div className="text-center">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Standard</h3>
+                  <div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(299)}</div>
+                  <div className="text-xs text-gray-900 mb-3">/{isQuarterly ? 'quarter' : 'month'}</div>
+                  <button className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap">
+                    Get Started
+                  </button>
+                </div>
+              </div>
+              
+              {/* Pro Plan */}
+              <div className="text-center">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Pro</h3>
+                  <div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(499)}</div>
+                  <div className="text-xs text-gray-900 mb-3">/{isQuarterly ? 'quarter' : 'month'}</div>
+                  <button className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap">
+                    Try 14-Day Free
+                  </button>
+                </div>
+              </div>
+              
+              {/* Premium Plan */}
+              <div className="text-center">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Premium</h3>
+                  <div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(599)}</div>
+                  <div className="text-xs text-gray-900 mb-3">/{isQuarterly ? 'quarter' : 'month'}</div>
+                  <button className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap">
+                    Try 14-Day Free
+                  </button>
+                </div>
+              </div>
+              
+              {/* Enterprise Plan */}
+              <div className="text-center">
+                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Enterprise</h3>
+                  <div className="text-2xl font-bold mb-1 text-gray-900">Custom</div>
+                  <div className="text-xs text-gray-900 mb-3">Pricing</div>
+                  <button className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap">
+                    Contact Sales
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Costs Structure */}
+            <div className="p-8 border-b border-gray-100">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-brand-teal flex items-center justify-center shadow-sm">
+                  <DollarSign className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900">Costs Structure</h4>
+                  <p className="text-sm text-gray-600">Transparent pricing with no hidden fees</p>
+                </div>
+              </div>
+              
+              <div className="space-y-2">
+                <div className="grid grid-cols-6 gap-6 py-4 border-b border-gray-50 hover:bg-gray-25 transition-colors">
+                  <div className="text-sm text-gray-800 font-semibold">Minutes included</div>
+                  <div className="text-center">
+                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">50</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">1,440</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">2,800</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">3,600</span>
+                  </div>
+                  <div className="text-center">
+                    <span className="inline-block px-3 py-1 bg-brand-teal text-white rounded-lg text-sm font-medium">Custom</span>
+                  </div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Extra Minute</div>
+                  <div className="text-center text-sm">$0.16</div>
+                  <div className="text-center text-sm">$0.16</div>
+                  <div className="text-center text-sm">$0.16</div>
+                  <div className="text-center text-sm">$0.16</div>
+                  <div className="text-center text-sm">Custom</div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Conversational Voice Engine API</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">LLM Agent</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Transcriber</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Concurrent Calls</div>
+                  <div className="text-center text-sm">5</div>
+                  <div className="text-center text-sm">15</div>
+                  <div className="text-center text-sm">25</div>
+                  <div className="text-center text-sm">50</div>
+                  <div className="text-center text-sm">Custom</div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3">
+                  <div className="text-sm text-gray-700 font-medium">Extra Concurrent Call</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">$7/call</div>
+                  <div className="text-center text-sm">$7/call</div>
+                  <div className="text-center text-sm">Custom</div>
+                </div>
+              </div>
+            </div>
+
+            {/* Core Capabilities */}
+            <div className="p-8 bg-white border-b border-gray-100">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-brand-teal flex items-center justify-center shadow-sm">
+                  <Zap className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900">Core Capabilities</h4>
+                  <p className="text-sm text-gray-600">Essential features for AI voice agents</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-200">
+                  <div className="text-sm text-gray-700 font-medium">Number of Assistants</div>
+                  <div className="text-center text-sm">1</div>
+                  <div className="text-center text-sm">5</div>
+                  <div className="text-center text-sm">10</div>
+                  <div className="text-center text-sm">Unlimited</div>
+                  <div className="text-center text-sm">Unlimited</div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-200">
+                  <div className="text-sm text-gray-700 font-medium">Multi-language</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-200">
+                  <div className="text-sm text-gray-700 font-medium">Batch Campaigns</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3">
+                  <div className="text-sm text-gray-700 font-medium">Invite Team Members</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <div className="p-8 border-b border-gray-100">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-brand-teal flex items-center justify-center shadow-sm">
+                  <Settings className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900">Actions & Workflows</h4>
+                  <p className="text-sm text-gray-600">Automation and integration capabilities</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Custom Workflows (Reach Calls, Lead capture, Lead Qualification, etc.)</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Assisted Workflow Setup (Additional Charges)</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Real-time Booking</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Call Transfer</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Feature Extractor</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+              </div>
+            </div>
+
+
+            {/* Support */}
+            <div className="p-8 border-b border-gray-100">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-brand-teal flex items-center justify-center shadow-sm">
+                  <Headphones className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900">Only Support</h4>
+                  <p className="text-sm text-gray-600">Help when you need it most</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Support</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">Email Support</div>
+                  <div className="text-center text-sm">Priority Email Support</div>
+                  <div className="text-center text-sm">Dedicated Account Manager</div>
+                  <div className="text-center text-sm">Dedicated Account Manager</div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Onboarding via Zoom</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Dedicated Support & Discord Channel</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">$500/mo</div>
+                  <div className="text-center text-sm">$500/mo</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-100">
+                  <div className="text-sm text-gray-700 font-medium">Early Access to New Features</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3">
+                  <div className="text-sm text-gray-700 font-medium">Solution Architect</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Compliance */}
+            <div className="p-8 bg-white">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-10 h-10 rounded-lg bg-brand-teal flex items-center justify-center shadow-sm">
+                  <ShieldCheck className="w-5 h-5 text-white" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-bold text-gray-900">Security & Compliance</h4>
+                  <p className="text-sm text-gray-600">Enterprise-grade security standards</p>
+                </div>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-200">
+                  <div className="text-sm text-gray-700 font-medium">Guaranteed Uptime (SLA)</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center text-sm">—</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-200">
+                  <div className="text-sm text-gray-700 font-medium">HIPAA</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3 border-b border-gray-200">
+                  <div className="text-sm text-gray-700 font-medium">SOC2 Security</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+                <div className="grid grid-cols-6 gap-6 py-3">
+                  <div className="text-sm text-gray-700 font-medium">GDPR</div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                  <div className="text-center"><Check className="w-4 h-4 text-brand-teal mx-auto" /></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Features Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -486,435 +912,6 @@ const Pricing = () => {
         </div>
       </section>
 
-      {/* Compare Plans Section */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 tracking-tight">
-              Compare Plans and Make the Right Choice
-            </h2>
-            
-            {/* Billing Toggle */}
-            <div className="flex items-center justify-center mb-8">
-              <div className="inline-flex items-center bg-white rounded-full p-1 shadow-sm border">
-                <button
-                  onClick={() => setIsQuarterly(false)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                    !isQuarterly ? 'bg-gray-900 text-white' : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  Monthly
-                </button>
-                <button
-                  onClick={() => setIsQuarterly(true)}
-                  className={`px-6 py-2 rounded-full text-sm font-medium transition-colors ${
-                    isQuarterly ? 'bg-brand-teal text-white' : 'text-gray-600 hover:text-gray-900'
-                  }`}
-                >
-                  Yearly
-                </button>
-              </div>
-            </div>
-          </div>
-
-          {/* Comparison Table */}
-          <div className="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden">
-            {/* Header Row */}
-            <div className="grid grid-cols-6 gap-6 p-8 bg-gradient-to-r from-gray-50 to-gray-100 border-b border-gray-200">
-              <div className="col-span-2 flex items-end pb-4">
-                <div>
-                  <h3 className="text-lg font-bold text-gray-900">Features</h3>
-                  <p className="text-sm text-gray-600 mt-1">Compare what's included in each plan</p>
-                </div>
-              </div>
-              
-              {/* Starter Plan */}
-              <div className="text-center">
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Starter</h3>
-                  <div className="text-3xl font-bold mb-1" style={{ color: '#000000' }}>${getDisplayPrice(299)}</div>
-                  <div className="text-sm text-gray-500 mb-4">/{isQuarterly ? 'quarter' : 'month'}</div>
-                  <button className="w-full px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors shadow-sm mt-auto">
-                    Get Started
-                  </button>
-                </div>
-              </div>
-              
-              {/* Pro Plan */}
-              <div className="text-center">
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Pro</h3>
-                  <div className="text-3xl font-bold mb-1" style={{ color: '#a98064' }}>${getDisplayPrice(375)}</div>
-                  <div className="text-sm text-gray-500 mb-4">/{isQuarterly ? 'quarter' : 'month'}</div>
-                  <button className="w-full px-4 py-3 text-white rounded-xl text-sm font-semibold hover:opacity-90 transition-colors shadow-sm mt-auto" style={{ backgroundColor: '#a98064' }}>
-                    Try 14-Day Free
-                  </button>
-                </div>
-              </div>
-              
-              {/* Growth Plan */}
-              <div className="text-center">
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Growth</h3>
-                  <div className="text-3xl font-bold mb-1" style={{ color: '#868c82' }}>${getDisplayPrice(750)}</div>
-                  <div className="text-sm text-gray-500 mb-4">/{isQuarterly ? 'quarter' : 'month'}</div>
-                  <button className="w-full px-4 py-3 text-white rounded-xl text-sm font-semibold hover:opacity-90 transition-colors shadow-sm mt-auto" style={{ backgroundColor: '#868c82' }}>
-                    Try 14-Day Free
-                  </button>
-                </div>
-              </div>
-              
-              {/* Enterprise Plan */}
-              <div className="text-center">
-                <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Enterprise</h3>
-                  <div className="text-3xl font-bold mb-1 text-gray-700">Custom</div>
-                  <div className="text-sm text-gray-500 mb-4">Pricing</div>
-                  <button className="w-full px-4 py-3 bg-gray-900 text-white rounded-xl text-sm font-semibold hover:bg-gray-800 transition-colors shadow-sm mt-auto">
-                    Contact Sales
-                  </button>
-                </div>
-              </div>
-            </div>
-
-            {/* Costs Structure */}
-            <div className="p-8 border-b border-gray-100">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm" style={{ backgroundColor: '#a98064' }}>
-                  <DollarSign className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900">Costs Structure</h4>
-                  <p className="text-sm text-gray-600">Transparent pricing with no hidden fees</p>
-                </div>
-              </div>
-              
-              <div className="space-y-2">
-                <div className="grid grid-cols-6 gap-6 py-4 border-b border-gray-50 hover:bg-gray-25 transition-colors">
-                  <div className="col-span-2 text-sm text-gray-800 font-semibold">Minutes included</div>
-                  <div className="text-center">
-                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">50</span>
-                  </div>
-                  <div className="text-center">
-                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">2,000</span>
-                  </div>
-                  <div className="text-center">
-                    <span className="inline-block px-3 py-1 bg-gray-100 text-gray-800 rounded-lg text-sm font-medium">4,000</span>
-                  </div>
-                  <div className="text-center">
-                    <span className="inline-block px-3 py-1 bg-gradient-to-r from-blue-500 to-purple-600 text-white rounded-lg text-sm font-medium">Custom</span>
-                  </div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Extra Minute</div>
-                  <div className="text-center text-sm">$0.22</div>
-                  <div className="text-center text-sm">$0.22</div>
-                  <div className="text-center text-sm">$0.22</div>
-                  <div className="text-center text-sm">Custom</div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Conversational Voice Engine API</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">LLM Agent</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Transcriber</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Concurrent Calls</div>
-                  <div className="text-center text-sm">5</div>
-                  <div className="text-center text-sm">25</div>
-                  <div className="text-center text-sm">50</div>
-                  <div className="text-center text-sm">Custom</div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Extra Concurrent Call</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">$7/call</div>
-                  <div className="text-center text-sm">$7/call</div>
-                  <div className="text-center text-sm">Custom</div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">New Phone Number</div>
-                  <div className="text-center text-sm">$1.50</div>
-                  <div className="text-center text-sm">$1.50</div>
-                  <div className="text-center text-sm">$1.50</div>
-                  <div className="text-center text-sm">Included</div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Boosted Queuing for Calls</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">$500/mo</div>
-                  <div className="text-center text-sm">$500/mo</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Core Capabilities */}
-            <div className="p-8 bg-gray-50 border-b border-gray-100">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm" style={{ backgroundColor: '#868c82' }}>
-                  <Zap className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900">Core Capabilities</h4>
-                  <p className="text-sm text-gray-600">Essential features for AI voice agents</p>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-200">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Unlimited Assistants</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-200">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Multi-language</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-200">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Retelling</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-200">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Batch Campaigns</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Invite Team Members</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Actions */}
-            <div className="p-8 border-b border-gray-100">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm" style={{ backgroundColor: '#6498a0' }}>
-                  <Settings className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900">Actions & Workflows</h4>
-                  <p className="text-sm text-gray-600">Automation and integration capabilities</p>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Custom Workflows (Reach Calls, Lead capture, Lead Qualification, etc.)</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">8,000</div>
-                  <div className="text-center text-sm">42,000</div>
-                  <div className="text-center text-sm">Custom</div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Extra Workflow</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">$0.002</div>
-                  <div className="text-center text-sm">$0.002</div>
-                  <div className="text-center text-sm">Custom</div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Send SMS</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Real-time Booking</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Call Transfer</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Information Extractor</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Custom Actions</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-              </div>
-            </div>
-
-            {/* White Label Platform */}
-            <div className="p-8 bg-gray-50 border-b border-gray-100">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm" style={{ backgroundColor: '#42a4bf' }}>
-                  <Tag className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900">White Label Platform</h4>
-                  <p className="text-sm text-gray-600">Brand customization and reseller options</p>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-200">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">White-label Platform</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Subaccounts</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">25</div>
-                  <div className="text-center text-sm">Unlimited</div>
-                </div>
-              </div>
-            </div>
-
-            {/* Support */}
-            <div className="p-8 border-b border-gray-100">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm" style={{ backgroundColor: '#a98064' }}>
-                  <Headphones className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900">Support & Training</h4>
-                  <p className="text-sm text-gray-600">Help when you need it most</p>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Academy</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Support via Ticketing System</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">30-day Onboarding via Private Slack, then Support via Ticketing System</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Dedicated Support & Slack Channel</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">$1,200/mo</div>
-                  <div className="text-center text-sm">$1,200/mo</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-100">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Early Access to New Features</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Solution Architect</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-              </div>
-            </div>
-
-            {/* Compliance */}
-            <div className="p-8 bg-gray-50">
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-10 h-10 rounded-lg flex items-center justify-center shadow-sm" style={{ backgroundColor: '#000000' }}>
-                  <ShieldCheck className="w-5 h-5 text-white" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-bold text-gray-900">Security & Compliance</h4>
-                  <p className="text-sm text-gray-600">Enterprise-grade security standards</p>
-                </div>
-              </div>
-              
-              <div className="space-y-4">
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-200">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">Guaranteed Uptime (SLA)</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-200">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">HIPAA</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center text-sm">—</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3 border-b border-gray-200">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">SOC2 Security</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-                <div className="grid grid-cols-6 gap-4 py-3">
-                  <div className="col-span-2 text-sm text-gray-700 font-medium">GDPR</div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                  <div className="text-center"><Check className="w-4 h-4 text-green-500 mx-auto" /></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* FAQ Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
@@ -932,7 +929,7 @@ const Pricing = () => {
               },
               {
                 question: 'What happens if I exceed my monthly calling mins?',
-                answer: 'You can purchase additional calling mins at $0.22/min, or upgrade to a higher plan for better value.'
+                answer: 'You can purchase additional calling mins at $0.16/min, or upgrade to a higher plan for better value.'
               },
               {
                 question: 'Is there a setup fee?',
