@@ -98,12 +98,14 @@ const CustomLLMIntegration = () => {
                 Deploy Custom Model
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              <Link
-                to="/contact"
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-glass inline-flex items-center justify-center px-8 py-3 text-base font-medium"
               >
-                Consult with Experts
-              </Link>
+                Book Demo
+              </a>
             </motion.div>
           </div>
         </div>
@@ -211,12 +213,14 @@ const CustomLLMIntegration = () => {
                 Start Custom Development
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              <Link
-                to="/contact"
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border-2 border-white text-white hover:bg-white hover:text-brand-teal inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
-                Consult with AI Experts
-              </Link>
+                Book Demo
+              </a>
             </div>
           </div>
         </div>

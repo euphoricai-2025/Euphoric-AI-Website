@@ -1,77 +1,105 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Shield, Phone, FileText, Calendar, ArrowRight, CheckCircle, TrendingUp, AlertTriangle } from 'lucide-react';
+import { Headphones, ArrowRight, TrendingUp, BookOpen, Users, Globe } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
-const InsuranceUseCase = () => {
+const CustomerSupportAgentUseCase = () => {
   const useCases = [
     {
-      icon: Phone,
-      title: 'Claims Status Updates & Follow-up',
-      description: 'Automatically update policyholders on claim progress, collect additional documentation, and coordinate with adjusters to accelerate resolution.',
-      stats: 'Reduce claims processing time by 40% and improve customer satisfaction scores by 55%',
-      realWorldPainPoint: 'Insurance claims create 80% of customer service calls, with policyholders frustrated by lack of updates and lengthy processing times, leading to poor retention rates.',
+      icon: BookOpen,
+      title: 'Instant Knowledge Base Answers',
+      description: 'Provide immediate, accurate answers to customer questions by accessing your comprehensive knowledge base, reducing wait times and improving customer satisfaction.',
+      stats: 'Resolve 75% of inquiries instantly and reduce average resolution time from 24 hours to 2 minutes',
+      realWorldPainPoint: 'Customers wait an average of 12 minutes on hold for simple questions that could be answered instantly. 67% of customers hang up when put on hold, leading to frustrated customers and lost business opportunities worth millions annually.',
       features: [
-        'Automated claim status notifications at key milestones',
-        'Proactive document collection and verification',
-        'Adjuster coordination and appointment scheduling',
-        'Settlement explanation and next steps communication',
-        'Customer satisfaction surveys post-resolution'
+        'Real-time knowledge base search and retrieval',
+        'Natural language processing for complex query understanding',
+        'Multi-format content support (FAQs, documents, videos)',
+        'Dynamic answer personalization based on customer context',
+        'Automatic knowledge base updates and content synchronization',
+        'Escalation triggers for complex issues requiring human intervention'
       ]
     },
     {
-      icon: Calendar,
-      title: 'Policy Renewal & Premium Optimization',
-      description: 'Proactively contact policyholders before renewal dates, review coverage needs, and present competitive premium options to prevent lapses.',
-      stats: 'Increase renewal rates by 35% and reduce policy lapses by 60%',
-      realWorldPainPoint: 'Insurance agencies lose 25% of policies annually due to poor renewal communication and competitive pricing from other carriers, directly impacting revenue.',
+      icon: Users,
+      title: 'Smart Escalation to Human Agents',
+      description: 'Seamlessly transfer complex issues to human agents with full context and conversation history, ensuring efficient resolution and customer satisfaction.',
+      stats: 'Improve first-call resolution by 60% and reduce human agent workload by 40%',
+      realWorldPainPoint: 'Customers have to repeat their issues multiple times when transferred between agents. Poor handoffs waste 30% of agent time on information gathering instead of problem-solving, leading to longer resolution times and frustrated customers.',
       features: [
-        'Automated renewal deadline tracking and alerts',
-        'Coverage needs assessment and recommendations',
-        'Competitive rate analysis and presentation',
-        'Payment plan setup and automation',
-        'Policy lapse prevention and win-back campaigns'
+        'Intelligent escalation decision-making based on query complexity',
+        'Complete conversation history transfer to human agents',
+        'Customer context and preference sharing for personalized service',
+        'Priority routing based on customer tier and issue urgency',
+        'Agent availability monitoring and optimal assignment',
+        'Seamless handoff with no information loss or repetition'
       ]
     },
     {
-      icon: AlertTriangle,
-      title: 'Risk Assessment & Underwriting Support',
-      description: 'Conduct comprehensive risk assessments for new applications through structured questioning and data collection for accurate underwriting.',
-      stats: 'Improve underwriting accuracy by 50% and reduce application processing time from 10 days to 3 days',
-      realWorldPainPoint: 'Manual risk assessment creates bottlenecks in underwriting, leading to delayed approvals, inaccurate pricing, and lost business to faster competitors.',
+      icon: Globe,
+      title: 'Multi-Language Support & Troubleshooting',
+      description: 'Provide consistent, high-quality customer support across multiple languages while handling complex technical troubleshooting scenarios.',
+      stats: 'Expand global support coverage by 300% and improve customer satisfaction scores by 45%',
+      realWorldPainPoint: 'Hiring multilingual support staff is expensive and scaling globally is challenging. Technical troubleshooting requires specialized knowledge that varies between agents, leading to inconsistent service quality and customer frustration.',
       features: [
-        'Structured risk questionnaire delivery',
-        'Property and asset valuation assistance',
-        'Health and lifestyle assessment coordination',
-        'Prior claims history verification',
-        'Fraud indicator detection and flagging'
+        'Native-level fluency in 35+ languages with cultural context',
+        'Technical troubleshooting guides and step-by-step assistance',
+        'Visual aid generation and screen-sharing integration',
+        'Product-specific knowledge and compatibility checking',
+        'Warranty and service history integration',
+        'Follow-up scheduling and case tracking across languages'
       ]
     }
   ];
 
   const industries = [
-    { name: 'Auto Insurance Agencies', description: 'Vehicle coverage and claims processing', painPoint: 'Claims updates consume 70% of customer service time' },
-    { name: 'Home & Property Insurance', description: 'Residential and commercial property coverage', painPoint: 'Property assessments delay underwriting by weeks' },
-    { name: 'Health Insurance Providers', description: 'Medical coverage and benefits administration', painPoint: 'Complex claims require extensive member communication' },
-    { name: 'Life Insurance Companies', description: 'Life and disability insurance services', painPoint: 'Lengthy underwriting process loses 40% of applicants' },
-    { name: 'Commercial Insurance Brokers', description: 'Business insurance and risk management', painPoint: 'Manual renewals result in 30% policy lapse rates' },
-    { name: 'Insurance Adjusting Firms', description: 'Claims investigation and settlement', painPoint: 'Policyholder communication delays claim resolution' }
+    { 
+      name: 'E-commerce & Retail', 
+      description: 'Online retailers managing order inquiries, returns, and product support', 
+      painPoint: 'Peak shopping periods overwhelm support teams, with response times exceeding 48 hours' 
+    },
+    { 
+      name: 'Software & Technology', 
+      description: 'SaaS companies and tech firms providing technical support and onboarding', 
+      painPoint: 'Complex technical issues require specialized knowledge that junior agents lack' 
+    },
+    { 
+      name: 'Financial Services', 
+      description: 'Banks, credit unions, and fintech companies handling account and transaction support', 
+      painPoint: 'Regulatory compliance requires consistent, accurate responses that human agents sometimes miss' 
+    },
+    { 
+      name: 'Healthcare & Insurance', 
+      description: 'Healthcare providers and insurance companies managing benefits and claims support', 
+      painPoint: 'HIPAA compliance and complex policy explanations require specialized training and consistency' 
+    },
+    { 
+      name: 'Telecommunications', 
+      description: 'Telecom companies providing service support and technical troubleshooting', 
+      painPoint: 'Technical support calls require 45+ minutes on average, creating massive operational costs' 
+    },
+    { 
+      name: 'Travel & Hospitality', 
+      description: 'Airlines, hotels, and travel companies managing bookings and customer service', 
+      painPoint: 'Seasonal demand fluctuations make it impossible to maintain consistent service levels' 
+    }
   ];
 
   const testimonials = [
     {
-      name: 'Michael Rodriguez',
-      role: 'Claims Manager',
-      company: 'Nationwide Insurance Agency',
-      content: 'Claims processing used to take 3-4 weeks with constant policyholder calls asking for updates. Now clients are automatically informed at every step, and we close claims 40% faster with higher satisfaction scores.',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Jennifer Park',
+      role: 'Customer Experience Director',
+      company: 'TechShop Pro',
+      content: 'Our customer satisfaction scores jumped from 3.2 to 4.8 stars after implementing the AI support agent. It handles 80% of our inquiries instantly, and our human agents can focus on complex issues. We\'ve reduced support costs by $400,000 annually while improving service quality.',
+      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     {
-      name: 'Lisa Johnson',
-      role: 'Agency Owner',
-      company: 'Johnson Insurance Services',
-      content: 'We were losing 1 in 4 policies at renewal due to poor follow-up. The AI agent now contacts every client 60 days before renewal, and our retention rate improved from 75% to 92%.',
-      image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Carlos Rodriguez',
+      role: 'VP of Operations',
+      company: 'Global Finance Solutions',
+      content: 'The multi-language support is incredible. We now provide 24/7 support in 15 languages without hiring additional staff. Customer resolution time dropped from 24 hours to under 5 minutes for 70% of our inquiries. It\'s transformed our international operations.',
+      image: 'https://images.pexels.com/photos/3760511/pexels-photo-3760511.jpeg?auto=compress&cs=tinysrgb&w=400'
     }
   ];
 
@@ -86,7 +114,7 @@ const InsuranceUseCase = () => {
               animate={{ opacity: 1, y: 0 }}
               className="icon-badge-lg mx-auto mb-6"
             >
-              <Shield className="w-10 h-10 text-white" />
+              <Headphones className="w-10 h-10 text-white" />
             </motion.div>
             
             <motion.h1
@@ -95,7 +123,7 @@ const InsuranceUseCase = () => {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
             >
-              <span className="text-gray-900">Insurance</span><br />
+              <span className="text-gray-900">Customer Support</span><br />
               <span className="text-euphoric-gradient">Use Cases</span>
             </motion.h1>
             
@@ -105,7 +133,7 @@ const InsuranceUseCase = () => {
               transition={{ delay: 0.2 }}
               className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8"
             >
-              Discover how insurance agencies are using AI voice agents to solve critical challenges in claims processing, policy renewals, and customer retention.
+              Discover how businesses are using AI voice agents to provide instant customer support, reduce response times, and deliver 24/7 assistance across multiple languages.
             </motion.p>
 
             <motion.div
@@ -139,10 +167,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Real-World Insurance Solutions
+              Real-World Customer Support Solutions
             </h2>
             <p className="text-lg text-gray-600">
-              AI voice agents solving the most pressing challenges in insurance operations
+              AI voice agents transforming how businesses deliver customer service and support
             </p>
           </div>
 
@@ -176,7 +204,7 @@ const InsuranceUseCase = () => {
                         </svg>
                       </div>
                       <div className="ml-3">
-                        <h4 className="text-sm font-medium text-red-800">Current Industry Challenge:</h4>
+                        <h4 className="text-sm font-medium text-red-800">Current Pain Point:</h4>
                         <p className="text-sm text-red-700 mt-1">{useCase.realWorldPainPoint}</p>
                       </div>
                     </div>
@@ -188,7 +216,7 @@ const InsuranceUseCase = () => {
                         <TrendingUp className="h-5 w-5 text-green-400" />
                       </div>
                       <div className="ml-3">
-                        <h4 className="text-sm font-medium text-green-800">Proven Results:</h4>
+                        <h4 className="text-sm font-medium text-green-800">Results with AI:</h4>
                         <p className="text-sm text-green-700 mt-1">{useCase.stats}</p>
                       </div>
                     </div>
@@ -217,10 +245,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Insurance Sectors We Serve
+              Industries We Serve
             </h2>
             <p className="text-lg text-gray-600">
-              Addressing specific operational challenges across different insurance markets
+              Solving customer support challenges across different business sectors
             </p>
           </div>
 
@@ -253,10 +281,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Real Results from Insurance Professionals
+              Trusted by Customer Success Teams
             </h2>
             <p className="text-lg text-gray-600">
-              See how AI voice agents solved actual operational challenges
+              Real results from businesses transforming their customer support with AI
             </p>
           </div>
 
@@ -293,10 +321,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Transform Your Insurance Operations?
+              Ready to Transform Customer Support?
             </h2>
             <p className="text-lg text-white/90 mb-8">
-              Join insurance professionals using AI voice agents to streamline claims, improve renewals, and boost customer satisfaction.
+              Join thousands of businesses using AI voice agents to provide instant support, reduce costs, and deliver exceptional customer experiences around the clock.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -320,4 +348,4 @@ const InsuranceUseCase = () => {
   );
 };
 
-export default InsuranceUseCase;
+export default CustomerSupportAgentUseCase;

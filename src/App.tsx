@@ -31,6 +31,13 @@ import InsuranceUseCase from './pages/use-cases/Insurance';
 import HomeServicesUseCase from './pages/use-cases/HomeServices';
 import RealEstateUseCase from './pages/use-cases/RealEstate';
 import CustomerSupportUseCase from './pages/use-cases/CustomerSupport';
+import LeadQualificationUseCase from './pages/use-cases/LeadQualification';
+import AppointmentBookingUseCase from './pages/use-cases/AppointmentBooking';
+import CustomerSupportAgentUseCase from './pages/use-cases/CustomerSupportAgent';
+import LogisticsUseCase from './pages/use-cases/Logistics';
+import RetailConsumerUseCase from './pages/use-cases/RetailConsumer';
+import TravelHospitalityUseCase from './pages/use-cases/TravelHospitality';
+import EcommerceUseCase from './pages/use-cases/Ecommerce';
 import Integrations from './pages/Integrations';
 import CalCom from './pages/integrations/CalCom';
 import CustomLLM from './pages/integrations/CustomLLM';
@@ -77,6 +84,13 @@ function App() {
                 <Route path="/use-cases/home-services" element={<HomeServicesUseCase />} />
                 <Route path="/use-cases/real-estate" element={<RealEstateUseCase />} />
                 <Route path="/use-cases/customer-support" element={<CustomerSupportUseCase />} />
+                <Route path="/use-cases/logistics" element={<LogisticsUseCase />} />
+                <Route path="/use-cases/retail-consumer" element={<RetailConsumerUseCase />} />
+                <Route path="/use-cases/travel-hospitality" element={<TravelHospitalityUseCase />} />
+                <Route path="/use-cases/ecommerce" element={<EcommerceUseCase />} />
+                <Route path="/lead-qualification" element={<LeadQualificationUseCase />} />
+                <Route path="/appointment-booking" element={<AppointmentBookingUseCase />} />
+                <Route path="/customer-support-agent" element={<CustomerSupportAgentUseCase />} />
                 <Route path="/integrations" element={<Integrations />} />
                 <Route path="/integrations/cal-com" element={<CalCom />} />
                 <Route path="/integrations/custom-llm" element={<CustomLLM />} />

@@ -120,17 +120,19 @@ const TelnyxIntegration = () => {
             >
               <Link
                 to="/signup"
-                className="btn-gold inline-flex items-center justify-center gap-2 group"
+                className="btn-gold inline-flex items-center justify-center px-8 py-3 text-base font-medium"
               >
                 Connect Telnyx
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              <Link
-                to="/contact"
-                className="btn-outline inline-flex items-center justify-center"
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-glass inline-flex items-center justify-center px-8 py-3 text-base font-medium"
               >
-                Enterprise Consultation
-              </Link>
+                Book Demo
+              </a>
             </motion.div>
           </div>
         </div>
@@ -313,17 +315,19 @@ const TelnyxIntegration = () => {
             >
               <Link
                 to="/signup"
-                className="btn-gold inline-flex items-center justify-center gap-2 group"
+                className="bg-white text-brand-teal hover:bg-gray-100 inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
-                Start Integration
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Connect Telnyx
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              <Link
-                to="/pricing"
-                className="btn-primary inline-flex items-center justify-center"
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="border-2 border-white text-white hover:bg-white hover:text-brand-teal inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
-                View Pricing
-              </Link>
+                Book Demo
+              </a>
             </motion.div>
           </div>
         </div>

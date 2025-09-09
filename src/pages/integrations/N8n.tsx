@@ -118,12 +118,14 @@ const N8nIntegration = () => {
                 Connect n8n
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              <Link
-                to="/contact"
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-glass inline-flex items-center justify-center px-8 py-3 text-base font-medium"
               >
-                Custom Workflows
-              </Link>
+                Book Demo
+              </a>
             </motion.div>
           </div>
         </div>
@@ -241,15 +243,17 @@ const N8nIntegration = () => {
                 to="/signup"
                 className="bg-white text-brand-teal hover:bg-gray-100 inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
-                Start Building
+                Connect n8n
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              <Link
-                to="/contact"
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="border-2 border-white text-white hover:bg-white hover:text-brand-teal inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
-                Custom Development
-              </Link>
+                Book Demo
+              </a>
             </div>
           </div>
         </div>

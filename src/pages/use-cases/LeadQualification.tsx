@@ -1,77 +1,104 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Shield, Phone, FileText, Calendar, ArrowRight, CheckCircle, TrendingUp, AlertTriangle } from 'lucide-react';
+import { CheckCircle, ArrowRight, TrendingUp, Target, Users, BarChart3 } from 'lucide-react';
 
-const InsuranceUseCase = () => {
+const LeadQualificationUseCase = () => {
   const useCases = [
     {
-      icon: Phone,
-      title: 'Claims Status Updates & Follow-up',
-      description: 'Automatically update policyholders on claim progress, collect additional documentation, and coordinate with adjusters to accelerate resolution.',
-      stats: 'Reduce claims processing time by 40% and improve customer satisfaction scores by 55%',
-      realWorldPainPoint: 'Insurance claims create 80% of customer service calls, with policyholders frustrated by lack of updates and lengthy processing times, leading to poor retention rates.',
+      icon: Target,
+      title: 'Automated Lead Scoring & Prioritization',
+      description: 'Intelligently evaluate and score leads based on predefined criteria, ensuring your sales team focuses on the highest-value prospects first.',
+      stats: 'Increase qualified lead conversion by 85% and reduce sales cycle time by 40%',
+      realWorldPainPoint: 'Sales teams waste 67% of their time on unqualified leads. Manual lead qualification processes are inconsistent, time-consuming, and often miss crucial qualifying information, resulting in $1.2M in lost revenue annually for mid-sized companies.',
       features: [
-        'Automated claim status notifications at key milestones',
-        'Proactive document collection and verification',
-        'Adjuster coordination and appointment scheduling',
-        'Settlement explanation and next steps communication',
-        'Customer satisfaction surveys post-resolution'
+        'Multi-criteria lead scoring with customizable weightings',
+        'Real-time qualification based on budget, authority, need, and timeline',
+        'Integration with CRM systems for automatic lead routing',
+        'Behavioral analysis and engagement level assessment',
+        'Competitor comparison and pricing sensitivity evaluation',
+        'Lead nurturing recommendations for non-qualified prospects'
       ]
     },
     {
-      icon: Calendar,
-      title: 'Policy Renewal & Premium Optimization',
-      description: 'Proactively contact policyholders before renewal dates, review coverage needs, and present competitive premium options to prevent lapses.',
-      stats: 'Increase renewal rates by 35% and reduce policy lapses by 60%',
-      realWorldPainPoint: 'Insurance agencies lose 25% of policies annually due to poor renewal communication and competitive pricing from other carriers, directly impacting revenue.',
+      icon: Users,
+      title: 'Intelligent Conversation Management',
+      description: 'Conduct natural, engaging conversations that ask the right questions at the right time to uncover genuine buying intent and pain points.',
+      stats: 'Improve lead qualification accuracy by 78% and reduce human intervention by 60%',
+      realWorldPainPoint: 'Manual qualification calls are inconsistent, with different sales reps asking different questions. This leads to poor data quality, missed opportunities, and inconsistent follow-up strategies across the sales team.',
       features: [
-        'Automated renewal deadline tracking and alerts',
-        'Coverage needs assessment and recommendations',
-        'Competitive rate analysis and presentation',
-        'Payment plan setup and automation',
-        'Policy lapse prevention and win-back campaigns'
+        'Dynamic questioning based on lead responses and behavior',
+        'Pain point discovery through conversational AI techniques',
+        'Decision-maker identification and contact mapping',
+        'Budget qualification with tactful pricing discussions',
+        'Timeline assessment and urgency evaluation',
+        'Objection handling with intelligent response suggestions'
       ]
     },
     {
-      icon: AlertTriangle,
-      title: 'Risk Assessment & Underwriting Support',
-      description: 'Conduct comprehensive risk assessments for new applications through structured questioning and data collection for accurate underwriting.',
-      stats: 'Improve underwriting accuracy by 50% and reduce application processing time from 10 days to 3 days',
-      realWorldPainPoint: 'Manual risk assessment creates bottlenecks in underwriting, leading to delayed approvals, inaccurate pricing, and lost business to faster competitors.',
+      icon: BarChart3,
+      title: 'Real-time CRM Integration & Handoffs',
+      description: 'Seamlessly integrate with your existing CRM systems to update lead information instantly and provide smooth handoffs to your sales team.',
+      stats: 'Reduce data entry time by 90% and improve lead follow-up speed by 75%',
+      realWorldPainPoint: 'Lead data gets lost in transition between marketing and sales. Manual data entry creates delays, errors, and inconsistencies. Sales teams often work with outdated or incomplete lead information, missing critical opportunities.',
       features: [
-        'Structured risk questionnaire delivery',
-        'Property and asset valuation assistance',
-        'Health and lifestyle assessment coordination',
-        'Prior claims history verification',
-        'Fraud indicator detection and flagging'
+        'Real-time CRM updates with structured data capture',
+        'Automated lead routing based on territory and expertise',
+        'Comprehensive conversation summaries for sales teams',
+        'Lead status tracking and pipeline management',
+        'Automated follow-up scheduling and reminder systems',
+        'Integration with popular CRM platforms (Salesforce, HubSpot, Pipedrive)'
       ]
     }
   ];
 
   const industries = [
-    { name: 'Auto Insurance Agencies', description: 'Vehicle coverage and claims processing', painPoint: 'Claims updates consume 70% of customer service time' },
-    { name: 'Home & Property Insurance', description: 'Residential and commercial property coverage', painPoint: 'Property assessments delay underwriting by weeks' },
-    { name: 'Health Insurance Providers', description: 'Medical coverage and benefits administration', painPoint: 'Complex claims require extensive member communication' },
-    { name: 'Life Insurance Companies', description: 'Life and disability insurance services', painPoint: 'Lengthy underwriting process loses 40% of applicants' },
-    { name: 'Commercial Insurance Brokers', description: 'Business insurance and risk management', painPoint: 'Manual renewals result in 30% policy lapse rates' },
-    { name: 'Insurance Adjusting Firms', description: 'Claims investigation and settlement', painPoint: 'Policyholder communication delays claim resolution' }
+    { 
+      name: 'B2B Software Companies', 
+      description: 'SaaS and software solution providers qualifying enterprise prospects', 
+      painPoint: 'Demo requests flood in, but only 15% are qualified buyers, wasting sales resources' 
+    },
+    { 
+      name: 'Financial Services', 
+      description: 'Banks, insurance companies, and investment firms qualifying high-value clients', 
+      painPoint: 'Compliance requirements make manual qualification slow and error-prone' 
+    },
+    { 
+      name: 'Real Estate Agencies', 
+      description: 'Property developers and agencies qualifying serious buyers and investors', 
+      painPoint: 'Agents spend 80% of time on unqualified leads instead of closing deals' 
+    },
+    { 
+      name: 'Professional Services', 
+      description: 'Consulting, legal, and accounting firms qualifying potential clients', 
+      painPoint: 'Complex service offerings require detailed qualification that manual processes miss' 
+    },
+    { 
+      name: 'Manufacturing & Wholesale', 
+      description: 'B2B manufacturers qualifying distributors and bulk buyers', 
+      painPoint: 'Long sales cycles require consistent nurturing that manual processes cannot maintain' 
+    },
+    { 
+      name: 'Healthcare Technology', 
+      description: 'Medical device and healthcare software companies qualifying healthcare providers', 
+      painPoint: 'Regulatory compliance and technical requirements make qualification complex and time-consuming' 
+    }
   ];
 
   const testimonials = [
     {
-      name: 'Michael Rodriguez',
-      role: 'Claims Manager',
-      company: 'Nationwide Insurance Agency',
-      content: 'Claims processing used to take 3-4 weeks with constant policyholder calls asking for updates. Now clients are automatically informed at every step, and we close claims 40% faster with higher satisfaction scores.',
+      name: 'Sarah Mitchell',
+      role: 'VP of Sales',
+      company: 'TechFlow Solutions',
+      content: 'Our lead qualification improved dramatically. The AI agent identifies serious buyers within the first 2 minutes, and our sales team now focuses only on qualified prospects. We\'ve seen a 120% increase in deal closure rate and saved 25 hours per week on unqualified calls.',
       image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     {
-      name: 'Lisa Johnson',
-      role: 'Agency Owner',
-      company: 'Johnson Insurance Services',
-      content: 'We were losing 1 in 4 policies at renewal due to poor follow-up. The AI agent now contacts every client 60 days before renewal, and our retention rate improved from 75% to 92%.',
-      image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'David Chen',
+      role: 'Revenue Operations Manager',
+      company: 'Growth Dynamics Inc',
+      content: 'The CRM integration is seamless. Every conversation is automatically logged with detailed notes, lead scores, and next actions. Our follow-up response time improved from 48 hours to 15 minutes, and we\'re converting 65% more qualified leads to customers.',
+      image: 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=400'
     }
   ];
 
@@ -86,7 +113,7 @@ const InsuranceUseCase = () => {
               animate={{ opacity: 1, y: 0 }}
               className="icon-badge-lg mx-auto mb-6"
             >
-              <Shield className="w-10 h-10 text-white" />
+              <CheckCircle className="w-10 h-10 text-white" />
             </motion.div>
             
             <motion.h1
@@ -95,7 +122,7 @@ const InsuranceUseCase = () => {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
             >
-              <span className="text-gray-900">Insurance</span><br />
+              <span className="text-gray-900">Lead Qualification</span><br />
               <span className="text-euphoric-gradient">Use Cases</span>
             </motion.h1>
             
@@ -105,7 +132,7 @@ const InsuranceUseCase = () => {
               transition={{ delay: 0.2 }}
               className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8"
             >
-              Discover how insurance agencies are using AI voice agents to solve critical challenges in claims processing, policy renewals, and customer retention.
+              Discover how businesses are using AI voice agents to automatically qualify leads, improve sales efficiency, and focus human resources on high-value prospects.
             </motion.p>
 
             <motion.div
@@ -139,10 +166,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Real-World Insurance Solutions
+              Real-World Lead Qualification Solutions
             </h2>
             <p className="text-lg text-gray-600">
-              AI voice agents solving the most pressing challenges in insurance operations
+              AI voice agents transforming how businesses identify and prioritize qualified prospects
             </p>
           </div>
 
@@ -176,7 +203,7 @@ const InsuranceUseCase = () => {
                         </svg>
                       </div>
                       <div className="ml-3">
-                        <h4 className="text-sm font-medium text-red-800">Current Industry Challenge:</h4>
+                        <h4 className="text-sm font-medium text-red-800">Current Pain Point:</h4>
                         <p className="text-sm text-red-700 mt-1">{useCase.realWorldPainPoint}</p>
                       </div>
                     </div>
@@ -188,7 +215,7 @@ const InsuranceUseCase = () => {
                         <TrendingUp className="h-5 w-5 text-green-400" />
                       </div>
                       <div className="ml-3">
-                        <h4 className="text-sm font-medium text-green-800">Proven Results:</h4>
+                        <h4 className="text-sm font-medium text-green-800">Results with AI:</h4>
                         <p className="text-sm text-green-700 mt-1">{useCase.stats}</p>
                       </div>
                     </div>
@@ -217,10 +244,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Insurance Sectors We Serve
+              Industries We Serve
             </h2>
             <p className="text-lg text-gray-600">
-              Addressing specific operational challenges across different insurance markets
+              Solving lead qualification challenges across different business sectors
             </p>
           </div>
 
@@ -253,10 +280,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Real Results from Insurance Professionals
+              Trusted by Sales Teams
             </h2>
             <p className="text-lg text-gray-600">
-              See how AI voice agents solved actual operational challenges
+              Real results from businesses transforming their lead qualification process with AI
             </p>
           </div>
 
@@ -293,10 +320,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Transform Your Insurance Operations?
+              Ready to Qualify Leads Automatically?
             </h2>
             <p className="text-lg text-white/90 mb-8">
-              Join insurance professionals using AI voice agents to streamline claims, improve renewals, and boost customer satisfaction.
+              Join hundreds of businesses using AI voice agents to improve lead quality, accelerate sales cycles, and maximize revenue from every prospect.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -320,4 +347,4 @@ const InsuranceUseCase = () => {
   );
 };
 
-export default InsuranceUseCase;
+export default LeadQualificationUseCase;

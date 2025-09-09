@@ -1,77 +1,105 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Shield, Phone, FileText, Calendar, ArrowRight, CheckCircle, TrendingUp, AlertTriangle } from 'lucide-react';
+import { Clock, ArrowRight, TrendingUp, Calendar, Bell, RefreshCw } from 'lucide-react';
+import { CheckCircle } from 'lucide-react';
 
-const InsuranceUseCase = () => {
+const AppointmentBookingUseCase = () => {
   const useCases = [
     {
-      icon: Phone,
-      title: 'Claims Status Updates & Follow-up',
-      description: 'Automatically update policyholders on claim progress, collect additional documentation, and coordinate with adjusters to accelerate resolution.',
-      stats: 'Reduce claims processing time by 40% and improve customer satisfaction scores by 55%',
-      realWorldPainPoint: 'Insurance claims create 80% of customer service calls, with policyholders frustrated by lack of updates and lengthy processing times, leading to poor retention rates.',
-      features: [
-        'Automated claim status notifications at key milestones',
-        'Proactive document collection and verification',
-        'Adjuster coordination and appointment scheduling',
-        'Settlement explanation and next steps communication',
-        'Customer satisfaction surveys post-resolution'
-      ]
-    },
-    {
       icon: Calendar,
-      title: 'Policy Renewal & Premium Optimization',
-      description: 'Proactively contact policyholders before renewal dates, review coverage needs, and present competitive premium options to prevent lapses.',
-      stats: 'Increase renewal rates by 35% and reduce policy lapses by 60%',
-      realWorldPainPoint: 'Insurance agencies lose 25% of policies annually due to poor renewal communication and competitive pricing from other carriers, directly impacting revenue.',
+      title: '24/7 Scheduling & Calendar Management',
+      description: 'Enable customers to book appointments anytime, automatically sync with calendars, and manage availability in real-time across multiple staff members and locations.',
+      stats: 'Increase booking conversion by 70% and reduce scheduling conflicts by 95%',
+      realWorldPainPoint: 'Businesses lose 40% of potential appointments because customers call outside business hours. Manual scheduling creates double-bookings, missed appointments, and wastes 15+ hours weekly on phone tag with customers trying to schedule.',
       features: [
-        'Automated renewal deadline tracking and alerts',
-        'Coverage needs assessment and recommendations',
-        'Competitive rate analysis and presentation',
-        'Payment plan setup and automation',
-        'Policy lapse prevention and win-back campaigns'
+        'Real-time availability checking across multiple calendars',
+        '24/7 booking capability with instant confirmations',
+        'Automatic calendar sync with Google Calendar, Outlook, and other platforms',
+        'Multi-location and multi-staff scheduling coordination',
+        'Buffer time management and travel time calculations',
+        'Recurring appointment setup and series booking'
       ]
     },
     {
-      icon: AlertTriangle,
-      title: 'Risk Assessment & Underwriting Support',
-      description: 'Conduct comprehensive risk assessments for new applications through structured questioning and data collection for accurate underwriting.',
-      stats: 'Improve underwriting accuracy by 50% and reduce application processing time from 10 days to 3 days',
-      realWorldPainPoint: 'Manual risk assessment creates bottlenecks in underwriting, leading to delayed approvals, inaccurate pricing, and lost business to faster competitors.',
+      icon: Bell,
+      title: 'Automated Reminders & Confirmations',
+      description: 'Reduce no-shows with intelligent reminder systems that adapt to customer preferences and provide multiple confirmation options.',
+      stats: 'Reduce no-show rates by 80% and improve customer satisfaction by 65%',
+      realWorldPainPoint: 'No-show rates average 23% across service industries, costing businesses $150 billion annually. Manual reminder calls are time-consuming, inconsistent, and often forgotten, leading to lost revenue and frustrated customers.',
       features: [
-        'Structured risk questionnaire delivery',
-        'Property and asset valuation assistance',
-        'Health and lifestyle assessment coordination',
-        'Prior claims history verification',
-        'Fraud indicator detection and flagging'
+        'Multi-channel reminders via phone, SMS, and email',
+        'Smart timing optimization based on appointment type and customer history',
+        'Two-way confirmation with easy reschedule options',
+        'Customizable reminder cadence and messaging',
+        'Automated waitlist management when cancellations occur',
+        'Post-appointment follow-up and feedback collection'
+      ]
+    },
+    {
+      icon: RefreshCw,
+      title: 'Rescheduling & Cancellation Management',
+      description: 'Handle last-minute changes seamlessly with intelligent rebooking that maximizes schedule efficiency while accommodating customer needs.',
+      stats: 'Recover 85% of cancelled appointments and improve schedule utilization by 60%',
+      realWorldPainPoint: 'Last-minute cancellations and rescheduling requests create chaos in daily operations. Manual rebooking is time-consuming, often results in suboptimal scheduling, and frequently leads to lost appointments when customers cannot reach staff.',
+      features: [
+        'One-click rescheduling with real-time availability',
+        'Intelligent rebooking suggestions to minimize schedule gaps',
+        'Automatic waitlist notification when slots open up',
+        'Cancellation policy enforcement and fee processing',
+        'Emergency rescheduling with priority booking',
+        'Schedule optimization to maximize daily capacity'
       ]
     }
   ];
 
   const industries = [
-    { name: 'Auto Insurance Agencies', description: 'Vehicle coverage and claims processing', painPoint: 'Claims updates consume 70% of customer service time' },
-    { name: 'Home & Property Insurance', description: 'Residential and commercial property coverage', painPoint: 'Property assessments delay underwriting by weeks' },
-    { name: 'Health Insurance Providers', description: 'Medical coverage and benefits administration', painPoint: 'Complex claims require extensive member communication' },
-    { name: 'Life Insurance Companies', description: 'Life and disability insurance services', painPoint: 'Lengthy underwriting process loses 40% of applicants' },
-    { name: 'Commercial Insurance Brokers', description: 'Business insurance and risk management', painPoint: 'Manual renewals result in 30% policy lapse rates' },
-    { name: 'Insurance Adjusting Firms', description: 'Claims investigation and settlement', painPoint: 'Policyholder communication delays claim resolution' }
+    { 
+      name: 'Healthcare & Medical', 
+      description: 'Doctors, dentists, specialists, and healthcare providers managing patient appointments', 
+      painPoint: 'No-show rates of 25-30% cost medical practices $200+ per missed appointment' 
+    },
+    { 
+      name: 'Professional Services', 
+      description: 'Lawyers, consultants, accountants, and advisors scheduling client meetings', 
+      painPoint: 'Scheduling conflicts and double-bookings damage professional credibility and client relationships' 
+    },
+    { 
+      name: 'Beauty & Wellness', 
+      description: 'Salons, spas, fitness trainers, and wellness practitioners', 
+      painPoint: '60% of bookings happen outside business hours when staff cannot answer phones' 
+    },
+    { 
+      name: 'Home Services', 
+      description: 'Contractors, repair services, cleaning companies, and maintenance providers', 
+      painPoint: 'Complex scheduling across multiple technicians and locations leads to inefficient routing' 
+    },
+    { 
+      name: 'Financial Services', 
+      description: 'Financial advisors, insurance agents, and banking professionals', 
+      painPoint: 'Regulatory compliance requires detailed appointment documentation that manual systems miss' 
+    },
+    { 
+      name: 'Education & Training', 
+      description: 'Tutoring centers, driving schools, and professional training providers', 
+      painPoint: 'Student scheduling conflicts and frequent changes disrupt learning continuity' 
+    }
   ];
 
   const testimonials = [
     {
-      name: 'Michael Rodriguez',
-      role: 'Claims Manager',
-      company: 'Nationwide Insurance Agency',
-      content: 'Claims processing used to take 3-4 weeks with constant policyholder calls asking for updates. Now clients are automatically informed at every step, and we close claims 40% faster with higher satisfaction scores.',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Dr. Emily Rodriguez',
+      role: 'Practice Manager',
+      company: 'Westside Family Medicine',
+      content: 'Our no-show rate dropped from 28% to just 5% after implementing the AI booking system. Patients love the 24/7 scheduling, and we\'ve recovered 15 hours per week that staff used to spend on phone scheduling. Revenue increased by $180,000 this year from better appointment utilization.',
+      image: 'https://images.pexels.com/photos/3786156/pexels-photo-3786156.jpeg?auto=compress&cs=tinysrgb&w=400'
     },
     {
-      name: 'Lisa Johnson',
-      role: 'Agency Owner',
-      company: 'Johnson Insurance Services',
-      content: 'We were losing 1 in 4 policies at renewal due to poor follow-up. The AI agent now contacts every client 60 days before renewal, and our retention rate improved from 75% to 92%.',
-      image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Michael Thompson',
+      role: 'Owner',
+      company: 'Elite Fitness Studio',
+      content: 'The automatic rescheduling feature is incredible. When clients cancel, the system immediately offers those slots to our waitlist. We\'ve improved our schedule utilization from 70% to 92%, and client satisfaction scores increased dramatically because they can book anytime.',
+      image: 'https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=400'
     }
   ];
 
@@ -86,7 +114,7 @@ const InsuranceUseCase = () => {
               animate={{ opacity: 1, y: 0 }}
               className="icon-badge-lg mx-auto mb-6"
             >
-              <Shield className="w-10 h-10 text-white" />
+              <Clock className="w-10 h-10 text-white" />
             </motion.div>
             
             <motion.h1
@@ -95,7 +123,7 @@ const InsuranceUseCase = () => {
               transition={{ delay: 0.1 }}
               className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
             >
-              <span className="text-gray-900">Insurance</span><br />
+              <span className="text-gray-900">Appointment Booking</span><br />
               <span className="text-euphoric-gradient">Use Cases</span>
             </motion.h1>
             
@@ -105,7 +133,7 @@ const InsuranceUseCase = () => {
               transition={{ delay: 0.2 }}
               className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8"
             >
-              Discover how insurance agencies are using AI voice agents to solve critical challenges in claims processing, policy renewals, and customer retention.
+              Discover how service-based businesses are using AI voice agents to automate scheduling, reduce no-shows, and provide 24/7 booking capabilities that boost revenue.
             </motion.p>
 
             <motion.div
@@ -139,10 +167,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Real-World Insurance Solutions
+              Real-World Appointment Booking Solutions
             </h2>
             <p className="text-lg text-gray-600">
-              AI voice agents solving the most pressing challenges in insurance operations
+              AI voice agents revolutionizing how businesses manage appointments and customer scheduling
             </p>
           </div>
 
@@ -176,7 +204,7 @@ const InsuranceUseCase = () => {
                         </svg>
                       </div>
                       <div className="ml-3">
-                        <h4 className="text-sm font-medium text-red-800">Current Industry Challenge:</h4>
+                        <h4 className="text-sm font-medium text-red-800">Current Pain Point:</h4>
                         <p className="text-sm text-red-700 mt-1">{useCase.realWorldPainPoint}</p>
                       </div>
                     </div>
@@ -188,7 +216,7 @@ const InsuranceUseCase = () => {
                         <TrendingUp className="h-5 w-5 text-green-400" />
                       </div>
                       <div className="ml-3">
-                        <h4 className="text-sm font-medium text-green-800">Proven Results:</h4>
+                        <h4 className="text-sm font-medium text-green-800">Results with AI:</h4>
                         <p className="text-sm text-green-700 mt-1">{useCase.stats}</p>
                       </div>
                     </div>
@@ -217,10 +245,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Insurance Sectors We Serve
+              Industries We Serve
             </h2>
             <p className="text-lg text-gray-600">
-              Addressing specific operational challenges across different insurance markets
+              Solving appointment scheduling challenges across different service industries
             </p>
           </div>
 
@@ -253,10 +281,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Real Results from Insurance Professionals
+              Trusted by Service Providers
             </h2>
             <p className="text-lg text-gray-600">
-              See how AI voice agents solved actual operational challenges
+              Real results from businesses transforming their appointment scheduling with AI
             </p>
           </div>
 
@@ -293,10 +321,10 @@ const InsuranceUseCase = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Transform Your Insurance Operations?
+              Ready to Automate Your Scheduling?
             </h2>
             <p className="text-lg text-white/90 mb-8">
-              Join insurance professionals using AI voice agents to streamline claims, improve renewals, and boost customer satisfaction.
+              Join thousands of service providers using AI voice agents to reduce no-shows, increase bookings, and provide 24/7 scheduling convenience for their customers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
@@ -320,4 +348,4 @@ const InsuranceUseCase = () => {
   );
 };
 
-export default InsuranceUseCase;
+export default AppointmentBookingUseCase;

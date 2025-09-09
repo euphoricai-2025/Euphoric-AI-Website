@@ -115,38 +115,53 @@ const Home = () => {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      // Replace with your actual webhook URL
-      const webhookUrl = import.meta.env.VITE_DEMO_WEBHOOK_URL || 'https://your-webhook-url.com/demo';
+      // EuphoricAI API endpoint for demo calls
+      const apiUrl = 'https://app.euphoricai.io/api/zapier/quick_call_result/?api_key=9fd3f6a4-1525-4dbb-ab39-7e916713b8ec';
       
-      const response = await fetch(webhookUrl, {
+      // Split name into first and last name
+      const nameParts = demoForm.name.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+      
+      // Format phone number with country code
+      const fullPhoneNumber = `${selectedCountry.code}${demoForm.phone.replace(/\D/g, '')}`;
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
+          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          name: demoForm.name,
-          phone: `${selectedCountry.code} ${demoForm.phone}`,
-          countryCode: selectedCountry.code,
-          country: selectedCountry.name,
-          timestamp: new Date().toISOString(),
-          source: 'website_demo_form'
+          quick_campaign: 'quickcampa3496ea1',
+          contact_number: fullPhoneNumber,
+          first_name: firstName,
+          last_name: lastName,
+          custom1: selectedCountry.name,
+          custom2: 'Website Demo Request',
+          custom3: new Date().toISOString(),
+          custom4: 'homepage_demo_form'
         })
       });
 
       if (response.ok) {
+        const result = await response.json();
+        console.log('Demo call request successful:', result);
         setSubmitStatus({ 
           type: 'success', 
-          message: 'Great! We\'ll call you shortly to demonstrate our AI voice agent.' 
+          message: 'Perfect! Our AI agent will call you shortly for a live demonstration.' 
         });
         setDemoForm({ name: '', phone: '' });
       } else {
-        throw new Error('Failed to submit demo request');
+        const errorText = await response.text();
+        console.error('API Error:', response.status, errorText);
+        throw new Error(`API request failed: ${response.status}`);
       }
     } catch (error) {
       console.error('Demo submission error:', error);
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Something went wrong. Please try again or contact support.' 
+        message: 'Unable to schedule your demo call right now. Please try again or contact support.' 
       });
     } finally {
       setIsSubmitting(false);
@@ -688,7 +703,7 @@ const Home = () => {
                 Maximum Performance, Minimum Cost
               </h3>
               <p className="text-gray-600 leading-relaxed">
-                Affordable solutions for large teams with no add-ons or surprise fees. Run enterprise-grade calls starting at just $0.08/min.
+                Affordable solutions for large teams with no add-ons or surprise fees. Run enterprise-grade calls starting at just $0.12/min.
               </p>
             </div>
           </div>
@@ -710,30 +725,30 @@ const Home = () => {
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Real Estate */}
-            <div className="glass p-8 card-hover">
+            {/* Lead Qualification Agent */}
+            <div className="glass p-8 card-hover flex flex-col h-full">
               <div className="icon-badge-lg mb-6">
-                <FileText className="w-8 h-8" />
+                <CheckCircle className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Real Estate</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Lead Qualification Agent</h3>
 
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 flex-grow">
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Outbound lead calling & qualification</span>
+                  <span className="text-gray-600">Automated lead scoring & qualification</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Property requirements understanding</span>
+                  <span className="text-gray-600">Intelligent questions to gauge interest</span>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Appointment booking & CRM updates</span>
+                  <span className="text-gray-600">Real-time CRM updates & handoffs</span>
                 </div>
               </div>
               <div className="mt-auto">
                 <Link
-                  to="/real-estate"
+                  to="/lead-qualification"
                   className="btn-outline w-full text-center"
                 >
                   View Details
@@ -741,30 +756,30 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Healthcare */}
-            <div className="glass p-8 card-hover">
+            {/* Appointment Booking Agent */}
+            <div className="glass p-8 card-hover flex flex-col h-full">
               <div className="icon-badge-lg mb-6">
-                <Heart className="w-8 h-8" />
+                <Clock className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Healthcare</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Appointment Booking Agent</h3>
 
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 flex-grow">
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-blue rounded-full"></div>
-                  <span className="text-gray-600">Patient appointment reminders</span>
+                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
+                  <span className="text-gray-600">24/7 scheduling & calendar management</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-blue rounded-full"></div>
-                  <span className="text-gray-600">Follow-up care & medication checks</span>
+                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
+                  <span className="text-gray-600">Automated reminders & confirmations</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-blue rounded-full"></div>
-                  <span className="text-gray-600">HIPAA-compliant communications</span>
+                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
+                  <span className="text-gray-600">Rescheduling & cancellation handling</span>
                 </div>
               </div>
               <div className="mt-auto">
                 <Link
-                  to="/healthcare"
+                  to="/appointment-booking"
                   className="btn-outline w-full text-center"
                 >
                   View Details
@@ -772,30 +787,30 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Ecommerce */}
-            <div className="glass p-8 card-hover">
+            {/* Customer Support Agent */}
+            <div className="glass p-8 card-hover flex flex-col h-full">
               <div className="icon-badge-lg mb-6">
-                <ShoppingBag className="w-8 h-8" />
+                <Headphones className="w-8 h-8" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Ecommerce</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">Customer Support Agent</h3>
 
-              <div className="space-y-3 mb-6">
+              <div className="space-y-3 mb-6 flex-grow">
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-gold rounded-full"></div>
-                  <span className="text-gray-600">Order confirmations & support</span>
+                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
+                  <span className="text-gray-600">Instant answers from knowledge base</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-gold rounded-full"></div>
-                  <span className="text-gray-600">Abandoned cart recovery calls</span>
+                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
+                  <span className="text-gray-600">Escalation to human agents when needed</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-gold rounded-full"></div>
-                  <span className="text-gray-600">Customer feedback & reviews</span>
+                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
+                  <span className="text-gray-600">Multi-language support & troubleshooting</span>
                 </div>
               </div>
               <div className="mt-auto">
                 <Link
-                  to="/ecommerce"
+                  to="/customer-support-agent"
                   className="btn-outline w-full text-center"
                 >
                   View Details
@@ -875,30 +890,19 @@ const Home = () => {
       {/* CTA Band */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="glass p-12 text-center gradient-border">
-            <h3 className="text-2xl font-bold text-gray-900 mb-6">
-              <br /> Ready to Transform Your Business Communication?
-            </h3>
-            <p className="text-gray-600 mb-12 max-w-2xl mx-auto leading-relaxed">
-              Join{" "}
-              <Highlighter action="underline" color="#a98064" className="font-bold">
-                hundreds of businesses
-              </Highlighter>{" "}
-              already using{" "}
-              <span className="font-bold text-brand-teal">
-                Euphoric AI
-              </span>{" "}
-              to automate their calling processes and boost conversions.
+          <div className="rounded-3xl p-16 text-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #42a4bf 0%, #6498a0 50%, #a98064 100%)' }}>
+            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
+              Explore the New Era of AI Phone Assistants for business.
+            </h2>
+            <p className="text-white/90 mb-12 max-w-4xl mx-auto text-xl leading-relaxed">
+              Should Callin seem like the ideal solution to supercharge your incoming and outgoing calls, let's connect, we invite you to connect with us. We're eager to share more with you.
             </p>
-            {user ? (
-              <a href="https://app.euphoricai.io/" className="btn-gold">
-                Go to Dashboard
-              </a>
-            ) : (
-              <Link to="/signup" className="btn-gold">
-                Start Your Free Trial
-              </Link>
-            )}
+            <a 
+              href="/contact" 
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-brand-cyan font-semibold rounded-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+            >
+              Get in touch
+            </a>
           </div>
         </div>
       </section>

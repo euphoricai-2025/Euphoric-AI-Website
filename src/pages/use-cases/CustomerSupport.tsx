@@ -115,18 +115,20 @@ const CustomerSupportUseCase = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <Link
-                to="/signup"
+                to="/pricing"
                 className="btn-gold inline-flex items-center justify-center px-8 py-3 text-base font-medium"
               >
-                Start Free Trial
+                Get Started
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
-              <Link
-                to="/customer-support"
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="btn-glass inline-flex items-center justify-center px-8 py-3 text-base font-medium"
               >
-                View Support Solutions
-              </Link>
+                Book Demo
+              </a>
             </motion.div>
           </div>
         </div>
@@ -211,7 +213,7 @@ const CustomerSupportUseCase = () => {
       </section>
 
       {/* Industries Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-euphoric-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto mb-16">
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
@@ -298,7 +300,7 @@ const CustomerSupportUseCase = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/signup"
+                to="/pricing"
                 className="bg-white text-brand-teal hover:bg-gray-100 inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
                 Get Started Today
