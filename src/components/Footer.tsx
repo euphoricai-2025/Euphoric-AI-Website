@@ -6,34 +6,34 @@ const Footer = () => {
     <>
       <style>{`
         .footer-logo {
-          height: 28px;
-          width: 198.4px; /* 28px * 7.1 */
+          height: 22.4px; /* 28px * 0.8 */
+          width: 158.72px; /* 22.4px * 7.1 */
         }
         @media (min-width: 640px) {
           .footer-logo {
-            height: 32px;
-            width: 227.2px; /* 32px * 7.1 */
+            height: 25.6px; /* 32px * 0.8 */
+            width: 181.76px; /* 25.6px * 7.1 */
           }
         }
         @media (min-width: 768px) {
           .footer-logo {
-            height: 40px;
-            width: 284px; /* 40px * 7.1 */
+            height: 32px; /* 40px * 0.8 */
+            width: 227.2px; /* 32px * 7.1 */
           }
         }
         @media (min-width: 1024px) {
           .footer-logo {
-            height: 48px;
-            width: 340.8px; /* 48px * 7.1 */
+            height: 38.4px; /* 48px * 0.8 */
+            width: 272.64px; /* 38.4px * 7.1 */
           }
         }
       `}</style>
       <footer className="glass-nav border-t border-white/10 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16 justify-items-start">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-16">
           {/* Logo and Description */}
-          <div className="relative">
-            <div className="flex items-center mb-4">
+          <div className="relative flex flex-col items-start">
+            <div className="flex items-center mb-8">
               <Link to="/" className="flex items-center focus:outline-none">
                 <img
                   src="/euphoric-logo-final.png"
@@ -45,7 +45,7 @@ const Footer = () => {
                 />
               </Link>
             </div>
-            <p className="text-gray-600 text-sm mb-6 leading-relaxed">
+            <p className="text-gray-600 text-sm mb-8 leading-relaxed">
               Leading AI voice agent platform for business automation. Transform customer communication with intelligent AI agents that work 24/7 across all industries.
             </p>
             <div className="flex space-x-3">
@@ -65,7 +65,7 @@ const Footer = () => {
           </div>
 
           {/* Industries */}
-          <div className="relative">
+          <div className="relative flex flex-col items-start">
             <h3 className="text-gray-900 font-bold mb-4">INDUSTRIES</h3>
             <ul className="space-y-2">
               <li><Link to="/healthcare" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Healthcare</Link></li>
@@ -80,7 +80,7 @@ const Footer = () => {
           </div>
 
           {/* Use Cases */}
-          <div className="relative">
+          <div className="relative flex flex-col items-start">
             <h3 className="text-gray-900 font-bold mb-4">USE CASES</h3>
             <ul className="space-y-2">
               <li><Link to="/use-cases/healthcare" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Healthcare</Link></li>
@@ -98,7 +98,7 @@ const Footer = () => {
           </div>
 
           {/* Company */}
-          <div className="relative">
+          <div className="relative flex flex-col items-start">
             <h3 className="text-gray-900 font-bold mb-4">COMPANY</h3>
             <ul className="space-y-2">
               <li><Link to="/about" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">About Us</Link></li>
