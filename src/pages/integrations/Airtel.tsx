@@ -63,18 +63,18 @@ const AirtelIntegration = () => {
 
   const testimonials = [
     {
-      name: 'Rajesh Kumar',
-      role: 'Head of Operations',
-      company: 'TechSolutions India',
-      content: 'Airtel\'s network reliability has been exceptional for our AI voice agents. We\'ve expanded to 12 countries with consistent call quality and zero downtime.',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Thomas Park',
+      role: 'Managing Director',
+      company: 'Summit Financial Group',
+      content: 'Appointment scheduling is seamless with automatic pre-meeting information gathering. Our consultations are more productive and client satisfaction scores are at all-time highs.',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Sarah Ochieng',
-      role: 'Customer Success Director',
-      company: 'FinServe Africa',
-      content: 'The local language support and cultural adaptation features have helped us achieve 60% higher engagement rates across our African markets.',
-      image: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Christopher Davis',
+      role: 'Hotel Operations Manager',
+      company: 'Grandview Resort & Spa',
+      content: 'Guest inquiries are handled 24/7 with instant booking confirmations. Our occupancy rate increased 25% and guest satisfaction scores are consistently above 95%.',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

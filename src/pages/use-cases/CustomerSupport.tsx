@@ -60,18 +60,18 @@ const CustomerSupportUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Amanda Thompson',
+      name: 'Maria Santos',
       role: 'Customer Success Director',
-      company: 'TechFlow Solutions',
-      content: 'Our support team was drowning in basic "how-to" questions while complex issues went unresolved. The AI agent now handles 80% of tier-1 inquiries instantly, and our customer satisfaction scores increased from 3.2 to 4.6 stars.',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400'
+      company: 'CloudTech Solutions',
+      content: 'Support ticket volume dropped 75% with AI handling routine inquiries. Our team focuses on complex issues while customer satisfaction improved from 3.4 to 4.8 stars. Response times went from hours to seconds.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'David Park',
-      role: 'VP of Customer Experience',
-      company: 'Global Connect Services',
-      content: 'We had a 48% churn rate in the first 90 days due to poor onboarding. The AI agent now guides every new customer through setup and checks in regularly. Our churn dropped to 18% and product adoption increased significantly.',
-      image: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Kevin Zhang',
+      role: 'VP Customer Experience',
+      company: 'Digital Connect Pro',
+      content: 'Customer onboarding became seamless with AI-guided setup processes. Our 90-day churn rate dropped from 45% to 12% and product adoption increased 60%. New customers get instant help during critical setup phases.',
+      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

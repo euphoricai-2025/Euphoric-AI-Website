@@ -63,18 +63,18 @@ const DebtCollection = () => {
 
   const testimonials = [
     {
-      name: 'Robert Anderson',
-      role: 'Collections Manager',
-      company: 'Premier Recovery Solutions',
-      content: 'Our collection rates have improved significantly while maintaining full compliance. The AI agent handles sensitive conversations with professionalism.',
-      image: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Michael Thompson',
+      role: 'Operations Director',
+      company: 'Prime Care Medical Group',
+      content: 'The follow-up system has transformed our patient care. Medication adherence improved 65% and readmission rates dropped significantly. Our staff can focus on patient care instead of manual calls.',
+      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Maria Gonzalez',
-      role: 'VP of Operations',
-      company: 'National Collection Agency',
-      content: 'The payment arrangement success rate has never been higher. Debtors appreciate the respectful approach and flexible payment options.',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Catherine Lee',
+      role: 'Customer Success Director',
+      company: 'Shield Insurance Solutions',
+      content: 'Policy renewals are automated with personalized touches. Retention rates increased 40% and customers feel valued throughout their policy lifecycle.',
+      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

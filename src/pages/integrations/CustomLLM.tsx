@@ -54,6 +54,23 @@ const CustomLLMIntegration = () => {
     }
   ];
 
+  const testimonials = [
+    {
+      name: 'Kevin Zhang',
+      role: 'E-commerce Director',
+      company: 'TechVault Electronics',
+      content: 'Cart abandonment recovery increased our revenue by 28%. The AI agent personalizes each interaction and customers appreciate the helpful follow-up. Conversion rates are phenomenal.',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+    },
+    {
+      name: 'Rachel Stevens',
+      role: 'Portfolio Manager',
+      company: 'Capital Growth Advisors',
+      content: 'The follow-up system maintains perfect client relationships. We\'ve seen 50% more referrals and virtually zero client churn. Compliance documentation is automated and flawless.',
+      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?w=150&h=150&fit=crop&crop=face'
+    }
+  ];
+
   return (
     <div className="pt-16 bg-euphoric-surface min-h-screen">
       {/* Hero Section */}
@@ -189,6 +206,46 @@ const CustomLLMIntegration = () => {
                 <div className="bg-gold/10 rounded-lg p-3">
                   <p className="text-gold font-semibold text-sm">Result: {useCase.improvement}</p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Customer Success Stories
+            </h2>
+            <p className="text-lg text-gray-600">
+              Real results from custom LLM integration users
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="card"
+              >
+                <div className="flex items-center mb-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full mr-4 object-cover"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    <p className="text-sm text-brand-teal">{testimonial.company}</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 italic">"{testimonial.content}"</p>
               </motion.div>
             ))}
           </div>

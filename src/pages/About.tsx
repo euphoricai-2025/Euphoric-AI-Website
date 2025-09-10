@@ -38,7 +38,7 @@ const About = () => {
               className="text-4xl md:text-6xl font-bold mb-6"
             >
               <span className="text-[#a98064]">About </span>
-              <span className="bg-gradient-to-r from-[#6498a0] to-[#42a4bf] bg-clip-text text-transparent">Euphoric AI</span>
+              <span className="text-euphoric-gradient">Euphoric AI</span>
             </motion.h1>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
@@ -63,7 +63,7 @@ const About = () => {
             >
               <h2 className="text-3xl md:text-4xl font-bold mb-6">
                 <span className="text-[#a98064]">Our </span>
-                <span className="bg-gradient-to-r from-[#6498a0] to-[#42a4bf] bg-clip-text text-transparent">Mission</span>
+                <span className="text-euphoric-gradient">Mission</span>
               </h2>
               <p className="text-lg text-gray-600 mb-6 leading-relaxed">
                 At Euphoric AI, we believe that every business deserves access to intelligent, automated communication solutions. Our platform eliminates the complexity typically associated with AI deployment, enabling you to launch sophisticated voice agents in just 30 minutes.
@@ -73,33 +73,6 @@ const About = () => {
               </p>
             </motion.div>
 
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="relative"
-            >
-              <div className="rounded-2xl overflow-hidden bg-white border border-gray-200 shadow-lg p-8">
-                <div className="grid grid-cols-2 gap-6">
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-[#42a4bf] mb-2">500+</div>
-                    <div className="text-sm text-gray-500">Active Businesses</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-[#42a4bf] mb-2">1M+</div>
-                    <div className="text-sm text-gray-500">Calls Handled</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-[#42a4bf] mb-2">99.9%</div>
-                    <div className="text-sm text-gray-500">Uptime</div>
-                  </div>
-                  <div className="text-center">
-                    <div className="text-3xl font-bold text-[#42a4bf] mb-2">24/7</div>
-                    <div className="text-sm text-gray-500">Support</div>
-                  </div>
-                </div>
-              </div>
-            </motion.div>
           </div>
         </div>
       </section>
@@ -108,10 +81,11 @@ const About = () => {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              Our Core Values
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900">Our Core </span>
+              <span className="text-euphoric-gradient">Values</span>
             </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               The principles that guide everything we do and every decision we make.
             </p>
           </div>
@@ -130,8 +104,8 @@ const About = () => {
                   <div className="w-16 h-16 rounded-2xl bg-gradient-to-r from-[#a98064]/20 to-[#42a4bf]/20 flex items-center justify-center mx-auto mb-4">
                     <Icon className="w-8 h-8 text-[#42a4bf]" />
                   </div>
-                  <h3 className="text-xl font-semibold text-white mb-3">{value.title}</h3>
-                  <p className="text-slate-400 leading-relaxed">{value.description}</p>
+                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{value.title}</h3>
+                  <p className="text-gray-600 leading-relaxed">{value.description}</p>
                 </motion.div>
               );
             })}
@@ -143,10 +117,11 @@ const About = () => {
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent">
-              Meet Our Team
+            <h2 className="text-3xl md:text-4xl font-bold mb-4">
+              <span className="text-gray-900">Meet Our </span>
+              <span className="text-euphoric-gradient">Team</span>
             </h2>
-            <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
               Industry experts passionate about transforming business communication through AI innovation.
             </p>
           </div>
@@ -154,22 +129,22 @@ const About = () => {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
             {[
               {
-                name: 'Sarah Chen',
-                role: 'CEO & Co-Founder',
+                name: 'Imran Mehdi',
+                role: 'Founder & CEO',
                 bio: 'Former VP of AI at leading tech company with 15+ years in AI and machine learning.',
-                image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
+                image: '/images/team/imran-mehdi.jpg'
               },
               {
-                name: 'Marcus Rodriguez',
-                role: 'CTO & Co-Founder',
+                name: 'Monil Dawda',
+                role: 'Co-Founder & COO',
                 bio: 'Ex-Google engineer specializing in voice AI and real-time communication systems.',
-                image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
+                image: '/images/team/monil-dawda.jpg'
               },
               {
-                name: 'Emily Zhang',
+                name: 'Pavitar Singh Arneja',
                 role: 'Head of Product',
                 bio: 'Product leader with expertise in SaaS platforms and enterprise AI solutions.',
-                image: 'https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=400'
+                image: '/images/team/pavitar-singh-arneja.jpg'
               }
             ].map((member, index) => (
               <motion.div
@@ -186,9 +161,9 @@ const About = () => {
                     className="w-full h-full object-cover"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-1">{member.name}</h3>
-                <p className="text-purple-400 font-medium mb-3">{member.role}</p>
-                <p className="text-slate-400 text-sm leading-relaxed">{member.bio}</p>
+                <h3 className="text-xl font-semibold text-gray-900 mb-1">{member.name}</h3>
+                <p className="text-brand-teal font-medium mb-3">{member.role}</p>
+                <p className="text-gray-600 text-sm leading-relaxed">{member.bio}</p>
               </motion.div>
             ))}
           </div>
@@ -202,7 +177,7 @@ const About = () => {
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-3xl md:text-4xl font-bold mb-6 bg-gradient-to-r from-white to-slate-300 bg-clip-text text-transparent"
+              className="text-3xl md:text-4xl font-bold mb-6 text-gray-900"
             >
               Ready to Join Our Mission?
             </motion.h2>
@@ -210,7 +185,7 @@ const About = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-slate-400 mb-8"
+              className="text-xl text-gray-600 mb-8"
             >
               Be part of the AI communication revolution. Transform your business with intelligent voice agents today.
             </motion.p>

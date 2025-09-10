@@ -60,18 +60,18 @@ const FinanceUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Mitchell',
-      role: 'Senior Financial Advisor',
-      company: 'Premier Wealth Management',
-      content: 'The AI agent transformed our lead qualification process. I now spend 80% of my time with qualified prospects instead of cold screening calls. Our conversion rate increased from 12% to 28%.',
-      image: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Thomas Park',
+      role: 'Managing Director',
+      company: 'Summit Financial Group',
+      content: 'Appointment scheduling is seamless with automatic pre-meeting information gathering. Our consultations are more productive and client satisfaction scores are at all-time highs.',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Robert Chen',
-      role: 'Branch Manager',
-      company: 'Capital Investment Group',
-      content: 'Client onboarding used to take 2-3 weeks with multiple follow-ups for documents. Now it\'s completed in 3 days automatically. Client satisfaction scores improved by 45%.',
-      image: 'https://images.pexels.com/photos/6801642/pexels-photo-6801642.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Patricia Williams',
+      role: 'Chief Client Officer',
+      company: 'Premier Investment Services',
+      content: 'Portfolio review calls happen consistently every quarter without fail. Client retention improved 45% and assets under management grew substantially from increased engagement.',
+      image: 'https://images.unsplash.com/photo-1594824154493-f8bcfe19bba4?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

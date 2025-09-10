@@ -60,18 +60,18 @@ const HomeServicesUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Mike Patterson',
-      role: 'Owner',
-      company: 'Patterson Plumbing Services',
-      content: 'Emergency calls used to go to voicemail after hours, and we\'d lose customers to 24/7 competitors. Now the AI agent handles emergencies immediately and dispatches our on-call technician. We haven\'t lost an emergency customer since.',
-      image: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Tony Martinez',
+      role: 'Founder',
+      company: 'Precision HVAC Solutions',
+      content: 'Emergency response time improved from 2 hours to 15 minutes with instant dispatch. The AI qualifies urgency levels and routes calls appropriately. Our emergency service revenue increased 85% with zero missed opportunities.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Sarah Williams',
-      role: 'Operations Manager',
-      company: 'Elite Home Repair',
-      content: 'Our sales team was spending 3 hours on estimates for unqualified leads. The AI agent now pre-qualifies every lead with budget, timeline, and project details. Our conversion rate went from 15% to 38%.',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Rebecca Taylor',
+      role: 'Operations Director',
+      company: 'Elite Home Contractors',
+      content: 'Lead qualification efficiency doubled with automated project scoping. Our conversion rate jumped from 18% to 42% as we focus on qualified prospects. The AI collects detailed project requirements before estimates.',
+      image: 'https://images.unsplash.com/photo-1594824154493-f8bcfe19bba4?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

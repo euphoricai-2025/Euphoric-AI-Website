@@ -60,18 +60,18 @@ const RealEstateUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Jessica Martinez',
-      role: 'Top Producing Agent',
-      company: 'Century 21 Premier',
-      content: 'I used to miss leads constantly during showings and evenings. Now every inquiry gets an immediate response, and I\'ve tripled my conversion rate. The AI agent even pre-qualifies buyers with budget and timeline, so I only spend time with serious prospects.',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Amanda Foster',
+      role: 'Team Lead',
+      company: 'Coastal Properties',
+      content: 'Lead qualification is automatic and incredibly accurate. We spend time only with serious buyers now. Our team closed 45% more deals last quarter thanks to better lead quality.',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'David Thompson',
+      name: 'David Kim',
       role: 'Broker Owner',
-      company: 'Thompson Realty Group',
-      content: 'Our team of 15 agents was struggling with lead distribution and follow-up. The AI system now routes qualified leads instantly and follows up with every prospect systematically. Our team conversion rate went from 8% to 19%.',
-      image: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400'
+      company: 'Metro Home Solutions',
+      content: 'Never lose another lead again. The instant follow-up system captures prospects while they\'re hot, and our listing appointments increased 40%. Best investment we\'ve made.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

@@ -75,6 +75,23 @@ const N8nIntegration = () => {
     }
   ];
 
+  const testimonials = [
+    {
+      name: 'Emma Wilson',
+      role: 'Operations Director',
+      company: 'Global Freight Partners',
+      content: 'Shipment tracking updates are delivered proactively to customers. Our customer service workload decreased 40% while satisfaction increased significantly.',
+      image: 'https://images.unsplash.com/photo-1594824154493-f8bcfe19bba4?w=150&h=150&fit=crop&crop=face'
+    },
+    {
+      name: 'Christopher Davis',
+      role: 'Hotel Operations Manager',
+      company: 'Grandview Resort & Spa',
+      content: 'Guest inquiries are handled 24/7 with instant booking confirmations. Our occupancy rate increased 25% and guest satisfaction scores are consistently above 95%.',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face'
+    }
+  ];
+
   return (
     <div className="pt-16 bg-euphoric-surface min-h-screen">
       <section className="py-20">
@@ -223,6 +240,46 @@ const N8nIntegration = () => {
                 <div className="bg-brand-teal/10 rounded-lg p-3">
                   <p className="text-brand-teal font-semibold text-sm">{benefit.metric}</p>
                 </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-3xl mx-auto mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Customer Success Stories
+            </h2>
+            <p className="text-lg text-gray-600">
+              Real results from n8n integration users
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {testimonials.map((testimonial, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1 }}
+                className="card"
+              >
+                <div className="flex items-center mb-4">
+                  <img
+                    src={testimonial.image}
+                    alt={testimonial.name}
+                    className="w-12 h-12 rounded-full mr-4 object-cover"
+                  />
+                  <div>
+                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
+                    <p className="text-sm text-gray-600">{testimonial.role}</p>
+                    <p className="text-sm text-brand-teal">{testimonial.company}</p>
+                  </div>
+                </div>
+                <p className="text-gray-600 italic">"{testimonial.content}"</p>
               </motion.div>
             ))}
           </div>

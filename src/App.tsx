@@ -47,6 +47,18 @@ import Telnyx from './pages/integrations/Telnyx';
 import Airtel from './pages/integrations/Airtel';
 import N8n from './pages/integrations/N8n';
 import GoHighLevel from './pages/integrations/GoHighLevel';
+import Automations from './pages/Automations';
+import LeadManagementNurturing from './pages/automations/LeadManagementNurturing';
+import BillingCollections from './pages/automations/BillingCollections';
+import RecruitmentHRWorkflows from './pages/automations/RecruitmentHRWorkflows';
+import MarketingSocialMedia from './pages/automations/MarketingSocialMedia';
+import CRMDataSync from './pages/automations/CRMDataSync';
+import AnalyticsReporting from './pages/automations/AnalyticsReporting';
+import ContractsWorkflow from './pages/automations/ContractsWorkflow';
+import EcommerceRetention from './pages/automations/EcommerceRetention';
+import Partner from './pages/Partner';
+import Careers from './pages/Careers';
+import Internships from './pages/Internships';
 
 function App() {
   return (
@@ -100,6 +112,18 @@ function App() {
                 <Route path="/integrations/airtel" element={<Airtel />} />
                 <Route path="/integrations/n8n" element={<N8n />} />
                 <Route path="/integrations/go-high-level" element={<GoHighLevel />} />
+                <Route path="/automations" element={<Automations />} />
+                <Route path="/automations/lead-management-nurturing" element={<LeadManagementNurturing />} />
+                <Route path="/automations/billing-collections" element={<BillingCollections />} />
+                <Route path="/automations/recruitment-hr-workflows" element={<RecruitmentHRWorkflows />} />
+                <Route path="/automations/marketing-social-media" element={<MarketingSocialMedia />} />
+                <Route path="/automations/crm-data-sync" element={<CRMDataSync />} />
+                <Route path="/automations/analytics-reporting" element={<AnalyticsReporting />} />
+                <Route path="/automations/contracts-workflow" element={<ContractsWorkflow />} />
+                <Route path="/automations/ecommerce-retention" element={<EcommerceRetention />} />
+                <Route path="/partner" element={<Partner />} />
+                <Route path="/careers" element={<Careers />} />
+                <Route path="/internships" element={<Internships />} />
               </Routes>
             </main>
             <Footer />

@@ -63,18 +63,18 @@ const MakeIntegration = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Kim',
-      role: 'Operations Director',
-      company: 'TechStart Solutions',
-      content: 'Make has revolutionized how we handle lead processing. Our AI agents now trigger entire workflows that update our CRM, send emails, and assign tasks automatically.',
-      image: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Nathan Phillips',
+      role: 'Logistics Manager',
+      company: 'Swift Transport Solutions',
+      content: 'Delivery coordination is seamless with automatic customer notifications. Missed deliveries dropped 55% and customer complaints are virtually non-existent.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'David Chen',
-      role: 'Head of Customer Success',
-      company: 'ServicePro Inc',
-      content: 'The visual workflow builder is incredible. Our non-technical team members can now create complex automations that would have taken weeks to develop traditionally.',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Sophie Laurent',
+      role: 'Operations Manager',
+      company: 'Fashion Forward Boutique',
+      content: 'Order confirmations and shipping updates are handled flawlessly. Customer anxiety decreased and chargeback disputes dropped 45%. The multilingual support is incredible.',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b829?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

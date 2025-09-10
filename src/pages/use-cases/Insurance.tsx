@@ -60,18 +60,18 @@ const InsuranceUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Michael Rodriguez',
-      role: 'Claims Manager',
-      company: 'Nationwide Insurance Agency',
-      content: 'Claims processing used to take 3-4 weeks with constant policyholder calls asking for updates. Now clients are automatically informed at every step, and we close claims 40% faster with higher satisfaction scores.',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Michael Davidson',
+      role: 'Claims Director',
+      company: 'Guardian Insurance Group',
+      content: 'Policy renewals are now seamless with 95% retention rates. The AI agent identifies coverage gaps and presents solutions proactively. Our premium volume increased 25% from better customer engagement.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Lisa Johnson',
-      role: 'Agency Owner',
-      company: 'Johnson Insurance Services',
-      content: 'We were losing 1 in 4 policies at renewal due to poor follow-up. The AI agent now contacts every client 60 days before renewal, and our retention rate improved from 75% to 92%.',
-      image: 'https://images.pexels.com/photos/3184418/pexels-photo-3184418.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Jennifer Walsh',
+      role: 'Vice President Operations',
+      company: 'Premier Risk Solutions',
+      content: 'Claims follow-up calls reduced from 200+ daily to zero. Clients receive proactive updates and our satisfaction scores jumped from 3.1 to 4.7. Staff now focus on complex cases instead of status calls.',
+      image: 'https://images.unsplash.com/photo-1594824154493-f8bcfe19bba4?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

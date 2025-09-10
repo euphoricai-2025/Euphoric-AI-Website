@@ -77,16 +77,16 @@ const GoHighLevelIntegration = () => {
 
   const testimonials = [
     {
-      quote: "The AI voice agents integrated with GoHighLevel have transformed our lead qualification process. We're converting 3x more leads into appointments.",
-      author: "Sarah Johnson",
-      title: "Real Estate Team Leader",
-      company: "Premier Properties"
+      quote: "Cart abandonment recovery increased our revenue by 28%. The AI agent personalizes each interaction and customers appreciate the helpful follow-up. Conversion rates are phenomenal.",
+      author: "Kevin Zhang",
+      title: "E-commerce Director",
+      company: "TechVault Electronics"
     },
     {
-      quote: "Our client onboarding is now completely automated. The AI handles intake calls and GoHighLevel manages the entire follow-up sequence automatically.",
-      author: "Mike Chen",
-      title: "Practice Manager",
-      company: "Elite Dental Group"
+      quote: "The follow-up system maintains perfect client relationships. We've seen 50% more referrals and virtually zero client churn. Compliance documentation is automated and flawless.",
+      author: "Rachel Stevens",
+      title: "Portfolio Manager",
+      company: "Capital Growth Advisors"
     }
   ];
 

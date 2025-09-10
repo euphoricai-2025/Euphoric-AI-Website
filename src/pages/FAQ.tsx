@@ -4,7 +4,7 @@ import { ChevronDown, ChevronUp, Search } from 'lucide-react';
 
 const FAQ = () => {
   const [searchTerm, setSearchTerm] = useState('');
-  const [openItems, setOpenItems] = useState<number[]>([]);
+  const [openItems, setOpenItems] = useState<number[]>([0]);
 
   const faqs = [
     {
@@ -20,7 +20,7 @@ const FAQ = () => {
         },
         {
           question: 'Can I try the service before committing?',
-          answer: 'Yes! We offer a 30-day money-back guarantee on all plans. You can also contact our sales team for a personalized demo before signing up.'
+          answer: 'Yes! You can begin with our Starter pack which costs $29 per month to get hands-on experience with the service. This allows you to test all core features with 50 minutes of calling included.'
         }
       ]
     },

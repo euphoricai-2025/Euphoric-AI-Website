@@ -88,17 +88,17 @@ const HealthcareUseCase = () => {
   const testimonials = [
     {
       name: 'Dr. Jennifer Wu',
-      role: 'Family Medicine Physician',
-      company: 'Riverside Medical Center',
-      content: 'Our no-show rate dropped from 28% to 9% in just 2 months. The AI agent handles all our appointment reminders perfectly, and patients actually prefer it to our old manual system. We\'ve recovered $85,000 in lost revenue this year alone.',
-      image: 'https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=400'
+      role: 'Practice Administrator',
+      company: 'Metro Family Medicine',
+      content: 'Test results delivery is now seamless and instant. Patients receive results within hours instead of days, with clear explanations. Patient satisfaction scores increased 40% in our last survey.',
+      image: 'https://images.unsplash.com/photo-1559839734-2b71ea197ec2?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Mark Thompson',
-      role: 'Practice Administrator',
-      company: 'Central Valley Clinic',
-      content: 'The follow-up system has transformed our patient care. We\'ve seen a 45% improvement in medication compliance and 30% reduction in readmissions. Patient satisfaction scores increased from 3.2 to 4.8 out of 5.',
-      image: 'https://images.pexels.com/photos/6205509/pexels-photo-6205509.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Robert Chen',
+      role: 'CEO',
+      company: 'Sunrise Medical Center',
+      content: 'The AI agent processes thousands of appointment confirmations daily without errors. Our administrative costs decreased 35% while patient experience improved dramatically. ROI was evident within 60 days.',
+      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

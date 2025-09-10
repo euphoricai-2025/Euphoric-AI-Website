@@ -87,18 +87,18 @@ const EcommerceUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Amanda Thompson',
+      name: 'Sarah Chen',
       role: 'E-commerce Director',
-      company: 'TrendStyle Online',
-      content: 'Cart recovery went from 12% to 42% in just 3 months. The AI agent reaches every abandoned customer within an hour and has recovered over $420,000 in would-be lost sales. Our conversion rate improved from 2.1% to 3.8%.',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
+      company: 'ModernStyle Retail',
+      content: 'Cart abandonment recovery reached 35% from 8% previously. The AI agent personalizes offers based on customer behavior and has recovered $580K in sales. Our repeat purchase rate doubled.',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Roberto Silva',
-      role: 'Growth Manager',
-      company: 'TechHub Electronics',
-      content: 'Payment failure recovery increased from 15% to 67%, and customer satisfaction scores jumped to 4.7/5. The AI handles complex technical questions and payment issues flawlessly. Our revenue per visitor increased 35%.',
-      image: 'https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'David Martinez',
+      role: 'Operations Manager',
+      company: 'TechGear Online',
+      content: 'Payment failure resolution improved from 20% to 65%. Customer satisfaction increased to 4.8/5 stars as the AI guides customers through payment alternatives seamlessly. Revenue recovery exceeded $300K monthly.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

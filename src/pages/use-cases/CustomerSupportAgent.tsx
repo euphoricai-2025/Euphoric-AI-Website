@@ -88,18 +88,18 @@ const CustomerSupportAgentUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Jennifer Park',
+      name: 'Elena Rodriguez',
       role: 'Customer Experience Director',
-      company: 'TechShop Pro',
-      content: 'Our customer satisfaction scores jumped from 3.2 to 4.8 stars after implementing the AI support agent. It handles 80% of our inquiries instantly, and our human agents can focus on complex issues. We\'ve reduced support costs by $400,000 annually while improving service quality.',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
+      company: 'TechPro Solutions',
+      content: 'Customer satisfaction jumped from 3.1 to 4.9 stars with instant AI support. The agent resolves 85% of inquiries immediately while seamlessly escalating complex issues with full context. Our support costs decreased 55% while quality improved dramatically.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Carlos Rodriguez',
-      role: 'VP of Operations',
-      company: 'Global Finance Solutions',
-      content: 'The multi-language support is incredible. We now provide 24/7 support in 15 languages without hiring additional staff. Customer resolution time dropped from 24 hours to under 5 minutes for 70% of our inquiries. It\'s transformed our international operations.',
-      image: 'https://images.pexels.com/photos/3760511/pexels-photo-3760511.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Ahmed Hassan',
+      role: 'VP Global Operations',
+      company: 'WorldWide Services Inc',
+      content: 'Multi-language support in 25+ languages transformed our global operations. Resolution time dropped from 48 hours to under 3 minutes for 78% of inquiries. We provide consistent, expert-level support worldwide without massive staffing costs.',
+      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

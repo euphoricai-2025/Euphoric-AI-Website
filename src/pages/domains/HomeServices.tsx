@@ -63,18 +63,18 @@ const HomeServices = () => {
 
   const testimonials = [
     {
-      name: 'Mike Patterson',
-      role: 'Owner',
-      company: 'Patterson Plumbing Services',
-      content: 'The appointment booking agent has eliminated our scheduling headaches. We now book 70% more appointments with zero double-bookings.',
-      image: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Daniel Roberts',
+      role: 'Operations Manager',
+      company: 'Elite Home Services',
+      content: 'Appointment confirmations reduced no-shows by 60% and our technicians\' schedules are optimized. Customer communication is professional and our reputation has never been better.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Sarah Williams',
-      role: 'Operations Manager',
-      company: 'Elite Home Repair',
-      content: 'Customer feedback collection has never been easier. We identify issues quickly and our service quality has improved significantly.',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Jennifer Walsh',
+      role: 'Customer Experience Director',
+      company: 'ProFix Home Solutions',
+      content: 'Service reminders and follow-ups happen automatically. Customer lifetime value increased 50% through better maintenance scheduling and relationship building.',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

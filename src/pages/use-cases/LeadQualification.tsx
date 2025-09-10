@@ -87,18 +87,18 @@ const LeadQualificationUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Mitchell',
-      role: 'VP of Sales',
-      company: 'TechFlow Solutions',
-      content: 'Our lead qualification improved dramatically. The AI agent identifies serious buyers within the first 2 minutes, and our sales team now focuses only on qualified prospects. We\'ve seen a 120% increase in deal closure rate and saved 25 hours per week on unqualified calls.',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Victoria Sterling',
+      role: 'Real Estate Broker',
+      company: 'Platinum Properties Group',
+      content: 'Lead response time went from hours to under 60 seconds. We\'re capturing 70% more qualified leads and my conversion rate increased 55%. The competition can\'t keep up with our speed.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'David Chen',
-      role: 'Revenue Operations Manager',
-      company: 'Growth Dynamics Inc',
-      content: 'The CRM integration is seamless. Every conversation is automatically logged with detailed notes, lead scores, and next actions. Our follow-up response time improved from 48 hours to 15 minutes, and we\'re converting 65% more qualified leads to customers.',
-      image: 'https://images.pexels.com/photos/3760263/pexels-photo-3760263.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'James Morrison',
+      role: 'Senior Vice President',
+      company: 'Wealth Advisory Partners',
+      content: 'Client acquisition costs dropped 40% with better lead qualification. Our advisors meet only with pre-qualified prospects, improving conversion rates and client satisfaction significantly.',
+      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

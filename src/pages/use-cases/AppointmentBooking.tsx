@@ -88,18 +88,18 @@ const AppointmentBookingUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Dr. Emily Rodriguez',
-      role: 'Practice Manager',
-      company: 'Westside Family Medicine',
-      content: 'Our no-show rate dropped from 28% to just 5% after implementing the AI booking system. Patients love the 24/7 scheduling, and we\'ve recovered 15 hours per week that staff used to spend on phone scheduling. Revenue increased by $180,000 this year from better appointment utilization.',
-      image: 'https://images.pexels.com/photos/3786156/pexels-photo-3786156.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Dr. Sarah Martinez',
+      role: 'Chief Medical Officer',
+      company: 'Valley Health Systems',
+      content: 'Our no-show rate dropped from 32% to 8% in just 3 months. The AI agent handles appointment reminders with perfect HIPAA compliance, and patients love the personalized approach. We\'ve recovered over $200K in lost revenue.',
+      image: 'https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Michael Thompson',
-      role: 'Owner',
-      company: 'Elite Fitness Studio',
-      content: 'The automatic rescheduling feature is incredible. When clients cancel, the system immediately offers those slots to our waitlist. We\'ve improved our schedule utilization from 70% to 92%, and client satisfaction scores increased dramatically because they can book anytime.',
-      image: 'https://images.pexels.com/photos/3785104/pexels-photo-3785104.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Marcus Rodriguez',
+      role: 'Sales Manager',
+      company: 'Elite Realty Partners',
+      content: 'The showing coordination agent eliminated double-bookings and reduced no-shows by 65%. Our team can focus on selling while the AI handles all scheduling logistics perfectly.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

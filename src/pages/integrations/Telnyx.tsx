@@ -63,18 +63,18 @@ const TelnyxIntegration = () => {
 
   const testimonials = [
     {
-      name: 'Michael Rodriguez',
-      role: 'CTO',
-      company: 'GlobalTech Solutions',
-      content: 'Telnyx\'s network quality has been exceptional for our AI agents. We\'ve seen 40% improvement in call clarity and our customers notice the difference immediately.',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Sophie Laurent',
+      role: 'Operations Manager',
+      company: 'Fashion Forward Boutique',
+      content: 'Order confirmations and shipping updates are handled flawlessly. Customer anxiety decreased and chargeback disputes dropped 45%. The multilingual support is incredible.',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b829?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Lisa Chen',
-      role: 'Head of Operations',
-      company: 'Enterprise Communications Inc',
-      content: 'The analytics dashboard gives us incredible insights into our AI performance. We\'ve optimized our agents based on the data and improved customer satisfaction by 60%.',
-      image: 'https://images.pexels.com/photos/3182812/pexels-photo-3182812.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Emma Wilson',
+      role: 'Operations Director',
+      company: 'Global Freight Partners',
+      content: 'Shipment tracking updates are delivered proactively to customers. Our customer service workload decreased 40% while satisfaction increased significantly.',
+      image: 'https://images.unsplash.com/photo-1594824154493-f8bcfe19bba4?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

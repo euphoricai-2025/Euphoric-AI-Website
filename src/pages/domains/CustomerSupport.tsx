@@ -63,18 +63,18 @@ const CustomerSupport = () => {
 
   const testimonials = [
     {
-      name: 'Amanda Thompson',
-      role: 'Customer Service Manager',
-      company: 'TechFlow Solutions',
-      content: 'Our customer satisfaction scores have improved dramatically. The AI agent handles routine inquiries perfectly, letting our team focus on complex issues.',
-      image: 'https://images.pexels.com/photos/3184465/pexels-photo-3184465.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Thomas Park',
+      role: 'Managing Director',
+      company: 'Summit Financial Group',
+      content: 'Appointment scheduling is seamless with automatic pre-meeting information gathering. Our consultations are more productive and client satisfaction scores are at all-time highs.',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'David Park',
-      role: 'VP of Customer Experience',
-      company: 'Global Connect Services',
-      content: 'The 24/7 support capability has been a game-changer. Our international customers now get immediate help regardless of time zones.',
-      image: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Patricia Williams',
+      role: 'Chief Client Officer',
+      company: 'Premier Investment Services',
+      content: 'Portfolio review calls happen consistently every quarter without fail. Client retention improved 45% and assets under management grew substantially from increased engagement.',
+      image: 'https://images.unsplash.com/photo-1594824154493-f8bcfe19bba4?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

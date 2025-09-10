@@ -56,18 +56,18 @@ const CalComIntegration = () => {
 
   const testimonials = [
     {
-      name: 'Dr. Sarah Chen',
-      role: 'Family Practice Physician',
-      company: 'Westside Medical Group',
-      content: 'The Cal.com integration eliminated our receptionist\'s biggest headache. Patients now book their own appointments through the AI agent, and we have zero scheduling conflicts. Our no-show rate dropped from 30% to 4%.',
-      image: 'https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Thomas Park',
+      role: 'Managing Director',
+      company: 'Summit Financial Group',
+      content: 'Appointment scheduling is seamless with automatic pre-meeting information gathering. Our consultations are more productive and client satisfaction scores are at all-time highs.',
+      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Michael Rodriguez',
-      role: 'Business Development Manager',
-      company: 'Growth Consulting Partners',
-      content: 'Prospect meetings used to take 3-4 email exchanges to schedule. Now the AI agent handles everything instantly while the lead is still hot. We book 3x more qualified meetings per month.',
-      image: 'https://images.pexels.com/photos/3785079/pexels-photo-3785079.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Michael Thompson',
+      role: 'Operations Director',
+      company: 'Prime Care Medical Group',
+      content: 'The follow-up system has transformed our patient care. Medication adherence improved 65% and readmission rates dropped significantly. Our staff can focus on patient care instead of manual calls.',
+      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

@@ -7,6 +7,8 @@ import { TextAnimate } from '../components/magicui/text-animate';
 import { Highlighter } from '../components/magicui/highlighter';
 import { useAuth } from '../contexts/AuthContext';
 import { SplineScene } from '../components/ui/spline';
+import ShaderBackground from '../components/ui/shader-background';
+import AnimatedWaveShader from '../components/ui/animated-wave-shader';
 
 // Country codes data with flags
 const countryCodes = [
@@ -192,11 +194,14 @@ const Home = () => {
                 </span>
               </h1>
 
-              <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
-                <TextAnimate animation="blurInUp" by="word" once>
-                  Handle calls, qualify leads, answer from your knowledge base, route to humans, book appointments, and update your CRM—24/7.
-                </TextAnimate>
-              </p>
+              <motion.p 
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.1, duration: 0.3 }}
+                className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break"
+              >
+                Handle calls, qualify leads, answer from your knowledge base, route to humans, book appointments, and update your CRM—24/7.
+              </motion.p>
 
               <p className="text-lg text-gray-500 mb-8 leading-relaxed">
                 Our <span className="font-bold">multilingual</span> agents speak 35+ languages, helping you connect with customers worldwide in a natural, authentic way.
@@ -232,18 +237,10 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Side Card - Interactive Demo Coming Soon */}
+            {/* Right Side - Animated Wave Shader */}
             <div className="flex items-center justify-center">
-              {/* White Background Card */}
-              <div className="bg-white rounded-3xl shadow-lg border border-gray-100 w-full max-w-sm p-8">
-                {/* Brand Gradient Overlay Card */}
-                <div className="bg-gradient-to-br from-brand-teal to-brand-cyan rounded-2xl p-6 text-center mb-6">
-                  <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-2xl flex items-center justify-center mb-4 mx-auto">
-                    <Phone className="w-8 h-8 text-white" />
-                  </div>
-                </div>
-                {/* Text Below */}
-                <p className="text-gray-700 font-medium text-center">Interactive Demo Coming Soon</p>
+              <div className="relative w-full max-w-lg h-96 rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
+                <AnimatedWaveShader />
               </div>
             </div>
 
@@ -326,13 +323,13 @@ const Home = () => {
                       }}
                     >
                       <motion.img 
-                        src="/euphoric-ai-logo.svg" 
+                        src="/euphoric-logo-final.png" 
                         alt="Euphoric AI" 
                         className="w-38 h-19 opacity-90"
                         style={{
-                          width: '153px', // 128px * 1.2 = 153.6px
-                          height: '77px', // 64px * 1.2 = 76.8px
-                          filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.15)) brightness(1.1) contrast(1.1)'
+                          width: '133.125px', // 106.5px * 1.25 = 133.125px
+                          height: '18.75px', // 15px * 1.25 = 18.75px
+                          filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) drop-shadow(0 2px 6px rgba(0,0,0,0.2)) drop-shadow(0 8px 24px rgba(0,0,0,0.1)) brightness(1.4) contrast(1.2)'
                         }}
                         whileHover={{
                           scale: 1.05,

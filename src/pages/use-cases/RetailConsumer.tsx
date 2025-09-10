@@ -87,18 +87,18 @@ const RetailConsumerUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Jennifer Adams',
-      role: 'E-commerce Director',
-      company: 'StyleForward Retail',
-      content: 'Cart abandonment recovery went from 8% to 33% with the AI agent. It personally calls every customer within 2 hours of abandonment. Our monthly recovered revenue increased by $340,000, and customers love the personalized attention.',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Rachel Thompson',
+      role: 'Retail Operations Manager',
+      company: 'TrendSetter Fashion',
+      content: 'Customer retention improved 40% with personalized follow-ups. The AI identifies shopping patterns and suggests relevant products, increasing our average order value by 28%. Customer satisfaction reached 4.9/5 stars.',
+      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'David Park',
-      role: 'Customer Experience Manager',
-      company: 'TechGear Solutions',
-      content: 'Customer satisfaction scores jumped from 3.4 to 4.7, and support ticket volume dropped 65%. The AI handles all routine inquiries perfectly, and customers get instant help 24/7. Our team can focus on complex technical issues.',
-      image: 'https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Alex Rivera',
+      role: 'Customer Experience Director',
+      company: 'ElectroMart Plus',
+      content: 'Support costs dropped 55% while response time improved from 12 minutes to instant. Cart recovery increased from 9% to 32%, adding $450K monthly revenue. Our team focuses on complex issues while AI handles routine inquiries.',
+      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

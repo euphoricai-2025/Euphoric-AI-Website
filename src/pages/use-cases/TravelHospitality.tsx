@@ -87,18 +87,18 @@ const TravelHospitalityUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Maria Rodriguez',
-      role: 'Guest Relations Manager',
-      company: 'Grand Vista Resort',
-      content: 'Our guest satisfaction scores improved from 4.1 to 4.8 stars in 6 months. The AI concierge handles 80% of guest requests instantly, and our human staff can focus on complex hospitality needs. Revenue from recommendations increased 40%.',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Sofia Gonzalez',
+      role: 'Guest Experience Manager',
+      company: 'Paradise Resort & Spa',
+      content: 'Guest satisfaction jumped from 4.2 to 4.9 stars with instant concierge services. The AI handles dining reservations, activity bookings, and local recommendations 24/7. Ancillary revenue increased 50% from better guest engagement.',
+      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'James Mitchell',
+      name: 'Michael Chang',
       role: 'Operations Director',
-      company: 'BusinessStay Hotels',
-      content: 'Check-in efficiency improved dramatically and we reduced no-shows by 45%. Business travelers love the instant response to requests. Our staff productivity increased 60% while maintaining premium service quality.',
-      image: 'https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=400'
+      company: 'Metropolitan Business Hotel',
+      content: 'Check-in efficiency improved 65% and no-shows reduced from 18% to 6%. Business travelers get instant answers to requests, improving our corporate booking retention to 92%. Staff focus on high-value guest experiences.',
+      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

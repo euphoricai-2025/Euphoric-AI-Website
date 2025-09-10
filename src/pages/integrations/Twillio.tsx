@@ -63,18 +63,18 @@ const TwillioIntegration = () => {
 
   const testimonials = [
     {
-      name: 'Dr. Jennifer Martinez',
-      role: 'Chief Medical Officer',
-      company: 'Regional Health Network',
-      content: 'Twilio\'s HIPAA-compliant platform has revolutionized our patient outreach. Our AI agents handle thousands of appointment reminders daily with 98% delivery rates.',
-      image: 'https://images.pexels.com/photos/5452293/pexels-photo-5452293.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Michael Thompson',
+      role: 'Operations Director',
+      company: 'Prime Care Medical Group',
+      content: 'The follow-up system has transformed our patient care. Medication adherence improved 65% and readmission rates dropped significantly. Our staff can focus on patient care instead of manual calls.',
+      image: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Carlos Rodriguez',
-      role: 'Head of Customer Experience',
-      company: 'TechCommerce Solutions',
-      content: 'The multi-channel capabilities are incredible. Our customers can start on voice and seamlessly continue via SMS. Engagement has increased by 70% since implementation.',
-      image: 'https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Nathan Phillips',
+      role: 'Logistics Manager',
+      company: 'Swift Transport Solutions',
+      content: 'Delivery coordination is seamless with automatic customer notifications. Missed deliveries dropped 55% and customer complaints are virtually non-existent.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

@@ -61,26 +61,20 @@ const Contact = () => {
     {
       icon: Mail,
       title: 'Email Us',
-      details: 'support@euphoricai.com',
+      details: 'hello@euphoricai.io',
       description: 'Get in touch for support or questions'
     },
     {
       icon: Phone,
       title: 'Call Us',
-      details: '+1 (555) 123-4567',
+      details: '+1 (646) 906-9109',
       description: 'Speak with our team directly'
     },
     {
       icon: MapPin,
       title: 'Visit Us',
-      details: 'San Francisco, CA',
+      details: 'New York NY USA',
       description: 'Our headquarters location'
-    },
-    {
-      icon: Clock,
-      title: 'Business Hours',
-      details: 'Mon-Fri 9AM-6PM PST',
-      description: 'When we\'re available to help'
     }
   ];
 
@@ -109,7 +103,7 @@ const Contact = () => {
           </div>
 
           {/* Contact Info Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16 justify-center">
             {contactInfo.map((info, index) => {
               const Icon = info.icon;
               return (

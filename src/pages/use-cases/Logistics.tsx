@@ -87,18 +87,18 @@ const LogisticsUseCase = () => {
 
   const testimonials = [
     {
-      name: 'Sarah Martinez',
+      name: 'Marcus Johnson',
       role: 'Operations Director',
-      company: 'QuickShip Logistics',
-      content: 'Our delivery success rate went from 75% to 92% in first attempt. The AI agent handles all customer communications perfectly, and our drivers love the real-time coordination. We\'ve saved $180,000 in redelivery costs this quarter.',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
+      company: 'Rapid Logistics Network',
+      content: 'Delivery coordination became seamless with automated customer updates. Our OTIF rate improved from 82% to 96% and customer complaints dropped 70%. The AI handles 90% of delivery issues independently.',
+      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
     },
     {
-      name: 'Michael Chen',
-      role: 'Customer Service Manager',
-      company: 'Metro Delivery Solutions',
-      content: 'Customer complaints dropped by 60% and satisfaction scores increased from 3.1 to 4.6. The AI handles 80% of tracking inquiries automatically, letting our team focus on complex issues that really need human attention.',
-      image: 'https://images.pexels.com/photos/4307869/pexels-photo-4307869.jpeg?auto=compress&cs=tinysrgb&w=400'
+      name: 'Lisa Chen',
+      role: 'Supply Chain Manager',
+      company: 'Premier Transport Solutions',
+      content: 'Exception management is now proactive. The AI predicts delays 24 hours ahead and coordinates alternatives automatically. Our customer retention improved 45% with transparent communication.',
+      image: 'https://images.unsplash.com/photo-1594824154493-f8bcfe19bba4?w=150&h=150&fit=crop&crop=face'
     }
   ];
 

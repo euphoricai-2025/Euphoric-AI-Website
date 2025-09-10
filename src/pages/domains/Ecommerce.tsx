@@ -1,80 +1,108 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { ShoppingBag, CheckCircle2, ShoppingCart, MessageSquare, ArrowRight, CheckCircle } from 'lucide-react';
+import { ShoppingBag, CheckCircle2, ShoppingCart, MessageSquare, ArrowRight, CheckCircle, TrendingUp, Shield, Star } from 'lucide-react';
 
 const Ecommerce = () => {
   const useCases = [
     {
       icon: CheckCircle2,
       title: 'Order Confirmation Agent',
-      description: 'Provide immediate order confirmation and support, building customer confidence and reducing post-purchase anxiety.',
+      description: 'Instantly confirm orders with customers, verify details, and build confidence to reduce chargebacks and increase satisfaction.',
       features: [
         'Real-time order confirmation calls',
-        'Payment verification and security',
-        'Shipping timeline communication',
-        'Order modification assistance',
-        'Customer service escalation'
+        'Payment verification and fraud prevention',
+        'Shipping timeline and tracking communication',
+        'Order modification and upsell opportunities',
+        'Seamless customer service escalation',
+        'Customer preference data collection'
       ],
       benefits: [
-        'Reduce chargebacks by 30%',
-        'Increase customer satisfaction',
-        'Build trust and confidence',
-        'Decrease support ticket volume'
+        'Reduce chargebacks by 45%',
+        'Increase customer confidence by 60%',
+        'Prevent fraudulent orders early',
+        'Improve order accuracy significantly'
       ]
     },
     {
       icon: ShoppingCart,
       title: 'Cart Recovery Agent',
-      description: 'Recover abandoned carts with personalized outreach, addressing concerns and incentivizing purchase completion.',
+      description: 'Re-engage customers who abandoned their carts with personalized outreach, addressing concerns and offering incentives.',
       features: [
-        'Personalized abandonment outreach',
-        'Discount and incentive offering',
-        'Product question assistance',
-        'Purchase barrier identification',
-        'Follow-up sequence management'
+        'Personalized abandonment follow-up',
+        'Dynamic discount and incentive offering',
+        'Product questions and objection handling',
+        'Purchase barrier identification and removal',
+        'Multi-touch recovery sequence management',
+        'Inventory availability notifications'
       ],
       benefits: [
-        'Recover 25% of abandoned carts',
-        'Increase conversion rates',
-        'Personalized customer experience',
-        'Revenue recovery automation'
+        'Recover 30% of abandoned carts',
+        'Increase overall conversion by 25%',
+        'Personalize customer experience',
+        'Automate revenue recovery process'
       ]
     },
     {
       icon: MessageSquare,
-      title: 'Customer Feedback Agent',
-      description: 'Gather valuable customer feedback and reviews to improve products and build social proof for your business.',
+      title: 'Review Collection Agent',
+      description: 'Systematically collect customer feedback and reviews to improve products, build social proof, and increase conversions.',
       features: [
         'Post-purchase satisfaction surveys',
-        'Review request automation',
-        'Feedback collection and analysis',
-        'Issue identification and escalation',
-        'Customer loyalty program enrollment'
+        'Strategic review request timing',
+        'Multi-platform review collection',
+        'Issue identification and resolution',
+        'Loyalty program enrollment and retention',
+        'Product feedback analysis and reporting'
       ],
       benefits: [
-        'Increase review generation by 40%',
-        'Improve product quality insights',
-        'Enhance customer retention',
-        'Build stronger brand reputation'
+        'Increase reviews by 500%',
+        'Improve product insights dramatically',
+        'Build social proof and trust',
+        'Enhance brand reputation online'
       ]
     }
   ];
 
-  const testimonials = [
+  const painPoints = [
     {
-      name: 'Lisa Rodriguez',
-      role: 'E-commerce Manager',
-      company: 'TechGear Pro',
-      content: 'The cart recovery agent has been incredible. We\'re recovering 28% of abandoned carts and our customers love the personal touch.',
-      image: 'https://images.pexels.com/photos/3756679/pexels-photo-3756679.jpeg?auto=compress&cs=tinysrgb&w=400'
+      title: 'Cart Abandonment Crisis',
+      description: 'Average cart abandonment rate of 70% means massive lost revenue from interested customers',
+      impact: 'Every abandoned cart represents lost revenue and wasted marketing spend'
     },
     {
-      name: 'Mike Chen',
-      role: 'Founder',
-      company: 'Wellness Essentials',
-      content: 'Order confirmations have reduced our chargeback rate significantly. Customers feel more confident about their purchases.',
-      image: 'https://images.pexels.com/photos/3785077/pexels-photo-3785077.jpeg?auto=compress&cs=tinysrgb&w=400'
+      title: 'Order Uncertainty & Chargebacks',
+      description: 'Customers worry about fraudulent charges leading to 15% chargeback rates',
+      impact: 'Chargebacks cost businesses $40 for every $100 disputed transaction'
+    },
+    {
+      title: 'Silent Customer Problem',
+      description: 'Only 5-10% of customers leave reviews naturally, limiting social proof',
+      impact: 'Missing reviews reduce conversion rates and make competitor research difficult'
+    }
+  ];
+
+  const results = [
+    { metric: '30%', label: 'Cart Recovery', description: 'Average abandoned cart recovery rate' },
+    { metric: '45%', label: 'Chargeback Reduction', description: 'Fewer payment disputes and fraud' },
+    { metric: '500%', label: 'More Reviews', description: 'Increase in customer review generation' },
+    { metric: '60%', label: 'Time Saved', description: 'Support team efficiency improvement' }
+  ];
+
+  const testimonials = [
+    {
+      name: 'Kevin Zhang',
+      role: 'E-commerce Director',
+      company: 'TechVault Electronics',
+      content: 'Cart abandonment recovery increased our revenue by 28%. The AI agent personalizes each interaction and customers appreciate the helpful follow-up. Conversion rates are phenomenal.',
+      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+    },
+    {
+      name: 'Sophie Laurent',
+      role: 'Operations Manager',
+      company: 'Fashion Forward Boutique',
+      content: 'Order confirmations and shipping updates are handled flawlessly. Customer anxiety decreased and chargeback disputes dropped 45%. The multilingual support is incredible.',
+      image: 'https://images.unsplash.com/photo-1494790108755-2616b612b829?w=150&h=150&fit=crop&crop=face'
     }
   ];
 
@@ -109,7 +137,7 @@ const Ecommerce = () => {
               transition={{ delay: 0.2 }}
               className="text-xl text-gray-600 mb-8 max-w-2xl mx-auto leading-relaxed"
             >
-              Boost your ecommerce conversions with AI agents that handle order confirmations, cart recovery, and customer feedback calls.
+              Boost your ecommerce conversions with AI agents that confirm orders, recover abandoned carts, and collect valuable customer feedback automatically.
             </motion.p>
 
             <motion.div
@@ -120,32 +148,65 @@ const Ecommerce = () => {
             >
               <Link
                 to="/signup"
-                className="btn-gold inline-flex items-center justify-center gap-2 group"
+                className="btn-gold inline-flex items-center justify-center px-8 py-3 text-base font-medium"
               >
                 Get This Agent
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                to="/contact"
+                to="/use-cases/ecommerce"
                 className="btn-outline inline-flex items-center justify-center"
               >
-                Customize for My Business
+                View Ecommerce Use Cases
               </Link>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Pain Points Section */}
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 tracking-tight">
+              <span className="text-euphoric-gradient">Current Challenges</span>
+              <span className="text-gray-900"> in Ecommerce</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Online retailers face operational challenges that impact conversion rates and customer trust
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {painPoints.map((painPoint, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center"
+              >
+                <div className="bg-red-50 border-l-4 border-red-400 p-6 mb-4">
+                  <h3 className="text-lg font-bold text-red-800 mb-2">{painPoint.title}</h3>
+                  <p className="text-red-700 text-sm mb-2">{painPoint.description}</p>
+                  <p className="text-red-600 text-xs">{painPoint.impact}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Use Cases Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gray-50">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
               <span className="text-gray-900">Ecommerce </span>
-              <span className="text-euphoric-gradient">AI Agents</span>
+              <span className="text-euphoric-gradient">AI Solutions</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Purpose-built AI calling agents designed to enhance your ecommerce customer experience and drive sales.
+              Purpose-built AI agents designed specifically for online retail businesses
             </p>
           </div>
 
@@ -158,44 +219,49 @@ const Ecommerce = () => {
                   initial={{ opacity: 0, y: 40 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6 }}
-                  className="max-w-4xl mx-auto"
+                  className="max-w-6xl mx-auto"
                 >
-                  <div className="glass p-8 card-hover">
-                    <div className="flex items-center gap-4 mb-6">
-                      <div className="icon-badge-lg">
-                        <Icon className="w-8 h-8" />
-                      </div>
-                      <h3 className="text-2xl md:text-3xl font-bold text-gray-900">{useCase.title}</h3>
-                    </div>
-                    
-                    <p className="text-lg text-gray-600 mb-8 leading-relaxed">
-                      {useCase.description}
-                    </p>
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      <div>
-                        <h4 className="text-gray-900 font-semibold mb-3">Key Features:</h4>
-                        <ul className="space-y-2">
-                          {useCase.features.map((feature, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <CheckCircle className="w-4 h-4 text-brand-teal mt-0.5 flex-shrink-0" />
-                              <span className="text-gray-600 text-sm">{feature}</span>
-                            </li>
-                          ))}
-                        </ul>
+                  <div className={`grid lg:grid-cols-2 gap-12 items-center ${index % 2 === 1 ? 'lg:grid-cols-2' : ''}`}>
+                    <div className={index % 2 === 1 ? 'lg:order-2' : ''}>
+                      <div className="icon-badge mb-6">
+                        <Icon className="w-6 h-6 text-white" />
                       </div>
                       
-                      <div>
-                        <h4 className="text-gray-900 font-semibold mb-3">Benefits:</h4>
-                        <ul className="space-y-2">
-                          {useCase.benefits.map((benefit, i) => (
-                            <li key={i} className="flex items-start gap-2">
-                              <div className="w-2 h-2 rounded-full bg-brand-teal mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-600 text-sm">{benefit}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">
+                        {useCase.title}
+                      </h3>
+                      
+                      <p className="text-gray-600 mb-6 leading-relaxed">
+                        {useCase.description}
+                      </p>
+
+                      <div className="bg-green-50 border-l-4 border-green-400 p-4">
+                        <div className="flex">
+                          <div className="flex-shrink-0">
+                            <TrendingUp className="h-5 w-5 text-green-400" />
+                          </div>
+                          <div className="ml-3">
+                            <h4 className="text-sm font-medium text-green-800">Key Benefits:</h4>
+                            <ul className="text-sm text-green-700 mt-1 space-y-1">
+                              {useCase.benefits.map((benefit, idx) => (
+                                <li key={idx}>• {benefit}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        </div>
                       </div>
+                    </div>
+
+                    <div className={`card ${index % 2 === 1 ? 'lg:order-1' : ''}`}>
+                      <h4 className="font-semibold text-gray-900 mb-4">How It Works:</h4>
+                      <ul className="space-y-3">
+                        {useCase.features.map((feature, idx) => (
+                          <li key={idx} className="flex items-start text-sm text-gray-600">
+                            <CheckCircle className="w-4 h-4 text-brand-teal mr-3 mt-0.5 flex-shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
                 </motion.div>
@@ -205,26 +271,21 @@ const Ecommerce = () => {
         </div>
       </section>
 
-      {/* ROI Section */}
-      <section className="py-20">
+      {/* Results Section */}
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-              <span className="text-euphoric-gradient">Measurable ROI</span>
-              <span className="text-gray-900"> for Your Business</span>
+              <span className="text-euphoric-gradient">Proven Results</span>
+              <span className="text-gray-900"> for Ecommerce Businesses</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              See the real impact AI CallAgent can have on your ecommerce metrics.
+              Real impact on ecommerce metrics and customer satisfaction
             </p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-4xl mx-auto">
-            {[
-              { metric: '25%', label: 'Cart Recovery Rate', description: 'Average abandoned cart recovery' },
-              { metric: '30%', label: 'Chargeback Reduction', description: 'Fewer payment disputes' },
-              { metric: '40%', label: 'More Reviews', description: 'Increase in customer reviews' },
-              { metric: '60%', label: 'Time Saved', description: 'Staff time freed up weekly' }
-            ].map((stat, index) => (
+            {results.map((stat, index) => (
               <motion.div
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
@@ -243,15 +304,62 @@ const Ecommerce = () => {
         </div>
       </section>
 
+      {/* Compliance Section */}
+      <section className="py-20 bg-gray-50">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
+              <span className="text-euphoric-gradient">Enterprise Ready</span>
+              <span className="text-gray-900"> & Secure</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Built with ecommerce industry standards and security requirements in mind
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
+            {[
+              {
+                title: 'Platform Integrations',
+                description: 'Connect with Shopify, WooCommerce, BigCommerce, Magento, and other major ecommerce platforms.',
+                icon: '🔗'
+              },
+              {
+                title: 'PCI DSS Compliant',
+                description: 'Full compliance with payment industry standards for handling sensitive customer information.',
+                icon: '💳'
+              },
+              {
+                title: 'GDPR & CCPA Ready',
+                description: 'Built-in privacy controls and data handling practices that meet international regulations.',
+                icon: '🛡️'
+              }
+            ].map((feature, index) => (
+              <motion.div
+                key={feature.title}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="text-center glass-soft p-6 card-hover"
+              >
+                <div className="text-4xl mb-4">{feature.icon}</div>
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
+                <p className="text-gray-600 leading-relaxed">{feature.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials Section */}
-      <section className="py-20">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
               <span className="text-euphoric-gradient">Success Stories</span>
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              See how online retailers are boosting their conversions with AI CallAgent.
+              Ecommerce businesses transforming their operations with AI agents
             </p>
           </div>
 
@@ -286,44 +394,30 @@ const Ecommerce = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
+      <section className="py-20 bg-gradient-to-r from-brand-teal to-gold">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 tracking-tight"
-            >
+            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
               Ready to Boost Your Ecommerce Sales?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-gray-600 mb-8 leading-relaxed"
-            >
-              Join successful ecommerce businesses using AI CallAgent to recover revenue, reduce chargebacks, and enhance customer experience.
-            </motion.p>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
-            >
+            </h2>
+            <p className="text-lg text-white/90 mb-8">
+              Join ecommerce businesses using AI agents to recover revenue, reduce chargebacks, and enhance customer experience.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
                 to="/signup"
-                className="btn-gold inline-flex items-center justify-center gap-2 group"
+                className="bg-white text-brand-teal hover:bg-gray-100 inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
-                Start Your Free Trial
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                Get this agent called
+                <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
               <Link
-                to="/pricing"
-                className="btn-primary inline-flex items-center justify-center"
+                to="/use-cases/ecommerce"
+                className="border-2 border-white text-white hover:bg-white hover:text-brand-teal inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
-                View Pricing
+                View E-commerce use case
               </Link>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

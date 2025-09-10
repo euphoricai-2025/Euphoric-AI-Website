@@ -53,34 +53,56 @@ const Header = () => {
     },
     { name: 'Pricing', path: '/pricing' },
     { 
-      name: 'Automations', 
+      name: 'AI Automations', 
       path: '#', 
       megaDropdown: {
-        salesMarketing: [
-          { name: 'AI Calling Agents', path: '/automations/calling-agents' },
-          { name: 'Lead Gen AI Agent', path: '/automations/lead-gen' },
-          { name: 'AI Email Outreach', path: '/automations/email-outreach' },
-          { name: 'Lead Scraping AI Agent', path: '/automations/lead-scraping' },
-          { name: 'Ads Optimization AI Agent', path: '/automations/ads-optimization' }
+        leadManagement: [
+          { name: 'Lead Qualification & Scoring', path: '/automations/lead-qualification' },
+          { name: 'Lead Nurturing Campaigns', path: '/automations/lead-nurturing' },
+          { name: 'Appointment Scheduling', path: '/automations/appointment-scheduling' },
+          { name: 'Follow-up Automation', path: '/automations/follow-up-automation' }
         ],
-        operationsHR: [
-          { name: 'AI Chatbot for Websites', path: '/automations/website-chatbot' },
-          { name: 'WhatsApp + Email Support', path: '/automations/whatsapp-support' },
-          { name: 'Meeting Notes AI Agent', path: '/automations/meeting-notes' },
-          { name: 'Recruitment & Resume Parsing AI Agent', path: '/automations/recruitment-resume-parsing' },
-          { name: 'Employee Onboarding AI Agent', path: '/automations/employee-onboarding' }
+        billingCollections: [
+          { name: 'Automated Invoicing', path: '/automations/automated-invoicing' },
+          { name: 'Payment Reminders', path: '/automations/payment-reminders' },
+          { name: 'Collections Workflow', path: '/automations/collections-workflow' },
+          { name: 'Revenue Recovery', path: '/automations/revenue-recovery' }
         ],
-        financeAdmin: [
-          { name: 'Invoice Tracking AI Agent', path: '/automations/invoice-tracking' },
-          { name: 'Payment Reminder AI Agent', path: '/automations/payment-reminder' },
-          { name: 'Bookkeeping AI Agent', path: '/automations/bookkeeping' },
-          { name: 'Expense Approval AI Agent', path: '/automations/expense-approval' }
+        recruitmentHR: [
+          { name: 'Resume Screening', path: '/automations/resume-screening' },
+          { name: 'Interview Scheduling', path: '/automations/interview-scheduling' },
+          { name: 'Employee Onboarding', path: '/automations/employee-onboarding' },
+          { name: 'Performance Tracking', path: '/automations/performance-tracking' }
         ],
-        industrySpecific: [
-          { name: 'Healthcare Appointment AI Agent', path: '/automations/healthcare-appointment' },
-          { name: 'Real Estate Follow-up AI Agent', path: '/automations/real-estate-followup' },
-          { name: 'Hospitality Booking AI Agent', path: '/automations/hospitality-booking' },
-          { name: 'E-commerce Integrations', path: '/automations/ecommerce' }
+        marketingSocial: [
+          { name: 'Social Media Posting', path: '/automations/social-media-posting' },
+          { name: 'Content Distribution', path: '/automations/content-distribution' },
+          { name: 'Engagement Tracking', path: '/automations/engagement-tracking' },
+          { name: 'Campaign Management', path: '/automations/campaign-management' }
+        ],
+        crmDataSync: [
+          { name: 'Data Synchronization', path: '/automations/data-sync' },
+          { name: 'Contact Management', path: '/automations/contact-management' },
+          { name: 'Pipeline Automation', path: '/automations/pipeline-automation' },
+          { name: 'Customer Journey Mapping', path: '/automations/customer-journey' }
+        ],
+        analyticsReporting: [
+          { name: 'Performance Dashboards', path: '/automations/performance-dashboards' },
+          { name: 'Automated Reports', path: '/automations/automated-reports' },
+          { name: 'KPI Tracking', path: '/automations/kpi-tracking' },
+          { name: 'Business Intelligence', path: '/automations/business-intelligence' }
+        ],
+        contractsWorkflow: [
+          { name: 'Contract Generation', path: '/automations/contract-generation' },
+          { name: 'Approval Workflows', path: '/automations/approval-workflows' },
+          { name: 'Document Management', path: '/automations/document-management' },
+          { name: 'Compliance Tracking', path: '/automations/compliance-tracking' }
+        ],
+        ecommerceRetention: [
+          { name: 'Cart Recovery', path: '/automations/cart-recovery' },
+          { name: 'Customer Retention', path: '/automations/customer-retention' },
+          { name: 'Order Management', path: '/automations/order-management' },
+          { name: 'Loyalty Programs', path: '/automations/loyalty-programs' }
         ]
       }
     },
@@ -108,11 +130,11 @@ const Header = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center focus:outline-none">
             <img 
-              src="/logo.svg" 
+              src="/euphoric-logo-final.png" 
               alt="Euphoric AI" 
-              className="h-16 sm:h-20 md:h-24 lg:h-28 w-auto"
+              className="h-4 sm:h-5 md:h-6 lg:h-7 w-auto"
               onError={(e) => {
-                e.currentTarget.src = "/Euphoric Logo.jpeg";
+                e.currentTarget.src = "/euphoric-logo-final.png";
               }}
             />
           </Link>
@@ -194,71 +216,71 @@ const Header = () => {
                           </div>
                         )}
 
-                        {/* Automations Dropdown */}
-                        {item.name === 'Automations' && (
+                        {/* AI Automations Dropdown */}
+                        {item.name === 'AI Automations' && (
                           <div className="grid grid-cols-4 gap-8">
-                            {/* Sales & Marketing Column */}
+                            {/* Column 1 */}
                             <div>
-                              <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">SALES & MARKETING</h3>
-                              <div className="space-y-2">
-                                {item.megaDropdown.salesMarketing.map((subItem) => (
-                                  <Link
-                                    key={subItem.name}
-                                    to={subItem.path}
-                                    className="block text-sm text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-1"
-                                  >
-                                    {subItem.name}
-                                  </Link>
-                                ))}
-                              </div>
+                              <Link
+                                to="/automations/lead-management-nurturing"
+                                className="block text-sm font-semibold text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-2 mb-4"
+                              >
+                                Lead Management & Nurturing
+                              </Link>
+                              <Link
+                                to="/automations/billing-collections"
+                                className="block text-sm font-semibold text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-2"
+                              >
+                                Billing & Collections
+                              </Link>
                             </div>
 
-                            {/* Operations & HR Column */}
+                            {/* Column 2 */}
                             <div>
-                              <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">OPERATIONS & HR</h3>
-                              <div className="space-y-2">
-                                {item.megaDropdown.operationsHR.map((subItem) => (
-                                  <Link
-                                    key={subItem.name}
-                                    to={subItem.path}
-                                    className="block text-sm text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-1"
-                                  >
-                                    {subItem.name}
-                                  </Link>
-                                ))}
-                              </div>
+                              <Link
+                                to="/automations/recruitment-hr-workflows"
+                                className="block text-sm font-semibold text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-2 mb-4"
+                              >
+                                Recruitment & HR Workflows
+                              </Link>
+                              <Link
+                                to="/automations/marketing-social-media"
+                                className="block text-sm font-semibold text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-2"
+                              >
+                                Marketing & Social Media
+                              </Link>
                             </div>
 
-                            {/* Finance & Admin Column */}
+                            {/* Column 3 */}
                             <div>
-                              <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">FINANCE & ADMIN</h3>
-                              <div className="space-y-2">
-                                {item.megaDropdown.financeAdmin.map((subItem) => (
-                                  <Link
-                                    key={subItem.name}
-                                    to={subItem.path}
-                                    className="block text-sm text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-1"
-                                  >
-                                    {subItem.name}
-                                  </Link>
-                                ))}
-                              </div>
+                              <Link
+                                to="/automations/crm-data-sync"
+                                className="block text-sm font-semibold text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-2 mb-4"
+                              >
+                                CRM & Data Sync
+                              </Link>
+                              <Link
+                                to="/automations/analytics-reporting"
+                                className="block text-sm font-semibold text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-2"
+                              >
+                                Analytics & Reporting
+                              </Link>
                             </div>
 
-                            {/* Industry-Specific Column */}
+                            {/* Column 4 */}
                             <div>
-                              <h3 className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-4">INDUSTRY-SPECIFIC</h3>
-                              <div className="space-y-2 mb-6">
-                                {item.megaDropdown.industrySpecific.map((subItem) => (
-                                  <Link
-                                    key={subItem.name}
-                                    to={subItem.path}
-                                    className="block text-sm text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-1"
-                                  >
-                                    {subItem.name}
-                                  </Link>
-                                ))}
-                              </div>
+                              <Link
+                                to="/automations/contracts-workflow"
+                                className="block text-sm font-semibold text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-2 mb-4"
+                              >
+                                Contracts & Workflow
+                              </Link>
+                              <Link
+                                to="/automations/ecommerce-retention"
+                                className="block text-sm font-semibold text-gray-700 hover:text-brand-teal transition-colors focus:outline-none py-2 mb-6"
+                              >
+                                E-commerce Retention
+                              </Link>
                               <Link
                                 to="/automations"
                                 className="inline-flex items-center px-4 py-2 bg-brand-teal text-white rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors focus:outline-none"
@@ -416,67 +438,66 @@ const Header = () => {
                         </>
                       )}
 
-                      {/* Automations Mobile Menu */}
-                      {item.name === 'Automations' && (
+                      {/* AI Automations Mobile Menu */}
+                      {item.name === 'AI Automations' && (
                         <>
-                          {/* Sales & Marketing */}
-                          <div className="ml-3">
-                            <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">SALES & MARKETING</div>
-                            {item.megaDropdown.salesMarketing.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="block px-6 py-1 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-
-                          {/* Operations & HR */}
-                          <div className="ml-3">
-                            <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">OPERATIONS & HR</div>
-                            {item.megaDropdown.operationsHR.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="block px-6 py-1 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-
-                          {/* Finance & Admin */}
-                          <div className="ml-3">
-                            <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">FINANCE & ADMIN</div>
-                            {item.megaDropdown.financeAdmin.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="block px-6 py-1 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-
-                          {/* Industry-Specific */}
-                          <div className="ml-3">
-                            <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">INDUSTRY-SPECIFIC</div>
-                            {item.megaDropdown.industrySpecific.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="block px-6 py-1 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
+                          <div className="ml-3 space-y-2">
+                            <Link
+                              to="/automations/lead-management-nurturing"
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                            >
+                              Lead Management & Nurturing
+                            </Link>
+                            <Link
+                              to="/automations/billing-collections"
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                            >
+                              Billing & Collections
+                            </Link>
+                            <Link
+                              to="/automations/recruitment-hr-workflows"
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                            >
+                              Recruitment & HR Workflows
+                            </Link>
+                            <Link
+                              to="/automations/marketing-social-media"
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                            >
+                              Marketing & Social Media
+                            </Link>
+                            <Link
+                              to="/automations/crm-data-sync"
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                            >
+                              CRM & Data Sync
+                            </Link>
+                            <Link
+                              to="/automations/analytics-reporting"
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                            >
+                              Analytics & Reporting
+                            </Link>
+                            <Link
+                              to="/automations/contracts-workflow"
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                            >
+                              Contracts & Workflow
+                            </Link>
+                            <Link
+                              to="/automations/ecommerce-retention"
+                              onClick={() => setIsMenuOpen(false)}
+                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                            >
+                              E-commerce Retention
+                            </Link>
                           </div>
 
                           {/* Explore More Button */}
