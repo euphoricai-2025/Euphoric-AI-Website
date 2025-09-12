@@ -4,18 +4,18 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
 
-/* Brand Color Variables */
+/* Brand Color Variables - EXACT brand colors only */
 :root {
   --brand-black: #000000;
   --brand-gold: #a98064;
-  --brand-moss: #868c82;
+  --brand-gray: #868c82;
   --brand-teal: #6498a0;
   --brand-blue: #42a4bf;
   
-  /* Gradient Overlays */
-  --g1: radial-gradient(1200px 800px at 20% 0%, rgba(100,152,160,0.18), transparent 60%);
-  --g2: radial-gradient(900px 700px at 80% 20%, rgba(66,164,191,0.18), transparent 60%);
-  --g3: radial-gradient(900px 700px at 50% 100%, rgba(169,128,100,0.18), transparent 60%);
+  /* Gradient Overlays using brand colors only */
+  --g1: radial-gradient(1200px 800px at 20% 0%, rgba(100,152,160,0.12), transparent 60%);
+  --g2: radial-gradient(900px 700px at 80% 20%, rgba(66,164,191,0.12), transparent 60%);
+  --g3: radial-gradient(900px 700px at 50% 100%, rgba(169,128,100,0.12), transparent 60%);
 }
 
 * {
@@ -33,7 +33,7 @@
 
 /* Typography */
 .text-euphoric-gradient {
-  background: linear-gradient(90deg, var(--brand-gold) 0%, var(--brand-teal) 45%, var(--brand-blue) 100%);
+  background: linear-gradient(90deg, var(--brand-blue) 0%, var(--brand-teal) 45%, var(--brand-gold) 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -416,4 +416,31 @@ audio::-webkit-media-controls-pause-button {
   hyphens: none;
   -webkit-hyphens: none;
   -moz-hyphens: none;
+}
+
+/* Marquee Animations */
+@keyframes marquee {
+  from {
+    transform: translateX(0%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-vertical {
+  from {
+    transform: translateY(0%);
+  }
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+.animate-marquee {
+  animation: marquee var(--duration, 40s) infinite linear;
+}
+
+.animate-marquee-vertical {
+  animation: marquee-vertical var(--duration, 40s) infinite linear;
 }

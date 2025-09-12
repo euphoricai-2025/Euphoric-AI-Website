@@ -7,8 +7,11 @@ import { TextAnimate } from '../components/magicui/text-animate';
 import { Highlighter } from '../components/magicui/highlighter';
 import { useAuth } from '../contexts/AuthContext';
 import { SplineScene } from '../components/ui/spline';
-import ShaderBackground from '../components/ui/shader-background';
 import AnimatedWaveShader from '../components/ui/animated-wave-shader';
+import CompactIndustries from '../components/CompactIndustries';
+import AnimatedStats from '../components/AnimatedStats';
+import { AnimatedBeam, Circle, EuphoricAIHub } from '../components/AnimatedBeam';
+import { LanguagesShowcase } from '../components/LanguageMarquee';
 
 // Country codes data with flags
 const countryCodes = [
@@ -47,7 +50,7 @@ const countryCodes = [
 const Home = () => {
   const { user } = useAuth();
   const [isQuarterly, setIsQuarterly] = useState(true);
-  const [demoForm, setDemoForm] = useState({ name: '', phone: '' });
+  const [demoForm, setDemoForm] = useState({ name: '', phone: '', email: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -56,6 +59,70 @@ const Home = () => {
   const [countrySearch, setCountrySearch] = useState('');
   const dropdownRef = useRef<HTMLDivElement>(null);
   const searchInputRef = useRef<HTMLInputElement>(null);
+  
+  // AnimatedBeam refs
+  const containerRef = useRef<HTMLDivElement>(null);
+  const googleDriveRef = useRef<HTMLDivElement>(null);
+  const shopifyRef = useRef<HTMLDivElement>(null);
+  const salesforceRef = useRef<HTMLDivElement>(null);
+  const twilioRef = useRef<HTMLDivElement>(null);
+  const telnyxRef = useRef<HTMLDivElement>(null);
+  const goHighLevelRef = useRef<HTMLDivElement>(null);
+  const apiRef = useRef<HTMLDivElement>(null);
+  const centerRef = useRef<HTMLDivElement>(null);
+
+  // Force beam recalculation on component mount and after images load
+  useEffect(() => {
+    const forceBeamUpdate = () => {
+      // Trigger a resize event to force beam recalculation
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 100);
+      
+      // Additional updates for production reliability
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 300);
+      
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 600);
+      
+      // Additional timeout specifically for API beam centering
+      setTimeout(() => {
+        window.dispatchEvent(new Event('resize'));
+      }, 1200);
+    };
+
+    // Initial force update
+    forceBeamUpdate();
+    
+    // Wait for images to load then force update
+    const images = document.querySelectorAll('img');
+    let loadedCount = 0;
+    const totalImages = images.length;
+
+    const onImageLoad = () => {
+      loadedCount++;
+      if (loadedCount === totalImages) {
+        forceBeamUpdate();
+      }
+    };
+
+    images.forEach(img => {
+      if (img.complete) {
+        onImageLoad();
+      } else {
+        img.addEventListener('load', onImageLoad);
+      }
+    });
+
+    return () => {
+      images.forEach(img => {
+        img.removeEventListener('load', onImageLoad);
+      });
+    };
+  }, []);
 
   // Filter countries based on search
   const filteredCountries = countryCodes.filter(country => 
@@ -101,8 +168,15 @@ const Home = () => {
     e.preventDefault();
     
     // Basic validation
-    if (!demoForm.name.trim() || !demoForm.phone.trim()) {
+    if (!demoForm.name.trim() || !demoForm.phone.trim() || !demoForm.email.trim()) {
       setSubmitStatus({ type: 'error', message: 'Please fill in all fields' });
+      return;
+    }
+
+    // Email validation
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(demoForm.email)) {
+      setSubmitStatus({ type: 'error', message: 'Please enter a valid email address' });
       return;
     }
 
@@ -117,53 +191,39 @@ const Home = () => {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      // EuphoricAI API endpoint for demo calls
-      const apiUrl = 'https://app.euphoricai.io/api/zapier/quick_call_result/?api_key=9fd3f6a4-1525-4dbb-ab39-7e916713b8ec';
+      // Replace with your actual webhook URL
+      const webhookUrl = import.meta.env.VITE_DEMO_WEBHOOK_URL || 'https://your-webhook-url.com/demo';
       
-      // Split name into first and last name
-      const nameParts = demoForm.name.trim().split(' ');
-      const firstName = nameParts[0] || '';
-      const lastName = nameParts.slice(1).join(' ') || '';
-      
-      // Format phone number with country code
-      const fullPhoneNumber = `${selectedCountry.code}${demoForm.phone.replace(/\D/g, '')}`;
-      
-      const response = await fetch(apiUrl, {
+      const response = await fetch(webhookUrl, {
         method: 'POST',
         headers: {
-          'Accept': 'application/json',
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          quick_campaign: 'quickcampa3496ea1',
-          contact_number: fullPhoneNumber,
-          first_name: firstName,
-          last_name: lastName,
-          custom1: selectedCountry.name,
-          custom2: 'Website Demo Request',
-          custom3: new Date().toISOString(),
-          custom4: 'homepage_demo_form'
+          name: demoForm.name,
+          email: demoForm.email,
+          phone: `${selectedCountry.code} ${demoForm.phone}`,
+          countryCode: selectedCountry.code,
+          country: selectedCountry.name,
+          timestamp: new Date().toISOString(),
+          source: 'website_hero_demo_form'
         })
       });
 
       if (response.ok) {
-        const result = await response.json();
-        console.log('Demo call request successful:', result);
         setSubmitStatus({ 
           type: 'success', 
-          message: 'Perfect! Our AI agent will call you shortly for a live demonstration.' 
+          message: 'Great! We\'ll call you shortly to demonstrate our AI voice agent.' 
         });
-        setDemoForm({ name: '', phone: '' });
+        setDemoForm({ name: '', phone: '', email: '' });
       } else {
-        const errorText = await response.text();
-        console.error('API Error:', response.status, errorText);
-        throw new Error(`API request failed: ${response.status}`);
+        throw new Error('Failed to submit demo request');
       }
     } catch (error) {
       console.error('Demo submission error:', error);
       setSubmitStatus({ 
         type: 'error', 
-        message: 'Unable to schedule your demo call right now. Please try again or contact support.' 
+        message: 'Something went wrong. Please try again or contact support.' 
       });
     } finally {
       setIsSubmitting(false);
@@ -194,14 +254,11 @@ const Home = () => {
                 </span>
               </h1>
 
-              <motion.p 
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1, duration: 0.3 }}
-                className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break"
-              >
-                Handle calls, qualify leads, answer from your knowledge base, route to humans, book appointments, and update your CRM—24/7.
-              </motion.p>
+              <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
+                <TextAnimate animation="blurInUp" by="word" once>
+                  Handle calls, qualify leads, answer from your knowledge base, route to humans, book appointments, and update your CRM—24/7.
+                </TextAnimate>
+              </p>
 
               <p className="text-lg text-gray-500 mb-8 leading-relaxed">
                 Our <span className="font-bold">multilingual</span> agents speak 35+ languages, helping you connect with customers worldwide in a natural, authentic way.
@@ -237,79 +294,38 @@ const Home = () => {
               </div>
             </div>
 
-            {/* Right Side - Animated Wave Shader */}
+            {/* Right Side - Interactive 3D Agent */}
             <div className="flex items-center justify-center">
-              <div className="relative w-full max-w-lg h-96 rounded-3xl overflow-hidden shadow-2xl border border-gray-200">
-                <AnimatedWaveShader />
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </section>
-
-      {/* Stats Section */}
-      <section className="py-8">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="stats-grid">
-            <div className="stat-item">
-              <div className="text-3xl font-bold text-brand-teal mb-2">30min</div>
-              <div className="text-gray-600 font-medium">Setup Time</div>
-            </div>
-            <div className="stat-item">
-              <div className="text-3xl font-bold text-brand-blue mb-2">Twilio</div>
-              <div className="text-gray-600 font-medium">Ready Integration</div>
-            </div>
-            <div className="stat-item">
-              <div className="text-3xl font-bold text-brand-gold mb-2">Stripe</div>
-              <div className="text-gray-600 font-medium">Secure Billing</div>
-            </div>
-            <div className="stat-item">
-              <div className="text-3xl font-bold text-brand-teal mb-2">24/7</div>
-              <div className="text-gray-600 font-medium">Always Active</div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Interactive Demo Section */}
-      <section className="py-20">
-        <div className="w-full px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-              <span className="text-gray-900">Experience Our </span>
-              <span className="text-euphoric-gradient">AI Voice Agent</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-              Interact with our AI assistant and request a live demo call to see how our voice agents can transform your business communication.
-            </p>
-          </div>
-
-          <div className="w-full">
-            <div className="glass p-0 card-hover overflow-hidden relative min-h-[700px] w-full">
-              {/* Background: Interactive 3D Robot - Centered */}
-              <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/10 via-brand-cyan/5 to-brand-sage/10 flex items-center justify-center">
-                <div 
-                  className="w-full h-full flex items-center justify-center lg:pr-96 relative cursor-pointer"
-                  onMouseMove={handleMouseMove}
-                >
-                  <div className="w-full max-w-5xl h-full flex items-center justify-center relative">
+              {/* Full Height Agent Container */}
+              <div 
+                className="rounded-3xl shadow-lg border border-gray-100 w-full relative overflow-hidden"
+                onMouseMove={handleMouseMove}
+                style={{ height: '420px' }}
+              >
+                {/* Animated Wave Background */}
+                <div className="absolute inset-0">
+                  <AnimatedWaveShader />
+                </div>
+                
+                {/* 3D Agent Container */}
+                <div className="absolute inset-0 flex items-start justify-center pt-8">
+                  <div className="w-full h-[600px] flex items-center justify-center relative">
                     <SplineScene 
                       scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                      className="w-full h-full"
+                      className="w-full h-full scale-125"
                     />
                     
-                    {/* Logo on Robot's Upper Torso/Chest - Interactive */}
+                    {/* Logo on Agent's Chest - Interactive */}
                     <motion.div
                       initial={{ opacity: 0, scale: 0.5 }}
                       animate={{ 
                         opacity: 1, 
                         scale: 1,
-                        x: (mousePosition.x - 400) * 0.02, // Subtle parallax based on mouse X
-                        y: (mousePosition.y - 350) * 0.015, // Subtle parallax based on mouse Y
+                        x: (mousePosition.x - 400) * 0.02, // Parallax based on mouse X
+                        y: (mousePosition.y - 300) * 0.015, // Parallax based on mouse Y
                       }}
                       transition={{ 
-                        delay: 2.5, 
+                        delay: 1.5, 
                         duration: 0.8, 
                         ease: "easeOut",
                         x: { type: "spring", stiffness: 100, damping: 30 },
@@ -317,19 +333,19 @@ const Home = () => {
                       }}
                       className="absolute pointer-events-none"
                       style={{
-                        top: '42%',
-                        left: 'calc(50% - 76px)', // Shifted 76px to the left (15px more than before)
-                        transform: 'translateX(-50%)'
+                        top: 'calc(48% - 20px)',
+                        left: 'calc(50% - 75px)',
+                        transform: 'translate(-50%, -50%)'
                       }}
                     >
                       <motion.img 
                         src="/euphoric-logo-final.png" 
                         alt="Euphoric AI" 
-                        className="w-38 h-19 opacity-90"
+                        className="opacity-95 max-w-[142px]"
                         style={{
-                          width: '133.125px', // 106.5px * 1.25 = 133.125px
-                          height: '18.75px', // 15px * 1.25 = 18.75px
-                          filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.3)) drop-shadow(0 2px 6px rgba(0,0,0,0.2)) drop-shadow(0 8px 24px rgba(0,0,0,0.1)) brightness(1.4) contrast(1.2)'
+                          width: '142px', // 7.1 * 20px = 142px (width is 7.1 times height)
+                          height: '20px', // Larger for full-size card
+                          filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4)) brightness(1.4) contrast(1.4)'
                         }}
                         whileHover={{
                           scale: 1.05,
@@ -337,993 +353,787 @@ const Home = () => {
                         }}
                       />
                     </motion.div>
-                    
-                    {/* Floating Feature Bubbles - Symmetrical Layout */}
-                    {/* LEFT SIDE BUBBLES */}
-                    {/* 24/7 Availability Bubble - Top Left */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ delay: 1, duration: 0.6, ease: "easeOut" }}
-                      className="absolute top-16 left-8 md:left-16"
-                    >
-                      <div className="relative">
-                        <div className="bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-white/20 flex items-center gap-3 max-w-xs">
-                          <div className="p-2 bg-gradient-to-br from-brand-teal to-brand-cyan rounded-xl">
-                            <Clock className="w-5 h-5 text-white" />
-                          </div>
-                          <div>
-                            <p className="text-sm font-semibold text-gray-900">Available 24/7</p>
-                            <p className="text-xs text-gray-600">Always ready to help</p>
-                          </div>
-                        </div>
-                        {/* Speech bubble tail */}
-                        <div className="absolute -bottom-2 left-6 w-4 h-4 bg-white/95 backdrop-blur-md rotate-45 border-r border-b border-white/20"></div>
-                      </div>
-                    </motion.div>
-
-                    {/* Human-like Voice Bubble - Bottom Left */}
-                    <motion.div
-                      initial={{ opacity: 0, y: -20, scale: 0.8 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ delay: 1.6, duration: 0.6, ease: "easeOut" }}
-                      className="absolute bottom-32 left-8 md:left-20"
-                    >
-                      <div className="relative">
-                        <div className="bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-white/20 flex items-center gap-3 max-w-xs">
-                          <div className="p-2 bg-gradient-to-br from-brand-sage to-brand-bronze rounded-xl">
-                            <Headphones className="w-5 h-5 text-white" />
-                          </div>
-                          <div>
-                            <p className="text-sm font-semibold text-gray-900">Human-like Voice</p>
-                            <p className="text-xs text-gray-600">Natural conversations</p>
-                          </div>
-                        </div>
-                        {/* Speech bubble tail */}
-                        <div className="absolute -top-2 left-6 w-4 h-4 bg-white/95 backdrop-blur-md rotate-45 border-l border-t border-white/20"></div>
-                      </div>
-                    </motion.div>
-
-                    {/* RIGHT SIDE BUBBLES */}
-                    {/* Languages Bubble - Top Right */}
-                    <motion.div
-                      initial={{ opacity: 0, y: 20, scale: 0.8 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ delay: 1.3, duration: 0.6, ease: "easeOut" }}
-                      className="absolute top-20 right-8 md:right-24"
-                    >
-                      <div className="relative">
-                        <div className="bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-white/20 flex items-center gap-3 max-w-xs">
-                          <div className="p-2 bg-gradient-to-br from-brand-cyan to-brand-sage rounded-xl">
-                            <Languages className="w-5 h-5 text-white" />
-                          </div>
-                          <div>
-                            <p className="text-sm font-semibold text-gray-900">35+ Languages</p>
-                            <p className="text-xs text-gray-600">Switch between multiple languages</p>
-                          </div>
-                        </div>
-                        {/* Speech bubble tail */}
-                        <div className="absolute -bottom-2 right-6 w-4 h-4 bg-white/95 backdrop-blur-md rotate-45 border-r border-b border-white/20"></div>
-                      </div>
-                    </motion.div>
-
-                    {/* Smart AI Bubble - Bottom Right */}
-                    <motion.div
-                      initial={{ opacity: 0, y: -20, scale: 0.8 }}
-                      animate={{ opacity: 1, y: 0, scale: 1 }}
-                      transition={{ delay: 1.9, duration: 0.6, ease: "easeOut" }}
-                      className="absolute bottom-32 right-8 md:right-24"
-                    >
-                      <div className="relative">
-                        <div className="bg-white/95 backdrop-blur-md rounded-2xl px-4 py-3 shadow-xl border border-white/20 flex items-center gap-3 max-w-xs">
-                          <div className="p-2 bg-gradient-to-br from-brand-bronze to-brand-teal rounded-xl">
-                            <MessageCircle className="w-5 h-5 text-white" />
-                          </div>
-                          <div>
-                            <p className="text-sm font-semibold text-gray-900">Smart AI Brain</p>
-                            <p className="text-xs text-gray-600">Learns & adapts</p>
-                          </div>
-                        </div>
-                        {/* Speech bubble tail */}
-                        <div className="absolute -top-2 right-6 w-4 h-4 bg-white/95 backdrop-blur-md rotate-45 border-l border-t border-white/20"></div>
-                      </div>
-                    </motion.div>
-
-                    {/* Floating animation for extra visual appeal */}
-                    <motion.div
-                      animate={{ 
-                        y: [-10, 10, -10],
-                        rotate: [-2, 2, -2]
-                      }}
-                      transition={{ 
-                        duration: 6,
-                        repeat: Infinity,
-                        ease: "easeInOut"
-                      }}
-                      className="absolute top-1/3 right-16 hidden lg:block"
-                    >
-                      <div className="w-3 h-3 bg-brand-teal/40 rounded-full"></div>
-                    </motion.div>
-
-                    <motion.div
-                      animate={{ 
-                        y: [10, -10, 10],
-                        rotate: [2, -2, 2]
-                      }}
-                      transition={{ 
-                        duration: 8,
-                        repeat: Infinity,
-                        ease: "easeInOut",
-                        delay: 2
-                      }}
-                      className="absolute bottom-1/3 left-20 hidden lg:block"
-                    >
-                      <div className="w-2 h-2 bg-brand-cyan/30 rounded-full"></div>
-                    </motion.div>
                   </div>
                 </div>
               </div>
-
-              {/* Side Panel: Demo Form - Right Side on Desktop, Bottom on Mobile */}
-              <div className="absolute right-0 bottom-0 lg:top-0 w-full lg:w-96 bg-gradient-to-b from-white/95 to-white/90 backdrop-blur-lg border-l-0 lg:border-l border-t lg:border-t-0 border-white/30 flex flex-col justify-center p-8 max-h-80 lg:max-h-none">
-                <div className="space-y-6">
-                  <div className="text-center">
-                    <div 
-                      className="mb-4 mx-auto shadow-lg"
-                      style={{
-                        width: '72px',
-                        height: '72px',
-                        borderRadius: '18px',
-                        background: 'linear-gradient(135deg, #1f2937, #374151, #6b7280)',
-                        color: 'white',
-                        display: 'grid',
-                        placeItems: 'center',
-                        boxShadow: '0 8px 24px rgba(0,0,0,0.2)'
-                      }}
-                    >
-                      <Phone className="w-8 h-8 text-white" />
-                    </div>
-                    <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                      Try Our AI Voice Agent
-                    </h3>
-                    <p className="text-gray-600 text-sm">
-                      Enter your details for a live demo call
-                    </p>
-                  </div>
-
-                  <form onSubmit={handleDemoSubmit} className="space-y-4">
-                    <div>
-                      <input
-                        id="demo-name"
-                        type="text"
-                        placeholder="Your Name"
-                        value={demoForm.name}
-                        onChange={(e) => setDemoForm({ ...demoForm, name: e.target.value })}
-                        className="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-colors bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white"
-                        disabled={isSubmitting}
-                        required
-                      />
-                    </div>
-
-                    <div>
-                      <div className="relative">
-                        <div className="flex">
-                          {/* Country Code Dropdown */}
-                          <div className="relative" ref={dropdownRef}>
-                            <button
-                              type="button"
-                              onClick={() => {
-                                setIsDropdownOpen(!isDropdownOpen);
-                                if (!isDropdownOpen) {
-                                  setCountrySearch(''); // Reset search when opening
-                                }
-                              }}
-                              className="flex items-center gap-2 px-3 py-3 border border-r-0 border-gray-300 rounded-l-lg bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-colors"
-                              disabled={isSubmitting}
-                            >
-                              <span className="text-lg">{selectedCountry.flag}</span>
-                              <span className="text-sm font-medium text-gray-700">{selectedCountry.code}</span>
-                              <ChevronDown className="w-4 h-4 text-gray-500" />
-                            </button>
-                            
-                            {/* Dropdown Menu */}
-                            {isDropdownOpen && (
-                              <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
-                                {/* Search Input */}
-                                <div className="p-3 border-b border-gray-100">
-                                  <input
-                                    ref={searchInputRef}
-                                    type="text"
-                                    placeholder="Search countries or codes..."
-                                    value={countrySearch}
-                                    onChange={(e) => setCountrySearch(e.target.value)}
-                                    className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal/20"
-                                    onClick={(e) => e.stopPropagation()}
-                                  />
-                                </div>
-                                
-                                {/* Country List */}
-                                <div className="max-h-48 overflow-y-auto">
-                                  {filteredCountries.length > 0 ? (
-                                    filteredCountries.map((country, index) => (
-                                      <button
-                                        key={`${country.country}-${index}`}
-                                        type="button"
-                                        onClick={() => {
-                                          setSelectedCountry(country);
-                                          setIsDropdownOpen(false);
-                                          setCountrySearch('');
-                                        }}
-                                        className="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors text-left"
-                                      >
-                                        <span className="text-lg">{country.flag}</span>
-                                        <div className="flex-1 min-w-0">
-                                          <div className="text-sm font-medium text-gray-900 truncate">{country.name}</div>
-                                          <div className="text-xs text-gray-500">{country.code}</div>
-                                        </div>
-                                      </button>
-                                    ))
-                                  ) : (
-                                    <div className="px-4 py-3 text-sm text-gray-500 text-center">
-                                      No countries found
-                                    </div>
-                                  )}
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                          
-                          {/* Phone Input */}
-                          <input
-                            id="demo-phone"
-                            type="tel"
-                            placeholder="123 456 7890"
-                            value={demoForm.phone}
-                            onChange={(e) => setDemoForm({ ...demoForm, phone: e.target.value })}
-                            className="flex-1 px-4 py-3 border border-gray-300 rounded-r-lg focus:border-brand-teal focus:ring-2 focus:ring-brand-teal/20 transition-colors bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white"
-                            disabled={isSubmitting}
-                            required
-                          />
-                        </div>
-                      </div>
-                    </div>
-
-                    {submitStatus.type && (
-                      <div className={`p-3 rounded-lg text-sm font-medium ${
-                        submitStatus.type === 'success' 
-                          ? 'bg-gray-100 text-gray-800 border border-gray-300' 
-                          : 'bg-gray-200 text-gray-900 border border-gray-400'
-                      }`}>
-                        {submitStatus.message}
-                      </div>
-                    )}
-
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="w-full py-4 px-6 rounded-lg font-semibold text-white bg-gradient-to-r from-gray-800 to-gray-600 hover:from-gray-700 hover:to-gray-500 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-xl hover:shadow-2xl flex items-center justify-center gap-2"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <Loader2 className="w-5 h-5 animate-spin" />
-                          Initiating Call...
-                        </>
-                      ) : (
-                        <>
-                          <Phone className="w-5 h-5" />
-                          Try Demo Call
-                        </>
-                      )}
-                    </button>
-
-                    <p className="text-xs text-gray-500 text-center">
-                      By submitting, you agree to receive a demo call from our AI agent.
-                    </p>
-                  </form>
-                </div>
-              </div>
-
             </div>
+
           </div>
         </div>
       </section>
 
-      {/* Features Section */}
-      <section className="pb-20">
+      {/* Demo Form Section - Below Hero */}
+      <section className="pb-12">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {/* Feature 1 */}
-            <div className="text-center">
-              <div 
-                className="w-16 h-16 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #a98064, #868c82)' }}
-              >
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
-                Deploy AI Voice Agents in Just 3 Weeks, Not Months
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Get up and running fast with no-code tools and flexible APIs. Most customers launch in under 21 days — no engineers required.
-              </p>
-            </div>
+          <div className="w-full">
+            <div className="relative bg-gradient-to-br from-brand-teal/15 via-brand-cyan/15 to-brand-sage/15 rounded-3xl shadow-2xl border border-brand-teal/40 p-6 sm:p-8 lg:p-10 xl:p-12 overflow-hidden">
+              {/* Decorative Elements */}
+              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-brand-gold/25 to-transparent rounded-full blur-3xl"></div>
+              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-brand-cyan/25 to-transparent rounded-full blur-3xl"></div>
+              
+              {/* Content */}
+              <div className="relative z-10">
+                <div className="text-center mb-8">
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <h3 className="text-3xl font-bold text-euphoric-gradient mb-3">
+                      Get a Real-Time Call from Our AI Agent <span className="bg-gradient-to-r from-brand-gold to-brand-teal bg-clip-text text-transparent font-extrabold">Eliza</span>
+                    </h3>
+                    <p className="text-gray-600 text-base">
+                      Experience the future of customer communication with our intelligent voice AI
+                    </p>
+                  </motion.div>
+                </div>
 
-            {/* Feature 2 */}
-            <div className="text-center">
-              <div 
-                className="w-16 h-16 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #868c82, #6498a0)' }}
-              >
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 3 0 116 0v6a3 3 0 01-3 3z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
-                Human-Like Voice with &lt;500ms Latency
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Deliver natural conversations with multilingual agents, low latency, and guaranteed uptime. Responses are fast, clear, and reliable.
-              </p>
-            </div>
+              <form onSubmit={handleDemoSubmit} className="space-y-6">
+                {/* Single Row - Three Parallel Fields */}
+                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
+                  {/* Name Input */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.1 }}
+                  >
+                    <input
+                      id="hero-demo-name"
+                      type="text"
+                      placeholder="Your Name"
+                      value={demoForm.name}
+                      onChange={(e) => setDemoForm({ ...demoForm, name: e.target.value })}
+                      className="w-full px-5 py-4 rounded-xl border-2 border-brand-teal/40 focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 transition-all bg-white/90 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md font-medium placeholder:text-gray-500"
+                      disabled={isSubmitting}
+                      required
+                    />
+                  </motion.div>
 
-            {/* Feature 3 */}
-            <div className="text-center">
-              <div 
-                className="w-16 h-16 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #6498a0, #42a4bf)' }}
-              >
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-                </svg>
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
-                Dedicated Support with AI Voice Experts Behind Every Agent
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                AI engineers, telephony specialists, solution architects, and customer success managers ensure your agents are reliable and operational.
-              </p>
-            </div>
+                  {/* Email Input */}
+                  <motion.div
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.5, delay: 0.2 }}
+                  >
+                    <input
+                      id="hero-demo-email"
+                      type="email"
+                      placeholder="your.email@example.com"
+                      value={demoForm.email}
+                      onChange={(e) => setDemoForm({ ...demoForm, email: e.target.value })}
+                      className="w-full px-5 py-4 rounded-xl border-2 border-brand-cyan/40 focus:border-brand-cyan focus:ring-4 focus:ring-brand-cyan/20 transition-all bg-white/90 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md font-medium placeholder:text-gray-500"
+                      disabled={isSubmitting}
+                      required
+                    />
+                  </motion.div>
 
-            {/* Feature 4 */}
-            <div className="text-center">
-              <div 
-                className="w-16 h-16 mx-auto mb-6 rounded-2xl flex items-center justify-center"
-                style={{ background: 'linear-gradient(135deg, #42a4bf, #a98064)' }}
-              >
-                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-                </svg>
+                  {/* Phone Number with Country Code */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
+                  >
+                    <div className="relative">
+                      <div className="flex">
+                        {/* Country Code Dropdown */}
+                        <div className="relative" ref={dropdownRef}>
+                          <button
+                            type="button"
+                            onClick={() => {
+                              setIsDropdownOpen(!isDropdownOpen);
+                              if (!isDropdownOpen) {
+                                setCountrySearch(''); // Reset search when opening
+                              }
+                            }}
+                            className="flex items-center gap-1 px-3 py-4 border-2 border-r-0 border-brand-sage/40 rounded-l-xl bg-white/90 backdrop-blur-sm hover:bg-white focus:bg-white focus:border-brand-sage focus:ring-4 focus:ring-brand-sage/20 transition-all shadow-sm hover:shadow-md font-medium"
+                            disabled={isSubmitting}
+                          >
+                            <span className="text-base">{selectedCountry.flag}</span>
+                            <span className="text-sm font-bold text-gray-800">{selectedCountry.code}</span>
+                            <ChevronDown className="w-4 h-4 text-brand-sage/80" />
+                          </button>
+                          
+                          {/* Dropdown Menu */}
+                          {isDropdownOpen && (
+                            <div className="absolute top-full left-0 mt-1 w-64 bg-white rounded-lg shadow-xl border border-gray-200 z-50">
+                              {/* Search Input */}
+                              <div className="p-3 border-b border-gray-100">
+                                <input
+                                  ref={searchInputRef}
+                                  type="text"
+                                  placeholder="Search countries or codes..."
+                                  value={countrySearch}
+                                  onChange={(e) => setCountrySearch(e.target.value)}
+                                  className="w-full px-3 py-2 text-sm border border-gray-200 rounded-md focus:outline-none focus:border-brand-teal focus:ring-1 focus:ring-brand-teal/20"
+                                  onClick={(e) => e.stopPropagation()}
+                                />
+                              </div>
+                              
+                              {/* Country List */}
+                              <div className="max-h-48 overflow-y-auto">
+                                {filteredCountries.length > 0 ? (
+                                  filteredCountries.map((country, index) => (
+                                    <button
+                                      key={`${country.country}-${index}`}
+                                      type="button"
+                                      onClick={() => {
+                                        setSelectedCountry(country);
+                                        setIsDropdownOpen(false);
+                                        setCountrySearch('');
+                                      }}
+                                      className="w-full flex items-center gap-3 px-4 py-2 hover:bg-gray-50 transition-colors text-left"
+                                    >
+                                      <span className="text-lg">{country.flag}</span>
+                                      <div className="flex-1 min-w-0">
+                                        <div className="text-sm font-medium text-gray-900 truncate">{country.name}</div>
+                                        <div className="text-xs text-gray-500">{country.code}</div>
+                                      </div>
+                                    </button>
+                                  ))
+                                ) : (
+                                  <div className="px-4 py-3 text-sm text-gray-500 text-center">
+                                    No countries found
+                                  </div>
+                                )}
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                        
+                        {/* Phone Input */}
+                        <input
+                          id="hero-demo-phone"
+                          type="tel"
+                          placeholder="123 456 7890"
+                          value={demoForm.phone}
+                          onChange={(e) => setDemoForm({ ...demoForm, phone: e.target.value })}
+                          className="flex-1 px-5 py-4 border-2 border-brand-sage/40 rounded-r-xl focus:border-brand-sage focus:ring-4 focus:ring-brand-sage/20 transition-all bg-white/90 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md font-medium placeholder:text-gray-500"
+                          disabled={isSubmitting}
+                          required
+                        />
+                      </div>
+                    </div>
+                  </motion.div>
+                </div>
+
+                {/* Status Message */}
+                {submitStatus.type && (
+                  <div className={`p-3 rounded-lg text-sm font-medium ${
+                    submitStatus.type === 'success' 
+                      ? 'bg-green-50 text-green-800 border border-green-200' 
+                      : 'bg-red-50 text-red-800 border border-red-200'
+                  }`}>
+                    {submitStatus.message}
+                  </div>
+                )}
+
+                {/* Submit Button - Centered */}
+                <motion.div 
+                  className="flex flex-col items-center space-y-4"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.5, delay: 0.4 }}
+                >
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="relative py-5 px-10 rounded-2xl font-bold bg-gradient-to-br from-white via-white to-white hover:from-white hover:via-white hover:to-white transition-all transform hover:scale-[1.03] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-2xl hover:shadow-3xl flex items-center justify-center gap-3 text-lg overflow-hidden group border-4 border-brand-teal bg-clip-padding"
+                    style={{
+                      backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 50%, rgba(255,255,255,0.9) 100%), linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-cyan) 50%, var(--brand-gold) 100%)',
+                      backgroundOrigin: 'border-box',
+                      backgroundClip: 'padding-box, border-box'
+                    }}
+                  >
+                    {/* Animated gradient background overlay */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-brand-teal/10 via-brand-cyan/10 to-brand-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
+                    
+                    {/* Shimmer effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                    
+                    {isSubmitting ? (
+                      <>
+                        <Loader2 className="w-6 h-6 animate-spin text-white drop-shadow-sm" />
+                        <span className="text-euphoric-gradient font-bold drop-shadow-sm">Initiating Call...</span>
+                      </>
+                    ) : (
+                      <>
+                        <div className="relative p-3 bg-gradient-to-br from-brand-teal via-brand-cyan to-brand-teal rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
+                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl"></div>
+                          <Phone className="w-5 h-5 text-white drop-shadow-sm relative z-10" />
+                        </div>
+                        <span className="text-euphoric-gradient font-bold drop-shadow-sm">Try Live Call Demo</span>
+                      </>
+                    )}
+                  </button>
+
+                  <p className="text-sm text-gray-700 font-medium text-center max-w-md">
+                    By submitting, you agree to receive a demo call from our AI agent.
+                  </p>
+                </motion.div>
+              </form>
               </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-4 leading-tight">
-                Maximum Performance, Minimum Cost
-              </h3>
-              <p className="text-gray-600 leading-relaxed">
-                Affordable solutions for large teams with no add-ons or surprise fees. Run enterprise-grade calls starting at just $0.12/min.
-              </p>
             </div>
           </div>
         </div>
       </section>
+
+      {/* Stats Section - Below Demo Form */}
+      <section className="py-16 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Background Elements */}
+          <div className="absolute top-0 left-1/4 w-32 h-32 bg-gradient-to-br from-brand-teal/20 to-transparent rounded-full blur-2xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-32 h-32 bg-gradient-to-tl from-brand-gold/20 to-transparent rounded-full blur-2xl"></div>
+          
+          {/* Stats Grid */}
+          <div className="relative grid grid-cols-2 md:grid-cols-5 gap-8 w-full mx-auto">
+            {/* 30min Setup */}
+            <div className="text-center group">
+              <div className="relative">
+                {/* Animated Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/20 via-brand-cyan/15 to-brand-teal/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                
+                {/* Card Content */}
+                <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="text-4xl font-black text-transparent bg-gradient-to-br from-brand-teal via-brand-cyan to-brand-teal bg-clip-text mb-3">
+                    30min
+                  </div>
+                  <div className="text-gray-700 font-semibold text-sm uppercase tracking-wide">Setup Time</div>
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Twilio Integration */}
+            <div className="text-center group">
+              <div className="relative">
+                {/* Animated Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 via-brand-teal/15 to-brand-blue/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                
+                {/* Card Content */}
+                <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-brand-blue/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="text-4xl font-black text-transparent bg-gradient-to-br from-brand-blue via-brand-teal to-brand-blue bg-clip-text mb-3">
+                    Twilio
+                  </div>
+                  <div className="text-gray-700 font-semibold text-sm uppercase tracking-wide">Ready Integration</div>
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* Stripe Billing */}
+            <div className="text-center group">
+              <div className="relative">
+                {/* Animated Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/20 via-brand-gold/15 to-brand-gold/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                
+                {/* Card Content */}
+                <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-brand-gold/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="text-4xl font-black text-transparent bg-gradient-to-br from-brand-gold via-brand-gold to-brand-gold bg-clip-text mb-3">
+                    Stripe
+                  </div>
+                  <div className="text-gray-700 font-semibold text-sm uppercase tracking-wide">Secure Billing</div>
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* 24/7 Active */}
+            <div className="text-center group">
+              <div className="relative">
+                {/* Animated Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/20 via-brand-teal/15 to-brand-teal/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                
+                {/* Card Content */}
+                <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="text-4xl font-black text-transparent bg-gradient-to-br from-brand-teal via-brand-teal to-brand-teal bg-clip-text mb-3">
+                    24/7
+                  </div>
+                  <div className="text-gray-700 font-semibold text-sm uppercase tracking-wide">Always Active</div>
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                </div>
+              </div>
+            </div>
+
+            {/* 250ms Latency */}
+            <div className="text-center group">
+              <div className="relative">
+                {/* Animated Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-blue/20 via-brand-blue/15 to-brand-blue/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                
+                {/* Card Content */}
+                <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-brand-blue/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
+                  <div className="text-4xl font-black text-transparent bg-gradient-to-br from-brand-blue via-brand-blue to-brand-blue bg-clip-text mb-3">
+                    250ms
+                  </div>
+                  <div className="text-gray-700 font-semibold text-sm uppercase tracking-wide">Latency</div>
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
 
       {/* Industry Solutions */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="text-brand-moss text-sm font-medium mb-4 uppercase tracking-wide">Industry Solutions</div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-              <span className="text-gray-900">Choose Your </span>
-              <span className="text-euphoric-gradient">AI Agents</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Domain-specific AI voice agents with proven conversation flows and industry expertise.
-            </p>
-          </div>
+      <CompactIndustries />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {/* Lead Qualification Agent */}
-            <div className="glass p-8 card-hover flex flex-col h-full">
-              <div className="icon-badge-lg mb-6">
-                <CheckCircle className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Lead Qualification Agent</h3>
-
-              <div className="space-y-3 mb-6 flex-grow">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Automated lead scoring & qualification</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Intelligent questions to gauge interest</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Real-time CRM updates & handoffs</span>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <Link
-                  to="/lead-qualification"
-                  className="btn-outline w-full text-center"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-
-            {/* Appointment Booking Agent */}
-            <div className="glass p-8 card-hover flex flex-col h-full">
-              <div className="icon-badge-lg mb-6">
-                <Clock className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Appointment Booking Agent</h3>
-
-              <div className="space-y-3 mb-6 flex-grow">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">24/7 scheduling & calendar management</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Automated reminders & confirmations</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Rescheduling & cancellation handling</span>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <Link
-                  to="/appointment-booking"
-                  className="btn-outline w-full text-center"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-
-            {/* Customer Support Agent */}
-            <div className="glass p-8 card-hover flex flex-col h-full">
-              <div className="icon-badge-lg mb-6">
-                <Headphones className="w-8 h-8" />
-              </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">Customer Support Agent</h3>
-
-              <div className="space-y-3 mb-6 flex-grow">
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Instant answers from knowledge base</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Escalation to human agents when needed</span>
-                </div>
-                <div className="flex items-center gap-3">
-                  <div className="w-2 h-2 bg-brand-teal rounded-full"></div>
-                  <span className="text-gray-600">Multi-language support & troubleshooting</span>
-                </div>
-              </div>
-              <div className="mt-auto">
-                <Link
-                  to="/customer-support-agent"
-                  className="btn-outline w-full text-center"
-                >
-                  View Details
-                </Link>
-              </div>
-            </div>
-          </div>
+      {/* Enterprise Features - Custom Stats */}
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-blue/30 to-brand-gray/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-teal/30 to-brand-blue/30 rounded-full blur-3xl"></div>
         </div>
-      </section>
 
-      {/* Enterprise Features */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <div className="text-brand-moss text-sm font-medium mb-4 uppercase tracking-wide">Advanced Capabilities</div>
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
-              <span className="text-gray-900">Enterprise-</span>
-              <span className="text-euphoric-gradient">Grade Features</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Everything you need to launch and scale AI calling agents across industries.
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <div className="text-center glass-soft p-6 card-hover">
-              <div className="icon-badge mx-auto mb-4">
-                <Phone className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Quick Setup in 30 Minutes</h3>
-              <p className="text-gray-600">Get your AI agent running with our intuitive setup process</p>
-            </div>
-
-            <div className="text-center glass-soft p-6 card-hover">
-              <div className="icon-badge mx-auto mb-4">
-                <CreditCard className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Secure Payment Processing</h3>
-              <p className="text-gray-600">Enterprise-grade security with Stripe integration</p>
-            </div>
-
-            <div className="text-center glass-soft p-6 card-hover">
-              <div className="icon-badge mx-auto mb-4">
-                <Globe className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Global Phone Integration</h3>
-              <p className="text-gray-600">Seamless Twilio integration for worldwide calling</p>
-            </div>
-
-            <div className="text-center glass-soft p-6 card-hover">
-              <div className="icon-badge mx-auto mb-4">
-                <BarChart3 className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Real-time Analytics</h3>
-              <p className="text-gray-600">Comprehensive insights and performance tracking</p>
-            </div>
-
-            <div className="text-center glass-soft p-6 card-hover">
-              <div className="icon-badge mx-auto mb-4">
-                <Languages className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">Multi-language Support</h3>
-              <p className="text-gray-600">Serve customers in their preferred language</p>
-            </div>
-
-            <div className="text-center glass-soft p-6 card-hover">
-              <div className="icon-badge mx-auto mb-4">
-                <Clock className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-2">24/7 Reliability</h3>
-              <p className="text-gray-600">Always-on service with 99.9% uptime guarantee</p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Band */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="rounded-3xl p-16 text-center relative overflow-hidden" style={{ background: 'linear-gradient(135deg, #42a4bf 0%, #6498a0 50%, #a98064 100%)' }}>
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
-              Explore the New Era of AI Phone Assistants for business.
-            </h2>
-            <p className="text-white/90 mb-12 max-w-4xl mx-auto text-xl leading-relaxed">
-              Should Callin seem like the ideal solution to supercharge your incoming and outgoing calls, let's connect, we invite you to connect with us. We're eager to share more with you.
-            </p>
-            <a 
-              href="/contact" 
-              className="inline-flex items-center justify-center px-8 py-4 bg-white text-brand-cyan font-semibold rounded-xl hover:bg-gray-50 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          {/* Stats Grid */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            
+            {/* Global Phone Integration */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="relative group cursor-pointer"
             >
-              Get in touch
-            </a>
+              <div className="bg-gradient-to-br from-brand-teal via-brand-blue to-brand-gray p-8 rounded-3xl shadow-2xl transition-all duration-300 group-hover:shadow-3xl">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <pattern id="pattern-global" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="10" cy="10" r="1" fill="white" />
+                      </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#pattern-global)" />
+                  </svg>
+                </div>
+
+                {/* Icon */}
+                <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mb-6 inline-block">
+                  <Globe className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Stat Value */}
+                <div className="text-white mb-2">
+                  <div className="text-4xl md:text-5xl font-bold">Global</div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white mb-2">Phone Integration</h3>
+
+                {/* Description */}
+                <p className="text-white/80 text-base leading-relaxed">Seamless Twilio integration for worldwide calling</p>
+              </div>
+            </motion.div>
+
+            {/* Real-time Analytics */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="relative group cursor-pointer"
+            >
+              <div className="bg-gradient-to-br from-brand-blue via-brand-teal to-brand-gold p-8 rounded-3xl shadow-2xl transition-all duration-300 group-hover:shadow-3xl">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <pattern id="pattern-analytics" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="10" cy="10" r="1" fill="white" />
+                      </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#pattern-analytics)" />
+                  </svg>
+                </div>
+
+                {/* Icon */}
+                <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mb-6 inline-block">
+                  <BarChart3 className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Stat Value */}
+                <div className="text-white mb-2">
+                  <div className="text-4xl md:text-5xl font-bold">Realtime</div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white mb-2">Analytics</h3>
+
+                {/* Description */}
+                <p className="text-white/80 text-base leading-relaxed">Comprehensive insights and performance tracking</p>
+              </div>
+            </motion.div>
+
+            {/* Multi-language Support */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="relative group cursor-pointer"
+            >
+              <div className="bg-gradient-to-br from-brand-gray via-brand-teal to-brand-blue p-8 rounded-3xl shadow-2xl transition-all duration-300 group-hover:shadow-3xl">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <pattern id="pattern-languages" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="10" cy="10" r="1" fill="white" />
+                      </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#pattern-languages)" />
+                  </svg>
+                </div>
+
+                {/* Icon */}
+                <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mb-6 inline-block">
+                  <Languages className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Stat Value */}
+                <div className="text-white mb-2">
+                  <div className="text-4xl md:text-5xl font-bold">35+</div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white mb-2">Languages</h3>
+
+                {/* Description */}
+                <p className="text-white/80 text-base leading-relaxed">Serve customers in their preferred language globally</p>
+              </div>
+            </motion.div>
+
+            {/* 24/7 Reliability */}
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.3 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="relative group cursor-pointer"
+            >
+              <div className="bg-gradient-to-br from-brand-gold via-brand-teal to-brand-black p-8 rounded-3xl shadow-2xl transition-all duration-300 group-hover:shadow-3xl">
+                {/* Background Pattern */}
+                <div className="absolute inset-0 opacity-10">
+                  <svg className="w-full h-full" viewBox="0 0 100 100">
+                    <defs>
+                      <pattern id="pattern-reliability" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+                        <circle cx="10" cy="10" r="1" fill="white" />
+                      </pattern>
+                    </defs>
+                    <rect width="100" height="100" fill="url(#pattern-reliability)" />
+                  </svg>
+                </div>
+
+                {/* Icon */}
+                <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mb-6 inline-block">
+                  <Clock className="w-8 h-8 text-white" />
+                </div>
+
+                {/* Stat Value */}
+                <div className="text-white mb-2">
+                  <div className="text-4xl md:text-5xl font-bold">99.9%</div>
+                </div>
+
+                {/* Title */}
+                <h3 className="text-xl font-bold text-white mb-2">Uptime</h3>
+
+                {/* Description */}
+                <p className="text-white/80 text-base leading-relaxed">Always-on service with guaranteed reliability</p>
+              </div>
+            </motion.div>
+
+          </div>
+        </div>
+      </section>
+
+      {/* Simple CTA Section */}
+      <section id="pricing" className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-gradient-to-br from-brand-blue to-brand-gray rounded-3xl p-12 text-center text-white">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl md:text-5xl font-bold mb-6"
+            >
+              Ready to Transform Your Business?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-xl text-white/90 mb-8 max-w-4xl mx-auto whitespace-nowrap"
+            >
+              Join thousands of businesses using AI voice agents to scale their operations 24/7.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="relative overflow-hidden bg-white hover:bg-white text-brand-black hover:text-brand-gray px-8 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl inline-flex items-center justify-center group"
+              >
+                {/* Shimmer effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-100/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                <span className="relative z-10">Book Your Demo</span>
+                <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
+              </a>
+              <Link
+                to="/pricing"
+                className="relative overflow-hidden border-2 border-white/80 hover:border-white text-white hover:text-white bg-transparent hover:bg-white/10 px-8 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group backdrop-blur-sm"
+              >
+                {/* Subtle background glow */}
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                <span className="relative z-10">View Pricing</span>
+              </Link>
+            </motion.div>
           </div>
         </div>
       </section>
 
 
       {/* Integrations Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-gray-900">
-              Works With Everything You Already Use.
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-              Integrates into your stack. Extends your superpowers.
-            </p>
-          </div>
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-teal/20 to-brand-blue/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-blue/20 to-brand-gray/20 rounded-full blur-3xl"></div>
+        </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {/* Google Drive */}
-            <div className="bg-gray-50 rounded-2xl p-6 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
-                <img src="https://assets.ringg.ai/images/integrations/google-drive.svg" alt="Google Drive" className="w-8 h-8 object-contain" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">Google Drive</h3>
-                <p className="text-sm text-gray-600">Save transcripts to cloud</p>
-              </div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="grid lg:grid-cols-2 gap-16 items-center">
+            {/* Left Side - Text Content */}
+            <div>
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="mb-8"
+              >
+                <div className="inline-flex items-center space-x-2 bg-gradient-to-r from-brand-teal/20 to-brand-blue/20 rounded-full px-6 py-2 mb-6">
+                  <Globe className="w-5 h-5 text-brand-teal" />
+                  <span className="text-gray-700 font-semibold">Integrations</span>
+                </div>
+                
+                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
+                  Works With Everything You Already{' '}
+                  <span className="bg-gradient-to-r from-brand-teal to-brand-blue bg-clip-text text-transparent">
+                    Use
+                  </span>
+                </h2>
+                
+                <p className="text-xl text-gray-600 mb-8 leading-relaxed">
+                  Integrates into your stack. Extends your superpowers with seamless connections to your favorite tools and platforms.
+                </p>
+
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center space-x-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50">
+                    <div className="w-8 h-8 bg-gradient-to-br from-brand-teal to-brand-blue rounded-lg flex items-center justify-center">
+                      <MessageCircle className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="font-semibold text-gray-900">Voice Workflows</span>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50">
+                    <div className="w-8 h-8 bg-gradient-to-br from-brand-blue to-brand-gray rounded-lg flex items-center justify-center">
+                      <BarChart3 className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="font-semibold text-gray-900">Real-time Sync</span>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50">
+                    <div className="w-8 h-8 bg-gradient-to-br from-brand-gray to-brand-teal rounded-lg flex items-center justify-center">
+                      <CreditCard className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="font-semibold text-gray-900">Secure APIs</span>
+                  </div>
+                  
+                  <div className="flex items-center space-x-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50">
+                    <div className="w-8 h-8 bg-gradient-to-br from-brand-teal to-brand-blue rounded-lg flex items-center justify-center">
+                      <Clock className="w-4 h-4 text-white" />
+                    </div>
+                    <span className="font-semibold text-gray-900">24/7 Uptime</span>
+                  </div>
+                </div>
+              </motion.div>
             </div>
 
-            {/* Shopify */}
-            <div className="bg-gray-50 rounded-2xl p-6 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
-                <img src="https://assets.ringg.ai/images/integrations/shopify.svg" alt="Shopify" className="w-8 h-8 object-contain" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">Shopify</h3>
-                <p className="text-sm text-gray-600">Manage orders via voice</p>
-              </div>
-            </div>
+            {/* Right Side - AnimatedBeam Integration Showcase */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="relative"
+            >
+              <div
+                ref={containerRef}
+                className="relative flex h-[400px] sm:h-[450px] md:h-[500px] w-full max-w-[600px] md:max-w-[700px] items-center justify-center overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-white/40 via-white/20 to-white/40 backdrop-blur-sm shadow-2xl mx-auto border border-white/40 p-12 sm:p-16 md:p-20"
+                style={{
+                  // Ensure consistent positioning
+                  minHeight: '400px',
+                  aspectRatio: '7/5',
+                  // Better rendering performance
+                  willChange: 'transform',
+                  contain: 'layout style paint'
+                }}
+              >
+                {/* Central Euphoric AI Hub */}
+                <EuphoricAIHub ref={centerRef} />
 
-            {/* Twilio */}
-            <div className="bg-gray-50 rounded-2xl p-6 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
-                <img src="https://assets.ringg.ai/images/integrations/twilio.svg" alt="Twilio" className="w-8 h-8 object-contain" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">Twilio</h3>
-                <p className="text-sm text-gray-600">Power secure voice calls</p>
-              </div>
-            </div>
+                {/* Animated Beams with curves - rendered first so they appear behind logos */}
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={googleDriveRef}
+                  toRef={centerRef}
+                  duration={4}
+                  curvature={-30}
+                  pathColor="#e5e7eb"
+                  gradientStartColor="#64a4bf"
+                  gradientStopColor="#42a4bf"
+                />
+                
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={shopifyRef}
+                  toRef={centerRef}
+                  duration={4}
+                  delay={0.7}
+                  curvature={30}
+                  pathColor="#e5e7eb"
+                  gradientStartColor="#64a4bf"
+                  gradientStopColor="#42a4bf"
+                />
+                
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={salesforceRef}
+                  toRef={centerRef}
+                  duration={4}
+                  delay={1.4}
+                  curvature={0}
+                  pathColor="#e5e7eb"
+                  gradientStartColor="#64a4bf"
+                  gradientStopColor="#42a4bf"
+                />
+                
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={twilioRef}
+                  toRef={centerRef}
+                  duration={4}
+                  delay={2.1}
+                  curvature={0}
+                  pathColor="#e5e7eb"
+                  gradientStartColor="#64a4bf"
+                  gradientStopColor="#42a4bf"
+                />
+                
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={telnyxRef}
+                  toRef={centerRef}
+                  duration={4}
+                  delay={2.8}
+                  curvature={30}
+                  pathColor="#e5e7eb"
+                  gradientStartColor="#64a4bf"
+                  gradientStopColor="#42a4bf"
+                />
+                
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={goHighLevelRef}
+                  toRef={centerRef}
+                  duration={4}
+                  delay={3.5}
+                  curvature={-30}
+                  pathColor="#e5e7eb"
+                  gradientStartColor="#64a4bf"
+                  gradientStopColor="#42a4bf"
+                />
+                
+                <AnimatedBeam
+                  containerRef={containerRef}
+                  fromRef={apiRef}
+                  toRef={centerRef}
+                  duration={4}
+                  delay={5}
+                  curvature={0}
+                  pathColor="#e5e7eb"
+                  gradientStartColor="#64a4bf"
+                  gradientStopColor="#42a4bf"
+                />
 
-            {/* Salesforce */}
-            <div className="bg-gray-50 rounded-2xl p-6 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
-                <img src="https://www.sparkplug.ai/wp-content/uploads/2023/10/salesforce-logo.png" alt="Salesforce" className="w-10 h-10 object-contain" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">Salesforce</h3>
-                <p className="text-sm text-gray-600">Sync CRM data automatically</p>
-              </div>
-            </div>
+                {/* Positioned Integration Icons - rendered after beams so they appear on top */}
+                
+                {/* Top Left - Google Drive */}
+                <Circle ref={googleDriveRef} className="absolute top-4 sm:top-6 md:top-8 left-4 sm:left-6 md:left-8">
+                  <img src="https://assets.ringg.ai/images/integrations/google-drive.svg" alt="Google Drive" className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 object-contain" />
+                </Circle>
+                
+                {/* Top Right - Shopify */}
+                <Circle ref={shopifyRef} className="absolute top-4 sm:top-6 md:top-8 right-4 sm:right-6 md:right-8">
+                  <img src="https://assets.ringg.ai/images/integrations/shopify.svg" alt="Shopify" className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 object-contain" />
+                </Circle>
+                
+                {/* Middle Left - Salesforce */}
+                <Circle ref={salesforceRef} className="absolute left-4 sm:left-6 md:left-8 top-1/2 -translate-y-1/2">
+                  <img src="https://www.sparkplug.ai/wp-content/uploads/2023/10/salesforce-logo.png" alt="Salesforce" className="w-10 sm:w-12 md:w-16 h-10 sm:h-12 md:h-16 object-contain" />
+                </Circle>
+                
+                {/* Middle Right - Twilio */}
+                <Circle ref={twilioRef} className="absolute right-4 sm:right-6 md:right-8 top-1/2 -translate-y-1/2">
+                  <img src="https://assets.ringg.ai/images/integrations/twilio.svg" alt="Twilio" className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 object-contain" />
+                </Circle>
+                
+                {/* Bottom Left - Telnyx */}
+                <Circle ref={telnyxRef} className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-4 sm:left-6 md:left-8">
+                  <img src="https://res.cloudinary.com/apideck/image/upload/v1576574777/catalog/telnyx/icon128x128.png" alt="Telnyx" className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 object-contain rounded" />
+                </Circle>
+                
+                {/* Bottom Right - GoHighLevel */}
+                <Circle ref={goHighLevelRef} className="absolute bottom-4 sm:bottom-6 md:bottom-8 right-4 sm:right-6 md:right-8">
+                  <img src="https://images.leadconnectorhq.com/image/f_webp/q_100/r_180/u_https://cdn.filesafe.space/locationPhotos%2FknES3eSWYIsc5YSZ3YLl%2Fchat-widget-person?alt=media&token=86cfa8e1-6444-4301-927d-5f8491d03c06" alt="GoHighLevel" className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 object-contain rounded" />
+                </Circle>
+                
+                {/* Bottom Center - API Integration */}
+                <Circle ref={apiRef} className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-1/2 -translate-x-1/2">
+                  <img src="https://assets.ringg.ai/images/integrations/api.svg" alt="Custom API" className="w-8 sm:w-10 md:w-12 h-8 sm:h-10 md:h-12 object-contain" />
+                </Circle>
 
-            {/* Telnyx */}
-            <div className="bg-gray-50 rounded-2xl p-6 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
-                <img src="https://res.cloudinary.com/apideck/image/upload/v1576574777/catalog/telnyx/icon128x128.png" alt="Telnyx" className="w-8 h-8 object-contain rounded" />
               </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">Telnyx</h3>
-                <p className="text-sm text-gray-600">Advanced voice communications</p>
-              </div>
-            </div>
-
-            {/* GoHighLevel */}
-            <div className="bg-gray-50 rounded-2xl p-6 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
-                <img src="https://images.leadconnectorhq.com/image/f_webp/q_100/r_180/u_https://cdn.filesafe.space/locationPhotos%2FknES3eSWYIsc5YSZ3YLl%2Fchat-widget-person?alt=media&token=86cfa8e1-6444-4301-927d-5f8491d03c06" alt="GoHighLevel" className="w-8 h-8 object-contain rounded" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">GoHighLevel</h3>
-                <p className="text-sm text-gray-600">All-in-one marketing platform</p>
-              </div>
-            </div>
-
-            {/* Custom Integration Card - Centered */}
-            <div className="md:col-span-2 lg:col-span-1 lg:col-start-2 bg-gray-50 rounded-2xl p-6 flex items-center gap-4 hover:shadow-md transition-shadow">
-              <div className="w-12 h-12 rounded-xl flex items-center justify-center overflow-hidden bg-white">
-                <img src="https://assets.ringg.ai/images/integrations/api.svg" alt="Custom Integration" className="w-8 h-8 object-contain" />
-              </div>
-              <div>
-                <h3 className="font-semibold text-gray-900">APS/Custom Workflow</h3>
-                <p className="text-sm text-gray-600">Build custom voice workflows</p>
-              </div>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Languages Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight text-gray-900">
-              We support over 35+ languages.
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Global multilingual support across English variants, European languages,<br />
-              Asian & Middle Eastern languages, and multi-language campaigns.
-            </p>
-          </div>
-
-          {/* English Variants */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">English Variants</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4 max-w-6xl mx-auto">
-              {/* English (United States) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇺🇸</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">English (United States)</h4>
-                </div>
-              </div>
-
-              {/* English (India) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇮🇳</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">English (India)</h4>
-                </div>
-              </div>
-
-              {/* English (United Kingdom) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇬🇧</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">English (United Kingdom)</h4>
-                </div>
-              </div>
-
-              {/* English (Australia) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇦🇺</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">English (Australia)</h4>
-                </div>
-              </div>
-
-              {/* English (New Zealand) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇳🇿</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">English (New Zealand)</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* European Languages */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">European Languages</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-6xl mx-auto">
-              {/* German (Germany) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇩🇪</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">German (Germany)</h4>
-                </div>
-              </div>
-
-              {/* Spanish (Spain) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇪🇸</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Spanish (Spain)</h4>
-                </div>
-              </div>
-
-              {/* Spanish (Latin America) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🌎</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Spanish (Latin America)</h4>
-                </div>
-              </div>
-
-              {/* Portuguese (Portugal) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇵🇹</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Portuguese (Portugal)</h4>
-                </div>
-              </div>
-
-              {/* Portuguese (Brazil) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇧🇷</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Portuguese (Brazil)</h4>
-                </div>
-              </div>
-
-              {/* French (France) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇫🇷</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">French (France)</h4>
-                </div>
-              </div>
-
-              {/* Italian (Italy) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇮🇹</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Italian (Italy)</h4>
-                </div>
-              </div>
-
-              {/* Dutch (Netherlands) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇳🇱</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Dutch (Netherlands)</h4>
-                </div>
-              </div>
-
-              {/* Dutch (Belgium) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇧🇪</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Dutch (Belgium)</h4>
-                </div>
-              </div>
-
-              {/* Polish (Poland) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇵🇱</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Polish (Poland)</h4>
-                </div>
-              </div>
-
-              {/* Romanian (Romania) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇷🇴</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Romanian (Romania)</h4>
-                </div>
-              </div>
-
-              {/* Bulgarian (Bulgaria) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇧🇬</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Bulgarian (Bulgaria)</h4>
-                </div>
-              </div>
-
-              {/* Danish (Denmark) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇩🇰</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Danish (Denmark)</h4>
-                </div>
-              </div>
-
-              {/* Finnish (Finland) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇫🇮</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Finnish (Finland)</h4>
-                </div>
-              </div>
-
-              {/* Greek (Greece) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇬🇷</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Greek (Greece)</h4>
-                </div>
-              </div>
-
-              {/* Hungarian (Hungary) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇭🇺</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Hungarian (Hungary)</h4>
-                </div>
-              </div>
-
-              {/* Norwegian (Norway) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇳🇴</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Norwegian (Norway)</h4>
-                </div>
-              </div>
-
-              {/* Slovak (Slovakia) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇸🇰</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Slovak (Slovakia)</h4>
-                </div>
-              </div>
-
-              {/* Swedish (Sweden) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇸🇪</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Swedish (Sweden)</h4>
-                </div>
-              </div>
-
-              {/* Catalan (Spain) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇪🇸</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Catalan (Spain)</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Asian & Middle Eastern Languages */}
-          <div className="mb-12">
-            <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">Asian & Middle Eastern Languages</h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 max-w-6xl mx-auto">
-              {/* Hindi (India) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇮🇳</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Hindi (India)</h4>
-                </div>
-              </div>
-
-              {/* Japanese (Japan) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇯🇵</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Japanese (Japan)</h4>
-                </div>
-              </div>
-
-              {/* Chinese (China) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇨🇳</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Chinese (China)</h4>
-                </div>
-              </div>
-
-              {/* Korean (South Korea) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇰🇷</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Korean (South Korea)</h4>
-                </div>
-              </div>
-
-              {/* Russian (Russia) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇷🇺</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Russian (Russia)</h4>
-                </div>
-              </div>
-
-              {/* Turkish (Turkey) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇹🇷</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Turkish (Turkey)</h4>
-                </div>
-              </div>
-
-              {/* Vietnamese (Vietnam) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇻🇳</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Vietnamese (Vietnam)</h4>
-                </div>
-              </div>
-
-              {/* Indonesian (Indonesia) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇮🇩</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Indonesian (Indonesia)</h4>
-                </div>
-              </div>
-
-              {/* Thai (Thailand) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇹🇭</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Thai (Thailand)</h4>
-                </div>
-              </div>
-
-              {/* Malay (Malaysia) */}
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow w-full">
-                <div className="text-2xl flex-shrink-0">🇲🇾</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Malay (Malaysia)</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Multi-language Option */}
-          <div className="text-center">
-            <h3 className="text-xl font-bold text-gray-900 mb-6">Multi-language Option</h3>
-            <div className="flex justify-center">
-              <div className="bg-white rounded-lg p-4 flex items-center gap-3 shadow-sm border border-gray-100 hover:shadow-md transition-shadow max-w-md w-full">
-                <div className="text-2xl flex-shrink-0">🌐</div>
-                <div className="flex-1">
-                  <h4 className="font-semibold text-gray-900 text-sm">Multiple Languages</h4>
-                  <p className="text-xs text-gray-500">For multilingual campaigns</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Languages Showcase */}
+      <LanguagesShowcase />
     </div>
   );
 };

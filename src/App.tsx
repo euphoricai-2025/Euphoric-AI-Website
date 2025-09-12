@@ -1,11 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Home from './pages/Home';
+import HomeV2 from './pages/HomeV2';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import Pricing from './pages/Pricing';
@@ -25,19 +26,17 @@ import Insurance from './pages/domains/Insurance';
 import Logistics from './pages/domains/Logistics';
 import RetailConsumer from './pages/domains/RetailConsumer';
 import TravelHospitality from './pages/domains/TravelHospitality';
-import HealthcareUseCase from './pages/use-cases/Healthcare';
-import FinanceUseCase from './pages/use-cases/Finance';
-import InsuranceUseCase from './pages/use-cases/Insurance';
 import HomeServicesUseCase from './pages/use-cases/HomeServices';
+import InsuranceUseCase from './pages/use-cases/Insurance';
 import RealEstateUseCase from './pages/use-cases/RealEstate';
 import CustomerSupportUseCase from './pages/use-cases/CustomerSupport';
+import LogisticsUseCase from './pages/use-cases/Logistics';
+import TravelHospitalityUseCase from './pages/use-cases/TravelHospitality';
+import EcommerceUseCase from './pages/use-cases/Ecommerce';
 import LeadQualificationUseCase from './pages/use-cases/LeadQualification';
 import AppointmentBookingUseCase from './pages/use-cases/AppointmentBooking';
 import CustomerSupportAgentUseCase from './pages/use-cases/CustomerSupportAgent';
-import LogisticsUseCase from './pages/use-cases/Logistics';
 import RetailConsumerUseCase from './pages/use-cases/RetailConsumer';
-import TravelHospitalityUseCase from './pages/use-cases/TravelHospitality';
-import EcommerceUseCase from './pages/use-cases/Ecommerce';
 import Integrations from './pages/Integrations';
 import CalCom from './pages/integrations/CalCom';
 import CustomLLM from './pages/integrations/CustomLLM';
@@ -71,6 +70,7 @@ function App() {
             <main>
               <Routes>
                 <Route path="/" element={<Home />} />
+                <Route path="/homev2" element={<HomeV2 />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/contact" element={<Contact />} />
                 <Route path="/pricing" element={<Pricing />} />
@@ -90,16 +90,21 @@ function App() {
                 <Route path="/logistics" element={<Logistics />} />
                 <Route path="/retail-consumer" element={<RetailConsumer />} />
                 <Route path="/travel-hospitality" element={<TravelHospitality />} />
-                <Route path="/use-cases/healthcare" element={<HealthcareUseCase />} />
-                <Route path="/use-cases/finance" element={<FinanceUseCase />} />
+                {/* Redirect merged use case paths to domain pages */}
+                <Route path="/use-cases/healthcare" element={<Navigate to="/healthcare" replace />} />
+                <Route path="/use-cases/finance" element={<Navigate to="/financial-services" replace />} />
+                
+                {/* Keep routes for remaining use cases until they're merged */}
                 <Route path="/use-cases/insurance" element={<InsuranceUseCase />} />
-                <Route path="/use-cases/home-services" element={<HomeServicesUseCase />} />
                 <Route path="/use-cases/real-estate" element={<RealEstateUseCase />} />
                 <Route path="/use-cases/customer-support" element={<CustomerSupportUseCase />} />
                 <Route path="/use-cases/logistics" element={<LogisticsUseCase />} />
-                <Route path="/use-cases/retail-consumer" element={<RetailConsumerUseCase />} />
                 <Route path="/use-cases/travel-hospitality" element={<TravelHospitalityUseCase />} />
                 <Route path="/use-cases/ecommerce" element={<EcommerceUseCase />} />
+                
+                {/* Keep remaining unique use case pages */}
+                <Route path="/use-cases/home-services" element={<HomeServicesUseCase />} />
+                <Route path="/use-cases/retail-consumer" element={<RetailConsumerUseCase />} />
                 <Route path="/lead-qualification" element={<LeadQualificationUseCase />} />
                 <Route path="/appointment-booking" element={<AppointmentBookingUseCase />} />
                 <Route path="/customer-support-agent" element={<CustomerSupportAgentUseCase />} />

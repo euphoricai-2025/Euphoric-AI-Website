@@ -26,14 +26,14 @@ const Header = () => {
           { name: 'E-commerce', path: '/ecommerce' }
         ],
         useCases: [
-          { name: 'Healthcare', path: '/use-cases/healthcare' },
-          { name: 'Finance Services', path: '/use-cases/finance' },
           { name: 'Insurance', path: '/use-cases/insurance' },
           { name: 'Real Estate', path: '/use-cases/real-estate' },
+          { name: 'Customer Support', path: '/use-cases/customer-support' },
           { name: 'Logistics', path: '/use-cases/logistics' },
-          { name: 'Retail & Consumer', path: '/use-cases/retail-consumer' },
           { name: 'Travel & Hospitality', path: '/use-cases/travel-hospitality' },
           { name: 'E-commerce', path: '/use-cases/ecommerce' },
+          { name: 'Retail & Consumer', path: '/use-cases/retail-consumer' },
+          { name: 'Home Services', path: '/use-cases/home-services' },
           { name: 'Lead Qualification Agent', path: '/lead-qualification' },
           { name: 'Appointment Booking Agent', path: '/appointment-booking' },
           { name: 'Customer Support Agent', path: '/customer-support-agent' }

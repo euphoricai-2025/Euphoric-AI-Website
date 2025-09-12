@@ -4,34 +4,34 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Euphoric brand colors
+        // Euphoric brand colors - EXACT brand colors only
         brand: {
           black: '#000000',
-          bronze: '#a98064',
-          sage: '#868c82',
+          gold: '#a98064',
+          gray: '#868c82', 
           teal: '#6498a0',
-          cyan: '#42a4bf',
+          blue: '#42a4bf',
         },
         // Extended brand palette for gradients and variations
         euphoric: {
-          50: '#f8fafb',
-          100: '#f1f5f7',
-          200: '#e3eaed',
-          300: '#d4dfe3',
-          400: '#a4b8c0',
-          500: '#6498a0',
-          600: '#42a4bf',
-          700: '#868c82',
-          800: '#a98064',
-          900: '#000000',
+          50: '#f0f2f5',   // very light tint of gray
+          100: '#e1e5ea',  // light tint of gray  
+          200: '#d2d8de',  // medium tint of gray
+          300: '#c3cbd2',  // darker tint of gray
+          400: '#868c82',  // brand gray
+          500: '#6498a0',  // brand teal
+          600: '#42a4bf',  // brand blue
+          700: '#a98064',  // brand gold
+          800: '#877054',  // darker gold
+          900: '#000000',  // brand black
         }
       },
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
         'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'hero-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        'hero-gradient': 'linear-gradient(135deg, #42a4bf 0%, #6498a0 100%)',
         'card-gradient': 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
-        'lovable-gradient': 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)',
+        'brand-gradient': 'linear-gradient(135deg, #42a4bf 0%, #6498a0 50%, #a98064 100%)',
         'euphoric-gradient': 'linear-gradient(135deg, #42a4bf 0%, #6498a0 50%, #a98064 100%)',
       },
       animation: {
