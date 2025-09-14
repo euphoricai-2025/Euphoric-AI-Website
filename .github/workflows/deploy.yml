@@ -28,27 +28,25 @@ jobs:
         VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
         VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-    - name: Setup SSH
-      uses: webfactory/ssh-agent@v0.7.0
-      with:
-        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-    - name: Deploy to server
-      run: |
-        # Configure SSH to skip host key verification for this deployment
-        ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} '
-          echo "🚀 Starting deployment to euphoricai.io..."
-          sudo rm -rf /usr/share/nginx/html/*
-          echo "✅ Cleared old files"
-        '
-
-        # Sync the built files to the server
-        rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" \
-          dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/usr/share/nginx/html/
-
-        # Restart nginx and confirm deployment
-        ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} '
-          sudo systemctl reload nginx
-          echo "✅ Deployment completed successfully to https://euphoricai.io"
-          echo "🌐 Website is now live!"
-        '
+   - name: Deploy to server
+        uses: appleboy/ssh-action@v1.2.0
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          password: ${{ secrets.REMOTE_PASSWORD }}
+          port: ${{ secrets.REMOTE_PORT }}
+          script: |
+            sudo rm -rf /usr/share/nginx/html/*
+            mkdir -p /tmp/deployment
+            cd /tmp/deployment
+            git clone https://github.com/euphoricai-2025/Euphoric-AI-Website.git .
+            npm ci
+            export VITE_SUPABASE_URL="${{ secrets.VITE_SUPABASE_URL }}"
+            export VITE_SUPABASE_ANON_KEY="${{ secrets.VITE_SUPABASE_ANON_KEY }}"
+            npm run build
+            sudo cp -r dist/* /usr/share/nginx/html/
+            sudo chown -R www-data:www-data /usr/share/nginx/html/
+            sudo chmod -R 755 /usr/share/nginx/html/
+            sudo systemctl reload nginx
+            cd / && rm -rf /tmp/deployment
+            echo "✅ Deployment completed successfully"
