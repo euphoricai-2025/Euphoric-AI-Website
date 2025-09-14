@@ -28,18 +28,27 @@ jobs:
         VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
         VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-    - name: Deploy to server
-      uses: easingthemes/ssh-deploy@main
+    - name: Setup SSH
+      uses: webfactory/ssh-agent@v0.7.0
       with:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-        SOURCE: "dist/"
-        TARGET: "/usr/share/nginx/html/"
-        EXCLUDE: "/dist/, **/.git*, /**/node_modules*, .env"
-        SCRIPT_BEFORE: |
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Deploy to server
+      run: |
+        # Configure SSH to skip host key verification for this deployment
+        ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} '
+          echo "🚀 Starting deployment to euphoricai.io..."
           sudo rm -rf /usr/share/nginx/html/*
-        SCRIPT_AFTER: |
+          echo "✅ Cleared old files"
+        '
+
+        # Sync the built files to the server
+        rsync -avz --delete -e "ssh -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" \
+          dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/usr/share/nginx/html/
+
+        # Restart nginx and confirm deployment
+        ssh -o StrictHostKeyChecking=no ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} -p ${{ secrets.REMOTE_PORT }} '
           sudo systemctl reload nginx
           echo "✅ Deployment completed successfully to https://euphoricai.io"
+          echo "🌐 Website is now live!"
+        '
