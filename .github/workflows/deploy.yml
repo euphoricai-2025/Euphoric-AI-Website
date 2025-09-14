@@ -28,25 +28,21 @@ jobs:
         VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
         VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-    - name: Deploy to server
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.REMOTE_HOST }}
-          username: ${{ secrets.REMOTE_USER }}
-          password: ${{ secrets.REMOTE_PASSWORD }}
-          port: ${{ secrets.REMOTE_PORT }}
-          script: |
-            sudo rm -rf /usr/share/nginx/html/*
-            mkdir -p /tmp/deployment
-            cd /tmp/deployment
-            git clone https://github.com/euphoricai-2025/Euphoric-AI-Website.git .
-            npm ci
-            export VITE_SUPABASE_URL="${{ secrets.VITE_SUPABASE_URL }}"
-            export VITE_SUPABASE_ANON_KEY="${{ secrets.VITE_SUPABASE_ANON_KEY }}"
-            npm run build
-            sudo cp -r dist/* /usr/share/nginx/html/
-            sudo chown -R www-data:www-data /usr/share/nginx/html/
-            sudo chmod -R 755 /usr/share/nginx/html/
-            sudo systemctl reload nginx
-            cd / && rm -rf /tmp/deployment
-            echo "✅ Deployment completed successfully"
+    - name: Deploy via SSH
+      run: |
+        # Setup SSH
+        mkdir -p ~/.ssh
+        echo "${{ secrets.SSH_PRIVATE_KEY }}" > ~/.ssh/deploy_key
+        chmod 600 ~/.ssh/deploy_key
+
+        # Test SSH connection
+        ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'echo "SSH connection successful"'
+
+        # Clear old files and deploy new ones
+        ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'sudo rm -rf /usr/share/nginx/html/*'
+
+        # Deploy files using rsync
+        rsync -avz -e "ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }}" dist/ ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }}:/usr/share/nginx/html/
+
+        # Restart nginx and confirm
+        ssh -i ~/.ssh/deploy_key -o StrictHostKeyChecking=no -p ${{ secrets.REMOTE_PORT }} ${{ secrets.REMOTE_USER }}@${{ secrets.REMOTE_HOST }} 'sudo systemctl reload nginx && echo "✅ Deployment completed successfully to https://euphoricai.io"'
