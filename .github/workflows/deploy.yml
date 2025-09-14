@@ -1,46 +1,45 @@
-name: Deploy to Server
+name: Deploy to EuphoricAI.io
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v3
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: '20'
-          cache: 'npm'
+    - name: Setup Node.js
+      uses: actions/setup-node@v4
+      with:
+        node-version: '20'
+        cache: 'npm'
 
-      - name: Install dependencies
-        run: npm ci
+    - name: Install dependencies
+      run: npm ci
 
-      - name: Build project
-        run: npm run build
-        env:
-          VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
-          VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
+    - name: Build application
+      run: npm run build
+      env:
+        VITE_SUPABASE_URL: ${{ secrets.VITE_SUPABASE_URL }}
+        VITE_SUPABASE_ANON_KEY: ${{ secrets.VITE_SUPABASE_ANON_KEY }}
 
-      - name: Deploy to server
-        uses: appleboy/ssh-action@v1.2.0
-        with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          key: ${{ secrets.PRIVATE_KEY }}
-          port: ${{ secrets.PORT }}
-          script: |
-            set -e
-            cd /var/www/euphoricai.io/repo
-            git fetch origin main
-            git reset --hard origin/main
-            npm ci
-            # inject Vite env for the SERVER build
-            export VITE_SUPABASE_URL="${{ secrets.VITE_SUPABASE_URL }}"
-            export VITE_SUPABASE_ANON_KEY="${{ secrets.VITE_SUPABASE_ANON_KEY }}"
-            npm run build
-            sudo -n systemctl reload nginx
+    - name: Deploy to server
+      uses: easingthemes/ssh-deploy@main
+      with:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
+        SOURCE: "dist/"
+        TARGET: "/usr/share/nginx/html/"
+        EXCLUDE: "/dist/, **/.git*, /**/node_modules*, .env"
+        SCRIPT_BEFORE: |
+          sudo rm -rf /usr/share/nginx/html/*
+        SCRIPT_AFTER: |
+          sudo systemctl reload nginx
+          echo "✅ Deployment completed successfully to https://euphoricai.io"
