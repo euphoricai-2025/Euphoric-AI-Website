@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Play, Pause, Volume2, VolumeX, ArrowRight, Sparkles, Zap, MessageCircle } from 'lucide-react';
+import { Play, Pause, Volume2, VolumeX, ArrowRight, Sparkles, Zap, MessageCircle, Target, Headphones } from 'lucide-react';
 
 const InteractiveHero = () => {
   const [activeDemo, setActiveDemo] = useState<string | null>(null);
@@ -20,7 +20,7 @@ const InteractiveHero = () => {
       id: 'lead',
       title: 'Lead Qualification', 
       description: 'Qualify leads instantly',
-      icon: '🎯',
+      icon: <Target className="w-5 h-5" />,
       gradient: 'from-brand-teal to-brand-gold',
       stats: '3x more qualified leads'
     },
@@ -28,7 +28,7 @@ const InteractiveHero = () => {
       id: 'support',
       title: 'Customer Support',
       description: 'Handle inquiries naturally',
-      icon: '🎧', 
+      icon: <Headphones className="w-5 h-5" />, 
       gradient: 'from-brand-gray to-brand-gold',
       stats: '85% resolution rate'
     }

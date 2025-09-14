@@ -1,7 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Zap, Calendar, Bot, Settings, Phone, Globe, Network, TrendingUp, ArrowRight, CheckCircle } from 'lucide-react';
+import { Zap, Calendar, Bot, Settings, Phone, Globe, Network, TrendingUp, ArrowRight, CheckCircle, Sparkles } from 'lucide-react';
+import { TextAnimate } from '../components/magicui/text-animate';
 
 const Integrations = () => {
   const integrations = [
@@ -81,52 +82,66 @@ const Integrations = () => {
   return (
     <div className="pt-16 bg-euphoric-surface min-h-screen">
       {/* Hero Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
+      <section className="py-32 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-teal/30 to-brand-blue/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-gold/30 to-brand-teal/30 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-4xl mx-auto mb-20">
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="icon-badge-lg mx-auto mb-6"
+              transition={{ duration: 0.8 }}
+              className="mb-8"
             >
-              <Zap className="w-10 h-10 text-white" />
+              <span className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-teal text-sm font-semibold mb-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                <Zap className="w-4 h-4 mr-3 text-brand-teal animate-pulse" />
+                Connect Everything
+              </span>
             </motion.div>
             
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-bold mb-8 leading-tight tracking-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
             >
-              <span className="text-gray-900">Powerful</span><br />
-              <span className="text-euphoric-gradient">Integrations</span>
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Powerful</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Integrations</span>
             </motion.h1>
             
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12"
             >
-              Connect your AI voice agents with the tools and platforms you already use. Build seamless workflows that enhance your business operations.
+              <TextAnimate animation="blurInUp" by="word" once>
+                Connect your AI voice agents with the tools and platforms you already use. Build seamless workflows that enhance your business operations.
+              </TextAnimate>
             </motion.p>
 
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center"
             >
               <Link
                 to="/signup"
-                className="btn-gold inline-flex items-center justify-center px-8 py-3 text-base font-medium"
+                className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group text-lg"
               >
                 Get Started
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/contact"
-                className="btn-glass inline-flex items-center justify-center px-8 py-3 text-base font-medium"
+                className="bg-white border-2 border-brand-teal text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-brand-teal hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center text-lg"
               >
                 Request Integration
               </Link>
@@ -155,47 +170,60 @@ const Integrations = () => {
           </div>
 
           {/* Integrations Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 sm:gap-8">
             {filteredIntegrations.map((integration, index) => (
               <motion.div
                 key={integration.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="card hover:shadow-lg transition-shadow duration-300"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.05 }}
+                whileHover={{ scale: 1.05, y: -5 }}
+                className="relative group cursor-pointer"
               >
-                <div className="flex items-center mb-4">
-                  <div className="icon-badge mr-4">
-                    <integration.icon className="w-5 h-5 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-lg font-bold text-gray-900">{integration.name}</h3>
-                    <p className="text-xs text-brand-teal font-medium">{integration.category}</p>
+                <div className="relative">
+                  {/* Animated Background Glow */}
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/10 via-brand-blue/5 to-brand-teal/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                  
+                  {/* Card Content */}
+                  <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 h-full flex flex-col">
+                    <div className="flex items-center mb-6">
+                      <div className="w-12 h-12 bg-gradient-to-br from-brand-teal via-brand-blue to-brand-teal rounded-xl flex items-center justify-center mr-4 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                        <integration.icon className="w-6 h-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-bold text-gray-900">{integration.name}</h3>
+                        <p className="text-sm text-brand-teal font-semibold">{integration.category}</p>
+                      </div>
+                    </div>
+
+                    <p className="text-gray-600 mb-6 leading-relaxed flex-grow">
+                      {integration.description}
+                    </p>
+
+                    <div className="mb-6">
+                      <ul className="space-y-2">
+                        {integration.features.slice(0, 3).map((feature, idx) => (
+                          <li key={idx} className="flex items-center text-sm text-gray-600">
+                            <CheckCircle className="w-4 h-4 text-brand-teal mr-3 flex-shrink-0" />
+                            {feature}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <Link
+                      to={integration.path}
+                      className="inline-flex items-center text-brand-teal font-semibold hover:text-brand-blue transition-colors mt-auto group-hover:translate-x-1 duration-300"
+                    >
+                      Learn More
+                      <ArrowRight className="ml-2 w-4 h-4" />
+                    </Link>
+                    
+                    {/* Shine Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
                   </div>
                 </div>
-
-                <p className="text-gray-600 text-sm mb-4">
-                  {integration.description}
-                </p>
-
-                <div className="mb-4">
-                  <ul className="space-y-1">
-                    {integration.features.slice(0, 3).map((feature, idx) => (
-                      <li key={idx} className="flex items-center text-xs text-gray-600">
-                        <CheckCircle className="w-3 h-3 text-brand-teal mr-2 flex-shrink-0" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Link
-                  to={integration.path}
-                  className="inline-flex items-center text-brand-teal font-medium text-sm hover:text-brand-teal/80 transition-colors"
-                >
-                  Learn More
-                  <ArrowRight className="ml-1 w-3 h-3" />
-                </Link>
               </motion.div>
             ))}
           </div>
@@ -203,90 +231,175 @@ const Integrations = () => {
       </section>
 
       {/* Integration Benefits */}
-      <section className="py-20 bg-gray-50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose Our Integrations?
-            </h2>
-            <p className="text-lg text-gray-600">
+      <section className="py-24 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-20">
+          <div className="absolute top-20 right-20 w-32 h-32 bg-gradient-to-br from-brand-blue/30 to-brand-teal/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 left-20 w-40 h-40 bg-gradient-to-br from-brand-gold/30 to-brand-blue/30 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: -20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-brand-teal/20 to-brand-blue/20 rounded-full px-6 py-3 mb-8"
+            >
+              <Sparkles className="w-5 h-5 text-brand-teal" />
+              <span className="text-gray-700 font-semibold">Why Choose Us</span>
+            </motion.div>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="font-bold mb-6 leading-tight tracking-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
+            >
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Why Choose Our</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Integrations?</span>
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            >
               Built for reliability, security, and seamless connectivity
-            </p>
+            </motion.p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              className="card text-center"
-            >
-              <div className="icon-badge mx-auto mb-4">
-                <Zap className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Easy Setup</h3>
-              <p className="text-gray-600">
-                Connect your tools in minutes with our simple, guided setup process. No technical expertise required.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="card text-center"
-            >
-              <div className="icon-badge mx-auto mb-4">
-                <Settings className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">Robust APIs</h3>
-              <p className="text-gray-600">
-                Enterprise-grade APIs ensure reliable data flow and real-time synchronization across all platforms.
-              </p>
-            </motion.div>
-
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="card text-center"
-            >
-              <div className="icon-badge mx-auto mb-4">
-                <CheckCircle className="w-6 h-6 text-white" />
-              </div>
-              <h3 className="text-xl font-bold text-gray-900 mb-3">24/7 Support</h3>
-              <p className="text-gray-600">
-                Get help when you need it with our dedicated integration support team available around the clock.
-              </p>
-            </motion.div>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {[
+              {
+                icon: Zap,
+                title: 'Easy Setup',
+                description: 'Connect your tools in minutes with our simple, guided setup process. No technical expertise required.'
+              },
+              {
+                icon: Settings,
+                title: 'Robust APIs',
+                description: 'Enterprise-grade APIs ensure reliable data flow and real-time synchronization across all platforms.'
+              },
+              {
+                icon: CheckCircle,
+                title: '24/7 Support',
+                description: 'Get help when you need it with our dedicated integration support team available around the clock.'
+              }
+            ].map((benefit, index) => {
+              const Icon = benefit.icon;
+              return (
+                <motion.div
+                  key={benefit.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  whileHover={{ scale: 1.05, y: -5 }}
+                  className="relative group cursor-pointer"
+                >
+                  <div className="relative">
+                    {/* Animated Background Glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/20 via-brand-blue/15 to-brand-teal/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                    
+                    {/* Card Content */}
+                    <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 text-center h-80 flex flex-col">
+                      <div className="flex-shrink-0">
+                        <div className="w-16 h-16 bg-gradient-to-br from-brand-teal via-brand-blue to-brand-teal rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                          <Icon className="w-8 h-8 text-white" />
+                        </div>
+                        <h3 className="text-2xl font-bold text-gray-900 mb-4">{benefit.title}</h3>
+                      </div>
+                      
+                      <div className="flex-grow flex items-center">
+                        <p className="text-gray-600 leading-relaxed">{benefit.description}</p>
+                      </div>
+                      
+                      {/* Shine Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-to-r from-brand-teal to-gold">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Connect Your Tools?
-            </h2>
-            <p className="text-lg text-white/90 mb-8">
-              Start building powerful workflows with our comprehensive integration platform.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+      <section className="py-32 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-teal/20 to-brand-blue/20 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-blue/20 to-brand-gold/20 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+              className="mb-8"
+            >
+              <span className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-teal text-sm font-semibold mb-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                <Bot className="w-4 h-4 mr-3 text-brand-blue animate-pulse" />
+                Start Building
+              </span>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-bold mb-8 leading-tight tracking-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
+            >
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Ready to Connect</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Your Tools?</span>
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto"
+            >
+              <TextAnimate animation="blurInUp" by="word" once>
+                Start building powerful workflows with our comprehensive integration platform.
+              </TextAnimate>
+            </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center"
+            >
               <Link
                 to="/signup"
-                className="bg-white text-brand-teal hover:bg-gray-100 inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
+                className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group text-lg"
               >
                 Get Started Today
-                <ArrowRight className="ml-2 w-4 h-4" />
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
                 to="/contact"
-                className="border-2 border-white text-white hover:bg-white hover:text-brand-teal inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
+                className="bg-white border-2 border-brand-teal text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-brand-teal hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center text-lg"
               >
                 Request Custom Integration
               </Link>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

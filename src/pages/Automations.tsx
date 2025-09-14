@@ -209,10 +209,12 @@ const Automations = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="text-4xl md:text-6xl font-bold mb-6 tracking-tight"
+              className="font-bold mb-6 leading-tight tracking-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
             >
-              <span className="text-gray-900">AI</span><br />
-              <span className="text-euphoric-gradient">Automations</span>
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">AI</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Automations</span>
             </motion.h1>
             
             <motion.p
@@ -264,7 +266,7 @@ const Automations = () => {
           </div>
 
           {/* Automations Grid */}
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-6">
             {filteredAutomations.map((automation, index) => (
               <motion.div
                 key={automation.name}
@@ -323,7 +325,7 @@ const Automations = () => {
             </p>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}

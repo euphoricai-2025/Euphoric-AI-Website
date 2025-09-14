@@ -112,7 +112,7 @@ const TravelHospitality = () => {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitStatus({ type: 'success', message: 'Demo request submitted! We\'ll show you AI agents that elevate hospitality experiences.' });
+      window.location.href = 'https://calendly.com/euphoricai-aivoiceagents-demo/30min';
     }, 2000);
   };
 
@@ -182,30 +182,6 @@ const TravelHospitality = () => {
     }
   ];
 
-  const painPoints = [
-    {
-      title: 'Booking Cancellations & No-Shows',
-      description: 'Hotels lose $2.8 billion annually from cancellations and no-shows',
-      impact: 'Poor communication leads to 35% of guests having unmet expectations'
-    },
-    {
-      title: 'Limited Concierge Availability',
-      description: 'Concierge services only available 12-16 hours daily',
-      impact: 'Missing 40% of guest requests results in lost revenue opportunities'
-    },
-    {
-      title: 'Slow Issue Resolution',
-      description: '45-minute average response time for service issues',
-      impact: 'Negative reviews reduce repeat bookings by 60%'
-    }
-  ];
-
-  const results = [
-    { metric: '40%', label: 'Fewer Booking Cancellations', description: 'Better guest communication' },
-    { metric: '60%', label: 'Higher Ancillary Revenue', description: 'Personalized recommendations' },
-    { metric: '85%', label: 'First-Contact Resolution', description: 'Immediate issue handling' },
-    { metric: '24/7', label: 'Concierge Availability', description: 'Round-the-clock service' }
-  ];
 
   return (
     <div className="pt-16 bg-euphoric-surface">
@@ -215,14 +191,16 @@ const TravelHospitality = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-teal text-sm font-semibold mb-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                <Plane className="w-4 h-4 mr-3 text-brand-teal animate-pulse" />
+                <Plane className="w-4 h-4 mr-3 text-brand-teal" />
                 Hospitality Excellence AI
               </div>
 
               <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
-                <span className="text-euphoric-gradient">
-                  <TypingAnimation startOnView={true} duration={150} className="text-euphoric-gradient">
-                    Travel & Hospitality Voice AI Agents
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Travel & Hospitality</span>
+                <br />
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                  <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                    Voice AI Agents
                   </TypingAnimation>
                 </span>
               </h1>
@@ -398,7 +376,7 @@ const TravelHospitality = () => {
                       >
                         <button
                           type="submit"
-                          disabled={isSubmitting}
+                          disabled={isSubmitting || !demoForm.name.trim() || !demoForm.email.trim() || !demoForm.phone.trim()}
                           className="w-full py-4 px-6 rounded-xl font-bold bg-gradient-to-r from-brand-teal to-brand-blue text-white hover:from-brand-teal/90 hover:to-brand-blue/90 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                         >
                           {isSubmitting ? (
@@ -602,12 +580,10 @@ const TravelHospitality = () => {
                   <span className="text-gray-700 font-semibold">Hospitality Integrations</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Connects With Your 
+                <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                  <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Connects With</span>
                   <br />
-                  <span className="bg-gradient-to-r from-brand-teal to-brand-blue bg-clip-text text-transparent">
-                    Hospitality Stack
-                  </span>
+                  <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Your Hospitality Stack</span>
                 </h2>
                 
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -715,8 +691,10 @@ const TravelHospitality = () => {
       <section className="py-20 bg-gradient-to-r from-brand-teal to-brand-blue">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Elevate Your Guest Experience?
+            <h2 className="font-bold mb-6 leading-tight tracking-tight text-white" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+              <span className="text-white">Ready to Elevate</span>
+              <br />
+              <span className="text-white">Your Guest Experience?</span>
             </h2>
             <p className="text-lg text-white/90 mb-8">
               Join hospitality leaders using AI agents to deliver exceptional service, increase bookings, and create unforgettable guest experiences.

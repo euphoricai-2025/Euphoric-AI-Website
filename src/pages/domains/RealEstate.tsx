@@ -76,7 +76,10 @@ const RealEstate = () => {
   const [demoForm, setDemoForm] = useState({ name: '', phone: '', email: '' });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [countrySearch, setCountrySearch] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
   
   // AnimatedBeam refs
   const containerRef = useRef<HTMLDivElement>(null);
@@ -85,19 +88,32 @@ const RealEstate = () => {
   const calendarRef = useRef<HTMLDivElement>(null);
   const centerRef = useRef<HTMLDivElement>(null);
 
-  const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    setMousePosition({ x, y });
-  };
+  // Filter countries based on search
+  const filteredCountries = countryCodes.filter(country => 
+    country.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
+    country.code.includes(countrySearch) ||
+    country.country.toLowerCase().includes(countrySearch.toLowerCase())
+  );
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+        setCountrySearch('');
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
 
   const handleDemoSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitStatus({ type: 'success', message: 'Demo request submitted! We\'ll show you AI agents capturing leads in under 60 seconds.' });
+      window.location.href = 'https://calendly.com/euphoricai-aivoiceagents-demo/30min';
     }, 2000);
   };
 
@@ -106,6 +122,8 @@ const RealEstate = () => {
       icon: Users,
       title: 'Lead Qualification Agent',
       description: 'Instantly qualify incoming leads by assessing budget, timeline, property preferences, and financing readiness.',
+      stats: 'Increase qualified leads by 55% and save 4+ hours daily on qualification',
+      realWorldPainPoint: 'Real estate agents waste 60% of their time on unqualified leads. Manual qualification processes are slow, inconsistent, and often miss critical buyer readiness indicators, resulting in lower conversion rates.',
       features: [
         'Budget and financing pre-qualification',
         'Timeline and urgency assessment',
@@ -125,6 +143,8 @@ const RealEstate = () => {
       icon: MapPin,
       title: 'Property Matching Agent',
       description: 'Match qualified leads to perfect properties using AI-powered preference analysis and market data.',
+      stats: 'Increase showing-to-offer rate by 45% and reduce time to find perfect match',
+      realWorldPainPoint: 'Agents struggle to match properties effectively, leading to wasted showings and frustrated clients. Manual property research takes hours per client and often misses ideal matches due to time constraints.',
       features: [
         'Advanced preference matching algorithms',
         'Real-time MLS integration',
@@ -144,6 +164,8 @@ const RealEstate = () => {
       icon: DollarSign,
       title: 'Market Analysis Agent',
       description: 'Provide instant market analysis, pricing insights, and investment potential assessments to prospects.',
+      stats: 'Position as market expert instantly and command premium commission rates',
+      realWorldPainPoint: 'Clients expect instant market insights, but manual research takes hours. Agents lose credibility when they cannot provide immediate data-driven responses, leading to lost deals and reduced commission rates.',
       features: [
         'Real-time market trend analysis',
         'Automated comparative market analysis',
@@ -186,27 +208,11 @@ const RealEstate = () => {
     { metric: '4+ hrs', label: 'Time Saved Daily', description: 'Staff time freed up for selling' }
   ];
 
-  const testimonials = [
-    {
-      name: 'Victoria Sterling',
-      role: 'Real Estate Broker',
-      company: 'Platinum Properties Group',
-      content: 'Lead response time went from hours to under 60 seconds. We\'re capturing 70% more qualified leads and my conversion rate increased 55%. The competition can\'t keep up with our speed.',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=150&h=150&fit=crop&crop=face'
-    },
-    {
-      name: 'Marcus Rodriguez',
-      role: 'Sales Manager',
-      company: 'Elite Realty Partners',
-      content: 'The showing coordination agent eliminated double-bookings and reduced no-shows by 65%. Our team can focus on selling while the AI handles all scheduling logistics perfectly.',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=150&h=150&fit=crop&crop=face'
-    }
-  ];
 
   return (
-    <div className="pt-16">
+    <div className="pt-16 bg-euphoric-surface">
       {/* Hero Section */}
-      <section className="py-20">
+      <section className="py-20 bg-euphoric-surface">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
@@ -215,12 +221,12 @@ const RealEstate = () => {
                 60-Second Lead Response
               </div>
 
-              <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.85rem, 4vw, 3.6rem)' }}>
-                <span className="text-euphoric-gradient">Lightning-Fast</span>
+              <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Real Estate</span>
                 <br />
-                <span className="text-gray-900">
-                  <TypingAnimation startOnView={true} duration={150} className="text-gray-900">
-                    Real Estate AI
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                  <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                    Voice AI Agents
                   </TypingAnimation>
                 </span>
               </h1>
@@ -255,202 +261,190 @@ const RealEstate = () => {
               </div>
             </div>
 
-            {/* Right Side - Interactive 3D Agent */}
+            {/* Right Side - Demo Form */}
             <div className="flex items-center justify-center">
-              <div 
-                className="rounded-3xl shadow-lg border border-gray-100 w-full relative overflow-hidden"
-                onMouseMove={handleMouseMove}
-                style={{ height: '420px' }}
-              >
-                <div className="absolute inset-0">
-                  <AnimatedWaveShader />
-                </div>
-                
-                <div className="absolute inset-0 flex items-start justify-center pt-8">
-                  <div className="w-full h-[600px] flex items-center justify-center relative">
-                    <SplineScene 
-                      scene="https://prod.spline.design/kZDDjO5HuC9GJUM2/scene.splinecode"
-                      className="w-full h-full scale-125"
-                    />
-                    
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.5 }}
-                      animate={{ 
-                        opacity: 1, 
-                        scale: 1,
-                        x: (mousePosition.x - 400) * 0.02,
-                        y: (mousePosition.y - 300) * 0.015,
-                      }}
-                      transition={{ 
-                        delay: 1.5, 
-                        duration: 0.8, 
-                        ease: "easeOut",
-                        x: { type: "spring", stiffness: 100, damping: 30 },
-                        y: { type: "spring", stiffness: 100, damping: 30 }
-                      }}
-                      className="absolute pointer-events-none"
-                      style={{
-                        top: 'calc(48% - 20px)',
-                        left: 'calc(50% - 75px)',
-                        transform: 'translate(-50%, -50%)'
-                      }}
-                    >
-                      <motion.img 
-                        src="/euphoric-logo-final.png" 
-                        alt="Euphoric AI" 
-                        className="opacity-95 max-w-[142px]"
-                        style={{
-                          width: '142px',
-                          height: '20px',
-                          filter: 'drop-shadow(0 4px 12px rgba(0,0,0,0.4)) brightness(1.4) contrast(1.4)'
-                        }}
-                        whileHover={{
-                          scale: 1.05,
-                          transition: { duration: 0.3 }
-                        }}
-                      />
-                    </motion.div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Demo Form Section */}
-      <section className="pb-12">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="w-full">
-            <div className="relative bg-gradient-to-br from-brand-teal/15 via-brand-cyan/15 to-brand-sage/15 rounded-3xl shadow-2xl border border-brand-teal/40 p-6 sm:p-8 lg:p-10 xl:p-12 overflow-hidden">
-              <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-brand-gold/25 to-transparent rounded-full blur-3xl"></div>
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-gradient-to-tr from-brand-cyan/25 to-transparent rounded-full blur-3xl"></div>
-              
-              <div className="relative z-10">
-                <div className="text-center mb-8">
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <h3 className="text-3xl font-bold text-euphoric-gradient mb-3">
-                      See Lightning-Fast <span className="bg-gradient-to-r from-brand-gold to-brand-teal bg-clip-text text-transparent font-extrabold">Lead Response</span>
-                    </h3>
-                    <p className="text-gray-600 text-base">
-                      Experience AI agents capturing leads in under 60 seconds, qualifying prospects, and scheduling showings
-                    </p>
-                  </motion.div>
-                </div>
-
-              <form onSubmit={handleDemoSubmit} className="space-y-6">
-                <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8">
-                  <motion.div
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                  >
-                    <input
-                      type="text"
-                      placeholder="Your Name"
-                      value={demoForm.name}
-                      onChange={(e) => setDemoForm({ ...demoForm, name: e.target.value })}
-                      className="w-full px-5 py-4 rounded-xl border-2 border-brand-teal/40 focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 transition-all bg-white/90 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md font-medium placeholder:text-gray-500"
-                      disabled={isSubmitting}
-                      required
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, y: -20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.5, delay: 0.2 }}
-                  >
-                    <input
-                      type="email"
-                      placeholder="your.email@example.com"
-                      value={demoForm.email}
-                      onChange={(e) => setDemoForm({ ...demoForm, email: e.target.value })}
-                      className="w-full px-5 py-4 rounded-xl border-2 border-brand-cyan/40 focus:border-brand-cyan focus:ring-4 focus:ring-brand-cyan/20 transition-all bg-white/90 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md font-medium placeholder:text-gray-500"
-                      disabled={isSubmitting}
-                      required
-                    />
-                  </motion.div>
-
-                  <motion.div
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                  >
-                    <input
-                      type="tel"
-                      placeholder="123 456 7890"
-                      value={demoForm.phone}
-                      onChange={(e) => setDemoForm({ ...demoForm, phone: e.target.value })}
-                      className="w-full px-5 py-4 rounded-xl border-2 border-brand-sage/40 focus:border-brand-sage focus:ring-4 focus:ring-brand-sage/20 transition-all bg-white/90 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md font-medium placeholder:text-gray-500"
-                      disabled={isSubmitting}
-                      required
-                    />
-                  </motion.div>
-                </div>
-
-                {submitStatus.type && (
-                  <div className={`p-3 rounded-lg text-sm font-medium ${
-                    submitStatus.type === 'success' 
-                      ? 'bg-green-50 text-green-800 border border-green-200' 
-                      : 'bg-red-50 text-red-800 border border-red-200'
-                  }`}>
-                    {submitStatus.message}
-                  </div>
-                )}
-
-                <motion.div 
-                  className="flex flex-col items-center space-y-4"
+              <div className="w-full max-w-md">
+                <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.4 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="relative bg-gradient-to-br from-white/95 via-white/90 to-white/95 rounded-3xl shadow-2xl border border-gray-200/50 p-8 backdrop-blur-sm"
                 >
-                  <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="relative py-5 px-10 rounded-2xl font-bold bg-gradient-to-br from-white via-gray-50 to-white hover:from-gray-50 hover:via-white hover:to-gray-50 transition-all transform hover:scale-[1.03] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-2xl hover:shadow-3xl flex items-center justify-center gap-3 text-lg overflow-hidden group border-4 border-brand-teal bg-clip-padding"
-                    style={{
-                      backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 50%, rgba(255,255,255,0.9) 100%), linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-cyan) 50%, var(--brand-gold) 100%)',
-                      backgroundOrigin: 'border-box',
-                      backgroundClip: 'padding-box, border-box'
-                    }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-r from-brand-teal/10 via-brand-cyan/10 to-brand-gold/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-xl"></div>
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
-                    
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-6 h-6 animate-spin text-white drop-shadow-sm" />
-                        <span className="text-euphoric-gradient font-bold drop-shadow-sm">Booking Demo...</span>
-                      </>
-                    ) : (
-                      <>
-                        <div className="relative p-3 bg-gradient-to-br from-brand-teal via-brand-cyan to-brand-teal rounded-xl shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                          <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent rounded-xl"></div>
-                          <Home className="w-5 h-5 text-white drop-shadow-sm relative z-10" />
-                        </div>
-                        <span className="text-euphoric-gradient font-bold drop-shadow-sm">Book Real Estate Demo</span>
-                      </>
-                    )}
-                  </button>
+                  {/* Decorative Elements */}
+                  <div className="absolute top-0 right-0 w-32 h-32 bg-gradient-to-br from-brand-teal/10 to-transparent rounded-full blur-2xl"></div>
+                  <div className="absolute bottom-0 left-0 w-32 h-32 bg-gradient-to-tr from-brand-gold/10 to-transparent rounded-full blur-2xl"></div>
+                  
+                  <div className="relative z-10">
+                    <div className="text-center mb-6">
+                      <div className="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-brand-teal to-brand-blue rounded-2xl mb-4 shadow-lg">
+                        <Home className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-2">
+                        Book Real Estate Demo
+                      </h3>
+                      <p className="text-gray-600 text-sm">
+                        See lightning-fast lead response in action
+                      </p>
+                    </div>
 
-                  <p className="text-sm text-gray-700 font-medium text-center max-w-md">
-                    See how our AI qualifies leads, schedules showings, and follows up instantly to beat the competition.
-                  </p>
+                    <form onSubmit={handleDemoSubmit} className="space-y-4">
+                      {/* Name Field */}
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.3 }}
+                      >
+                        <input
+                          type="text"
+                          placeholder="Your Name"
+                          value={demoForm.name}
+                          onChange={(e) => setDemoForm({ ...demoForm, name: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 transition-all bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md font-medium placeholder:text-gray-500"
+                          disabled={isSubmitting}
+                          required
+                        />
+                      </motion.div>
+
+                      {/* Email Field */}
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.4 }}
+                      >
+                        <input
+                          type="email"
+                          placeholder="your.email@example.com"
+                          value={demoForm.email}
+                          onChange={(e) => setDemoForm({ ...demoForm, email: e.target.value })}
+                          className="w-full px-4 py-3 rounded-xl border-2 border-gray-200 focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 transition-all bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md font-medium placeholder:text-gray-500"
+                          disabled={isSubmitting}
+                          required
+                        />
+                      </motion.div>
+
+                      {/* Phone Number Field with Country Code Dropdown */}
+                      <motion.div
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ duration: 0.5, delay: 0.5 }}
+                        className="relative"
+                      >
+                        <div className="flex">
+                          {/* Country Code Dropdown */}
+                          <div className="relative" ref={dropdownRef}>
+                            <button
+                              type="button"
+                              onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                              className="flex items-center px-3 py-3 border-2 border-gray-200 rounded-l-xl bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md transition-all border-r-0 focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 min-w-[100px]"
+                              disabled={isSubmitting}
+                            >
+                              <span className="mr-2">{selectedCountry.flag}</span>
+                              <span className="text-gray-700 font-medium text-sm">{selectedCountry.code}</span>
+                              <ChevronDown className={`w-4 h-4 ml-2 text-gray-500 transition-transform ${isDropdownOpen ? 'rotate-180' : ''}`} />
+                            </button>
+
+                            {/* Dropdown Menu */}
+                            {isDropdownOpen && (
+                              <div className="absolute top-full left-0 mt-1 w-80 bg-white rounded-xl shadow-2xl border border-gray-200 z-50 max-h-80 overflow-hidden">
+                                <div className="p-3 border-b border-gray-200">
+                                  <div className="relative">
+                                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 text-gray-400" />
+                                    <input
+                                      type="text"
+                                      placeholder="Search country or code..."
+                                      value={countrySearch}
+                                      onChange={(e) => setCountrySearch(e.target.value)}
+                                      className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-brand-teal focus:border-transparent text-sm"
+                                      autoFocus
+                                    />
+                                  </div>
+                                </div>
+                                <div className="overflow-y-auto max-h-60">
+                                  {filteredCountries.map((country, index) => (
+                                    <button
+                                      key={`${country.code}-${country.country}`}
+                                      type="button"
+                                      onClick={() => {
+                                        setSelectedCountry(country);
+                                        setIsDropdownOpen(false);
+                                        setCountrySearch('');
+                                      }}
+                                      className="w-full px-4 py-3 text-left hover:bg-gray-50 flex items-center gap-3 transition-colors border-none"
+                                    >
+                                      <span className="text-lg">{country.flag}</span>
+                                      <span className="text-sm font-medium text-gray-700 min-w-[50px]">{country.code}</span>
+                                      <span className="text-sm text-gray-600 truncate">{country.name}</span>
+                                    </button>
+                                  ))}
+                                </div>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Phone Number Input */}
+                          <input
+                            type="tel"
+                            placeholder="123 456 7890"
+                            value={demoForm.phone}
+                            onChange={(e) => setDemoForm({ ...demoForm, phone: e.target.value })}
+                            className="flex-1 px-4 py-3 border-2 border-gray-200 rounded-r-xl bg-white/80 backdrop-blur-sm hover:bg-white focus:bg-white shadow-sm hover:shadow-md transition-all focus:border-brand-teal focus:ring-4 focus:ring-brand-teal/20 font-medium placeholder:text-gray-500"
+                            disabled={isSubmitting}
+                            required
+                          />
+                        </div>
+                      </motion.div>
+
+                      {/* Submit Button */}
+                      <motion.div
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.5, delay: 0.6 }}
+                      >
+                        <button
+                          type="submit"
+                          disabled={isSubmitting || !demoForm.name.trim() || !demoForm.email.trim() || !demoForm.phone.trim()}
+                          className="w-full py-4 px-6 rounded-xl font-bold bg-gradient-to-r from-brand-teal to-brand-blue text-white hover:from-brand-teal/90 hover:to-brand-blue/90 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
+                        >
+                          {isSubmitting ? (
+                            <>
+                              <Loader2 className="w-5 h-5 animate-spin" />
+                              Booking Demo...
+                            </>
+                          ) : (
+                            <>
+                              <Home className="w-5 h-5" />
+                              Book Real Estate Demo
+                            </>
+                          )}
+                        </button>
+                      </motion.div>
+
+                      {/* Status Message */}
+                      {submitStatus.type && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          className={`p-3 rounded-lg text-sm font-medium ${
+                            submitStatus.type === 'success' 
+                              ? 'bg-green-50 text-green-800 border border-green-200' 
+                              : 'bg-red-50 text-red-800 border border-red-200'
+                          }`}
+                        >
+                          {submitStatus.message}
+                        </motion.div>
+                      )}
+                    </form>
+                  </div>
                 </motion.div>
-              </form>
               </div>
             </div>
           </div>
         </div>
       </section>
 
+
       {/* Stats Section */}
-      <section className="py-16 relative overflow-hidden">
+      <section className="py-16 bg-euphoric-surface relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="absolute top-0 left-1/4 w-32 h-32 bg-gradient-to-br from-brand-teal/20 to-transparent rounded-full blur-2xl"></div>
           <div className="absolute bottom-0 right-1/4 w-32 h-32 bg-gradient-to-tl from-brand-gold/20 to-transparent rounded-full blur-2xl"></div>
@@ -512,7 +506,7 @@ const RealEstate = () => {
       </section>
 
       {/* Use Cases Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      <section className="py-24 bg-euphoric-surface relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-blue/30 to-brand-gray/30 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-teal/30 to-brand-blue/30 rounded-full blur-3xl"></div>
@@ -533,7 +527,7 @@ const RealEstate = () => {
                   whileHover={{ scale: 1.05, y: -5 }}
                   className="relative group cursor-pointer"
                 >
-                  <div className="bg-gradient-to-br from-brand-teal via-brand-blue to-brand-gray p-8 rounded-3xl shadow-2xl transition-all duration-300 group-hover:shadow-3xl">
+                  <div className="bg-gradient-to-br from-brand-teal via-brand-blue to-brand-gray p-8 rounded-3xl shadow-2xl transition-all duration-300 group-hover:shadow-3xl min-h-[520px] flex flex-col">
                     <div className="absolute inset-0 opacity-10">
                       <svg className="w-full h-full" viewBox="0 0 100 100">
                         <defs>
@@ -545,19 +539,43 @@ const RealEstate = () => {
                       </svg>
                     </div>
 
-                    <motion.div
-                      whileHover={{ rotate: 360 }}
-                      transition={{ duration: 0.6 }}
-                      className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mb-6 inline-block"
-                    >
+                    <div className="bg-white/20 backdrop-blur-sm rounded-2xl p-4 mb-6 inline-block">
                       <Icon className="w-8 h-8 text-white" />
-                    </motion.div>
+                    </div>
 
                     <h3 className="text-xl font-bold text-white mb-4">{useCase.title}</h3>
-                    <p className="text-white/80 text-base leading-relaxed mb-4">{useCase.description}</p>
+                    <p className="text-white/80 text-base leading-relaxed mb-6">{useCase.description}</p>
 
-                    <div className="text-white mb-2">
-                      <div className="text-2xl font-bold">{useCase.benefits[0]}</div>
+                    {/* Problem Subcard - Red Background */}
+                    <div className="bg-red-50/95 backdrop-blur-sm border-l-4 border-red-400 rounded-lg p-4 mb-4">
+                      <div className="flex items-start">
+                        <div className="flex-shrink-0">
+                          <svg className="h-5 w-5 text-red-400 mt-0.5" viewBox="0 0 20 20" fill="currentColor">
+                            <path fillRule="evenodd" d="M8.257 3.099c.765-1.36 2.722-1.36 3.486 0l5.58 9.92c.75 1.334-.213 2.98-1.742 2.98H4.42c-1.53 0-2.493-1.646-1.743-2.98l5.58-9.92zM11 13a1 1 0 11-2 0 1 1 0 012 0zm-1-8a1 1 0 00-1 1v3a1 1 0 002 0V6a1 1 0 00-1-1z" clipRule="evenodd" />
+                          </svg>
+                        </div>
+                        <div className="ml-3">
+                          <h4 className="text-sm font-semibold text-red-800 mb-1">Current Challenge:</h4>
+                          <p className="text-sm text-red-700">{useCase.realWorldPainPoint}</p>
+                        </div>
+                      </div>
+                    </div>
+
+                    {/* Results Subcard - Green Background */}
+                    <div className="flex-grow">
+                      {useCase.stats && (
+                        <div className="bg-green-50/95 backdrop-blur-sm border-l-4 border-green-400 rounded-lg p-4">
+                          <div className="flex items-start">
+                            <div className="flex-shrink-0">
+                              <TrendingUp className="h-5 w-5 text-green-400 mt-0.5" />
+                            </div>
+                            <div className="ml-3">
+                              <h4 className="text-sm font-semibold text-green-800 mb-1">Proven Results:</h4>
+                              <p className="text-sm font-medium text-green-700">{useCase.stats}</p>
+                            </div>
+                          </div>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </motion.div>
@@ -569,7 +587,7 @@ const RealEstate = () => {
       </section>
 
       {/* Integrations Section */}
-      <section className="py-24 bg-gradient-to-br from-gray-50 to-white relative overflow-hidden">
+      <section className="py-24 bg-euphoric-surface relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
           <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-teal/20 to-brand-blue/20 rounded-full blur-3xl"></div>
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-blue/20 to-brand-gray/20 rounded-full blur-3xl"></div>
@@ -589,12 +607,10 @@ const RealEstate = () => {
                   <span className="text-gray-700 font-semibold">Real Estate Integrations</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Connects With Your 
+                <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                  <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Connects With</span>
                   <br />
-                  <span className="bg-gradient-to-r from-brand-teal to-brand-blue bg-clip-text text-transparent">
-                    Real Estate Stack
-                  </span>
+                  <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Your Real Estate Stack</span>
                 </h2>
                 
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -698,54 +714,15 @@ const RealEstate = () => {
         </div>
       </section>
 
-      {/* Testimonials Section */}
-      <section className="py-20 bg-white">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900">
-              Success Stories
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              Real estate professionals closing more deals with AI voice agents
-            </p>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-            {testimonials.map((testimonial, index) => (
-              <motion.div
-                key={testimonial.name}
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="card card-hover p-8"
-              >
-                <p className="text-gray-700 mb-6 leading-relaxed italic">
-                  "{testimonial.content}"
-                </p>
-                <div className="flex items-center gap-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full object-cover"
-                  />
-                  <div>
-                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
-                    <div className="text-sm text-gray-600">{testimonial.role}</div>
-                    <div className="text-sm text-brand-teal">{testimonial.company}</div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
 
       {/* CTA Section */}
       <section className="py-20 bg-gradient-to-r from-brand-teal to-brand-blue">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Beat the Competition?
+            <h2 className="font-bold mb-6 leading-tight tracking-tight text-white" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+              <span className="text-white">Ready to Beat</span>
+              <br />
+              <span className="text-white">the Competition?</span>
             </h2>
             <p className="text-lg text-white/90 mb-8">
               Join real estate professionals using AI agents to respond in under 60 seconds, qualify leads instantly, and close more deals.

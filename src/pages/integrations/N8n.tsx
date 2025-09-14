@@ -1,178 +1,426 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Workflow, Zap, Code, GitBranch, ArrowRight, TrendingUp, Settings } from 'lucide-react';
+import { Workflow, Code, Server, Zap, ArrowRight, CheckCircle, GitBranch, Database, Cloud, Search, ChevronDown, Settings, Lock } from 'lucide-react';
+import { TypingAnimation } from '../../components/magicui/typing-animation';
+import { TextAnimate } from '../../components/magicui/text-animate';
+
+// Comprehensive country codes with flags
+const countryCodes = [
+  { code: '+1', country: 'US', name: 'United States', flag: '🇺🇸' },
+  { code: '+1', country: 'CA', name: 'Canada', flag: '🇨🇦' },
+  { code: '+44', country: 'GB', name: 'United Kingdom', flag: '🇬🇧' },
+  { code: '+49', country: 'DE', name: 'Germany', flag: '🇩🇪' },
+  { code: '+33', country: 'FR', name: 'France', flag: '🇫🇷' },
+  { code: '+39', country: 'IT', name: 'Italy', flag: '🇮🇹' },
+  { code: '+34', country: 'ES', name: 'Spain', flag: '🇪🇸' },
+  { code: '+31', country: 'NL', name: 'Netherlands', flag: '🇳🇱' },
+  { code: '+41', country: 'CH', name: 'Switzerland', flag: '🇨🇭' },
+  { code: '+43', country: 'AT', name: 'Austria', flag: '🇦🇹' },
+  { code: '+32', country: 'BE', name: 'Belgium', flag: '🇧🇪' },
+  { code: '+45', country: 'DK', name: 'Denmark', flag: '🇩🇰' },
+  { code: '+46', country: 'SE', name: 'Sweden', flag: '🇸🇪' },
+  { code: '+47', country: 'NO', name: 'Norway', flag: '🇳🇴' },
+  { code: '+358', country: 'FI', name: 'Finland', flag: '🇫🇮' },
+  { code: '+351', country: 'PT', name: 'Portugal', flag: '🇵🇹' },
+  { code: '+353', country: 'IE', name: 'Ireland', flag: '🇮🇪' },
+  { code: '+61', country: 'AU', name: 'Australia', flag: '🇦🇺' },
+  { code: '+64', country: 'NZ', name: 'New Zealand', flag: '🇳🇿' },
+  { code: '+81', country: 'JP', name: 'Japan', flag: '🇯🇵' },
+  { code: '+82', country: 'KR', name: 'South Korea', flag: '🇰🇷' },
+  { code: '+86', country: 'CN', name: 'China', flag: '🇨🇳' },
+  { code: '+91', country: 'IN', name: 'India', flag: '🇮🇳' },
+  { code: '+65', country: 'SG', name: 'Singapore', flag: '🇸🇬' },
+  { code: '+60', country: 'MY', name: 'Malaysia', flag: '🇲🇾' },
+  { code: '+66', country: 'TH', name: 'Thailand', flag: '🇹🇭' },
+  { code: '+84', country: 'VN', name: 'Vietnam', flag: '🇻🇳' },
+  { code: '+63', country: 'PH', name: 'Philippines', flag: '🇵🇭' },
+  { code: '+62', country: 'ID', name: 'Indonesia', flag: '🇮🇩' },
+  { code: '+852', country: 'HK', name: 'Hong Kong', flag: '🇭🇰' },
+  { code: '+971', country: 'AE', name: 'UAE', flag: '🇦🇪' },
+  { code: '+966', country: 'SA', name: 'Saudi Arabia', flag: '🇸🇦' },
+  { code: '+974', country: 'QA', name: 'Qatar', flag: '🇶🇦' },
+  { code: '+973', country: 'BH', name: 'Bahrain', flag: '🇧🇭' },
+  { code: '+965', country: 'KW', name: 'Kuwait', flag: '🇰🇼' },
+  { code: '+968', country: 'OM', name: 'Oman', flag: '🇴🇲' },
+  { code: '+972', country: 'IL', name: 'Israel', flag: '🇮🇱' },
+  { code: '+90', country: 'TR', name: 'Turkey', flag: '🇹🇷' },
+  { code: '+7', country: 'RU', name: 'Russia', flag: '🇷🇺' },
+  { code: '+48', country: 'PL', name: 'Poland', flag: '🇵🇱' },
+  { code: '+420', country: 'CZ', name: 'Czech Republic', flag: '🇨🇿' },
+  { code: '+36', country: 'HU', name: 'Hungary', flag: '🇭🇺' },
+  { code: '+40', country: 'RO', name: 'Romania', flag: '🇷🇴' },
+  { code: '+359', country: 'BG', name: 'Bulgaria', flag: '🇧🇬' },
+  { code: '+385', country: 'HR', name: 'Croatia', flag: '🇭🇷' },
+  { code: '+386', country: 'SI', name: 'Slovenia', flag: '🇸🇮' },
+  { code: '+421', country: 'SK', name: 'Slovakia', flag: '🇸🇰' },
+  { code: '+370', country: 'LT', name: 'Lithuania', flag: '🇱🇹' },
+  { code: '+371', country: 'LV', name: 'Latvia', flag: '🇱🇻' },
+  { code: '+372', country: 'EE', name: 'Estonia', flag: '🇪🇪' },
+  { code: '+55', country: 'BR', name: 'Brazil', flag: '🇧🇷' },
+  { code: '+52', country: 'MX', name: 'Mexico', flag: '🇲🇽' },
+  { code: '+54', country: 'AR', name: 'Argentina', flag: '🇦🇷' },
+  { code: '+56', country: 'CL', name: 'Chile', flag: '🇨🇱' },
+  { code: '+57', country: 'CO', name: 'Colombia', flag: '🇨🇴' },
+  { code: '+51', country: 'PE', name: 'Peru', flag: '🇵🇪' },
+  { code: '+58', country: 'VE', name: 'Venezuela', flag: '🇻🇪' },
+  { code: '+27', country: 'ZA', name: 'South Africa', flag: '🇿🇦' },
+  { code: '+20', country: 'EG', name: 'Egypt', flag: '🇪🇬' },
+  { code: '+234', country: 'NG', name: 'Nigeria', flag: '🇳🇬' },
+  { code: '+254', country: 'KE', name: 'Kenya', flag: '🇰🇪' },
+  { code: '+233', country: 'GH', name: 'Ghana', flag: '🇬🇭' }
+];
 
 const N8nIntegration = () => {
-  const features = [
+  const [demoForm, setDemoForm] = useState({ name: '', phone: '', email: '' });
+  const [selectedCountry, setSelectedCountry] = useState(countryCodes[0]);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [countrySearch, setCountrySearch] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Filter countries based on search
+  const filteredCountries = countryCodes.filter(country => 
+    country.name.toLowerCase().includes(countrySearch.toLowerCase()) ||
+    country.code.includes(countrySearch) ||
+    country.country.toLowerCase().includes(countrySearch.toLowerCase())
+  );
+
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setIsDropdownOpen(false);
+        setCountrySearch('');
+      }
+    };
+
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const handleInputChange = (field: string, value: string) => {
+    setDemoForm(prev => ({ ...prev, [field]: value }));
+  };
+
+  const useCases = [
     {
       icon: Workflow,
-      title: 'Open-Source Automation Platform',
-      description: 'Leverage n8n\'s powerful open-source workflow automation to connect your AI voice agents with 400+ integrations and custom nodes.',
-      realWorldBenefit: 'Complete control over your automation infrastructure with zero vendor lock-in'
+      title: 'Open-Source Workflow Automation Agent',
+      description: 'Build sophisticated automation workflows that connect your AI voice agents to 200+ integrations using n8n\'s fair-code, extensible platform with complete control and transparency.',
+      features: [
+        'Visual workflow editor with unlimited customization',
+        'Self-hosted deployment for complete data control',
+        'Custom node development capabilities',
+        'Advanced JavaScript and Python code execution',
+        'Version control and collaboration features'
+      ],
+      benefits: [
+        'Own your automation platform completely',
+        'Customize without vendor restrictions',
+        'Reduce licensing costs by 70%',
+        'Maintain data sovereignty and privacy'
+      ]
     },
     {
       icon: Code,
-      title: 'Custom Node Development',
-      description: 'Create custom nodes and integrations tailored to your specific business requirements using n8n\'s flexible development framework.',
-      realWorldBenefit: 'Build any integration you need - no limitations on functionality'
+      title: 'Custom Node Development Agent',
+      description: 'Extend n8n\'s capabilities by building custom nodes that perfectly match your AI voice agent requirements and unique business logic.',
+      features: [
+        'TypeScript-based node development framework',
+        'Built-in authentication and credential management',
+        'Real-time debugging and testing environment',
+        'Community node sharing and contributions',
+        'Advanced error handling and retry mechanisms'
+      ],
+      benefits: [
+        'Build exactly what your business needs',
+        'Share custom nodes with the community',
+        'Integrate proprietary systems seamlessly',
+        'Accelerate development with reusable components'
+      ]
     },
     {
-      icon: GitBranch,
-      title: 'Advanced Conditional Logic',
-      description: 'Implement complex business logic with conditional routing, loops, and error handling for sophisticated automation workflows.',
-      realWorldBenefit: 'Handle 95% of complex business scenarios without external dependencies'
-    },
-    {
-      icon: Settings,
-      title: 'Self-Hosted & Cloud Options',
-      description: 'Deploy n8n on your own infrastructure for maximum security or use n8n Cloud for managed hosting with enterprise features.',
-      realWorldBenefit: 'Meet any compliance requirement while maintaining full data control'
+      icon: Server,
+      title: 'Enterprise Self-Hosted Agent',
+      description: 'Deploy n8n on your infrastructure for maximum security, performance, and control while integrating AI voice agents with your enterprise systems.',
+      features: [
+        'Docker and Kubernetes deployment options',
+        'Single sign-on (SSO) integration',
+        'Advanced user management and permissions',
+        'High availability and scaling capabilities',
+        'Comprehensive audit logs and monitoring'
+      ],
+      benefits: [
+        'Meet strict compliance requirements',
+        'Ensure 99.9% uptime and reliability',
+        'Scale to handle millions of executions',
+        'Maintain complete security control'
+      ]
     }
   ];
 
   const workflows = [
     {
-      title: 'Multi-System Lead Processing',
-      description: 'AI qualifies lead → Enrich with external data → Create in CRM → Notify team → Schedule follow-up',
-      complexity: 'Complex multi-step workflow',
-      benefit: '400% faster lead qualification and routing'
+      title: 'Advanced CRM Integration',
+      description: 'Connect AI agents to multiple CRMs with custom data mapping',
+      steps: '8 Steps',
+      benefit: 'Zero data loss'
     },
     {
-      title: 'Customer Data Synchronization',
-      description: 'Voice interaction updates → Sync across multiple databases → Trigger personalized campaigns',
-      complexity: 'Real-time data synchronization',
-      benefit: 'Eliminate data silos across 10+ systems'
+      title: 'Multi-Channel Notifications',
+      description: 'Send notifications across email, SMS, Slack, and Teams',
+      steps: '6 Steps',
+      benefit: '100% delivery rate'
     },
     {
-      title: 'Intelligent Call Routing',
-      description: 'Analyze call context → Route to specialist → Update availability → Generate insights',
-      complexity: 'Dynamic decision-making workflow',
-      benefit: '70% improvement in first-call resolution'
-    }
-  ];
-
-  const benefits = [
-    { 
-      title: 'Complete Flexibility', 
-      description: 'Build any workflow imaginable with unlimited customization',
-      metric: 'Zero limitations on automation logic'
-    },
-    { 
-      title: 'Cost-Effective Scaling', 
-      description: 'Open-source foundation means no per-execution pricing',
-      metric: 'Up to 80% cost savings vs proprietary platforms'
-    },
-    { 
-      title: 'Developer-Friendly', 
-      description: 'Visual workflow editor with code-level customization options',
-      metric: 'Reduce development time by 60%'
-    },
-    { 
-      title: 'Enterprise Security', 
-      description: 'Self-hosted deployment ensures complete data sovereignty',
-      metric: '100% compliance with internal security policies'
+      title: 'Database Synchronization',
+      description: 'Sync data between multiple databases with conflict resolution',
+      steps: '10 Steps',
+      benefit: 'Real-time sync'
     }
   ];
 
   const testimonials = [
     {
-      name: 'Emma Wilson',
-      role: 'Operations Director',
-      company: 'Global Freight Partners',
-      content: 'Shipment tracking updates are delivered proactively to customers. Our customer service workload decreased 40% while satisfaction increased significantly.',
-      image: 'https://images.unsplash.com/photo-1594824154493-f8bcfe19bba4?w=150&h=150&fit=crop&crop=face'
+      name: "Marcus Chen",
+      role: "DevOps Director",
+      company: "TechFlow Solutions",
+      content: "N8n's self-hosted deployment gives us complete control over our automation infrastructure. We've built custom nodes that perfectly match our AI voice agent workflows, reducing integration time by 60%."
     },
     {
-      name: 'Christopher Davis',
-      role: 'Hotel Operations Manager',
-      company: 'Grandview Resort & Spa',
-      content: 'Guest inquiries are handled 24/7 with instant booking confirmations. Our occupancy rate increased 25% and guest satisfaction scores are consistently above 95%.',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?w=150&h=150&fit=crop&crop=face'
+      name: "Elena Rodriguez",
+      role: "IT Manager", 
+      company: "Global Manufacturing Corp",
+      content: "The ability to customize n8n workflows with JavaScript and Python has been game-changing. Our AI agents now seamlessly integrate with legacy systems that other platforms couldn't connect to."
     }
+  ];
+
+  const industries = [
+    { name: 'Enterprise', description: 'Custom workflows for complex business processes' },
+    { name: 'Technology', description: 'Developer-friendly automation and integrations' },
+    { name: 'Manufacturing', description: 'Industrial IoT and system integration' },
+    { name: 'Healthcare', description: 'Secure, compliant patient data workflows' },
+    { name: 'Government', description: 'Air-gapped deployments and security compliance' },
+    { name: 'Startups', description: 'Cost-effective automation without vendor lock-in' }
+  ];
+
+  const howItWorks = [
+    { step: 1, title: 'Choose Deployment', description: 'Select cloud-hosted or self-hosted n8n deployment option' },
+    { step: 2, title: 'Build Workflows', description: 'Create visual workflows using drag-and-drop interface' },
+    { step: 3, title: 'Add Custom Logic', description: 'Extend workflows with JavaScript, Python, or custom nodes' },
+    { step: 4, title: 'Connect AI Agents', description: 'Integrate your AI voice agents as triggers and actions' }
   ];
 
   return (
     <div className="pt-16 bg-euphoric-surface min-h-screen">
-      <section className="py-20">
+      {/* Hero Section */}
+      <section className="py-20 relative overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center max-w-7xl mx-auto">
+            {/* Left Column - Content */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              className="flex items-center justify-center mb-6"
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="text-left"
             >
-              <div className="icon-badge-lg mr-4">
-                <Workflow className="w-10 h-10 text-white" />
-              </div>
-              <div className="text-left">
-                <h1 className="text-4xl md:text-5xl font-bold tracking-tight">
-                  <span className="text-gray-900">n8n</span><br />
-                  <span className="text-euphoric-gradient">Integration</span>
-                </h1>
+              <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">N8n Integration</span>
+                <br />
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                  <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                    Voice AI Agents
+                  </TypingAnimation>
+                </span>
+              </h1>
+              
+              <TextAnimate 
+                animation="blurInUp" 
+                by="word" 
+                className="text-xl text-gray-600 leading-relaxed mb-8 max-w-2xl"
+                once
+              >
+                Connect your AI voice agents with n8n's open-source automation platform. Build custom workflows, develop specialized nodes, and maintain complete control over your data.
+              </TextAnimate>
+
+              <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                <Link
+                  to="/signup"
+                  className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group"
+                >
+                  Start Building
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+                <a
+                  href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-white border-2 border-brand-teal text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-brand-teal hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center"
+                >
+                  Book Demo
+                </a>
               </div>
             </motion.div>
-            
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto mb-8"
-            >
-              Connect your AI voice agents to n8n's powerful open-source automation platform. Build unlimited workflows with complete flexibility and control.
-            </motion.p>
 
+            {/* Right Column - Form */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="glass rounded-2xl p-8 shadow-2xl"
             >
-              <Link
-                to="/signup"
-                className="btn-gold inline-flex items-center justify-center px-8 py-3 text-base font-medium"
-              >
-                Connect n8n
-                <ArrowRight className="ml-2 w-4 h-4" />
-              </Link>
-              <a
-                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-glass inline-flex items-center justify-center px-8 py-3 text-base font-medium"
-              >
-                Book Demo
-              </a>
+              <h3 className="text-2xl font-bold text-gray-900 mb-6">Get N8n Integration Demo</h3>
+              <form className="space-y-6">
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Your Name</label>
+                  <input
+                    type="text"
+                    value={demoForm.name}
+                    onChange={(e) => handleInputChange('name', e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent"
+                    placeholder="Enter your full name"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+                  <input
+                    type="email"
+                    value={demoForm.email}
+                    onChange={(e) => handleInputChange('email', e.target.value)}
+                    className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent"
+                    placeholder="Enter your email"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+                  <div className="flex gap-2">
+                    <div className="relative" ref={dropdownRef}>
+                      <button
+                        type="button"
+                        onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+                        className="flex items-center gap-2 px-3 py-3 border border-gray-300 rounded-xl hover:border-brand-teal focus:ring-2 focus:ring-brand-teal focus:border-transparent bg-white min-w-[120px]"
+                      >
+                        <span className="text-lg">{selectedCountry.flag}</span>
+                        <span className="text-sm font-medium">{selectedCountry.code}</span>
+                        <ChevronDown className="w-4 h-4 text-gray-500" />
+                      </button>
+
+                      {isDropdownOpen && (
+                        <div className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-lg z-50 max-h-60 overflow-hidden">
+                          <div className="p-2 border-b border-gray-100">
+                            <div className="relative">
+                              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" />
+                              <input
+                                type="text"
+                                placeholder="Search countries..."
+                                value={countrySearch}
+                                onChange={(e) => setCountrySearch(e.target.value)}
+                                className="w-full pl-10 pr-4 py-2 text-sm border border-gray-200 rounded-lg focus:ring-2 focus:ring-brand-teal focus:border-transparent"
+                              />
+                            </div>
+                          </div>
+                          <div className="max-h-48 overflow-y-auto">
+                            {filteredCountries.map((country, index) => (
+                              <button
+                                key={index}
+                                type="button"
+                                onClick={() => {
+                                  setSelectedCountry(country);
+                                  setIsDropdownOpen(false);
+                                  setCountrySearch('');
+                                }}
+                                className="w-full flex items-center gap-3 px-3 py-2 text-left hover:bg-gray-50 transition-colors"
+                              >
+                                <span className="text-lg">{country.flag}</span>
+                                <span className="text-sm font-medium">{country.code}</span>
+                                <span className="text-sm text-gray-600 truncate">{country.name}</span>
+                              </button>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <input
+                      type="tel"
+                      value={demoForm.phone}
+                      onChange={(e) => handleInputChange('phone', e.target.value)}
+                      className="flex-1 px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-brand-teal focus:border-transparent"
+                      placeholder="Your phone number"
+                    />
+                  </div>
+                </div>
+
+                <button
+                  type="submit"
+                  className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300"
+                >
+                  Book N8n Demo
+                </button>
+              </form>
             </motion.div>
           </div>
         </div>
       </section>
 
+      {/* Use Cases Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Open-Source Automation Power
-            </h2>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">N8n Integration Solutions</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Open-source automation platform that gives you complete control over your AI voice agent workflows and integrations.
+            </p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-12">
-            {features.map((feature, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {useCases.map((useCase, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="flex items-start"
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="glass rounded-2xl p-8 hover:shadow-lg transition-all duration-300 flex flex-col h-full"
               >
-                <div className="icon-badge mr-6 mt-1">
-                  <feature.icon className="w-6 h-6 text-white" />
+                <div className="text-brand-teal mb-6">
+                  <useCase.icon className="w-12 h-12" />
                 </div>
-                <div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-3">{feature.title}</h3>
-                  <p className="text-gray-600 mb-4">{feature.description}</p>
-                  <div className="bg-green-50 border-l-4 border-green-400 p-3">
-                    <p className="text-sm text-green-700 font-medium">{feature.realWorldBenefit}</p>
+                
+                <h3 className="text-xl font-bold text-gray-900 mb-4">{useCase.title}</h3>
+                <p className="text-gray-600 mb-6 flex-grow">{useCase.description}</p>
+                
+                <div className="space-y-4">
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Key Features:</h4>
+                    <ul className="space-y-1">
+                      {useCase.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
+                          <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0 mt-0.5" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div>
+                    <h4 className="font-semibold text-gray-900 mb-2">Benefits:</h4>
+                    <ul className="space-y-1">
+                      {useCase.benefits.map((benefit, idx) => (
+                        <li key={idx} className="flex items-start gap-2 text-sm text-gray-600">
+                          <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0 mt-0.5" />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </motion.div>
@@ -181,36 +429,39 @@ const N8nIntegration = () => {
         </div>
       </section>
 
-      <section className="py-20 bg-gray-50">
+      {/* Workflow Templates Section */}
+      <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Advanced Workflow Examples
-            </h2>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Advanced Workflow Examples</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Complex automation workflows that showcase n8n's flexibility and power for enterprise use cases.
+            </p>
+          </motion.div>
 
-          <div className="space-y-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {workflows.map((workflow, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="card"
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="glass rounded-2xl p-6 text-center hover:shadow-lg transition-all duration-300"
               >
-                <div className="flex flex-col lg:flex-row lg:items-center justify-between">
-                  <div className="lg:w-2/3">
-                    <h3 className="text-xl font-bold text-gray-900 mb-3">{workflow.title}</h3>
-                    <p className="text-gray-600 mb-4">{workflow.description}</p>
-                    <div className="inline-block bg-brand-teal/10 text-brand-teal px-3 py-1 rounded-full text-sm font-medium">
-                      {workflow.complexity}
-                    </div>
-                  </div>
-                  <div className="lg:w-1/3 lg:text-right mt-4 lg:mt-0">
-                    <div className="bg-gold/10 rounded-lg p-3">
-                      <p className="text-gold font-semibold text-sm">{workflow.benefit}</p>
-                    </div>
-                  </div>
+                <div className="w-16 h-16 bg-gradient-to-r from-brand-teal to-brand-blue rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                  {workflow.steps}
+                </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{workflow.title}</h3>
+                <p className="text-gray-600 mb-4">{workflow.description}</p>
+                <div className="inline-block bg-green-100 text-green-800 font-semibold px-3 py-1 rounded-full text-sm">
+                  {workflow.benefit}
                 </div>
               </motion.div>
             ))}
@@ -218,28 +469,71 @@ const N8nIntegration = () => {
         </div>
       </section>
 
+      {/* How It Works Section */}
       <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Why Choose n8n?
-            </h2>
-          </div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">How It Works</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Get started with n8n automation in four comprehensive steps.
+            </p>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-            {benefits.map((benefit, index) => (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            {howItWorks.map((step, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="card text-center"
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="text-center"
               >
-                <h3 className="text-lg font-bold text-gray-900 mb-3">{benefit.title}</h3>
-                <p className="text-gray-600 text-sm mb-4">{benefit.description}</p>
-                <div className="bg-brand-teal/10 rounded-lg p-3">
-                  <p className="text-brand-teal font-semibold text-sm">{benefit.metric}</p>
+                <div className="w-16 h-16 bg-gradient-to-r from-brand-teal to-brand-blue rounded-full flex items-center justify-center text-white font-bold text-xl mx-auto mb-4">
+                  {step.step}
                 </div>
+                <h3 className="text-xl font-bold text-gray-900 mb-3">{step.title}</h3>
+                <p className="text-gray-600">{step.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Industries Section */}
+      <section className="py-20">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Industries We Serve</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              N8n's flexibility makes it perfect for organizations requiring custom automation solutions.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-2 md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+            {industries.map((industry, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="glass rounded-xl p-6 text-center hover:shadow-lg transition-all duration-300"
+              >
+                <h3 className="font-bold text-gray-900 mb-2">{industry.name}</h3>
+                <p className="text-sm text-gray-600">{industry.description}</p>
               </motion.div>
             ))}
           </div>
@@ -247,71 +541,92 @@ const N8nIntegration = () => {
       </section>
 
       {/* Testimonials Section */}
-      <section className="py-20 bg-gray-50">
+      <section className="py-20 bg-white">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Customer Success Stories
-            </h2>
-            <p className="text-lg text-gray-600">
-              Real results from n8n integration users
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-6">Success Stories</h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              See how organizations are leveraging n8n's flexibility for custom AI voice agent integrations.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="grid md:grid-cols-2 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {testimonials.map((testimonial, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 20 }}
+                initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1 }}
-                className="card"
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: index * 0.1 }}
+                className="glass rounded-2xl p-8"
               >
-                <div className="flex items-center mb-4">
-                  <img
-                    src={testimonial.image}
-                    alt={testimonial.name}
-                    className="w-12 h-12 rounded-full mr-4 object-cover"
-                  />
+                <p className="text-gray-600 mb-6 italic">"{testimonial.content}"</p>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 bg-gradient-to-r from-brand-teal to-brand-blue rounded-full flex items-center justify-center text-white font-bold">
+                    {testimonial.name.split(' ').map(n => n[0]).join('')}
+                  </div>
                   <div>
-                    <h4 className="font-semibold text-gray-900">{testimonial.name}</h4>
-                    <p className="text-sm text-gray-600">{testimonial.role}</p>
-                    <p className="text-sm text-brand-teal">{testimonial.company}</p>
+                    <div className="font-semibold text-gray-900">{testimonial.name}</div>
+                    <div className="text-sm text-gray-600">{testimonial.role}</div>
+                    <div className="text-sm text-brand-teal">{testimonial.company}</div>
                   </div>
                 </div>
-                <p className="text-gray-600 italic">"{testimonial.content}"</p>
               </motion.div>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-r from-brand-teal to-gold">
+      {/* CTA Section */}
+      <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready for Unlimited Automation?
-            </h2>
-            <p className="text-lg text-white/90 mb-8">
-              Connect with n8n and build workflows limited only by your imagination.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+          <div className="bg-gradient-to-br from-brand-blue to-brand-gray rounded-3xl p-12 text-center text-white">
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              className="text-4xl lg:text-5xl font-bold mb-6 leading-tight tracking-tight"
+            >
+              Ready to Build Custom Workflows?
+            </motion.h2>
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.1 }}
+              className="text-xl text-white/90 mb-8 max-w-4xl mx-auto"
+            >
+              Join developers and enterprises using n8n to create powerful, customizable automation workflows for their AI voice agents.
+            </motion.p>
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ delay: 0.2 }}
+              className="flex flex-col sm:flex-row gap-4 justify-center"
+            >
               <Link
                 to="/signup"
-                className="bg-white text-brand-teal hover:bg-gray-100 inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
+                className="bg-white hover:bg-white text-brand-black hover:text-brand-gray px-8 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl inline-flex items-center justify-center group"
               >
-                Connect n8n
-                <ArrowRight className="ml-2 w-4 h-4" />
+                Start Building
+                <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
                 href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="border-2 border-white text-white hover:bg-white hover:text-brand-teal inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
+                className="border-2 border-white text-white hover:bg-white hover:text-brand-blue px-8 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105"
               >
                 Book Demo
               </a>
-            </div>
+            </motion.div>
           </div>
         </div>
       </section>

@@ -115,11 +115,12 @@ const CompactIndustries = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold text-gray-900 mb-6"
+              className="font-bold mb-6 leading-tight tracking-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
             >
-              Built for Every
+              <span className="bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">Built for Every</span>
               <br />
-              <span className="bg-gradient-to-r from-brand-blue to-brand-gray bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">
                 Industry
               </span>
             </motion.h2>
@@ -135,7 +136,7 @@ const CompactIndustries = () => {
                 <div className={`bg-gradient-to-r ${industries[activeIndustry].gradient} p-6 rounded-2xl text-white mb-6`}>
                   <div className="flex items-center space-x-3 mb-4">
                     {React.createElement(industries[activeIndustry].icon, { className: "w-8 h-8" })}
-                    <h3 className="text-2xl font-bold">{industries[activeIndustry].name}</h3>
+                    <h3 className="text-2xl font-bold leading-tight tracking-tight">{industries[activeIndustry].name}</h3>
                   </div>
                   <p className="text-white/90 mb-4">{industries[activeIndustry].description}</p>
                   <div className="bg-white/20 rounded-lg px-4 py-2 inline-block">
@@ -168,7 +169,7 @@ const CompactIndustries = () => {
           </div>
 
           {/* Right Side - Industry Grid */}
-          <div className="grid grid-cols-2 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-3 sm:gap-4">
             {industries.map((industry, index) => {
               const Icon = industry.icon;
               const isActive = index === activeIndustry;
@@ -181,14 +182,14 @@ const CompactIndustries = () => {
                   whileInView={{ opacity: 1, scale: 1 }}
                   viewport={{ once: true }}
                   whileHover={{ scale: 1.05, y: -5 }}
-                  className={`p-6 rounded-2xl text-left transition-all duration-300 ${
+                  className={`p-3 sm:p-6 rounded-2xl text-left transition-all duration-300 ${
                     isActive
                       ? `bg-gradient-to-r ${industry.gradient} text-white shadow-2xl`
                       : 'bg-white hover:bg-gray-50 text-gray-700 shadow-lg hover:shadow-xl border border-gray-200'
                   }`}
                 >
                   <Icon className={`w-8 h-8 mb-3 ${isActive ? 'text-white' : 'text-brand-blue'}`} />
-                  <h3 className={`font-bold text-lg mb-2 ${isActive ? 'text-white' : 'text-gray-900'}`}>
+                  <h3 className={`font-bold text-lg mb-2 leading-tight tracking-tight ${isActive ? 'text-white' : 'text-gray-900'}`}>
                     {industry.name}
                   </h3>
                   <p className={`text-sm ${isActive ? 'text-white/80' : 'text-gray-600'}`}>

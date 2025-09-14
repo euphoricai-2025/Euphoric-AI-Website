@@ -112,7 +112,7 @@ const HomeServices = () => {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitStatus({ type: 'success', message: 'Demo request submitted! We\'ll show you AI agents that grow home service businesses.' });
+      window.location.href = 'https://calendly.com/euphoricai-aivoiceagents-demo/30min';
     }, 2000);
   };
 
@@ -215,14 +215,16 @@ const HomeServices = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-teal text-sm font-semibold mb-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                <Home className="w-4 h-4 mr-3 text-brand-teal animate-pulse" />
+                <Home className="w-4 h-4 mr-3 text-brand-teal" />
                 Home Services Growth AI
               </div>
 
               <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
-                <span className="text-euphoric-gradient">
-                  <TypingAnimation startOnView={true} duration={150} className="text-euphoric-gradient">
-                    Home Services Voice AI Agents
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Home Services</span>
+                <br />
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                  <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                    Voice AI Agents
                   </TypingAnimation>
                 </span>
               </h1>
@@ -398,7 +400,7 @@ const HomeServices = () => {
                       >
                         <button
                           type="submit"
-                          disabled={isSubmitting}
+                          disabled={isSubmitting || !demoForm.name.trim() || !demoForm.email.trim() || !demoForm.phone.trim()}
                           className="w-full py-4 px-6 rounded-xl font-bold bg-gradient-to-r from-brand-teal to-brand-blue text-white hover:from-brand-teal/90 hover:to-brand-blue/90 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                         >
                           {isSubmitting ? (
@@ -602,12 +604,10 @@ const HomeServices = () => {
                   <span className="text-gray-700 font-semibold">Home Services Integrations</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Connects With Your 
+                <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                  <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Connects With</span>
                   <br />
-                  <span className="bg-gradient-to-r from-brand-teal to-brand-blue bg-clip-text text-transparent">
-                    Contractor Stack
-                  </span>
+                  <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Your Contractor Stack</span>
                 </h2>
                 
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -715,8 +715,10 @@ const HomeServices = () => {
       <section className="py-20 bg-gradient-to-r from-brand-teal to-brand-blue">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Grow Your Home Services Business?
+            <h2 className="font-bold mb-6 leading-tight tracking-tight text-white" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+              <span className="text-white">Ready to Grow</span>
+              <br />
+              <span className="text-white">Your Home Services Business?</span>
             </h2>
             <p className="text-lg text-white/90 mb-8">
               Join contractors using AI agents to handle emergencies, qualify leads, and maximize customer lifetime value.

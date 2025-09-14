@@ -112,7 +112,7 @@ const CustomerSupport = () => {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitStatus({ type: 'success', message: 'Demo request submitted! We\'ll show you 24/7 AI customer support in action.' });
+      window.location.href = 'https://calendly.com/euphoricai-aivoiceagents-demo/30min';
     }, 2000);
   };
 
@@ -192,9 +192,11 @@ const CustomerSupport = () => {
               </div>
 
               <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
-                <span className="text-gray-900">
-                  <TypingAnimation startOnView={true} duration={150} className="text-gray-900">
-                    Customer Support Voice AI Agents
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Customer Support</span>
+                <br />
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                  <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                    Voice AI Agents
                   </TypingAnimation>
                 </span>
               </h1>
@@ -370,7 +372,7 @@ const CustomerSupport = () => {
                       >
                         <button
                           type="submit"
-                          disabled={isSubmitting}
+                          disabled={isSubmitting || !demoForm.name.trim() || !demoForm.email.trim() || !demoForm.phone.trim()}
                           className="w-full py-4 px-6 rounded-xl font-bold bg-gradient-to-r from-brand-teal to-brand-blue text-white hover:from-brand-teal/90 hover:to-brand-blue/90 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                         >
                           {isSubmitting ? (
@@ -574,12 +576,10 @@ const CustomerSupport = () => {
                   <span className="text-gray-700 font-semibold">Support Integrations</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Connects With Your 
+                <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                  <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Connects With</span>
                   <br />
-                  <span className="bg-gradient-to-r from-brand-teal to-brand-blue bg-clip-text text-transparent">
-                    Support Stack
-                  </span>
+                  <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Your Support Stack</span>
                 </h2>
                 
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -687,8 +687,10 @@ const CustomerSupport = () => {
       <section className="py-20 bg-gradient-to-r from-brand-teal to-brand-blue">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Transform Your Customer Support?
+            <h2 className="font-bold mb-6 leading-tight tracking-tight text-white" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+              <span className="text-white">Ready to Transform</span>
+              <br />
+              <span className="text-white">Your Customer Support?</span>
             </h2>
             <p className="text-lg text-white/90 mb-8">
               Join companies using AI voice agents to provide exceptional 24/7 customer support while reducing costs by 60%.

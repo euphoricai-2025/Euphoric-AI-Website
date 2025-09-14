@@ -191,33 +191,65 @@ const Home = () => {
     setSubmitStatus({ type: null, message: '' });
 
     try {
-      // Replace with your actual webhook URL
-      const webhookUrl = import.meta.env.VITE_DEMO_WEBHOOK_URL || 'https://your-webhook-url.com/demo';
+      // EuphoricAI API endpoint for demo calls
+      const apiUrl = 'https://app.euphoricai.io/api/zapier/quick_call_result/?api_key=9fd3f6a4-1525-4dbb-ab39-7e916713b8ec';
       
-      const response = await fetch(webhookUrl, {
+      // Split name into first and last name
+      const nameParts = demoForm.name.trim().split(' ');
+      const firstName = nameParts[0] || '';
+      const lastName = nameParts.slice(1).join(' ') || '';
+      
+      // Format phone number with country code
+      const fullPhoneNumber = `${selectedCountry.code}${demoForm.phone.replace(/\D/g, '')}`;
+      
+      const requestBody = {
+        quick_campaign: 'quickcamp86d47131',
+        contact_number: fullPhoneNumber,
+        first_name: firstName,
+        last_name: lastName,
+        email: demoForm.email.trim(),
+        custom1: selectedCountry.name,
+        custom2: 'Website Demo Request',
+        custom3: new Date().toISOString(),
+        custom4: 'homepage_demo_form'
+      };
+      
+      console.log('Sending API request with body:', requestBody);
+      
+      const response = await fetch(apiUrl, {
         method: 'POST',
         headers: {
-          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+          'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          name: demoForm.name,
-          email: demoForm.email,
-          phone: `${selectedCountry.code} ${demoForm.phone}`,
-          countryCode: selectedCountry.code,
-          country: selectedCountry.name,
-          timestamp: new Date().toISOString(),
-          source: 'website_hero_demo_form'
-        })
+        body: JSON.stringify(requestBody)
       });
 
       if (response.ok) {
+        const result = await response.json();
         setSubmitStatus({ 
           type: 'success', 
-          message: 'Great! We\'ll call you shortly to demonstrate our AI voice agent.' 
+          message: 'Demo call initiated successfully! You will receive a call from Eliza shortly.' 
         });
         setDemoForm({ name: '', phone: '', email: '' });
+        setSelectedCountry(countryCodes[0]); // Reset to default country
       } else {
-        throw new Error('Failed to submit demo request');
+        // Try to get error details from response
+        let errorMessage = 'Failed to submit demo request';
+        try {
+          const errorData = await response.json();
+          console.error('API Error Response:', errorData);
+          // Check if it's a validation error
+          if (errorData.quick_campaign && Array.isArray(errorData.quick_campaign)) {
+            console.error('Campaign validation error:', errorData.quick_campaign[0]);
+            errorMessage = `Campaign error: ${errorData.quick_campaign[0]}`;
+          } else {
+            errorMessage = errorData.message || errorData.error || errorMessage;
+          }
+        } catch (e) {
+          console.error('Could not parse error response');
+        }
+        throw new Error(errorMessage);
       }
     } catch (error) {
       console.error('Demo submission error:', error);
@@ -244,11 +276,11 @@ const Home = () => {
                 AI-Powered Voice Agents
               </div>
 
-              <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.85rem, 4vw, 3.6rem)' }}>
-                <span className="text-euphoric-gradient">Smarter AI Voice Agents</span>
+              <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Smarter AI Voice Agents</span>
                 <br />
-                <span className="text-gray-900">
-                  <TypingAnimation startOnView={true} duration={150} className="text-gray-900">
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                  <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
                     Ready in 30 Minutes
                   </TypingAnimation>
                 </span>
@@ -585,7 +617,7 @@ const Home = () => {
           <div className="absolute bottom-0 right-1/4 w-32 h-32 bg-gradient-to-tl from-brand-gold/20 to-transparent rounded-full blur-2xl"></div>
           
           {/* Stats Grid */}
-          <div className="relative grid grid-cols-2 md:grid-cols-5 gap-8 w-full mx-auto">
+          <div className="relative grid grid-cols-1 sm:grid-cols-2 md:grid-cols-5 gap-6 w-full max-w-6xl mx-auto">
             {/* 30min Setup */}
             <div className="text-center group">
               <div className="relative">
@@ -871,16 +903,19 @@ const Home = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl font-bold mb-6"
+              className="font-bold mb-6 leading-tight tracking-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
             >
-              Ready to Transform Your Business?
+              <span className="text-white">Ready to Transform</span>
+              <br />
+              <span className="text-white">Your Business?</span>
             </motion.h2>
             <motion.p
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.1 }}
-              className="text-xl text-white/90 mb-8 max-w-4xl mx-auto whitespace-nowrap"
+              className="text-xl text-white/90 mb-8 max-w-4xl mx-auto text-center leading-relaxed"
             >
               Join thousands of businesses using AI voice agents to scale their operations 24/7.
             </motion.p>
@@ -924,7 +959,7 @@ const Home = () => {
           <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-blue/20 to-brand-gray/20 rounded-full blur-3xl"></div>
         </div>
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        <div className="container mx-auto px-2 sm:px-4 md:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             {/* Left Side - Text Content */}
             <div>
@@ -939,18 +974,17 @@ const Home = () => {
                   <span className="text-gray-700 font-semibold">Integrations</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Works With Everything You Already{' '}
-                  <span className="bg-gradient-to-r from-brand-teal to-brand-blue bg-clip-text text-transparent">
-                    Use
-                  </span>
+                <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                  <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Works With Everything You Already</span>
+                  <br />
+                  <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Use</span>
                 </h2>
                 
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
                   Integrates into your stack. Extends your superpowers with seamless connections to your favorite tools and platforms.
                 </p>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                   <div className="flex items-center space-x-3 p-4 bg-white/50 backdrop-blur-sm rounded-xl border border-gray-200/50">
                     <div className="w-8 h-8 bg-gradient-to-br from-brand-teal to-brand-blue rounded-lg flex items-center justify-center">
                       <MessageCircle className="w-4 h-4 text-white" />
@@ -992,7 +1026,7 @@ const Home = () => {
             >
               <div
                 ref={containerRef}
-                className="relative flex h-[400px] sm:h-[450px] md:h-[500px] w-full max-w-[600px] md:max-w-[700px] items-center justify-center overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-white/40 via-white/20 to-white/40 backdrop-blur-sm shadow-2xl mx-auto border border-white/40 p-12 sm:p-16 md:p-20"
+                className="relative flex h-[400px] sm:h-[450px] md:h-[500px] w-full max-w-[90vw] sm:max-w-[600px] md:max-w-[700px] items-center justify-center overflow-hidden rounded-2xl md:rounded-3xl bg-gradient-to-br from-white/40 via-white/20 to-white/40 backdrop-blur-sm shadow-2xl mx-auto border border-white/40 p-8 sm:p-12 md:p-16 lg:p-20"
                 style={{
                   // Ensure consistent positioning
                   minHeight: '400px',

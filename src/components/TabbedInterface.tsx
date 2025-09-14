@@ -36,12 +36,12 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
         };
       case 'underline':
         return {
-          container: 'border-b border-gray-200',
+          container: 'overflow-x-auto scrollbar-hide border-b-2 border-gray-100',
           button: (isActive: boolean) => 
-            `px-4 py-3 text-lg font-semibold border-b-2 transition-all duration-200 flex-1 text-center ${
+            `px-4 md:px-6 py-3 text-sm md:text-base font-medium transition-all duration-200 relative focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-teal focus-visible:ring-offset-2 whitespace-nowrap flex-shrink-0 ${
               isActive 
-                ? 'border-brand-teal text-brand-teal' 
-                : 'border-transparent text-gray-600 hover:text-gray-900 hover:border-gray-300'
+                ? 'text-brand-teal border-b-2 border-brand-teal -mb-0.5' 
+                : 'text-gray-500 hover:text-gray-700 border-b-2 border-transparent hover:border-gray-200 -mb-0.5'
             }`,
           content: 'mt-6'
         };
@@ -65,24 +65,27 @@ const TabbedInterface: React.FC<TabbedInterfaceProps> = ({
   return (
     <div className={className}>
       {/* Tab Navigation */}
-      <div className={`flex w-full ${styles.container}`}>
-        {tabs.map((tab) => {
-          const isActive = activeTab === tab.id;
-          const Icon = tab.icon;
-          
-          return (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id)}
-              className={styles.button(isActive)}
-            >
-              <div className="flex items-center gap-2">
-                {Icon && <Icon className="w-4 h-4" />}
-                <span>{tab.label}</span>
-              </div>
-            </button>
-          );
-        })}
+      <div className={styles.container}>
+        <div className="flex w-full min-w-max">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            const Icon = tab.icon;
+            
+            return (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={styles.button(isActive)}
+                style={{ outline: 'none' }}
+              >
+                <div className="flex items-center gap-2">
+                  {Icon && <Icon className="w-4 h-4" />}
+                  <span>{tab.label}</span>
+                </div>
+              </button>
+            );
+          })}
+        </div>
       </div>
 
       {/* Tab Content */}

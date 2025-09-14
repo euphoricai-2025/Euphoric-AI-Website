@@ -30,10 +30,10 @@ const Footer = () => {
       `}</style>
       <footer className="glass-nav border-t border-white/10 relative overflow-hidden">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 lg:gap-16">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 lg:gap-12">
           {/* Logo and Description */}
-          <div className="relative flex flex-col items-start lg:col-span-1">
-            <div className="flex items-center mb-8">
+          <div className="relative flex flex-col items-start col-span-2 md:col-span-3 lg:col-span-2">
+            <div className="flex items-center mb-6">
               <Link to="/" className="flex items-center focus:outline-none">
                 <img
                   src="/euphoric-logo-final.png"
@@ -45,7 +45,7 @@ const Footer = () => {
                 />
               </Link>
             </div>
-            <p className="text-gray-600 text-sm mb-8 leading-relaxed">
+            <p className="text-gray-600 text-sm mb-6 leading-relaxed">
               Leading AI voice agent platform for business automation. Transform customer communication with intelligent AI agents that work 24/7 across all industries.
             </p>
             <div className="flex space-x-3">
@@ -64,30 +64,65 @@ const Footer = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Industries */}
           <div className="relative flex flex-col items-start">
-            <h3 className="text-gray-900 font-bold mb-4">QUICK LINKS</h3>
+            <h3 className="text-gray-900 font-bold mb-4 text-sm">INDUSTRIES</h3>
             <ul className="space-y-2">
-              <li><Link to="/pricing" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Pricing</Link></li>
-              <li><a href="https://calendly.com/euphoricai-aivoiceagents-demo/30min" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Book Demo</a></li>
-              <li><Link to="/healthcare" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Healthcare Solutions</Link></li>
-              <li><Link to="/financial-services" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Financial Services</Link></li>
-              <li><Link to="/real-estate" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Real Estate</Link></li>
-              <li><Link to="/integrations" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Integrations</Link></li>
+              <li><Link to="/healthcare" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Healthcare</Link></li>
+              <li><Link to="/financial-services" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Financial Services</Link></li>
+              <li><Link to="/insurance" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Insurance</Link></li>
+              <li><Link to="/real-estate" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Real Estate</Link></li>
+              <li><Link to="/ecommerce" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Ecommerce</Link></li>
+              <li><Link to="/customer-support" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Customer Support</Link></li>
+              <li><Link to="/logistics" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Logistics</Link></li>
+              <li><Link to="/travel-hospitality" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Travel & Hospitality</Link></li>
+              <li><Link to="/home-services" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Home Services</Link></li>
+              <li><Link to="/retail-consumer" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Retail & Consumer</Link></li>
+              <li><Link to="/debt-collection" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Debt Collection</Link></li>
             </ul>
           </div>
 
-          {/* Company & Support */}
+          {/* Use Cases */}
           <div className="relative flex flex-col items-start">
-            <h3 className="text-gray-900 font-bold mb-4">COMPANY</h3>
+            <h3 className="text-gray-900 font-bold mb-4 text-sm">USE CASES</h3>
             <ul className="space-y-2">
-              <li><Link to="/about" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">About Us</Link></li>
-              <li><Link to="/contact" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Contact & Support</Link></li>
-              <li><Link to="/faq" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">FAQ</Link></li>
-              <li><Link to="/careers" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Careers</Link></li>
-              <li><Link to="/partner" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Partner with Us</Link></li>
-              <li><Link to="/privacy-policy" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Privacy Policy</Link></li>
-              <li><Link to="/terms-conditions" className="text-gray-600 hover:text-brand-teal text-sm transition-colors">Terms of Service</Link></li>
+              <li><Link to="/lead-qualification" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Lead Qualification</Link></li>
+              <li><Link to="/appointment-booking" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Appointment Booking</Link></li>
+              <li><Link to="/customer-support-agent" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Customer Support Agent</Link></li>
+            </ul>
+          </div>
+
+          {/* Platform */}
+          <div className="relative flex flex-col items-start">
+            <h3 className="text-gray-900 font-bold mb-4 text-sm">PLATFORM</h3>
+            <ul className="space-y-2">
+              <li><Link to="/integrations" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Integrations</Link></li>
+              <li><Link to="/integrations/cal-com" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Cal.com</Link></li>
+              <li><Link to="/integrations/make" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Make</Link></li>
+              <li><Link to="/integrations/twillio" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Twilio</Link></li>
+              <li><Link to="/integrations/go-high-level" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">GoHighLevel</Link></li>
+              <li><Link to="/automations" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Automations</Link></li>
+              <li><Link to="/automations/lead-management-nurturing" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Lead Management</Link></li>
+              <li><Link to="/automations/crm-data-sync" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">CRM Data Sync</Link></li>
+              <li><Link to="/automations/analytics-reporting" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Analytics</Link></li>
+            </ul>
+          </div>
+
+          {/* Company */}
+          <div className="relative flex flex-col items-start">
+            <h3 className="text-gray-900 font-bold mb-4 text-sm">COMPANY</h3>
+            <ul className="space-y-2">
+              <li><Link to="/" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Home</Link></li>
+              <li><Link to="/about" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">About Us</Link></li>
+              <li><Link to="/pricing" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Pricing</Link></li>
+              <li><Link to="/contact" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Contact</Link></li>
+              <li><Link to="/faq" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">FAQ</Link></li>
+              <li><Link to="/careers" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Careers</Link></li>
+              <li><Link to="/internships" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Internships</Link></li>
+              <li><Link to="/partner" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Partner Program</Link></li>
+              <li><a href="https://calendly.com/euphoricai-aivoiceagents-demo/30min" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Book Demo</a></li>
+              <li><Link to="/privacy-policy" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Privacy Policy</Link></li>
+              <li><Link to="/terms-conditions" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Terms of Service</Link></li>
             </ul>
           </div>
         </div>

@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 /* Brand Color Variables - EXACT brand colors only */
 :root {
@@ -19,7 +19,55 @@
 }
 
 * {
-  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+}
+
+/* Mobile Responsiveness */
+html, body {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+.container {
+  max-width: 100%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
+  }
+  
+  /* Ensure no element exceeds viewport width */
+  * {
+    max-width: 100vw;
+    word-wrap: break-word;
+  }
+  
+  /* Fix for grid layouts that might overflow */
+  .grid {
+    gap: 1rem;
+  }
+  
+  /* Responsive text sizing */
+  h1, h2, h3 {
+    word-break: break-word;
+    hyphens: auto;
+  }
+  
+  /* Mobile-friendly forms */
+  input, textarea, select {
+    font-size: 16px; /* Prevents iOS zoom */
+    max-width: 100%;
+  }
+  
+  /* Better mobile button spacing */
+  .btn-primary, .btn-secondary, .btn-outline, .btn-gold, .btn-glass {
+    min-height: 44px; /* Touch target size */
+    padding: 0.75rem 1.5rem;
+  }
 }
 
 /* Global Background */

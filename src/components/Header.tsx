@@ -1,12 +1,14 @@
 import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
 
 const Header = () => {
   const { user, signOut } = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
+  const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
+  const [openMobileSubDropdown, setOpenMobileSubDropdown] = useState<string | null>(null);
   const location = useLocation();
 
   const navItems = [
@@ -19,6 +21,7 @@ const Header = () => {
           { name: 'Healthcare', path: '/healthcare' },
           { name: 'Financial Services', path: '/financial-services' },
           { name: 'Insurance', path: '/insurance' },
+          { name: 'Debt Collection', path: '/debt-collection' },
           { name: 'Logistics', path: '/logistics' },
           { name: 'Retail & Consumer', path: '/retail-consumer' },
           { name: 'Travel & Hospitality', path: '/travel-hospitality' },
@@ -26,14 +29,6 @@ const Header = () => {
           { name: 'E-commerce', path: '/ecommerce' }
         ],
         useCases: [
-          { name: 'Insurance', path: '/use-cases/insurance' },
-          { name: 'Real Estate', path: '/use-cases/real-estate' },
-          { name: 'Customer Support', path: '/use-cases/customer-support' },
-          { name: 'Logistics', path: '/use-cases/logistics' },
-          { name: 'Travel & Hospitality', path: '/use-cases/travel-hospitality' },
-          { name: 'E-commerce', path: '/use-cases/ecommerce' },
-          { name: 'Retail & Consumer', path: '/use-cases/retail-consumer' },
-          { name: 'Home Services', path: '/use-cases/home-services' },
           { name: 'Lead Qualification Agent', path: '/lead-qualification' },
           { name: 'Appointment Booking Agent', path: '/appointment-booking' },
           { name: 'Customer Support Agent', path: '/customer-support-agent' }
@@ -121,6 +116,24 @@ const Header = () => {
 
   const getUserDisplayName = () => {
     return user?.user_metadata?.full_name || user?.email?.split('@')[0] || 'User';
+  };
+
+  const handleMobileDropdownToggle = (dropdownName: string) => {
+    if (openMobileDropdown === dropdownName) {
+      setOpenMobileDropdown(null);
+      setOpenMobileSubDropdown(null);
+    } else {
+      setOpenMobileDropdown(dropdownName);
+      setOpenMobileSubDropdown(null);
+    }
+  };
+
+  const handleMobileSubDropdownToggle = (subDropdownName: string) => {
+    if (openMobileSubDropdown === subDropdownName) {
+      setOpenMobileSubDropdown(null);
+    } else {
+      setOpenMobileSubDropdown(subDropdownName);
+    }
   };
 
   return (
@@ -374,172 +387,195 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <div className="md:hidden py-4 border-t border-white/20">
-            <nav className="flex flex-col space-y-2">
+          <div className="md:hidden border-t border-white/20">
+            <nav className="py-4">
               {navItems.map((item) => (
                 <div key={item.name}>
                   {item.megaDropdown ? (
-                    <div className="space-y-1">
-                      <div className="px-3 py-2 text-sm font-medium text-gray-700">
-                        {item.name}
-                      </div>
+                    <>
+                      <button
+                        onClick={() => handleMobileDropdownToggle(item.name)}
+                        className="flex items-center justify-between w-full px-4 py-3 text-base font-medium text-gray-700 hover:text-brand-teal hover:bg-white/5 transition-colors focus:outline-none"
+                      >
+                        <span>{item.name}</span>
+                        <ChevronDown 
+                          className={`w-4 h-4 transition-transform ${
+                            openMobileDropdown === item.name ? 'rotate-180' : ''
+                          }`} 
+                        />
+                      </button>
                       
-                      {/* Domains Mobile Menu */}
-                      {item.name === 'Domains' && (
-                        <>
-                          {/* Industries */}
-                          <div className="ml-3">
-                            <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">INDUSTRIES</div>
-                            {item.megaDropdown.industries.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="block px-6 py-1 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                      {openMobileDropdown === item.name && (
+                        <div className="bg-white/5 border-l-2 border-brand-teal ml-4">
+                          {/* Domains Dropdown */}
+                          {item.name === 'Domains' && (
+                            <>
+                              {/* Industries */}
+                              <button
+                                onClick={() => handleMobileSubDropdownToggle('industries')}
+                                className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
                               >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                          
-                          {/* Use Cases */}
-                          <div className="ml-3">
-                            <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">USE CASES</div>
-                            {item.megaDropdown.useCases.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className="block px-6 py-1 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                          
-                          {/* Integrations */}
-                          <div className="ml-3">
-                            <div className="px-3 py-1 text-xs font-bold text-gray-400 uppercase tracking-wider">INTEGRATIONS</div>
-                            {item.megaDropdown.integrations.map((subItem) => (
-                              <Link
-                                key={subItem.name}
-                                to={subItem.path}
-                                onClick={() => setIsMenuOpen(false)}
-                                className={`block px-6 py-1 text-sm transition-colors focus:outline-none rounded-lg ${
-                                  subItem.isButton 
-                                    ? 'bg-gray-100 text-gray-700 hover:bg-gray-200 font-medium' 
-                                    : 'text-gray-600 hover:text-brand-teal hover:bg-white/20'
-                                }`}
-                              >
-                                {subItem.name}
-                              </Link>
-                            ))}
-                          </div>
-                        </>
-                      )}
+                                <span>INDUSTRIES</span>
+                                <ChevronDown 
+                                  className={`w-3 h-3 transition-transform ${
+                                    openMobileSubDropdown === 'industries' ? 'rotate-180' : ''
+                                  }`} 
+                                />
+                              </button>
+                              {openMobileSubDropdown === 'industries' && (
+                                <div className="bg-white/5 ml-4">
+                                  {item.megaDropdown.industries.map((subItem) => (
+                                    <Link
+                                      key={subItem.name}
+                                      to={subItem.path}
+                                      onClick={() => setIsMenuOpen(false)}
+                                      className="block px-4 py-2 text-sm text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
 
-                      {/* AI Automations Mobile Menu */}
-                      {item.name === 'AI Automations' && (
-                        <>
-                          <div className="ml-3 space-y-2">
-                            <Link
-                              to="/automations/lead-management-nurturing"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                            >
-                              Lead Management & Nurturing
-                            </Link>
-                            <Link
-                              to="/automations/billing-collections"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                            >
-                              Billing & Collections
-                            </Link>
-                            <Link
-                              to="/automations/recruitment-hr-workflows"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                            >
-                              Recruitment & HR Workflows
-                            </Link>
-                            <Link
-                              to="/automations/marketing-social-media"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                            >
-                              Marketing & Social Media
-                            </Link>
-                            <Link
-                              to="/automations/crm-data-sync"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                            >
-                              CRM & Data Sync
-                            </Link>
-                            <Link
-                              to="/automations/analytics-reporting"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                            >
-                              Analytics & Reporting
-                            </Link>
-                            <Link
-                              to="/automations/contracts-workflow"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                            >
-                              Contracts & Workflow
-                            </Link>
-                            <Link
-                              to="/automations/ecommerce-retention"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="block px-3 py-2 text-sm font-semibold text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
-                            >
-                              E-commerce Retention
-                            </Link>
-                          </div>
+                              {/* Use Cases */}
+                              <button
+                                onClick={() => handleMobileSubDropdownToggle('usecases')}
+                                className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                <span>USE CASES</span>
+                                <ChevronDown 
+                                  className={`w-3 h-3 transition-transform ${
+                                    openMobileSubDropdown === 'usecases' ? 'rotate-180' : ''
+                                  }`} 
+                                />
+                              </button>
+                              {openMobileSubDropdown === 'usecases' && (
+                                <div className="bg-white/5 ml-4">
+                                  {item.megaDropdown.useCases.map((subItem) => (
+                                    <Link
+                                      key={subItem.name}
+                                      to={subItem.path}
+                                      onClick={() => setIsMenuOpen(false)}
+                                      className="block px-4 py-2 text-sm text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
 
-                          {/* Explore More Button */}
-                          <div className="ml-3 mt-4">
-                            <Link
-                              to="/automations"
-                              onClick={() => setIsMenuOpen(false)}
-                              className="inline-flex items-center px-4 py-2 bg-brand-teal text-white rounded-lg text-sm font-medium hover:bg-teal-700 transition-colors focus:outline-none"
-                            >
-                              Explore More
-                              <svg className="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                              </svg>
-                            </Link>
-                          </div>
-                        </>
+                              {/* Integrations */}
+                              <button
+                                onClick={() => handleMobileSubDropdownToggle('integrations')}
+                                className="flex items-center justify-between w-full px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                <span>INTEGRATIONS</span>
+                                <ChevronDown 
+                                  className={`w-3 h-3 transition-transform ${
+                                    openMobileSubDropdown === 'integrations' ? 'rotate-180' : ''
+                                  }`} 
+                                />
+                              </button>
+                              {openMobileSubDropdown === 'integrations' && (
+                                <div className="bg-white/5 ml-4">
+                                  {item.megaDropdown.integrations.map((subItem) => (
+                                    <Link
+                                      key={subItem.name}
+                                      to={subItem.path}
+                                      onClick={() => setIsMenuOpen(false)}
+                                      className={`block px-4 py-2 text-sm transition-colors focus:outline-none ${
+                                        subItem.isButton 
+                                          ? 'text-brand-teal font-medium' 
+                                          : 'text-gray-600 hover:text-brand-teal'
+                                      }`}
+                                    >
+                                      {subItem.name}
+                                    </Link>
+                                  ))}
+                                </div>
+                              )}
+                            </>
+                          )}
+
+                          {/* AI Automations Dropdown */}
+                          {item.name === 'AI Automations' && (
+                            <div className="space-y-1">
+                              <Link
+                                to="/automations/lead-management-nurturing"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                Lead Management & Nurturing
+                              </Link>
+                              <Link
+                                to="/automations/billing-collections"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                Billing & Collections
+                              </Link>
+                              <Link
+                                to="/automations/recruitment-hr-workflows"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                Recruitment & HR Workflows
+                              </Link>
+                              <Link
+                                to="/automations/marketing-social-media"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                Marketing & Social Media
+                              </Link>
+                              <Link
+                                to="/automations/crm-data-sync"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                CRM & Data Sync
+                              </Link>
+                              <Link
+                                to="/automations/analytics-reporting"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                Analytics & Reporting
+                              </Link>
+                              <Link
+                                to="/automations/contracts-workflow"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                Contracts & Workflow
+                              </Link>
+                              <Link
+                                to="/automations/ecommerce-retention"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-gray-600 hover:text-brand-teal transition-colors focus:outline-none"
+                              >
+                                E-commerce Retention
+                              </Link>
+                              <Link
+                                to="/automations"
+                                onClick={() => setIsMenuOpen(false)}
+                                className="block px-4 py-2 text-sm font-medium text-brand-teal hover:bg-white/5 transition-colors focus:outline-none"
+                              >
+                                Explore More →
+                              </Link>
+                            </div>
+                          )}
+                        </div>
                       )}
-                    </div>
-                  ) : item.dropdown ? (
-                    <div className="space-y-1">
-                      <div className="px-3 py-2 text-sm font-medium text-gray-700">
-                        {item.name}
-                      </div>
-                      {item.dropdown.map((subItem) => (
-                        <Link
-                          key={subItem.name}
-                          to={subItem.path}
-                          onClick={() => setIsMenuOpen(false)}
-                          className="block px-6 py-2 text-sm text-gray-600 hover:text-brand-teal hover:bg-white/20 rounded-lg ml-3 transition-colors focus:outline-none"
-                        >
-                          {subItem.name}
-                        </Link>
-                      ))}
-                    </div>
+                    </>
                   ) : (
                     <Link
                       to={item.path}
                       onClick={() => setIsMenuOpen(false)}
-                      className={`block px-3 py-2 rounded-lg text-sm font-medium transition-colors focus:outline-none ${
+                      className={`block px-4 py-3 text-base font-medium transition-colors focus:outline-none ${
                         location.pathname === item.path
-                          ? 'text-brand-teal bg-white/20'
-                          : 'text-gray-700 hover:text-brand-teal hover:bg-white/20'
+                          ? 'text-brand-teal bg-white/10'
+                          : 'text-gray-700 hover:text-brand-teal hover:bg-white/5'
                       }`}
                     >
                       {item.name}
@@ -547,38 +583,37 @@ const Header = () => {
                   )}
                 </div>
               ))}
-              <div className="pt-4 space-y-2 border-t border-white/20">
+              
+              <div className="pt-4 mt-4 border-t border-white/20">
                 {user ? (
-                  <>
-                    <div className="flex items-center justify-between px-3 py-2">
-                      <span className="text-sm font-medium text-gray-700">
-                        Welcome, {getUserDisplayName()}
-                      </span>
-                      <button
-                        onClick={handleSignOut}
-                        className="btn-gold text-sm focus:outline-none ml-3"
-                      >
-                        Sign Out
-                      </button>
-                    </div>
-                  </>
+                  <div className="flex items-center justify-between px-4 py-3">
+                    <span className="text-sm font-medium text-gray-700">
+                      Welcome, {getUserDisplayName()}
+                    </span>
+                    <button
+                      onClick={handleSignOut}
+                      className="btn-gold text-sm focus:outline-none"
+                    >
+                      Sign Out
+                    </button>
+                  </div>
                 ) : (
-                  <>
+                  <div className="space-y-2">
                     <Link
                       to="/signin"
                       onClick={() => setIsMenuOpen(false)}
-                      className="block px-3 py-2 text-sm font-medium text-gray-700 hover:text-brand-teal hover:bg-white/20 rounded-lg transition-colors focus:outline-none"
+                      className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-brand-teal hover:bg-white/5 transition-colors focus:outline-none"
                     >
                       Sign In
                     </Link>
                     <Link
                       to="/signup"
                       onClick={() => setIsMenuOpen(false)}
-                      className="block px-3 py-2 btn-gold text-sm text-center focus:outline-none"
+                      className="block mx-4 py-3 btn-gold text-base text-center focus:outline-none"
                     >
                       Register
                     </Link>
-                  </>
+                  </div>
                 )}
               </div>
             </nav>

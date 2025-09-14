@@ -26,17 +26,9 @@ import Insurance from './pages/domains/Insurance';
 import Logistics from './pages/domains/Logistics';
 import RetailConsumer from './pages/domains/RetailConsumer';
 import TravelHospitality from './pages/domains/TravelHospitality';
-import HomeServicesUseCase from './pages/use-cases/HomeServices';
-import InsuranceUseCase from './pages/use-cases/Insurance';
-import RealEstateUseCase from './pages/use-cases/RealEstate';
-import CustomerSupportUseCase from './pages/use-cases/CustomerSupport';
-import LogisticsUseCase from './pages/use-cases/Logistics';
-import TravelHospitalityUseCase from './pages/use-cases/TravelHospitality';
-import EcommerceUseCase from './pages/use-cases/Ecommerce';
 import LeadQualificationUseCase from './pages/use-cases/LeadQualification';
 import AppointmentBookingUseCase from './pages/use-cases/AppointmentBooking';
 import CustomerSupportAgentUseCase from './pages/use-cases/CustomerSupportAgent';
-import RetailConsumerUseCase from './pages/use-cases/RetailConsumer';
 import Integrations from './pages/Integrations';
 import CalCom from './pages/integrations/CalCom';
 import CustomLLM from './pages/integrations/CustomLLM';
@@ -58,6 +50,7 @@ import EcommerceRetention from './pages/automations/EcommerceRetention';
 import Partner from './pages/Partner';
 import Careers from './pages/Careers';
 import Internships from './pages/Internships';
+import Languages from './pages/Languages';
 
 function App() {
   return (
@@ -93,18 +86,16 @@ function App() {
                 {/* Redirect merged use case paths to domain pages */}
                 <Route path="/use-cases/healthcare" element={<Navigate to="/healthcare" replace />} />
                 <Route path="/use-cases/finance" element={<Navigate to="/financial-services" replace />} />
-                
-                {/* Keep routes for remaining use cases until they're merged */}
-                <Route path="/use-cases/insurance" element={<InsuranceUseCase />} />
-                <Route path="/use-cases/real-estate" element={<RealEstateUseCase />} />
-                <Route path="/use-cases/customer-support" element={<CustomerSupportUseCase />} />
-                <Route path="/use-cases/logistics" element={<LogisticsUseCase />} />
-                <Route path="/use-cases/travel-hospitality" element={<TravelHospitalityUseCase />} />
-                <Route path="/use-cases/ecommerce" element={<EcommerceUseCase />} />
+                <Route path="/use-cases/insurance" element={<Navigate to="/insurance" replace />} />
+                <Route path="/use-cases/real-estate" element={<Navigate to="/real-estate" replace />} />
+                <Route path="/use-cases/customer-support" element={<Navigate to="/customer-support" replace />} />
+                <Route path="/use-cases/logistics" element={<Navigate to="/logistics" replace />} />
+                <Route path="/use-cases/travel-hospitality" element={<Navigate to="/travel-hospitality" replace />} />
+                <Route path="/use-cases/ecommerce" element={<Navigate to="/ecommerce" replace />} />
+                <Route path="/use-cases/home-services" element={<Navigate to="/home-services" replace />} />
+                <Route path="/use-cases/retail-consumer" element={<Navigate to="/retail-consumer" replace />} />
                 
                 {/* Keep remaining unique use case pages */}
-                <Route path="/use-cases/home-services" element={<HomeServicesUseCase />} />
-                <Route path="/use-cases/retail-consumer" element={<RetailConsumerUseCase />} />
                 <Route path="/lead-qualification" element={<LeadQualificationUseCase />} />
                 <Route path="/appointment-booking" element={<AppointmentBookingUseCase />} />
                 <Route path="/customer-support-agent" element={<CustomerSupportAgentUseCase />} />
@@ -129,6 +120,7 @@ function App() {
                 <Route path="/partner" element={<Partner />} />
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/internships" element={<Internships />} />
+                <Route path="/languages" element={<Languages />} />
               </Routes>
             </main>
             <Footer />

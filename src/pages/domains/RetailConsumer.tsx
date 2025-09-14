@@ -112,7 +112,7 @@ const RetailConsumer = () => {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      setSubmitStatus({ type: 'success', message: 'Demo request submitted! We\'ll show you AI agents that revolutionize retail customer engagement.' });
+      window.location.href = 'https://calendly.com/euphoricai-aivoiceagents-demo/30min';
     }, 2000);
   };
 
@@ -130,12 +130,6 @@ const RetailConsumer = () => {
         'Replenishment reminders for consumable products',
         'Exclusive offer notifications for VIP customers',
         'Review request campaigns with incentive programs'
-      ],
-      benefits: [
-        'Increase repeat purchases by 45%',
-        'Boost customer lifetime value by 35%',
-        'Improve customer satisfaction scores',
-        'Build stronger brand loyalty'
       ]
     },
     {
@@ -151,12 +145,6 @@ const RetailConsumer = () => {
         'Product availability and restocking notifications',
         'Warranty and service information provision',
         'Account management and password assistance'
-      ],
-      benefits: [
-        'Reduce support costs by 60%',
-        'Improve response time by 80%',
-        'Handle 75% of inquiries automatically',
-        'Provide 24/7 customer support'
       ]
     },
     {
@@ -172,13 +160,40 @@ const RetailConsumer = () => {
         'Product availability confirmation and alternatives',
         'Limited-time offer creation for hesitant customers',
         'Checkout assistance and technical support'
-      ],
-      benefits: [
-        'Recover 25% of abandoned carts',
-        'Add $180K+ monthly revenue',
-        'Improve conversion rates significantly',
-        'Reduce lost sales opportunities'
       ]
+    }
+  ];
+
+  const industries = [
+    { 
+      name: 'Fashion & Apparel', 
+      description: 'Size guidance, style recommendations, and seasonal collection promotion', 
+      painPoint: 'High return rates (30-40%) due to poor size guidance cost $761 billion annually' 
+    },
+    { 
+      name: 'Consumer Electronics', 
+      description: 'Technical support, warranty information, and product compatibility guidance', 
+      painPoint: 'Complex product questions overwhelm support teams, leading to 45% call abandonment' 
+    },
+    { 
+      name: 'Home & Garden', 
+      description: 'Product installation guidance, seasonal promotions, and inventory management', 
+      painPoint: 'Seasonal demand fluctuations cause 60% inventory waste or stockouts' 
+    },
+    { 
+      name: 'Health & Beauty', 
+      description: 'Product recommendations, subscription management, and ingredient consultations', 
+      painPoint: 'Subscription churn rate of 40% due to poor engagement and communication' 
+    },
+    { 
+      name: 'Sports & Outdoor', 
+      description: 'Equipment sizing, activity recommendations, and seasonal gear promotion', 
+      painPoint: 'Product expertise requirements overwhelm generalist customer service teams' 
+    },
+    { 
+      name: 'Grocery & Food', 
+      description: 'Delivery coordination, dietary consultations, and freshness guarantees', 
+      painPoint: 'Perishable goods require immediate customer contact for delivery success' 
     }
   ];
 
@@ -220,9 +235,11 @@ const RetailConsumer = () => {
               </div>
 
               <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
-                <span className="text-euphoric-gradient">
-                  <TypingAnimation startOnView={true} duration={150} className="text-euphoric-gradient">
-                    Retail & Consumer Voice AI Agents
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Retail & Consumer</span>
+                <br />
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                  <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
+                    Voice AI Agents
                   </TypingAnimation>
                 </span>
               </h1>
@@ -398,7 +415,7 @@ const RetailConsumer = () => {
                       >
                         <button
                           type="submit"
-                          disabled={isSubmitting}
+                          disabled={isSubmitting || !demoForm.name.trim() || !demoForm.email.trim() || !demoForm.phone.trim()}
                           className="w-full py-4 px-6 rounded-xl font-bold bg-gradient-to-r from-brand-teal to-brand-blue text-white hover:from-brand-teal/90 hover:to-brand-blue/90 transition-all transform hover:scale-[1.02] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-lg hover:shadow-xl flex items-center justify-center gap-2"
                         >
                           {isSubmitting ? (
@@ -581,6 +598,41 @@ const RetailConsumer = () => {
         </div>
       </section>
 
+      {/* Industries Section */}
+      <section className="py-20 bg-euphoric-surface">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Industries</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">We Serve</span>
+            </h2>
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+              Specialized solutions for different retail and consumer sectors
+            </p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            {industries.map((industry, index) => (
+              <motion.div
+                key={industry.name}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-gray-200/50 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1"
+              >
+                <h3 className="text-xl font-semibold text-gray-900 mb-3">{industry.name}</h3>
+                <p className="text-gray-600 mb-4 leading-relaxed">{industry.description}</p>
+                <div className="bg-yellow-50/95 backdrop-blur-sm border-l-4 border-yellow-400 rounded-lg p-3">
+                  <p className="text-sm text-yellow-800">{industry.painPoint}</p>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Integrations Section */}
       <section className="py-24 bg-euphoric-surface relative overflow-hidden">
         <div className="absolute inset-0 opacity-30">
@@ -602,12 +654,10 @@ const RetailConsumer = () => {
                   <span className="text-gray-700 font-semibold">E-commerce Integrations</span>
                 </div>
                 
-                <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 leading-tight">
-                  Connects With Your 
+                <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+                  <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Connects With</span>
                   <br />
-                  <span className="bg-gradient-to-r from-brand-teal to-brand-blue bg-clip-text text-transparent">
-                    E-commerce Stack
-                  </span>
+                  <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Your E-commerce Stack</span>
                 </h2>
                 
                 <p className="text-xl text-gray-600 mb-8 leading-relaxed">
@@ -715,8 +765,10 @@ const RetailConsumer = () => {
       <section className="py-20 bg-gradient-to-r from-brand-teal to-brand-blue">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
-              Ready to Revolutionize Your Customer Engagement?
+            <h2 className="font-bold mb-6 leading-tight tracking-tight text-white" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
+              <span className="text-white">Ready to Revolutionize</span>
+              <br />
+              <span className="text-white">Your Customer Engagement?</span>
             </h2>
             <p className="text-lg text-white/90 mb-8">
               Join retail businesses using AI agents to recover abandoned sales, enhance customer service, and build lasting customer relationships.

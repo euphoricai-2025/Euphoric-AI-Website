@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Check, ArrowRight, Phone, Zap, Shield, BarChart3, CheckCircle, DollarSign, Settings, Briefcase, Headphones, ShieldCheck, Tag, ChevronDown, ChevronUp } from 'lucide-react';
+import { Check, ArrowRight, Phone, Zap, Shield, BarChart3, CheckCircle, DollarSign, Settings, Briefcase, Headphones, ShieldCheck, Tag, ChevronDown, ChevronUp, Sparkles, Crown, Rocket, HelpCircle } from 'lucide-react';
 import TabbedInterface from '../components/TabbedInterface';
+import { TextAnimate } from '../components/magicui/text-animate';
 
 const Pricing = () => {
   const [openFaqItems, setOpenFaqItems] = useState<number[]>([]);
@@ -138,91 +139,150 @@ const Pricing = () => {
   ];
 
   return (
-    <div className="pt-16 bg-gray-50 min-h-screen">
+    <div className="pt-16 bg-euphoric-surface min-h-screen">
       {/* Hero Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto mb-16">
+      <section className="py-32 relative overflow-hidden">
+        {/* Background Elements */}
+        <div className="absolute inset-0 opacity-30">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-teal/30 to-brand-blue/30 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-gold/30 to-brand-teal/30 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-4xl mx-auto mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="mb-8"
+            >
+              <span className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-teal text-sm font-semibold mb-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:bg-white/15">
+                <Sparkles className="w-4 h-4 mr-3 text-brand-gold animate-pulse" />
+                Flexible Plans for Every Business Size
+              </span>
+            </motion.div>
+            
             <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold mb-6 tracking-tight"
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-bold mb-8 tracking-tight leading-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
             >
-              <span className="text-gray-900">Scale </span>
-              <span className="text-gray-500">as </span>
-              <span className="text-euphoric-gradient">You Grow</span>
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Scale as You</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Grow</span>
             </motion.h1>
+            
             <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-gray-600 leading-relaxed max-w-2xl mx-auto"
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl md:text-2xl text-gray-600 leading-relaxed max-w-3xl mx-auto mb-12"
             >
-              Self-setup from dashboard. Twilio numbers. Stripe billing. No hidden fees.
+              <TextAnimate animation="blurInUp" by="word" once>
+                Self-setup from dashboard. Twilio numbers. Stripe billing. No hidden fees. No contracts.
+              </TextAnimate>
             </motion.p>
+            
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            >
+              <Link
+                to="/signup"
+                className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group text-lg"
+              >
+                Start Free Trial
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Link>
+              <a
+                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="bg-white border-2 border-brand-teal text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-brand-teal hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center text-lg"
+              >
+                Book Demo
+              </a>
+            </motion.div>
           </div>
 
 
           {/* Pricing Cards */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
             {/* Starter Plan */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0 }}
-              className="bg-white rounded-2xl border border-gray-200 p-8 relative flex flex-col min-h-[600px]"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0 }}
+              whileHover={{ scale: 1.05, y: -5 }}
+              className="relative group cursor-pointer"
             >
-              <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
-                <p className="text-sm text-gray-600 mb-4">To develop and launch your first AI voice agent</p>
-                <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$29</span>
-                  <span className="text-gray-500 text-sm">/month only</span>
-                </div>
-                <a 
-                  href="https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full bg-gray-800 text-white py-2 px-4 rounded-lg font-medium hover:bg-gray-700 transition-colors block text-center"
-                >
-                  Subscribe
-                </a>
-              </div>
+              <div className="relative">
+                {/* Animated Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/10 via-brand-blue/5 to-brand-teal/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                
+                {/* Card Content */}
+                <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 flex flex-col min-h-[600px]">
+                  <div className="mb-6">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p className="text-sm text-gray-600 mb-4">To develop and launch your first AI voice agent</p>
+                    <div className="mb-4">
+                      <span className="text-3xl font-bold text-gray-900">$29</span>
+                      <span className="text-gray-500 text-sm">/month only</span>
+                    </div>
+                    <a 
+                      href="https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
+                    >
+                      Get Started
+                    </a>
+                  </div>
               
-              <div className="space-y-3 text-sm">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">50 mins</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">5 Concurrent Calls</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Voice API, LLM, transcriber costs</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">API & Integrations</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Real-Time Booking, Human Transfer & More Actions</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Post Call Analysis</span>
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">50 mins</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">5 Concurrent Calls</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">Voice API, LLM, transcriber costs</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">API & Integrations</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">Real-Time Booking, Human Transfer & More Actions</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">Post Call Analysis</span>
+                    </div>
+                  </div>
+                  
+                  {/* Shine Effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Growth Plan */}
+            {/* Standard Plan */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
-              className="bg-white rounded-2xl border border-gray-200 p-8 relative flex flex-col min-h-[600px]"
+              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Standard</h3>
@@ -235,9 +295,9 @@ const Pricing = () => {
                   href="https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-gray-800 text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-700 transition-colors mt-auto block text-center"
+                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
                 >
-                  Subscribe
+                  Get Started
                 </a>
               </div>
               
@@ -277,15 +337,17 @@ const Pricing = () => {
               </div>
             </motion.div>
 
-            {/* Growth Plan */}
+            {/* Growth Plan - Most Popular */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="bg-white rounded-2xl border-2 border-brand-teal p-8 relative flex flex-col min-h-[600px]"
+              className="glass p-8 relative flex flex-col min-h-[600px] card-hover group border-2 border-brand-teal shadow-xl scale-105 z-10"
             >
-              <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                <span className="bg-brand-teal text-white text-xs font-semibold px-3 py-1 rounded-full">Most Popular</span>
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
+                  Most Popular
+                </span>
               </div>
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Growth</h3>
@@ -298,9 +360,9 @@ const Pricing = () => {
                   href="https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-gray-800 text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-700 transition-colors mt-auto block text-center"
+                  className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
                 >
-                  Subscribe
+                  Get Started
                 </a>
               </div>
               
@@ -356,12 +418,12 @@ const Pricing = () => {
               </div>
             </motion.div>
 
-            {/* Agency Plan */}
+            {/* Pro Plan */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="bg-white rounded-2xl border border-gray-200 p-8 relative flex flex-col min-h-[600px]"
+              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Pro</h3>
@@ -374,9 +436,9 @@ const Pricing = () => {
                   href="https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-gray-800 text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-700 transition-colors mt-auto block text-center"
+                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
                 >
-                  Subscribe
+                  Get Started
                 </a>
               </div>
               
@@ -429,7 +491,7 @@ const Pricing = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="bg-white rounded-2xl border border-gray-200 p-8 relative flex flex-col min-h-[600px]"
+              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Premium</h3>
@@ -442,9 +504,9 @@ const Pricing = () => {
                   href="https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full bg-gray-800 text-white py-3 px-4 rounded-lg font-medium hover:bg-gray-700 transition-colors mt-auto block text-center"
+                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
                 >
-                  Subscribe
+                  Get Started
                 </a>
               </div>
               
@@ -505,84 +567,90 @@ const Pricing = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="lg:col-span-5 mt-8"
+              className="lg:col-span-5 mt-12"
             >
-              <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+              <div className="glass rounded-3xl overflow-hidden shadow-2xl">
                 <div className="grid md:grid-cols-2">
                   {/* Left Column - Plan Description with Premium gradient */}
-                  <div className="bg-gradient-to-br from-brand-teal to-gray-700 p-8 flex flex-col justify-center text-white">
-                    <h3 className="text-3xl font-bold mb-4">Enterprise Plan</h3>
-                    <p className="text-lg text-white/90 mb-8 leading-relaxed">
-                      Customized tailor-made plan to fit customer's unique requirements.
-                    </p>
-                    <a 
-                      href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="bg-brand-teal hover:bg-brand-teal/90 text-white font-semibold py-3 px-8 rounded-lg transition-colors self-start inline-block text-center"
-                    >
-                      Contact Sales
-                    </a>
+                  <div className="bg-gradient-to-br from-brand-teal via-brand-blue to-brand-gold p-12 flex flex-col justify-center text-white relative overflow-hidden">
+                    <div className="absolute inset-0 bg-black/10"></div>
+                    <div className="relative z-10">
+                      <span className="inline-block px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-semibold mb-6">
+                        <Crown className="w-4 h-4 inline mr-2 text-brand-gold" />Custom Solution
+                      </span>
+                      <h3 className="text-4xl font-bold mb-6 leading-tight">Enterprise Plan</h3>
+                      <p className="text-xl text-white/95 mb-10 leading-relaxed">
+                        Tailored solutions with dedicated support, custom integrations, and enterprise-grade security for your unique requirements.
+                      </p>
+                      <div className="flex flex-col sm:flex-row gap-4">
+                        <a 
+                          href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="bg-white text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl inline-block text-center"
+                        >
+                          Contact Sales
+                        </a>
+                      </div>
+                    </div>
                   </div>
 
                   {/* Right Column - Features */}
-                  <div className="p-8 bg-white">
-                    <h4 className="text-xl font-bold text-gray-900 mb-6">All features covered from previous plans</h4>
-                    <div className="grid grid-cols-2 gap-4">
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3">
+                  <div className="p-10 bg-white/80 backdrop-blur-sm">
+                    <div className="grid grid-cols-2 gap-6">
+                      {/* Left Column - First 6 features */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Custom Pricing</span>
+                          <span className="text-gray-800 font-medium">Custom Pricing & Volume Discounts</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">SIP Trunk Integration</span>
+                          <span className="text-gray-800 font-medium">Advanced SIP Trunk Integration</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Priority support</span>
+                          <span className="text-gray-800 font-medium">24/7 Dedicated Support Team</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Custom SSO</span>
+                          <span className="text-gray-800 font-medium">Enterprise SSO & SAML Integration</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Unlimited QA/Guest Users</span>
+                          <span className="text-gray-800 font-medium">Unlimited Users & Advanced Roles</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Custom Caller ID (Display Your Number)</span>
+                          <span className="text-gray-800 font-medium">White-label Solution</span>
                         </div>
                       </div>
-                      <div className="space-y-3">
-                        <div className="flex items-center gap-3">
+                      
+                      {/* Right Column - Last 6 features */}
+                      <div className="space-y-4">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Highest Concurrent Calls</span>
+                          <span className="text-gray-800 font-medium">Unlimited Concurrent Calls</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Custom Integrations</span>
+                          <span className="text-gray-800 font-medium">Custom API Integrations</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Compliance (SOC2, HIPAA, GDPR)</span>
+                          <span className="text-gray-800 font-medium">Full Compliance (SOC2, HIPAA, GDPR)</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Guaranteed Uptime SLA</span>
+                          <span className="text-gray-800 font-medium">99.9% Uptime SLA Guarantee</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Solution Architect</span>
+                          <span className="text-gray-800 font-medium">Dedicated Solution Architect</span>
                         </div>
-                        <div className="flex items-center gap-3">
+                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Premium Onboarding Training Support</span>
-                        </div>
-                        <div className="flex items-center gap-3">
-                          <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-700 text-sm">Branded Caller ID (Display Business Name)</span>
+                          <span className="text-gray-800 font-medium">Premium Training & Onboarding</span>
                         </div>
                       </div>
                     </div>
@@ -595,108 +663,121 @@ const Pricing = () => {
       </section>
 
       {/* Compare Plans Section */}
-      <section className="py-20">
+      <section className="py-32 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16 flex justify-center">
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-4xl md:text-5xl font-bold mb-6 tracking-tight whitespace-nowrap"
+              transition={{ duration: 0.8 }}
+              className="mb-8"
             >
-              <span className="text-gray-900">Compare Plans and </span>
-              <span className="text-euphoric-gradient">Make the Right Choice</span>
-            </motion.h1>
+              <span className="inline-block px-6 py-3 bg-white/70 backdrop-blur-sm border border-white/40 rounded-full text-brand-teal font-medium text-sm mb-6 shadow-lg">
+                <BarChart3 className="w-4 h-4 inline mr-2 text-brand-teal" />Detailed Comparison
+              </span>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-bold mb-6 tracking-tight leading-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
+            >
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Compare Plans and</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Make the Right Choice</span>
+            </motion.h2>
           </div>
 
-
-          {/* Plan Comparison Header */}
-          <div className="bg-white rounded-3xl shadow-lg border border-gray-200 overflow-hidden mb-8">
-            <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-teal/10">
+          {/* Mobile-Optimized Plan Comparison Header */}
+          <div className="glass rounded-3xl overflow-hidden mb-8 shadow-2xl">
+            {/* Desktop View */}
+            <div className="hidden lg:grid lg:grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/10 to-brand-blue/10 backdrop-blur-sm">
               <div className="flex items-center justify-center">
                 <span className="text-4xl font-bold text-gray-900">Plans</span>
               </div>
               
-              {/* Plan Cards - Responsive */}
-              <div className="text-center">
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Starter</h3>
-                  <div className="text-2xl font-bold mb-1 text-brand-teal">$29</div>
-                  <div className="text-xs text-gray-900 mb-3">/month</div>
-                  <a 
-                    href="https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap block text-center"
-                  >
-                    Get Started
-                  </a>
-                </div>
-              </div>
-              
-              <div className="text-center">
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Standard</h3>
-                  <div className="text-2xl font-bold mb-1 text-brand-teal">$399</div>
-                  <div className="text-xs text-gray-900 mb-3">/month</div>
-                  <a 
-                    href="https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap block text-center"
-                  >
-                    Get Started
-                  </a>
-                </div>
-              </div>
-              
-              <div className="text-center">
-                <div className="bg-white rounded-xl p-4 shadow-sm border-2 border-brand-teal hover:shadow-md transition-shadow h-full flex flex-col relative">
-                  <div className="absolute -top-2 left-1/2 transform -translate-x-1/2">
-                    <span className="bg-brand-teal text-white text-xs font-semibold px-3 py-1 rounded-full">Most Popular</span>
+              {/* Plan Cards - Desktop */}
+              {[
+                { name: 'Starter', price: '$29', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
+                { name: 'Standard', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
+                { name: 'Growth', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: true },
+                { name: 'Pro', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: false },
+                { name: 'Premium', price: '$1249', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false }
+              ].map((plan) => (
+                <div key={plan.name} className="text-center">
+                  <div className={`rounded-xl p-4 hover:shadow-lg transition-all duration-300 h-full flex flex-col group card-hover ${
+                    plan.popular ? 'glass border-2 border-brand-teal scale-105 relative' : 'glass-soft'
+                  }`}>
+                    {plan.popular && (
+                      <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 z-20">
+                        <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-3 py-1 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
+                          Popular
+                        </span>
+                      </div>
+                    )}
+                    <h3 className={`text-xl font-bold text-gray-900 mb-2 ${plan.popular ? 'mt-2' : ''}`}>{plan.name}</h3>
+                    <div className="text-2xl font-bold mb-1 text-brand-teal">{plan.price}</div>
+                    <div className="text-xs text-gray-600 mb-3">/month</div>
+                    <a 
+                      href={plan.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={`w-full px-2 py-2 text-white rounded-lg text-xs font-semibold hover:shadow-lg transition-all duration-300 mt-auto whitespace-nowrap block text-center ${
+                        plan.popular ? 'bg-gradient-to-r from-brand-gold to-orange-400' : 'bg-gradient-to-r from-brand-teal to-brand-blue'
+                      }`}
+                    >
+                      Get Started
+                    </a>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 mb-2 mt-2">Growth</h3>
-                  <div className="text-2xl font-bold mb-1 text-brand-teal">$549</div>
-                  <div className="text-xs text-gray-900 mb-3">/month</div>
-                  <a 
-                    href="https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap block text-center"
-                  >
-                    Subscribe
-                  </a>
                 </div>
+              ))}
+            </div>
+
+            {/* Mobile View */}
+            <div className="lg:hidden">
+              <div className="p-6 bg-gradient-to-r from-brand-teal/10 to-brand-blue/10 backdrop-blur-sm text-center">
+                <span className="text-2xl md:text-4xl font-bold text-gray-900">Plans</span>
               </div>
               
-              <div className="text-center">
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Pro</h3>
-                  <div className="text-2xl font-bold mb-1 text-brand-teal">$849</div>
-                  <div className="text-xs text-gray-900 mb-3">/month</div>
-                  <a 
-                    href="https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap block text-center"
-                  >
-                    Subscribe
-                  </a>
-                </div>
-              </div>
-              
-              <div className="text-center">
-                <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow h-full flex flex-col">
-                  <h3 className="text-xl font-bold text-gray-900 mb-2">Premium</h3>
-                  <div className="text-2xl font-bold mb-1 text-brand-teal">$1249</div>
-                  <div className="text-xs text-gray-900 mb-3">/month</div>
-                  <a 
-                    href="https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="w-full px-2 py-2 bg-brand-teal text-white rounded-lg text-xs font-semibold hover:bg-brand-teal/90 transition-colors shadow-sm mt-auto whitespace-nowrap block text-center"
-                  >
-                    Subscribe
-                  </a>
+              {/* Horizontal scrollable plan cards for mobile */}
+              <div className="p-4 overflow-x-auto">
+                <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
+                  {[
+                    { name: 'Starter', price: '$29', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
+                    { name: 'Standard', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
+                    { name: 'Growth', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: true },
+                    { name: 'Pro', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: false },
+                    { name: 'Premium', price: '$1249', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false }
+                  ].map((plan) => (
+                    <div key={plan.name} className="flex-shrink-0 w-36">
+                      <div className={`rounded-xl p-3 hover:shadow-lg transition-all duration-300 h-full flex flex-col group card-hover ${
+                        plan.popular ? 'glass border-2 border-brand-teal relative' : 'glass-soft'
+                      }`}>
+                        {plan.popular && (
+                          <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 z-20">
+                            <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-2 py-0.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
+                              Popular
+                            </span>
+                          </div>
+                        )}
+                        <h3 className={`text-lg font-bold text-gray-900 mb-2 text-center ${plan.popular ? 'mt-2' : ''}`}>{plan.name}</h3>
+                        <div className="text-xl font-bold mb-1 text-brand-teal text-center">{plan.price}</div>
+                        <div className="text-xs text-gray-600 mb-3 text-center">/month</div>
+                        <a 
+                          href={plan.url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={`w-full px-2 py-2 text-white rounded-lg text-xs font-semibold hover:shadow-lg transition-all duration-300 mt-auto block text-center ${
+                            plan.popular ? 'bg-gradient-to-r from-brand-gold to-orange-400' : 'bg-gradient-to-r from-brand-teal to-brand-blue'
+                          }`}
+                        >
+                          Get Started
+                        </a>
+                      </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -711,109 +792,221 @@ const Pricing = () => {
                 label: 'Costs & Usage',
                 icon: DollarSign,
                 content: (
-                  <div className="bg-white rounded-lg border border-gray-200">
-                    <div className="grid grid-cols-6 gap-4 p-6 bg-gray-50 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
+                  <div className="glass rounded-2xl border-0 shadow-lg overflow-hidden">
+                    {/* Desktop Table View */}
+                    <div className="hidden lg:block">
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
+                        <div className="flex items-center justify-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Minutes included</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">50</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">2,000</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">3,000</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">5,000</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">7,500</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
+                    </div>
+
+                    {/* Mobile Card View */}
+                    <div className="lg:hidden">
+                      <div className="p-4 space-y-4">
+                        {/* Minutes included */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Minutes included</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">50</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">2,000</div>
+                            </div>
+                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
+                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
+                              <div className="text-gray-800 font-semibold">3,000</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="text-gray-800 font-semibold">5,000</div>
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="text-gray-800 font-semibold">7,500</div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                     
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Minutes included</span>
+                    {/* Continue Desktop Table */}
+                    <div className="hidden lg:block">
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Extra Minute</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">$0.16</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">$0.16</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">$0.16</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">$0.16</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">$0.16</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">50</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Concurrent Calls</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">5</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">15</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">25</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">50</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">80</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">2,000</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">3,000</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">5,000</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">7,500</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Extra Concurrent Call</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">$7/call</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">$7/call</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">$7/call</span>
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Extra Minute</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">$0.16</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">$0.16</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">$0.16</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">$0.16</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">$0.16</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Concurrent Calls</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">5</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">15</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">25</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">50</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">80</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Extra Concurrent Call</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">$7/call</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">$7/call</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">$7/call</span>
+
+                    {/* Continue Mobile Card View */}
+                    <div className="lg:hidden">
+                      <div className="p-4 space-y-4">
+                        {/* Extra Minute */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Extra Minute Cost</h3>
+                          <div className="text-center p-4 bg-gray-50 rounded-lg">
+                            <div className="text-xl font-bold text-brand-teal">$0.16</div>
+                            <div className="text-sm text-gray-600 mt-1">Same rate for all plans</div>
+                          </div>
+                        </div>
+
+                        {/* Concurrent Calls */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Concurrent Calls</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">5</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">15</div>
+                            </div>
+                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
+                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
+                              <div className="text-gray-800 font-semibold">25</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="text-gray-800 font-semibold">50</div>
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="text-gray-800 font-semibold">80</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Extra Concurrent Call */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Extra Concurrent Call</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
+                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
+                              <div className="text-gray-800 font-semibold">$7/call</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="text-gray-800 font-semibold">$7/call</div>
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="text-gray-800 font-semibold">$7/call</div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -824,109 +1017,213 @@ const Pricing = () => {
                 label: 'Core Features',
                 icon: Zap,
                 content: (
-                  <div className="bg-white rounded-lg border border-gray-200">
-                    <div className="grid grid-cols-6 gap-4 p-6 bg-gray-50 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
+                  <div className="glass rounded-2xl border-0 shadow-lg overflow-hidden">
+                    {/* Desktop Table View */}
+                    <div className="hidden lg:block">
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
+                        <div className="flex items-center justify-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Number of Assistants</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">1</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">5</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">10</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">20</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">Unlimited</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Multi-language</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Batch Campaigns</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Invite Team Members</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">2</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">3</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">4</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">5</span>
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Number of Assistants</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">1</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">5</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">10</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">20</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">Unlimited</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Multi-language</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Batch Campaigns</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Invite Team Members</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">2</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">3</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">4</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">5</span>
+
+                    {/* Mobile Card View */}
+                    <div className="lg:hidden">
+                      <div className="p-4 space-y-4">
+                        {/* Number of Assistants */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Number of Assistants</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">1</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">5</div>
+                            </div>
+                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
+                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
+                              <div className="text-gray-800 font-semibold">10</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="text-gray-800 font-semibold">20</div>
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="text-gray-800 font-semibold">Unlimited</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Multi-language */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Multi-language Support</h3>
+                          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                            <Check className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                            <div className="text-green-800 font-semibold">Available on all plans</div>
+                          </div>
+                        </div>
+
+                        {/* Batch Campaigns */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Batch Campaigns</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
+                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Invite Team Members */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Invite Team Members</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">2</div>
+                            </div>
+                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
+                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
+                              <div className="text-gray-800 font-semibold">3</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="text-gray-800 font-semibold">4</div>
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="text-gray-800 font-semibold">5</div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -937,109 +1234,233 @@ const Pricing = () => {
                 label: 'Support & Success',
                 icon: Headphones,
                 content: (
-                  <div className="bg-white rounded-lg border border-gray-200">
-                    <div className="grid grid-cols-6 gap-4 p-6 bg-gray-50 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Support</span>
+                  <div className="glass rounded-2xl border-0 shadow-lg overflow-hidden">
+                    {/* Desktop Table View */}
+                    <div className="hidden lg:block">
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
+                        <div className="flex items-center justify-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Support</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Support Level</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">Email Support</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">Email Support</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">Priority Email Support</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">Dedicated Account Manager</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">Dedicated Account Manager</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Onboarding via Zoom</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center text-center">
+                          <span className="text-xl font-semibold text-gray-900">Early Access to New Features</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">Solution Architect</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Support Level</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">Email Support</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">Email Support</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">Priority Email Support</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">Dedicated Account Manager</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">Dedicated Account Manager</span>
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Onboarding via Zoom</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center text-center">
-                        <span className="text-xl font-semibold text-gray-900">Early Access to New Features</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">Solution Architect</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
+
+                    {/* Mobile Card View */}
+                    <div className="lg:hidden">
+                      <div className="p-4 space-y-4">
+                        {/* Support Level */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Support Level</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 text-sm font-semibold">Email Support</div>
+                            </div>
+                            <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 text-sm font-semibold">Email Support</div>
+                            </div>
+                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
+                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
+                              <div className="text-gray-800 text-sm font-semibold">Priority Email</div>
+                            </div>
+                            <div className="text-center p-3 bg-purple-50 rounded-lg border border-purple-200">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="text-gray-800 text-sm font-semibold">Account Manager</div>
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-purple-50 rounded-lg border border-purple-200">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="text-gray-800 text-sm font-semibold">Account Manager</div>
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Onboarding via Zoom */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Onboarding via Zoom</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Growth</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Early Access to New Features */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Early Access to New Features</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Growth</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                        </div>
+
+                        {/* Solution Architect */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Solution Architect</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Growth</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1050,109 +1471,173 @@ const Pricing = () => {
                 label: 'Security & Compliance',
                 icon: ShieldCheck,
                 content: (
-                  <div className="bg-white rounded-lg border border-gray-200">
-                    <div className="grid grid-cols-6 gap-4 p-6 bg-gray-50 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Security Feature</span>
+                  <div className="glass rounded-2xl border-0 shadow-lg overflow-hidden">
+                    {/* Desktop Table View */}
+                    <div className="hidden lg:block">
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
+                        <div className="flex items-center justify-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Security Feature</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">HIPAA Compliance</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">SOC2 Security</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
+                        <div className="flex items-center justify-center">
+                          <span className="text-xl font-semibold text-gray-900">GDPR Compliance</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
+                      
+                      <div className="grid grid-cols-6 gap-4 p-6">
+                        <div className="flex items-center justify-center text-center">
+                          <span className="text-xl font-semibold text-gray-900">Guaranteed Uptime (SLA)</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <span className="text-lg font-medium">—</span>
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
+                        <div className="text-center">
+                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
+                        </div>
                       </div>
                     </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">HIPAA Compliance</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">SOC2 Security</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6 border-b border-gray-200">
-                      <div className="flex items-center justify-center">
-                        <span className="text-xl font-semibold text-gray-900">GDPR Compliance</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-6 gap-4 p-6">
-                      <div className="flex items-center justify-center text-center">
-                        <span className="text-xl font-semibold text-gray-900">Guaranteed Uptime (SLA)</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <span className="text-lg font-medium">—</span>
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                      </div>
-                      <div className="text-center">
-                        <Check className="w-6 h-6 text-brand-teal mx-auto" />
+
+                    {/* Mobile Card View */}
+                    <div className="lg:hidden">
+                      <div className="p-4 space-y-4">
+                        {/* HIPAA Compliance */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">HIPAA Compliance</h3>
+                          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                            <Check className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                            <div className="text-green-800 font-semibold">Available on all plans</div>
+                          </div>
+                        </div>
+
+                        {/* SOC2 Security */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">SOC2 Security</h3>
+                          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                            <Check className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                            <div className="text-green-800 font-semibold">Available on all plans</div>
+                          </div>
+                        </div>
+
+                        {/* GDPR Compliance */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">GDPR Compliance</h3>
+                          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
+                            <Check className="w-8 h-8 text-green-600 mx-auto mb-2" />
+                            <div className="text-green-800 font-semibold">Available on all plans</div>
+                          </div>
+                        </div>
+
+                        {/* Guaranteed Uptime (SLA) */}
+                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
+                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Guaranteed Uptime (SLA)</h3>
+                          <div className="grid grid-cols-2 gap-3">
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Growth</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                          <div className="mt-3">
+                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -1164,16 +1649,40 @@ const Pricing = () => {
       </section>
 
       {/* Features Section */}
-      <section className="py-20">
+      <section className="py-32 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">
-              <span className="text-gray-900">Everything You Need </span>
-              <span className="text-euphoric-gradient">Included</span>
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="mb-8"
+            >
+              <span className="inline-block px-6 py-3 bg-white/70 backdrop-blur-sm border border-white/40 rounded-full text-brand-teal font-medium text-sm mb-6 shadow-lg">
+                <Sparkles className="w-4 h-4 inline mr-2 text-brand-gold" />Core Features
+              </span>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-bold mb-6 tracking-tight leading-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
+            >
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Everything You Need</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Included</span>
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl md:text-2xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            >
               All plans come with essential features to get your AI calling agents up and running quickly.
-            </p>
+            </motion.p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
@@ -1182,16 +1691,28 @@ const Pricing = () => {
               return (
                 <motion.div
                   key={feature.title}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="text-center glass-soft p-6 card-hover"
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.8, delay: index * 0.1 }}
+                  className="text-center group h-full"
                 >
-                  <div className="icon-badge mx-auto mb-4">
-                    <Icon className="w-6 h-6" />
+                  <div className="relative h-full">
+                    {/* Animated Background Glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/20 via-brand-blue/15 to-brand-teal/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                    
+                    {/* Card Content */}
+                    <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 h-full flex flex-col">
+                      <div className="w-16 h-16 bg-gradient-to-br from-brand-teal via-brand-blue to-brand-teal rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg group-hover:shadow-xl transition-all duration-300">
+                        <Icon className="w-8 h-8 text-white" />
+                      </div>
+                      <h3 className="text-2xl font-bold text-gray-900 mb-4">{feature.title}</h3>
+                      <p className="text-gray-600 leading-relaxed text-lg flex-grow">{feature.description}</p>
+                      
+                      {/* Shine Effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
+                    </div>
                   </div>
-                  <h3 className="text-xl font-semibold text-gray-900 mb-3">{feature.title}</h3>
-                  <p className="text-gray-600 leading-relaxed">{feature.description}</p>
                 </motion.div>
               );
             })}
@@ -1200,12 +1721,31 @@ const Pricing = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20">
+      <section className="py-32 relative">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-gray-900 tracking-tight">
-              Frequently Asked Questions
-            </h2>
+          <div className="text-center mb-20">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              className="mb-8"
+            >
+              <span className="inline-block px-6 py-3 bg-white/70 backdrop-blur-sm border border-white/40 rounded-full text-brand-teal font-medium text-sm mb-6 shadow-lg">
+                <HelpCircle className="w-4 h-4 inline mr-2 text-brand-teal" />Got Questions?
+              </span>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-bold mb-6 tracking-tight leading-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
+            >
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Frequently Asked</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Questions</span>
+            </motion.h2>
           </div>
 
           <div className="max-w-3xl mx-auto space-y-4">
@@ -1218,11 +1758,11 @@ const Pricing = () => {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="rounded-2xl bg-white border border-gray-200 shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+                  className="glass-soft rounded-2xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden card-hover group"
                 >
                   <button
                     onClick={() => toggleFaqItem(index)}
-                    className="w-full px-6 py-4 text-left flex items-center justify-between hover:bg-gray-50 transition-colors duration-200"
+                    className="w-full px-6 py-5 text-left flex items-center justify-between hover:bg-white/50 transition-all duration-300 group-hover:bg-white/60"
                   >
                     <span className="text-gray-900 font-medium pr-4">{faq.question}</span>
                     {isOpen ? (
@@ -1240,8 +1780,8 @@ const Pricing = () => {
                       transition={{ duration: 0.3 }}
                       className="px-6 pb-4"
                     >
-                      <div className="pt-2 border-t border-gray-100">
-                        <p className="text-gray-600 leading-relaxed">{faq.answer}</p>
+                      <div className="pt-4 border-t border-white/30">
+                        <p className="text-gray-700 leading-relaxed text-lg">{faq.answer}</p>
                       </div>
                     </motion.div>
                   )}
@@ -1253,45 +1793,81 @@ const Pricing = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-3xl mx-auto">
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
+      <section className="py-32 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/5 via-brand-blue/5 to-brand-gold/5"></div>
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="text-center max-w-4xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              className="text-3xl md:text-4xl font-bold mb-6 text-gray-900 tracking-tight"
+              transition={{ duration: 0.8 }}
+              className="mb-8"
             >
-              Ready to Get Started?
-            </motion.h2>
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
+              <span className="inline-block px-6 py-3 bg-white/70 backdrop-blur-sm border border-white/40 rounded-full text-brand-teal font-medium text-sm mb-6 shadow-lg">
+                <Rocket className="w-4 h-4 inline mr-2 text-brand-blue" />Get Started Today
+              </span>
+            </motion.div>
+            
+            <motion.h2
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="text-xl text-gray-600 mb-8 leading-relaxed"
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="font-bold mb-8 tracking-tight leading-tight"
+              style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}
+            >
+              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Ready to Transform</span>
+              <br />
+              <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Your Business?</span>
+            </motion.h2>
+            
+            <motion.p
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-xl md:text-2xl text-gray-600 mb-12 leading-relaxed max-w-3xl mx-auto"
             >
               Deploy your first AI calling agent today and start transforming your business communications.
+              <br className="hidden md:block" />
+              <span className="text-euphoric-gradient font-semibold">No setup fees. No long-term contracts.</span>
             </motion.p>
+            
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="flex flex-col sm:flex-row gap-4 justify-center"
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
             >
               <Link
                 to="/signup"
-                className="btn-gold inline-flex items-center justify-center gap-2 group"
+                className="btn-gold inline-flex items-center justify-center gap-2 group px-8 py-4 text-lg font-semibold"
               >
-                Start Your Free Trial
+                Start Free Trial
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
                 href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="btn-outline inline-flex items-center justify-center"
+                className="btn-outline inline-flex items-center justify-center px-8 py-4 text-lg font-semibold"
               >
-                Contact Sales
+                Book Demo
               </a>
+            </motion.div>
+            
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="mt-12 flex items-center justify-center gap-8 text-gray-500 text-sm"
+            >
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-brand-teal" />
+                <span>No Credit Card Required</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <CheckCircle className="w-4 h-4 text-brand-teal" />
+                <span>Cancel Anytime</span>
+              </div>
             </motion.div>
           </div>
         </div>
