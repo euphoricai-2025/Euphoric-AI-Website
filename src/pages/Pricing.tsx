@@ -4,9 +4,11 @@ import { motion } from 'framer-motion';
 import { Check, ArrowRight, Phone, Zap, Shield, BarChart3, CheckCircle, DollarSign, Settings, Briefcase, Headphones, ShieldCheck, Tag, ChevronDown, ChevronUp, Sparkles, Crown, Rocket, HelpCircle } from 'lucide-react';
 import TabbedInterface from '../components/TabbedInterface';
 import { TextAnimate } from '../components/magicui/text-animate';
+import { useAuth } from '../contexts/AuthContext';
 
 const Pricing = () => {
   const [openFaqItems, setOpenFaqItems] = useState<number[]>([]);
+  const { user } = useAuth();
   
   const plans = [
     {
@@ -191,13 +193,25 @@ const Pricing = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-6 justify-center items-center"
             >
-              <Link
-                to="/signup"
-                className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group text-lg"
-              >
-                Start Free Trial
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+{!user ? (
+                <Link
+                  to="/signup"
+                  className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group text-lg"
+                >
+                  Sign Up
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              ) : (
+                <a
+                  href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group text-lg"
+                >
+                  Book Demo
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              )}
               <a
                 href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
                 target="_blank"
@@ -619,10 +633,6 @@ const Pricing = () => {
                         <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
                           <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
                           <span className="text-gray-800 font-medium">Unlimited Users & Advanced Roles</span>
-                        </div>
-                        <div className="flex items-center gap-3 p-3 glass-soft rounded-lg">
-                          <CheckCircle className="w-5 h-5 text-brand-teal flex-shrink-0" />
-                          <span className="text-gray-800 font-medium">White-label Solution</span>
                         </div>
                       </div>
                       
@@ -1837,13 +1847,25 @@ const Pricing = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="flex flex-col sm:flex-row gap-6 justify-center items-center"
             >
-              <Link
-                to="/signup"
-                className="btn-gold inline-flex items-center justify-center gap-2 group px-8 py-4 text-lg font-semibold"
-              >
-                Start Free Trial
-                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </Link>
+{!user ? (
+                <Link
+                  to="/signup"
+                  className="btn-gold inline-flex items-center justify-center gap-2 group px-8 py-4 text-lg font-semibold"
+                >
+                  Sign Up
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </Link>
+              ) : (
+                <a
+                  href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-gold inline-flex items-center justify-center gap-2 group px-8 py-4 text-lg font-semibold"
+                >
+                  Book Demo
+                  <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+                </a>
+              )}
               <a
                 href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
                 target="_blank"
