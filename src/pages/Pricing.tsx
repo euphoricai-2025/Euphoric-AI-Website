@@ -212,14 +212,12 @@ const Pricing = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               )}
-              <a
-                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact"
                 className="bg-white border-2 border-brand-teal text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-brand-teal hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center text-lg"
               >
-                Book Demo
-              </a>
+                Contact Us
+              </Link>
             </motion.div>
           </div>
 
@@ -1866,14 +1864,12 @@ const Pricing = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </a>
               )}
-              <a
-                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                to="/contact"
                 className="btn-outline inline-flex items-center justify-center px-8 py-4 text-lg font-semibold"
               >
-                Book Demo
-              </a>
+                Contact Us
+              </Link>
             </motion.div>
             
             <motion.div
