@@ -4,6 +4,7 @@ import { motion } from 'framer-motion';
 import { Mail, Phone, MapPin, Clock, Send, MessageCircle, ArrowRight } from 'lucide-react';
 import { supabase } from '../lib/supabase';
 import { TextAnimate } from '../components/magicui/text-animate';
+import { sendContactNotification, validateEmailJSConfig } from '../services/emailjs';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -22,7 +23,8 @@ const Contact = () => {
     setSubmitMessage('');
 
     try {
-      const { error } = await supabase
+      // Store in Supabase database
+      const { error: dbError } = await supabase
         .from('contact_submissions')
         .insert([
           {
@@ -34,9 +36,22 @@ const Contact = () => {
           },
         ]);
 
-      if (error) throw error;
+      if (dbError) throw dbError;
 
-      setSubmitMessage('Thank you! Your message has been sent successfully.');
+      // Send email notification to team (if EmailJS is configured)
+      if (validateEmailJSConfig()) {
+        try {
+          await sendContactNotification(formData);
+          console.log('Email notification sent to team');
+        } catch (emailError) {
+          console.error('Failed to send email notification:', emailError);
+          // Don't fail the entire submission if email fails
+        }
+      } else {
+        console.warn('EmailJS not configured - email notification skipped');
+      }
+
+      setSubmitMessage('Thank you! Your message has been sent successfully. Our team will get back to you within 24 hours.');
       setFormData({
         name: '',
         email: '',
@@ -45,6 +60,7 @@ const Contact = () => {
         message: ''
       });
     } catch (error) {
+      console.error('Contact form submission error:', error);
       setSubmitMessage('Sorry, there was an error sending your message. Please try again.');
     } finally {
       setIsSubmitting(false);
