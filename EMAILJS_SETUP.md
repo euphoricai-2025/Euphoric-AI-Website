@@ -90,13 +90,13 @@ Subject: 🔔 New Contact Form Submission - {{subject}}
 ```
 
 ## Step 4: Configure Environment Variables
-Update your `.env.local` file with the EmailJS credentials:
+Update your `.env.local` file with the EmailJS credentials (using Vite environment variable naming):
 
 ```env
-# EmailJS Configuration
-REACT_APP_EMAILJS_SERVICE_ID=your_service_id_here
-REACT_APP_EMAILJS_TEMPLATE_ID=contact_notification
-REACT_APP_EMAILJS_PUBLIC_KEY=your_public_key_here
+# EmailJS Configuration for Vite
+VITE_EMAILJS_SERVICE_ID=your_service_id_here
+VITE_EMAILJS_TEMPLATE_ID=contact_notification
+VITE_EMAILJS_PUBLIC_KEY=your_public_key_here
 ```
 
 ## Step 5: Get Your Credentials
