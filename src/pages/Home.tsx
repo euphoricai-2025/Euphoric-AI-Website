@@ -16,35 +16,9 @@ import { LanguagesShowcase } from '../components/LanguageMarquee';
 // Country codes data with flags
 const countryCodes = [
   { code: '+1', country: 'US', flag: '🇺🇸', name: 'United States' },
-  { code: '+1', country: 'CA', flag: '🇨🇦', name: 'Canada' },
-  { code: '+44', country: 'GB', flag: '🇬🇧', name: 'United Kingdom' },
-  { code: '+49', country: 'DE', flag: '🇩🇪', name: 'Germany' },
-  { code: '+33', country: 'FR', flag: '🇫🇷', name: 'France' },
-  { code: '+39', country: 'IT', flag: '🇮🇹', name: 'Italy' },
-  { code: '+34', country: 'ES', flag: '🇪🇸', name: 'Spain' },
-  { code: '+31', country: 'NL', flag: '🇳🇱', name: 'Netherlands' },
-  { code: '+41', country: 'CH', flag: '🇨🇭', name: 'Switzerland' },
-  { code: '+43', country: 'AT', flag: '🇦🇹', name: 'Austria' },
-  { code: '+32', country: 'BE', flag: '🇧🇪', name: 'Belgium' },
-  { code: '+45', country: 'DK', flag: '🇩🇰', name: 'Denmark' },
-  { code: '+46', country: 'SE', flag: '🇸🇪', name: 'Sweden' },
-  { code: '+47', country: 'NO', flag: '🇳🇴', name: 'Norway' },
-  { code: '+358', country: 'FI', flag: '🇫🇮', name: 'Finland' },
   { code: '+91', country: 'IN', flag: '🇮🇳', name: 'India' },
-  { code: '+86', country: 'CN', flag: '🇨🇳', name: 'China' },
-  { code: '+81', country: 'JP', flag: '🇯🇵', name: 'Japan' },
-  { code: '+82', country: 'KR', flag: '🇰🇷', name: 'South Korea' },
-  { code: '+61', country: 'AU', flag: '🇦🇺', name: 'Australia' },
-  { code: '+64', country: 'NZ', flag: '🇳🇿', name: 'New Zealand' },
-  { code: '+55', country: 'BR', flag: '🇧🇷', name: 'Brazil' },
-  { code: '+52', country: 'MX', flag: '🇲🇽', name: 'Mexico' },
-  { code: '+7', country: 'RU', flag: '🇷🇺', name: 'Russia' },
-  { code: '+27', country: 'ZA', flag: '🇿🇦', name: 'South Africa' },
   { code: '+971', country: 'AE', flag: '🇦🇪', name: 'UAE' },
-  { code: '+966', country: 'SA', flag: '🇸🇦', name: 'Saudi Arabia' },
-  { code: '+65', country: 'SG', flag: '🇸🇬', name: 'Singapore' },
-  { code: '+60', country: 'MY', flag: '🇲🇾', name: 'Malaysia' },
-  { code: '+66', country: 'TH', flag: '🇹🇭', name: 'Thailand' }
+  { code: '+968', country: 'OM', flag: '🇴🇲', name: 'Oman' }
 ];
 
 const Home = () => {
@@ -502,7 +476,7 @@ const Home = () => {
                               </div>
                               
                               {/* Country List */}
-                              <div className="max-h-48 overflow-y-auto">
+                              <div className="max-h-36 overflow-y-auto">
                                 {filteredCountries.length > 0 ? (
                                   filteredCountries.map((country, index) => (
                                     <button
