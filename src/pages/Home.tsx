@@ -16,9 +16,13 @@ import { LanguagesShowcase } from '../components/LanguageMarquee';
 // Country codes data with flags
 const countryCodes = [
   { code: '+1', country: 'US', flag: '🇺🇸', name: 'United States' },
+  { code: '+1', country: 'CA', flag: '🇨🇦', name: 'Canada' },
   { code: '+91', country: 'IN', flag: '🇮🇳', name: 'India' },
   { code: '+971', country: 'AE', flag: '🇦🇪', name: 'UAE' },
-  { code: '+968', country: 'OM', flag: '🇴🇲', name: 'Oman' }
+  { code: '+968', country: 'OM', flag: '🇴🇲', name: 'Oman' },
+  { code: '+974', country: 'QA', flag: '🇶🇦', name: 'Qatar' },
+  { code: '+966', country: 'SA', flag: '🇸🇦', name: 'Saudi Arabia' },
+  { code: '+65', country: 'SG', flag: '🇸🇬', name: 'Singapore' }
 ];
 
 const Home = () => {
