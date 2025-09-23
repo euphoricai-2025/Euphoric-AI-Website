@@ -22,6 +22,7 @@ const countryCodes = [
   { code: '+968', country: 'OM', flag: '🇴🇲', name: 'Oman' },
   { code: '+974', country: 'QA', flag: '🇶🇦', name: 'Qatar' },
   { code: '+966', country: 'SA', flag: '🇸🇦', name: 'Saudi Arabia' },
+  { code: '+973', country: 'BH', flag: '🇧🇭', name: 'Bahrain' },
   { code: '+65', country: 'SG', flag: '🇸🇬', name: 'Singapore' }
 ];
 
