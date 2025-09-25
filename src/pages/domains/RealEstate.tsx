@@ -452,9 +452,9 @@ const RealEstate = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+              <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)' }}>
                 <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Every Call,</span>
-                <span className="text-gray-900"> A Qualified Lead</span>
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent"> A Qualified Lead</span>
               </h2>
             </motion.div>
           </div>
@@ -515,14 +515,14 @@ const RealEstate = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-                Why Your Team Feels <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Overloaded</span>
+              <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)' }}>
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Why Your Team Feels </span><span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Overloaded</span>
               </h2>
-              <p className="text-xl text-gray-600 leading-relaxed mb-8">
-                Agents waste hours answering the same questions: <span className="font-semibold">"Is it available?" "What's the rent?" "Can I view it tomorrow?"</span>
+              <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
+                Agents waste hours answering the same questions: <span className="font-bold text-red-600">"Is it available?" "What's the rent?" "Can I view it tomorrow?"</span>
               </p>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                Euphoric AI handles these instantly, freeing your team to focus on the clients who are ready to sign.
+              <p className="text-lg text-gray-500 mb-8 leading-relaxed">
+                Euphoric AI handles these instantly, freeing your team to focus on the clients who are <span className="font-bold text-green-600">ready to sign</span>.
               </p>
             </motion.div>
           </div>
@@ -539,9 +539,9 @@ const RealEstate = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+              <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)' }}>
                 <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">80% of Calls</span>
-                <span className="text-gray-900"> Handled Automatically</span>
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent"> Handled Automatically</span>
               </h2>
             </motion.div>
           </div>
@@ -873,11 +873,11 @@ const RealEstate = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+              <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)' }}>
                 <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Speak Their</span>
-                <span className="text-gray-900"> Language</span>
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent"> Language</span>
               </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
+              <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
                 From English to Arabic dialects, Euphoric AI connects with clients in the language — and tone — they trust.
               </p>
             </motion.div>

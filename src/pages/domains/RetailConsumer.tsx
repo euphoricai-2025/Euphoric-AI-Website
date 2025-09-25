@@ -465,8 +465,8 @@ const RetailConsumer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
-                Your Retail Team's <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Secret Weapon</span>
+              <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)' }}>
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Your Retail Team's </span><span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Secret Weapon</span>
               </h2>
             </motion.div>
           </div>
@@ -527,8 +527,8 @@ const RetailConsumer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-                We Deliver <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Real Results</span>
+              <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)' }}>
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">We Deliver </span><span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Real Results</span>
               </h2>
             </motion.div>
 
@@ -589,12 +589,12 @@ const RetailConsumer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+              <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)' }}>
                 <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Omnichannel</span>
-                <span className="text-gray-900"> Ready</span>
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent"> Ready</span>
               </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                From physical stores to online checkouts, Euphoric AI bridges the gap — ensuring consistent, always-on support.
+              <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
+                From physical stores to online checkouts, <span className="font-bold text-brand-teal">Euphoric AI bridges the gap</span> — ensuring consistent, always-on support.
               </p>
             </motion.div>
           </div>
@@ -611,11 +611,11 @@ const RetailConsumer = () => {
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
-                Speak the Language <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Customers Trust</span>
+              <h2 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2rem, 4vw, 2.75rem)' }}>
+                <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">Speak the Language </span><span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Customers Trust</span>
               </h2>
-              <p className="text-xl text-gray-600 leading-relaxed">
-                English, Arabic dialects, or regional languages — our AI connects naturally with your shoppers.
+              <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
+                <span className="font-bold text-green-600">English, Arabic dialects, or regional languages</span> — our AI connects naturally with your shoppers.
               </p>
             </motion.div>
 
