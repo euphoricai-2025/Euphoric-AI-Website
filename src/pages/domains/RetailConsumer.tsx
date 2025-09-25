@@ -230,28 +230,28 @@ const RetailConsumer = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-teal text-sm font-semibold mb-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                <ShoppingCart className="w-4 h-4 mr-3 text-brand-teal animate-pulse" />
-                Retail Revenue Growth AI
+                <Headphones className="w-4 h-4 mr-3 text-brand-teal animate-pulse" />
+                Answer Every Call
               </div>
 
               <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
-                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Retail & Consumer</span>
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">AI Voice Agents</span>
                 <br />
                 <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
                   <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
-                    Voice AI Agents
+                    for Retail & Customer Service
                   </TypingAnimation>
                 </span>
               </h1>
 
               <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
                 <TextAnimate animation="blurInUp" by="word" once>
-                  Recover abandoned carts, retain customers, and automate support with AI agents built for retail and e-commerce success.
+                  Customers expect answers now — stock availability, delivery updates, returns, and support. Euphoric AI voice agents respond instantly, so no call and no sale is ever missed.
                 </TextAnimate>
               </p>
 
               <p className="text-lg text-gray-500 mb-8 leading-relaxed">
-                <span className="font-bold text-red-600">70% cart abandonment losing millions?</span> Our AI recovers <span className="font-bold text-green-600">25% of abandoned carts</span> while increasing <span className="font-bold">repeat purchases by 45%</span>.
+                From physical stores to online checkouts, Euphoric AI bridges the gap — ensuring consistent, always-on support.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -451,6 +451,190 @@ const RetailConsumer = () => {
                 </motion.div>
               </div>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Your Retail Team's Secret Weapon Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+                Your Retail Team's <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Secret Weapon</span>
+              </h2>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-gradient-to-br from-brand-teal/10 via-white to-brand-blue/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-teal to-brand-blue rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <ShoppingCart className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Automated Order Support</h3>
+              <p className="text-gray-600 leading-relaxed">From order status to returns, every query is handled around the clock.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gradient-to-br from-brand-blue/10 via-white to-brand-gold/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-blue to-brand-gold rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <Search className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Product & Store Info on Demand</h3>
+              <p className="text-gray-600 leading-relaxed">"Is this in stock?" "What are today's hours?" — answered instantly, no hold music.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-gradient-to-br from-brand-gold/10 via-white to-brand-teal/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-gold to-brand-teal rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <TrendingUp className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Peak Season Resilience</h3>
+              <p className="text-gray-600 leading-relaxed">Whether it's holiday rush or weekend crowds, our AI scales with demand and keeps every customer engaged.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* We Deliver Real Results Section */}
+      <section className="py-20 bg-gray-50 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+                We Deliver <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Real Results</span>
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.1 }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="text-4xl font-black text-transparent bg-gradient-to-br from-brand-teal via-brand-blue to-brand-teal bg-clip-text mb-3">
+                  60%
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Cut Call Handling Time</h3>
+                <p className="text-gray-600 text-sm">Dramatically reduce support workload</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.2 }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="text-4xl font-black text-transparent bg-gradient-to-br from-brand-blue via-brand-gold to-brand-blue bg-clip-text mb-3">
+                  100%
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Answer Inbound Calls</h3>
+                <p className="text-gray-600 text-sm">Even during peak traffic</p>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: 0.3 }}
+                className="bg-white rounded-2xl p-6 shadow-lg hover:shadow-xl transition-all duration-300"
+              >
+                <div className="text-4xl font-black text-transparent bg-gradient-to-br from-brand-gold via-brand-teal to-brand-gold bg-clip-text mb-3">
+                  ⬆️
+                </div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">Higher Conversions</h3>
+                <p className="text-gray-600 text-sm">With personalized voice flows</p>
+              </motion.div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Omnichannel Ready Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Omnichannel</span>
+                <span className="text-gray-900"> Ready</span>
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                From physical stores to online checkouts, Euphoric AI bridges the gap — ensuring consistent, always-on support.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Speak the Language Customers Trust Section */}
+      <section className="py-20 bg-gray-50 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+                Speak the Language <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Customers Trust</span>
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                English, Arabic dialects, or regional languages — our AI connects naturally with your shoppers.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mt-12"
+            >
+              <div className="inline-flex items-center justify-center space-x-8 flex-wrap gap-4">
+                <span className="text-2xl font-semibold text-gray-700">🇺🇸 English</span>
+                <span className="text-2xl font-semibold text-gray-700">🇦🇪 العربية</span>
+                <span className="text-2xl font-semibold text-gray-700">🇪🇸 Español</span>
+                <span className="text-2xl font-semibold text-gray-700">🇫🇷 Français</span>
+                <span className="text-2xl font-semibold text-gray-700">🇩🇪 Deutsch</span>
+                <span className="text-gray-500 text-lg">+30 more...</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -766,12 +950,10 @@ const RetailConsumer = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="font-bold mb-6 leading-tight tracking-tight text-white" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
-              <span className="text-white">Ready to Revolutionize</span>
-              <br />
-              <span className="text-white">Your Customer Engagement?</span>
+              <span className="text-white">Test It Today</span>
             </h2>
             <p className="text-lg text-white/90 mb-8">
-              Join retail businesses using AI agents to recover abandoned sales, enhance customer service, and build lasting customer relationships.
+              Don't let another customer slip away. See how our AI turns missed opportunities into sales in just 5 minutes.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
