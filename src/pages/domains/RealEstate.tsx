@@ -217,28 +217,28 @@ const RealEstate = () => {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
               <div className="inline-flex items-center px-6 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-brand-teal text-sm font-semibold mb-6 shadow-2xl hover:shadow-3xl transition-all duration-300 hover:scale-105 hover:bg-white/15">
-                <Zap className="w-4 h-4 mr-3 text-brand-teal animate-pulse" />
-                60-Second Lead Response
+                <Home className="w-4 h-4 mr-3 text-brand-teal animate-pulse" />
+                Never Miss a Deal
               </div>
 
               <h1 className="font-bold mb-6 leading-tight tracking-tight" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
-                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Real Estate</span>
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">AI Voice Agents</span>
                 <br />
                 <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
                   <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
-                    Voice AI Agents
+                    for Real Estate
                   </TypingAnimation>
                 </span>
               </h1>
 
               <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
                 <TextAnimate animation="blurInUp" by="word" once>
-                  Qualify leads instantly, schedule showings automatically, and never miss a hot prospect with AI agents that work 24/7.
+                  Missed calls mean missed deals. In real estate, that's money left on the table. Euphoric AI voice agents answer instantly, qualify leads, and keep conversations moving — in natural human-like voices, available 24/7.
                 </TextAnimate>
               </p>
 
               <p className="text-lg text-gray-500 mb-8 leading-relaxed">
-                <span className="font-bold text-red-600">78% of leads go to competitors who respond first?</span> Our AI responds in <span className="font-bold text-green-600">under 60 seconds</span> and increases conversions by <span className="font-bold">55%</span>.
+                From English to Arabic dialects, Euphoric AI connects with clients in the language — and tone — they trust.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
@@ -442,6 +442,155 @@ const RealEstate = () => {
         </div>
       </section>
 
+      {/* Every Call, A Qualified Lead Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Every Call,</span>
+                <span className="text-gray-900"> A Qualified Lead</span>
+              </h2>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-gradient-to-br from-brand-teal/10 via-white to-brand-blue/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-teal to-brand-blue rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <Search className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Instant Property Match</h3>
+              <p className="text-gray-600 leading-relaxed">Instantly route inquiries by location, budget, and availability.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gradient-to-br from-brand-blue/10 via-white to-brand-gold/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-blue to-brand-gold rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <Users className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Smart Lead Qualification</h3>
+              <p className="text-gray-600 leading-relaxed">Gather move-in dates, preferences, and contact info without lifting a finger.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-gradient-to-br from-brand-gold/10 via-white to-brand-teal/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-gold to-brand-teal rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <BarChart3 className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">CRM Ready</h3>
+              <p className="text-gray-600 leading-relaxed">All conversations sync seamlessly with your existing systems.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Your Team Feels Overloaded Section */}
+      <section className="py-20 bg-gray-50 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+                Why Your Team Feels <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Overloaded</span>
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed mb-8">
+                Agents waste hours answering the same questions: <span className="font-semibold">"Is it available?" "What's the rent?" "Can I view it tomorrow?"</span>
+              </p>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                Euphoric AI handles these instantly, freeing your team to focus on the clients who are ready to sign.
+              </p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* 80% of Calls Handled Automatically Section */}
+      <section className="py-20 bg-white relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6 tracking-tight">
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">80% of Calls</span>
+                <span className="text-gray-900"> Handled Automatically</span>
+              </h2>
+            </motion.div>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="bg-gradient-to-br from-brand-teal/10 via-white to-brand-blue/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-teal to-brand-blue rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <Calendar className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Viewing Scheduling</h3>
+              <p className="text-gray-600 leading-relaxed">Book, confirm, or reschedule property visits in real time.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              className="bg-gradient-to-br from-brand-blue/10 via-white to-brand-gold/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-blue to-brand-gold rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <MessageCircle className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Proactive Follow-Ups</h3>
+              <p className="text-gray-600 leading-relaxed">Send reminders, updates, and next steps automatically.</p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="bg-gradient-to-br from-brand-gold/10 via-white to-brand-teal/10 rounded-2xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              <div className="w-12 h-12 bg-gradient-to-br from-brand-gold to-brand-teal rounded-xl flex items-center justify-center mb-6 shadow-lg">
+                <Headphones className="w-6 h-6 text-white" />
+              </div>
+              <h3 className="text-xl font-bold text-gray-900 mb-4">Tenant & Buyer Support</h3>
+              <p className="text-gray-600 leading-relaxed">From application status to rent queries, all answered instantly.</p>
+            </motion.div>
+          </div>
+        </div>
+      </section>
 
       {/* Stats Section */}
       <section className="py-16 bg-euphoric-surface relative overflow-hidden">
@@ -714,18 +863,59 @@ const RealEstate = () => {
         </div>
       </section>
 
+      {/* Speak Their Language Section */}
+      <section className="py-20 bg-gray-50 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto text-center">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8 }}
+            >
+              <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-8 tracking-tight">
+                <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Speak Their</span>
+                <span className="text-gray-900"> Language</span>
+              </h2>
+              <p className="text-xl text-gray-600 leading-relaxed">
+                From English to Arabic dialects, Euphoric AI connects with clients in the language — and tone — they trust.
+              </p>
+            </motion.div>
 
-      {/* CTA Section */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="mt-12"
+            >
+              <div className="inline-flex items-center justify-center space-x-8 flex-wrap gap-4">
+                <span className="text-2xl font-semibold text-gray-700">🇺🇸 English</span>
+                <span className="text-2xl font-semibold text-gray-700">🇦🇪 العربية</span>
+                <span className="text-2xl font-semibold text-gray-700">🇪🇸 Español</span>
+                <span className="text-2xl font-semibold text-gray-700">🇫🇷 Français</span>
+                <span className="text-2xl font-semibold text-gray-700">🇩🇪 Deutsch</span>
+                <span className="text-gray-500 text-lg">+30 more...</span>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Test It Today - CTA Section */}
       <section className="py-20 bg-gradient-to-r from-brand-teal to-brand-blue">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-3xl mx-auto">
             <h2 className="font-bold mb-6 leading-tight tracking-tight text-white" style={{ fontSize: 'clamp(2.5rem, 3.8vw, 3.2rem)' }}>
-              <span className="text-white">Ready to Beat</span>
+              <span className="text-white">Test It</span>
               <br />
-              <span className="text-white">the Competition?</span>
+              <span className="text-white">Today</span>
             </h2>
-            <p className="text-lg text-white/90 mb-8">
-              Join real estate professionals using AI agents to respond in under 60 seconds, qualify leads instantly, and close more deals.
+            <p className="text-xl text-white/90 mb-4 leading-relaxed">
+              Never miss a call. Never miss a lead.
+            </p>
+            <p className="text-lg text-white/80 mb-8">
+              Let Euphoric AI voice agents turn every property inquiry into an opportunity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
