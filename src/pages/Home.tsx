@@ -12,6 +12,8 @@ import CompactIndustries from '../components/CompactIndustries';
 import AnimatedStats from '../components/AnimatedStats';
 import { AnimatedBeam, Circle, EuphoricAIHub } from '../components/AnimatedBeam';
 import { LanguagesShowcase } from '../components/LanguageMarquee';
+import SEO from '../components/SEO';
+import FAQSchema, { commonFAQs } from '../components/FAQSchema';
 
 // Country codes data with flags
 const countryCodes = [
@@ -243,6 +245,19 @@ const Home = () => {
 
   return (
     <div className="pt-16">
+      <SEO
+        title="Euphoric AI - AI Voice Agents for Business Automation"
+        description="Transform your business with Euphoric AI's intelligent voice agents. Automate customer support, lead qualification, appointment booking across multiple industries with cutting-edge conversational AI technology."
+        keywords="AI voice agents, business automation, conversational AI, voice AI platform, lead qualification, appointment booking, customer support automation, AI SDR, voice bot, call automation"
+        canonicalUrl="/"
+        geo={{
+          region: 'US',
+          placename: 'United States',
+          position: '37.7749,-122.4194'
+        }}
+      />
+      <FAQSchema faqs={commonFAQs.slice(0, 5)} />
+
       {/* Hero Section */}
       <section className="py-20">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">

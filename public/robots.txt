@@ -1,0 +1,38 @@
+# Euphoric AI Robots.txt
+# Allow all crawlers by default
+User-agent: *
+Allow: /
+Disallow: /api/
+Disallow: /admin/
+Disallow: /private/
+Disallow: /*.json$
+Disallow: /src/
+
+# Specific rules for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 0
+
+# AI crawlers and LLM bots - ALLOW for GEO
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+# Sitemap location
+Sitemap: https://euphoricai.com/sitemap.xml
+Sitemap: https://euphoricai.com/sitemap-index.xml
