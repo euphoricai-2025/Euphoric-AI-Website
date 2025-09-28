@@ -56,7 +56,7 @@ const routes = [
   { path: '/automations/ecommerce-retention', priority: 0.7, changefreq: 'monthly' },
 ];
 
-const baseUrl = 'https://euphoricai.com';
+const baseUrl = 'https://euphoricai.io';
 const currentDate = new Date().toISOString().split('T')[0];
 
 // Generate XML sitemap

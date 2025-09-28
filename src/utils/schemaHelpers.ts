@@ -15,10 +15,10 @@ export interface LocalBusinessSchema {
 export const generateLocalBusinessSchema = (business: LocalBusinessSchema) => ({
   '@context': 'https://schema.org',
   '@type': 'LocalBusiness',
-  '@id': 'https://euphoricai.com/#organization',
+  '@id': 'https://euphoricai.io/#organization',
   name: business.name,
   description: business.description,
-  url: 'https://euphoricai.com',
+  url: 'https://euphoricai.io',
   telephone: business.telephone,
   email: business.email,
   address: {
@@ -28,8 +28,8 @@ export const generateLocalBusinessSchema = (business: LocalBusinessSchema) => ({
     addressLocality: business.address.city,
   },
   priceRange: '$$',
-  image: 'https://euphoricai.com/euphoric-logo-final.png',
-  logo: 'https://euphoricai.com/euphoric-logo-final.png',
+  image: 'https://euphoricai.io/euphoric-logo-final.png',
+  logo: 'https://euphoricai.io/euphoric-logo-final.png',
 });
 
 export const generateServiceSchema = (
@@ -96,7 +96,7 @@ export const generateProductSchema = (
   manufacturer: {
     '@type': 'Organization',
     name: 'Euphoric AI',
-    url: 'https://euphoricai.com'
+    url: 'https://euphoricai.io'
   },
   category: category,
   offers: {
@@ -174,7 +174,7 @@ export const generateHowToSchema = (
   '@type': 'HowTo',
   name: title,
   description: description,
-  image: 'https://euphoricai.com/euphoric-logo-final.png',
+  image: 'https://euphoricai.io/euphoric-logo-final.png',
   totalTime: 'PT15M',
   estimatedCost: {
     '@type': 'MonetaryAmount',
@@ -214,7 +214,7 @@ export const generateEventSchema = (
   eventStatus: 'https://schema.org/EventScheduled',
   location: isOnline ? {
     '@type': 'VirtualLocation',
-    url: 'https://euphoricai.com/demo'
+    url: 'https://euphoricai.io/demo'
   } : {
     '@type': 'Place',
     name: 'Euphoric AI Office',
@@ -226,11 +226,11 @@ export const generateEventSchema = (
   organizer: {
     '@type': 'Organization',
     name: 'Euphoric AI',
-    url: 'https://euphoricai.com'
+    url: 'https://euphoricai.io'
   },
   offers: {
     '@type': 'Offer',
-    url: 'https://euphoricai.com/demo',
+    url: 'https://euphoricai.io/demo',
     price: '0',
     priceCurrency: 'USD',
     availability: 'https://schema.org/InStock'

@@ -34,5 +34,5 @@ User-agent: Claude-Web
 Allow: /
 
 # Sitemap location
-Sitemap: https://euphoricai.com/sitemap.xml
-Sitemap: https://euphoricai.com/sitemap-index.xml
+Sitemap: https://euphoricai.io/sitemap.xml
+Sitemap: https://euphoricai.io/sitemap-index.xml

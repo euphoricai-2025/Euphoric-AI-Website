@@ -39,7 +39,7 @@ const SEO: React.FC<SEOProps> = ({
   hreflang = [],
   geo,
 }) => {
-  const siteUrl = 'https://euphoricai.com';
+  const siteUrl = 'https://euphoricai.io';
   const fullCanonicalUrl = canonicalUrl ? `${siteUrl}${canonicalUrl}` : typeof window !== 'undefined' ? window.location.href : siteUrl;
   const fullOgImage = ogImage.startsWith('http') ? ogImage : `${siteUrl}${ogImage}`;
 
@@ -48,8 +48,8 @@ const SEO: React.FC<SEOProps> = ({
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Euphoric AI',
-    url: 'https://euphoricai.com',
-    logo: 'https://euphoricai.com/euphoric-logo-final.png',
+    url: 'https://euphoricai.io',
+    logo: 'https://euphoricai.io/euphoric-logo-final.png',
     description: 'Euphoric AI is a leading AI Voice Agent platform that automates business communications through intelligent conversational AI.',
     foundingDate: '2024',
     founders: [
@@ -82,12 +82,12 @@ const SEO: React.FC<SEOProps> = ({
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: 'Euphoric AI',
-    url: 'https://euphoricai.com',
+    url: 'https://euphoricai.io',
     potentialAction: {
       '@type': 'SearchAction',
       target: {
         '@type': 'EntryPoint',
-        urlTemplate: 'https://euphoricai.com/search?q={search_term_string}'
+        urlTemplate: 'https://euphoricai.io/search?q={search_term_string}'
       },
       'query-input': 'required name=search_term_string'
     }
@@ -115,7 +115,8 @@ const SEO: React.FC<SEOProps> = ({
     },
     creator: {
       '@type': 'Organization',
-      name: 'Euphoric AI'
+      name: 'Euphoric AI',
+      url: 'https://euphoricai.io'
     }
   };
 
