@@ -51,6 +51,7 @@ import Partner from './pages/Partner';
 import Careers from './pages/Careers';
 import Internships from './pages/Internships';
 import Languages from './pages/Languages';
+import ThankYou from './pages/ThankYou';
 
 function App() {
   return (
@@ -121,6 +122,7 @@ function App() {
                 <Route path="/careers" element={<Careers />} />
                 <Route path="/internships" element={<Internships />} />
                 <Route path="/languages" element={<Languages />} />
+                <Route path="/thank-you" element={<ThankYou />} />
               </Routes>
             </main>
             <Footer />
