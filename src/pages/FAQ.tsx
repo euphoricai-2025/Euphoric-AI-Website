@@ -68,7 +68,7 @@ const FAQ = () => {
       questions: [
         {
           question: 'How much does Euphoric AI cost?',
-          answer: 'We offer flexible plans starting at $29/month with pay-per-use calling. Plans include different amounts of calling minutes, features, and support levels. Check our pricing page for current rates.'
+          answer: 'We offer flexible plans starting at $99/month with pay-per-use calling. Plans include different amounts of calling minutes, features, and support levels. Check our pricing page for current rates.'
         },
         {
           question: 'Are there any setup fees or hidden costs?',

@@ -381,7 +381,7 @@ const Automations = () => {
               Ready to Automate Your Business?
             </h2>
             <p className="text-lg text-white/90 mb-8">
-              Start with our Starter pack for just $29/month and transform your operations with AI-powered automations.
+              Start with our Starter pack for just $99/month and transform your operations with AI-powered automations.
             </p>
             <div className="flex justify-center">
               <a

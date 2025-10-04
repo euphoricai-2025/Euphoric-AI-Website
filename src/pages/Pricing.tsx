@@ -243,7 +243,7 @@ const Pricing = () => {
                     <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
                     <p className="text-sm text-gray-600 mb-4">To develop and launch your first AI voice agent</p>
                     <div className="mb-4">
-                      <span className="text-3xl font-bold text-gray-900">$29</span>
+                      <span className="text-3xl font-bold text-gray-900">$99</span>
                       <span className="text-gray-500 text-sm">/month only</span>
                     </div>
                     <a 
@@ -259,7 +259,7 @@ const Pricing = () => {
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                      <span className="text-gray-700">50 mins</span>
+                      <span className="text-gray-700">250 mins</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -708,7 +708,7 @@ const Pricing = () => {
               
               {/* Plan Cards - Desktop */}
               {[
-                { name: 'Starter', price: '$29', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
+                { name: 'Starter', price: '$99', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
                 { name: 'Standard', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
                 { name: 'Growth', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: true },
                 { name: 'Pro', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: false },
@@ -753,7 +753,7 @@ const Pricing = () => {
               <div className="p-4 overflow-x-auto">
                 <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
                   {[
-                    { name: 'Starter', price: '$29', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
+                    { name: 'Starter', price: '$99', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
                     { name: 'Standard', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
                     { name: 'Growth', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: true },
                     { name: 'Pro', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: false },
@@ -829,7 +829,7 @@ const Pricing = () => {
                           <span className="text-xl font-semibold text-gray-900">Minutes included</span>
                         </div>
                         <div className="text-center">
-                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">50</span>
+                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">250</span>
                         </div>
                         <div className="text-center">
                           <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">2,000</span>
@@ -855,7 +855,7 @@ const Pricing = () => {
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
                               <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">50</div>
+                              <div className="text-gray-800 font-semibold">250</div>
                             </div>
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
                               <div className="font-bold text-brand-teal mb-1">Standard</div>
