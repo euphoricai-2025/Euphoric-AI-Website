@@ -59,6 +59,13 @@ export const generateServiceSchema = (
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
+          name: 'Trial Plan',
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
           name: 'Starter Plan',
         }
       },
@@ -66,14 +73,21 @@ export const generateServiceSchema = (
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Professional Plan',
+          name: 'Standard Plan',
         }
       },
       {
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Enterprise Plan',
+          name: 'Growth Plan',
+        }
+      },
+      {
+        '@type': 'Offer',
+        itemOffered: {
+          '@type': 'Service',
+          name: 'Pro Plan',
         }
       }
     ]

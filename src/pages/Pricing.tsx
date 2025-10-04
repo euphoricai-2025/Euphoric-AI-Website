@@ -12,7 +12,21 @@ const Pricing = () => {
   
   const plans = [
     {
-      name: 'Starter AI Calling Agent',
+      name: 'Trial AI Calling Agent',
+      price: 399,
+      hours: 2000,
+      description: 'Perfect for small businesses getting started with AI calling',
+      popular: false,
+      features: [
+        'Self-setup',
+        'Twilio phone number integration',
+        'Basic analytics dashboard',
+        'Email support',
+        'Secure Stripe payments'
+      ]
+    },
+    {
+      name: 'Trial AI Calling Agent',
       price: 399,
       hours: 2000,
       description: 'Perfect for small businesses getting started with AI calling',
@@ -27,20 +41,6 @@ const Pricing = () => {
     },
     {
       name: 'Starter AI Calling Agent',
-      price: 399,
-      hours: 2000,
-      description: 'Perfect for small businesses getting started with AI calling',
-      popular: false,
-      features: [
-        'Self-setup',
-        'Twilio phone number integration',
-        'Basic analytics dashboard',
-        'Email support',
-        'Secure Stripe payments'
-      ]
-    },
-    {
-      name: 'Standard AI Calling Agent',
       price: 549,
       hours: 3000,
       description: 'Ideal for growing businesses with higher call volumes',
@@ -57,7 +57,7 @@ const Pricing = () => {
       ]
     },
     {
-      name: 'Pro AI Calling Agent',
+      name: 'Growth AI Calling Agent',
       price: 849,
       hours: 7500,
       description: 'For enterprise businesses requiring maximum calling capacity',
@@ -75,7 +75,7 @@ const Pricing = () => {
       ]
     },
     {
-      name: 'Starter AI Calling Agent',
+      name: 'Trial AI Calling Agent',
       price: 399,
       hours: 2000,
       description: 'Perfect for small businesses getting started with AI calling',
@@ -224,7 +224,7 @@ const Pricing = () => {
 
           {/* Pricing Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
-            {/* Starter Plan */}
+            {/* Trial Plan */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -240,7 +240,7 @@ const Pricing = () => {
                 {/* Card Content */}
                 <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 flex flex-col min-h-[600px]">
                   <div className="mb-6">
-                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Trial</h3>
                     <p className="text-sm text-gray-600 mb-4">To develop and launch your first AI voice agent</p>
                     <div className="mb-4">
                       <span className="text-3xl font-bold text-gray-900">$99</span>
@@ -297,7 +297,7 @@ const Pricing = () => {
               className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
               <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Standard</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
                 <p className="text-sm text-gray-600 mb-4">To develop and launch your first AI voice agent</p>
                 <div className="mb-4">
                   <span className="text-3xl font-bold text-gray-900">$399</span>
@@ -349,20 +349,16 @@ const Pricing = () => {
               </div>
             </motion.div>
 
-            {/* Growth Plan - Most Popular */}
+            {/* Growth Plan becomes Standard (no highlight) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass p-8 relative flex flex-col min-h-[600px] card-hover group border-2 border-brand-teal shadow-xl scale-105 z-10"
+              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
-                <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
-                  Most Popular
-                </span>
-              </div>
+              
               <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Growth</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Standard</h3>
                 <p className="text-sm text-gray-600 mb-4">For businesses with low call volumes</p>
                 <div className="mb-4">
                   <span className="text-3xl font-bold text-gray-900">$549</span>
@@ -372,7 +368,7 @@ const Pricing = () => {
                   href="https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
+                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
                 >
                   Get Started
                 </a>
@@ -389,7 +385,7 @@ const Pricing = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All Standard features, plus:</span>
+                  <span className="text-gray-700">All Starter features, plus:</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -430,15 +426,20 @@ const Pricing = () => {
               </div>
             </motion.div>
 
-            {/* Pro Plan */}
+            {/* Pro Plan becomes Growth - Most Popular */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.3 }}
-              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
+              className="glass p-8 relative flex flex-col min-h-[600px] card-hover group border-2 border-brand-teal shadow-xl scale-105 z-10"
             >
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
+                  Most Popular
+                </span>
+              </div>
               <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Pro</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Growth</h3>
                 <p className="text-sm text-gray-600 mb-4">For businesses with higher call volumes</p>
                 <div className="mb-4">
                   <span className="text-3xl font-bold text-gray-900">$849</span>
@@ -448,7 +449,7 @@ const Pricing = () => {
                   href="https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
+                  className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
                 >
                   Get Started
                 </a>
@@ -465,7 +466,7 @@ const Pricing = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All Growth features, plus:</span>
+                  <span className="text-gray-700">All Standard features, plus:</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -498,7 +499,7 @@ const Pricing = () => {
               </div>
             </motion.div>
 
-            {/* Premium Plan */}
+            {/* Premium Plan becomes Pro */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -506,7 +507,7 @@ const Pricing = () => {
               className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
               <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Premium</h3>
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Pro</h3>
                 <p className="text-sm text-gray-600 mb-4">For performance, scalability & support</p>
                 <div className="mb-4">
                   <span className="text-3xl font-bold text-gray-900">$1249</span>
@@ -533,7 +534,7 @@ const Pricing = () => {
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All Pro features, plus:</span>
+                  <span className="text-gray-700">All Growth features, plus:</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -708,11 +709,11 @@ const Pricing = () => {
               
               {/* Plan Cards - Desktop */}
               {[
-                { name: 'Starter', price: '$99', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
-                { name: 'Standard', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
-                { name: 'Growth', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: true },
-                { name: 'Pro', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: false },
-                { name: 'Premium', price: '$1249', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false }
+                { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
+                { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
+                { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
+                { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
+                { name: 'Pro', price: '$1249', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false }
               ].map((plan) => (
                 <div key={plan.name} className="text-center">
                   <div className={`rounded-xl p-4 hover:shadow-lg transition-all duration-300 h-full flex flex-col group card-hover ${
@@ -753,11 +754,11 @@ const Pricing = () => {
               <div className="p-4 overflow-x-auto">
                 <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
                   {[
-                    { name: 'Starter', price: '$99', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
-                    { name: 'Standard', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
-                    { name: 'Growth', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: true },
-                    { name: 'Pro', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: false },
-                    { name: 'Premium', price: '$1249', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false }
+                    { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
+                    { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
+                    { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
+                    { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
+                    { name: 'Pro', price: '$1249', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false }
                   ].map((plan) => (
                     <div key={plan.name} className="flex-shrink-0 w-36">
                       <div className={`rounded-xl p-3 hover:shadow-lg transition-all duration-300 h-full flex flex-col group card-hover ${
@@ -808,6 +809,9 @@ const Pricing = () => {
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
                         </div>
                         <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Trial</span>
+                        </div>
+                        <div className="text-center">
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
                         </div>
                         <div className="text-center">
@@ -818,9 +822,6 @@ const Pricing = () => {
                         </div>
                         <div className="text-center">
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
                         </div>
                       </div>
                       
@@ -854,25 +855,25 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Minutes included</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
                               <div className="text-gray-800 font-semibold">250</div>
                             </div>
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 font-semibold">2,000</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">3,000</div>
                             </div>
                             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
                               <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">3,000</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">5,000</div>
                             </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">7,500</div>
                             </div>
                           </div>
@@ -963,25 +964,25 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Concurrent Calls</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
                               <div className="text-gray-800 font-semibold">5</div>
                             </div>
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 font-semibold">15</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">25</div>
                             </div>
                             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
                               <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">25</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">50</div>
                             </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">80</div>
                             </div>
                           </div>
@@ -992,25 +993,25 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Extra Concurrent Call</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
                               <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
                               <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">—</div>
+                              <div className="text-gray-800 font-semibold">$7/call</div>
                             </div>
                             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
                               <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
                               <div className="text-gray-800 font-semibold">$7/call</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <div className="text-gray-800 font-semibold">$7/call</div>
-                            </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">$7/call</div>
                             </div>
                           </div>
@@ -1033,6 +1034,9 @@ const Pricing = () => {
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
                         </div>
                         <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Trial</span>
+                        </div>
+                        <div className="text-center">
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
                         </div>
                         <div className="text-center">
@@ -1043,9 +1047,6 @@ const Pricing = () => {
                         </div>
                         <div className="text-center">
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
                         </div>
                       </div>
                       
@@ -1142,25 +1143,25 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Number of Assistants</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
                               <div className="text-gray-800 font-semibold">1</div>
                             </div>
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 font-semibold">5</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">10</div>
                             </div>
                             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
                               <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">10</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">20</div>
                             </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">Unlimited</div>
                             </div>
                           </div>
@@ -1180,10 +1181,14 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Batch Campaigns</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <Check className="w-5 h-5 text-green-600 mx-auto" />
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
                               <div className="font-bold text-brand-teal mb-1">Standard</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
@@ -1191,14 +1196,10 @@ const Pricing = () => {
                               <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
                           </div>
@@ -1209,25 +1210,25 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Invite Team Members</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 font-semibold">2</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Standard</div>
+                              <div className="text-gray-800 font-semibold">3</div>
                             </div>
                             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
                               <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">3</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">4</div>
                             </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 font-semibold">5</div>
                             </div>
                           </div>
@@ -1250,6 +1251,9 @@ const Pricing = () => {
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Support</span>
                         </div>
                         <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Trial</span>
+                        </div>
+                        <div className="text-center">
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
                         </div>
                         <div className="text-center">
@@ -1260,9 +1264,6 @@ const Pricing = () => {
                         </div>
                         <div className="text-center">
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
                         </div>
                       </div>
                       
@@ -1359,25 +1360,25 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Support Level</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
+                              <div className="text-gray-800 text-sm font-semibold">Email Support</div>
+                            </div>
+                            <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
                               <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 text-sm font-semibold">Email Support</div>
                             </div>
                             <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
                               <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 text-sm font-semibold">Email Support</div>
+                              <div className="text-gray-800 text-sm font-semibold">Priority Email</div>
                             </div>
                             <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
                               <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 text-sm font-semibold">Priority Email</div>
-                            </div>
-                            <div className="text-center p-3 bg-purple-50 rounded-lg border border-purple-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 text-sm font-semibold">Account Manager</div>
                             </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-purple-50 rounded-lg border border-purple-200">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <div className="text-gray-800 text-sm font-semibold">Account Manager</div>
                             </div>
                           </div>
@@ -1388,6 +1389,10 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Onboarding via Zoom</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
                               <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
@@ -1395,18 +1400,14 @@ const Pricing = () => {
                               <div className="font-bold text-brand-teal mb-1">Standard</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Growth</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="font-bold text-brand-teal mb-1">Growth</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
                           </div>
@@ -1417,6 +1418,10 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Early Access to New Features</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
                               <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
@@ -1424,18 +1429,14 @@ const Pricing = () => {
                               <div className="font-bold text-brand-teal mb-1">Standard</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Growth</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="font-bold text-brand-teal mb-1">Growth</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
                           </div>
@@ -1446,6 +1447,10 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Solution Architect</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
+                              <div className="text-gray-800 font-semibold">—</div>
+                            </div>
+                            <div className="text-center p-3 bg-gray-50 rounded-lg">
                               <div className="font-bold text-brand-teal mb-1">Starter</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
@@ -1453,18 +1458,14 @@ const Pricing = () => {
                               <div className="font-bold text-brand-teal mb-1">Standard</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Growth</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
+                              <div className="font-bold text-brand-teal mb-1">Growth</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
                           </div>
@@ -1487,6 +1488,9 @@ const Pricing = () => {
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Security Feature</span>
                         </div>
                         <div className="text-center">
+                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Trial</span>
+                        </div>
+                        <div className="text-center">
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
                         </div>
                         <div className="text-center">
@@ -1497,9 +1501,6 @@ const Pricing = () => {
                         </div>
                         <div className="text-center">
                           <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Premium</span>
                         </div>
                       </div>
                       
@@ -1623,7 +1624,7 @@ const Pricing = () => {
                           <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Guaranteed Uptime (SLA)</h3>
                           <div className="grid grid-cols-2 gap-3">
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
+                              <div className="font-bold text-brand-teal mb-1">Trial</div>
                               <div className="text-gray-800 font-semibold">—</div>
                             </div>
                             <div className="text-center p-3 bg-gray-50 rounded-lg">
@@ -1641,7 +1642,7 @@ const Pricing = () => {
                           </div>
                           <div className="mt-3">
                             <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Premium</div>
+                              <div className="font-bold text-brand-teal mb-1">Pro</div>
                               <Check className="w-5 h-5 text-green-600 mx-auto" />
                             </div>
                           </div>
