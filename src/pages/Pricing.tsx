@@ -247,7 +247,7 @@ const Pricing = () => {
                       <span className="text-gray-500 text-sm">/month only</span>
                     </div>
                     <a 
-                      href="https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b"
+                      href="https://buy.stripe.com/aFa4gz2RL5fbc913dt8g00l"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
@@ -709,7 +709,7 @@ const Pricing = () => {
               
               {/* Plan Cards - Desktop */}
               {[
-                { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
+                { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/aFa4gz2RL5fbc913dt8g00l', popular: false },
                 { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
                 { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
                 { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
@@ -754,7 +754,7 @@ const Pricing = () => {
               <div className="p-4 overflow-x-auto">
                 <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
                   {[
-                    { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/fZueVd8c5bDzgph7tJ8g00b', popular: false },
+                    { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/aFa4gz2RL5fbc913dt8g00l', popular: false },
                     { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
                     { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
                     { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
