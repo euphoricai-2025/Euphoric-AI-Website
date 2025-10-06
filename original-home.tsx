@@ -206,7 +206,7 @@ const Home = () => {
                   </Link>
                 )}
                 <a
-                  href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline inline-flex items-center justify-center gap-2"

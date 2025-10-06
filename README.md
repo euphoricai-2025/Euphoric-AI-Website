@@ -11,7 +11,7 @@
 [![TypeScript](https://img.shields.io/badge/TypeScript-5+-3178C6?style=flat-square&logo=typescript)](https://www.typescriptlang.org/)
 [![Vite](https://img.shields.io/badge/Vite-5+-646CFF?style=flat-square&logo=vite)](https://vitejs.dev/)
 
-[🌐 Live Demo](https://euphoricai.io) • [📖 Documentation](https://docs.euphoricai.io) • [🎯 Get Started](https://calendly.com/euphoricai-aivoiceagents-demo/30min)
+[🌐 Live Demo](https://euphoricai.io) • [📖 Documentation](https://docs.euphoricai.io) • [🎯 Get Started](https://calendly.com/euphoricai-ai-voiceagents-demo/45)
 
 </div>
 
@@ -221,7 +221,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Website**: [https://euphoricai.io](https://euphoricai.io)
 - **Dashboard**: [https://app.euphoricai.io](https://app.euphoricai.io)
-- **Book Demo**: [Schedule 30min call](https://calendly.com/euphoricai-aivoiceagents-demo/30min)
+- **Book Demo**: [Schedule 30min call](https://calendly.com/euphoricai-ai-voiceagents-demo/45)
 - **Support**: [support@euphoricai.io](mailto:support@euphoricai.io)
 
 ---

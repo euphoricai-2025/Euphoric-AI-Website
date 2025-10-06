@@ -120,7 +120,7 @@ const Footer = () => {
               <li><Link to="/careers" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Careers</Link></li>
               <li><Link to="/internships" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Internships</Link></li>
               <li><Link to="/partner" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Partner Program</Link></li>
-              <li><a href="https://calendly.com/euphoricai-aivoiceagents-demo/30min" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Book Demo</a></li>
+              <li><a href="https://calendly.com/euphoricai-ai-voiceagents-demo/45" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Book Demo</a></li>
               <li><Link to="/privacy-policy" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Privacy Policy</Link></li>
               <li><Link to="/terms-conditions" className="text-gray-600 hover:text-brand-teal text-sm transition-colors focus:outline-none focus:ring-0 active:outline-none">Terms of Service</Link></li>
             </ul>

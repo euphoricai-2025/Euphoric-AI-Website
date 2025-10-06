@@ -309,7 +309,7 @@ const Home = () => {
                   </Link>
                 )}
                 <a
-                  href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline inline-flex items-center justify-center gap-2"
@@ -921,7 +921,7 @@ const Home = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center"
             >
               <a
-                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="relative overflow-hidden bg-white hover:bg-white text-brand-black hover:text-brand-gray px-8 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-xl hover:shadow-2xl inline-flex items-center justify-center group"

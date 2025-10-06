@@ -148,7 +148,7 @@ const ThankYou = () => {
                 {/* Calendly Inline Widget */}
                 <div
                   className="calendly-inline-widget rounded-xl overflow-hidden bg-white"
-                  data-url="https://calendly.com/euphoricai-aivoiceagents-demo/30min?hide_gdpr_banner=1&primary_color=6498a0"
+                  data-url="https://calendly.com/euphoricai-ai-voiceagents-demo/45?hide_gdpr_banner=1&primary_color=6498a0"
                   style={{ minWidth: '320px', height: '700px' }}
                 ></div>
               </div>
@@ -304,7 +304,7 @@ const ThankYou = () => {
                     </Link>
 
                     <a
-                      href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                      href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border-2 border-brand-teal text-brand-teal font-bold rounded-xl shadow-lg hover:bg-brand-teal hover:text-white hover:shadow-2xl hover:scale-105 transition-all duration-300"

@@ -233,7 +233,7 @@ const Automations = () => {
               className="flex justify-center"
             >
               <a
-                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="btn-gold inline-flex items-center justify-center px-8 py-3 text-base font-medium"
@@ -385,7 +385,7 @@ const Automations = () => {
             </p>
             <div className="flex justify-center">
               <a
-                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white text-brand-teal hover:bg-gray-100 inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"

@@ -448,7 +448,7 @@ const About = () => {
               </Link>
               
               <a
-                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white border-2 border-brand-teal text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-brand-teal hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 text-lg"

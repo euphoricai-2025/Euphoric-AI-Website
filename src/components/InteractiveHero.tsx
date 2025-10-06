@@ -173,7 +173,7 @@ const InteractiveHero = () => {
               className="flex flex-col sm:flex-row gap-4 mb-12"
             >
               <a
-                href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-gradient-to-r from-brand-blue to-brand-teal hover:from-brand-teal hover:to-brand-gold text-white px-8 py-4 rounded-xl font-semibold text-lg transition-all duration-200 transform hover:scale-105 shadow-2xl hover:shadow-brand-blue/25 inline-flex items-center justify-center group"

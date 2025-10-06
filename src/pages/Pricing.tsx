@@ -203,7 +203,7 @@ const Pricing = () => {
                 </Link>
               ) : (
                 <a
-                  href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group text-lg"
@@ -597,7 +597,7 @@ const Pricing = () => {
                       </p>
                       <div className="flex flex-col sm:flex-row gap-4">
                         <a 
-                          href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                          href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-white text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl inline-block text-center"
@@ -1856,7 +1856,7 @@ const Pricing = () => {
                 </Link>
               ) : (
                 <a
-                  href="https://calendly.com/euphoricai-aivoiceagents-demo/30min"
+                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-gold inline-flex items-center justify-center gap-2 group px-8 py-4 text-lg font-semibold"
