@@ -31,7 +31,7 @@ const countryCodes = [
 const Home = () => {
   const { user } = useAuth();
   const [isQuarterly, setIsQuarterly] = useState(true);
-  const [demoForm, setDemoForm] = useState({ name: '', phone: '', email: '' });
+  const [demoForm, setDemoForm] = useState({ name: '', phone: '', email: '', consent: false });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitStatus, setSubmitStatus] = useState<{ type: 'success' | 'error' | null; message: string }>({ type: null, message: '' });
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -168,6 +168,11 @@ const Home = () => {
       return;
     }
 
+    if (!demoForm.consent) {
+      setSubmitStatus({ type: 'error', message: 'Please agree to the terms before requesting a demo call' });
+      return;
+    }
+
     setIsSubmitting(true);
     setSubmitStatus({ type: null, message: '' });
 
@@ -212,7 +217,7 @@ const Home = () => {
           type: 'success', 
           message: 'Demo call initiated successfully! You will receive a call from Eliza shortly.' 
         });
-        setDemoForm({ name: '', phone: '', email: '' });
+        setDemoForm({ name: '', phone: '', email: '', consent: false });
         setSelectedCountry(countryCodes[0]); // Reset to default country
       } else {
         // Try to get error details from response
@@ -560,9 +565,25 @@ const Home = () => {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.5, delay: 0.4 }}
                 >
+                  <div className="flex items-start gap-3 text-sm text-gray-700 max-w-md text-left">
+                    <input
+                      id="demoConsent"
+                      type="checkbox"
+                      checked={demoForm.consent}
+                      onChange={(e) => setDemoForm({ ...demoForm, consent: e.target.checked })}
+                      className="mt-1 h-5 w-5 rounded border-gray-300 text-brand-teal focus:ring-brand-teal focus:outline-none transition"
+                    />
+                    <label htmlFor="demoConsent" className="leading-relaxed">
+                      By submitting, you agree to receive a demo call from our AI agent in accordance with our{' '}
+                      <Link to="/terms-conditions" className="text-brand-teal underline font-semibold">Terms of Service</Link>
+                      {' '}and{' '}
+                      <Link to="/privacy-policy" className="text-brand-teal underline font-semibold">Privacy Policy</Link>.
+                    </label>
+                  </div>
+
                   <button
                     type="submit"
-                    disabled={isSubmitting}
+                    disabled={isSubmitting || !demoForm.consent}
                     className="relative py-5 px-10 rounded-2xl font-bold bg-gradient-to-br from-white via-white to-white hover:from-white hover:via-white hover:to-white transition-all transform hover:scale-[1.03] disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 shadow-2xl hover:shadow-3xl flex items-center justify-center gap-3 text-lg overflow-hidden group border-4 border-brand-teal bg-clip-padding"
                     style={{
                       backgroundImage: 'linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 50%, rgba(255,255,255,0.9) 100%), linear-gradient(135deg, var(--brand-teal) 0%, var(--brand-cyan) 50%, var(--brand-gold) 100%)',
@@ -592,9 +613,6 @@ const Home = () => {
                     )}
                   </button>
 
-                  <p className="text-sm text-gray-700 font-medium text-center max-w-md">
-                    By submitting, you agree to receive a demo call from our AI agent.
-                  </p>
                 </motion.div>
               </form>
               </div>
