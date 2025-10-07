@@ -132,7 +132,7 @@ const Pricing = () => {
     },
     {
       question: 'Is there a setup fee?',
-      answer: 'No setup fees! All plans include self-setup tools and onboarding support at no additional cost.'
+      answer: 'No setup fees! All plans include self-setup tools.'
     },
     {
       question: 'Can I use my own phone numbers?',
