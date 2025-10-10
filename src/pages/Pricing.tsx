@@ -271,7 +271,8 @@ const Pricing = () => {
 
 
           {/* Pricing Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
+          <div className="flex justify-center">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl">
             {/* Starter Plan */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -389,14 +390,71 @@ const Pricing = () => {
               </div>
             </motion.div>
 
-            {/* Pro Plan */}
+            {/* Growth Plan - Most Popular */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
+              className="glass p-8 relative flex flex-col min-h-[600px] card-hover group border-2 border-brand-teal shadow-xl scale-105 z-10"
+            >
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
+                  Most Popular
+                </span>
+              </div>
+              <div className="mb-6">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Growth</h3>
+                <p className="text-sm text-gray-600 mb-4">For businesses with higher call volumes</p>
+                <div className="mb-4">
+                  <span className="text-3xl font-bold text-gray-900">$999</span>
+                  <span className="text-gray-500 text-sm">/month</span>
+                </div>
+                <a
+                  href="https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
+                >
+                  Get Started
+                </a>
+              </div>
+
+              <div className="space-y-4 text-sm flex-grow mb-8">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">5,000 calling minutes included</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Up to 50 concurrent calls</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Real-time analytics dashboard</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Priority email support</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Multilingual agent</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Same-rate overages at $0.16/min</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Pro Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
               className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
-              
+
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Pro</h3>
                 <p className="text-sm text-gray-600 mb-4">Enterprise readiness with compliance and SLAs</p>
@@ -404,7 +462,7 @@ const Pricing = () => {
                   <span className="text-3xl font-bold text-gray-900">$1,499</span>
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
-                <a 
+                <a
                   href="https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f"
                   target="_blank"
                   rel="noopener noreferrer"
@@ -413,7 +471,7 @@ const Pricing = () => {
                   Get Started
                 </a>
               </div>
-              
+
               <div className="space-y-4 text-sm flex-grow mb-8">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -446,69 +504,12 @@ const Pricing = () => {
               </div>
             </motion.div>
 
-            {/* Growth Plan - Most Popular */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="glass p-8 relative flex flex-col min-h-[600px] card-hover group border-2 border-brand-teal shadow-xl scale-105 z-10"
-            >
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
-                <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
-                  Most Popular
-                </span>
-              </div>
-              <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Growth</h3>
-                <p className="text-sm text-gray-600 mb-4">For businesses with higher call volumes</p>
-                <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$999</span>
-                  <span className="text-gray-500 text-sm">/month</span>
-                </div>
-                <a 
-                  href="https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
-                >
-                  Get Started
-                </a>
-              </div>
-              
-              <div className="space-y-4 text-sm flex-grow mb-8">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">5,000 calling minutes included</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Up to 50 concurrent calls</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Real-time analytics dashboard</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Priority email support</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Multilingual agent</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Same-rate overages at $0.16/min</span>
-                </div>
-              </div>
-            </motion.div>
-
             {/* Enterprise Plan */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.5 }}
-              className="lg:col-span-5 mt-12"
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="lg:col-span-4 mt-12"
             >
               <div className="glass rounded-3xl overflow-hidden shadow-2xl">
                 <div className="grid md:grid-cols-2">
@@ -598,6 +599,7 @@ const Pricing = () => {
                 </div>
               </div>
             </motion.div>
+            </div>
           </div>
         </div>
       </section>
