@@ -837,6 +837,7 @@ const Pricing = () => {
               </div>
             </div>
           </div>
+        </div>
       </section>
 
       {/* Features Section */}
