@@ -32,10 +32,10 @@
 - **Session Management** - Persistent user sessions across devices
 
 ### 💰 Flexible Pricing
-- **Dynamic Billing Toggle** - Switch between monthly/quarterly with 10% savings
-- **Three Tier System** - Starter ($299), Standard ($499), Premium ($599)
-- **Transparent Pricing** - No hidden fees, Stripe integration
+- **Five-Tier System** - Starter ($399/mo), Standard ($599/mo), Growth ($999/mo), Pro ($1,499/mo), Enterprise (from $1,999/mo)
+- **Transparent Pricing** - No hidden fees, Stripe integration, overage at $0.16/min
 - **Self-Service Setup** - Get started in 30 minutes
+- **Scalable Plans** - From 2,000 to unlimited calling minutes, 15 to unlimited concurrent calls
 
 ### 🎨 Modern UI/UX
 - **Responsive Design** - Mobile-first approach with Tailwind CSS

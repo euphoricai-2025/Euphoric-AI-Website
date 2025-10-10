@@ -895,8 +895,8 @@ const Home = () => {
                 Go to Dashboard
               </a>
             ) : (
-              <Link to="/signup" className="btn-gold">
-                Start Your Free Trial
+              <Link to="/pricing" className="btn-gold">
+                Explore Pricing
               </Link>
             )}
           </div>

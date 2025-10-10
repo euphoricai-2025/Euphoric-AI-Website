@@ -381,7 +381,7 @@ const Automations = () => {
               Ready to Automate Your Business?
             </h2>
             <p className="text-lg text-white/90 mb-8">
-              Start with our Trial for just $99/month and transform your operations with AI-powered automations.
+              Choose from five flexible plans starting at $399/month: Starter, Standard, Growth, Pro, or Enterprise (from $1,999/mo) — all with AI-powered automations.
             </p>
             <div className="flex justify-center">
               <a
