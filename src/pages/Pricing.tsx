@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Check, ArrowRight, Phone, Zap, Shield, BarChart3, CheckCircle, DollarSign, Settings, Briefcase, Headphones, ShieldCheck, Tag, ChevronDown, ChevronUp, Sparkles, Crown, Rocket, HelpCircle } from 'lucide-react';
-import TabbedInterface from '../components/TabbedInterface';
 import { TextAnimate } from '../components/magicui/text-animate';
 import { useAuth } from '../contexts/AuthContext';
 
@@ -12,80 +11,86 @@ const Pricing = () => {
   
   const plans = [
     {
-      name: 'Trial AI Calling Agent',
+      name: 'Starter',
       price: 399,
-      hours: 2000,
-      description: 'Perfect for small businesses getting started with AI calling',
+      minutes: '2,000 calling minutes per month',
+      concurrentCalls: 'Up to 15 concurrent calls',
+      description: 'Perfect for teams launching their first AI voice agent',
       popular: false,
       features: [
+        '2,000 calling minutes per month',
+        'Up to 15 concurrent calls',
         'Self-setup',
-        'Twilio phone number integration',
+        'Twilio number integration',
         'Basic analytics dashboard',
         'Email support',
-        'Secure Stripe payments'
+        'Post-call analysis'
       ]
     },
     {
-      name: 'Trial AI Calling Agent',
-      price: 399,
-      hours: 2000,
-      description: 'Perfect for small businesses getting started with AI calling',
+      name: 'Standard',
+      price: 599,
+      minutes: '3,000 calling minutes per month',
+      concurrentCalls: 'Up to 25 concurrent calls',
+      description: 'Growing teams with advanced analytics needs',
       popular: false,
       features: [
-        'Self-setup',
-        'Twilio phone number integration',
-        'Basic analytics dashboard',
-        'Email support',
-        'Secure Stripe payments'
+        '3,000 calling minutes per month',
+        'Then $0.16/min thereafter',
+        'Up to 25 concurrent calls',
+        'Advanced analytics & reporting',
+        'Email support'
       ]
     },
     {
-      name: 'Starter AI Calling Agent',
-      price: 549,
-      hours: 3000,
-      description: 'Ideal for growing businesses with higher call volumes',
+      name: 'Growth',
+      price: 999,
+      minutes: '5,000 calling minutes per month',
+      concurrentCalls: 'Up to 50 concurrent calls',
+      description: 'Most popular plan with multilingual support',
       popular: true,
       features: [
-        'Assisted setup in 30 minutes',
-        'Twilio phone number integration',
-        'Advanced analytics & reporting',
-        'Priority email support',
-        'Secure Stripe payments',
-        'Multi-domain support',
-        'Custom voice training',
-        'API access'
-      ]
-    },
-    {
-      name: 'Growth AI Calling Agent',
-      price: 849,
-      hours: 7500,
-      description: 'For enterprise businesses requiring maximum calling capacity',
-      popular: false,
-      features: [
-        'Assisted setup in 30 minutes',
-        'Twilio phone number integration',
+        '5,000 calling minutes per month',
+        'Then $0.16/min thereafter',
+        'Up to 50 concurrent calls',
         'Real-time analytics dashboard',
-        'Dedicated account manager',
-        'Secure Stripe payments',
-        'All domain specializations',
-        'Advanced voice customization',
-        'Full API access',
-        'Priority feature requests'
+        'Priority email support',
+        'Multilingual Agent'
       ]
     },
     {
-      name: 'Trial AI Calling Agent',
-      price: 399,
-      hours: 2000,
-      description: 'Perfect for small businesses getting started with AI calling',
+      name: 'Pro',
+      price: 1499,
+      minutes: '7,500 calling minutes per month',
+      concurrentCalls: 'Up to 80 concurrent calls',
+      description: 'Enterprise-ready with compliance and SLAs',
       popular: false,
       features: [
-        'Self-setup',
-        'Twilio phone number integration',
-        'Basic analytics dashboard',
-        'Email support',
-        'Secure Stripe payments'
+        '7,500 calling minutes per month',
+        'Then $0.16/min thereafter',
+        'Up to 80 concurrent calls',
+        'SIP trunk integration',
+        'Guaranteed uptime (SLA)',
+        'Custom integrations',
+        'SOC2/HIPAA/GDPR compliance',
+        'Premium onboarding'
+      ]
+    },
+    {
+      name: 'Enterprise',
+      price: 1999,
+      priceLabel: 'Starts from $1,999',
+      minutes: 'Flexible minute-based pricing',
+      concurrentCalls: 'Unlimited concurrent calls',
+      description: 'Tailored for high-volume, multi-country operations',
+      popular: false,
+      features: [
+        'Flexible minute-based pricing',
+        'Unlimited concurrent calls',
+        'Dedicated solution architect',
+        'Advanced SIP trunk & API integrations',
+        'Enterprise-grade compliance',
+        '24/7 premium support'
       ]
     }
   ];
@@ -110,6 +115,49 @@ const Pricing = () => {
       icon: BarChart3,
       title: 'Advanced Analytics',
       description: 'Track performance with detailed reporting and real-time call analytics.'
+    }
+  ];
+
+  const planLabels = ['Starter', 'Standard', 'Growth', 'Pro', 'Enterprise'];
+
+  const planComparisonSummary = [
+    {
+      label: 'Included minutes',
+      values: ['2,000', '3,000', '5,000', '7,500', 'Flexible']
+    },
+    {
+      label: 'Concurrent calls',
+      values: ['15', '25', '50', '80', 'Unlimited']
+    },
+    {
+      label: 'Analytics & insights',
+      values: [
+        'Basic analytics dashboard',
+        'Advanced analytics & reporting',
+        'Real-time analytics dashboard',
+        'Real-time analytics + SIP visibility',
+        'Enterprise analytics & custom reporting'
+      ]
+    },
+    {
+      label: 'Support level',
+      values: [
+        'Email support',
+        'Email support',
+        'Priority email support',
+        'Priority email + premium onboarding',
+        '24/7 premium support'
+      ]
+    },
+    {
+      label: 'Key extras',
+      values: [
+        'Post-call analysis',
+        'Same-rate overages at $0.16/min',
+        'Multilingual agent',
+        'SIP trunk integration, custom integrations, compliance',
+        'Dedicated solution architect, enterprise-grade compliance'
+      ]
     }
   ];
 
@@ -224,7 +272,7 @@ const Pricing = () => {
 
           {/* Pricing Cards */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 max-w-7xl mx-auto">
-            {/* Trial Plan */}
+            {/* Starter Plan */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -240,14 +288,14 @@ const Pricing = () => {
                 {/* Card Content */}
                 <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 flex flex-col min-h-[600px]">
                   <div className="mb-6">
-                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Trial</h3>
-                    <p className="text-sm text-gray-600 mb-4">To develop and launch your first AI voice agent</p>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p className="text-sm text-gray-600 mb-4">Launch your AI calling agent with guided self-setup</p>
                     <div className="mb-4">
-                      <span className="text-3xl font-bold text-gray-900">$99</span>
-                      <span className="text-gray-500 text-sm">/month only</span>
+                      <span className="text-3xl font-bold text-gray-900">$399</span>
+                      <span className="text-gray-500 text-sm">/month</span>
                     </div>
                     <a 
-                      href="https://buy.stripe.com/aFa4gz2RL5fbc913dt8g00l"
+                      href="https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
@@ -259,27 +307,31 @@ const Pricing = () => {
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                      <span className="text-gray-700">250 mins</span>
+                      <span className="text-gray-700">2,000 calling minutes included</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                      <span className="text-gray-700">5 Concurrent Calls</span>
+                      <span className="text-gray-700">Up to 15 concurrent calls</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                      <span className="text-gray-700">Voice API, LLM, transcriber costs</span>
+                      <span className="text-gray-700">Self-setup workflow</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                      <span className="text-gray-700">API & Integrations</span>
+                      <span className="text-gray-700">Twilio number integration</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                      <span className="text-gray-700">Real-Time Booking, Human Transfer & More Actions</span>
+                      <span className="text-gray-700">Basic analytics dashboard</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                      <span className="text-gray-700">Post Call Analysis</span>
+                      <span className="text-gray-700">Email support</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">Post-call analysis</span>
                     </div>
                   </div>
                   
@@ -297,71 +349,10 @@ const Pricing = () => {
               className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
               <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
-                <p className="text-sm text-gray-600 mb-4">To develop and launch your first AI voice agent</p>
-                <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$399</span>
-                  <span className="text-gray-500 text-sm">/month</span>
-                </div>
-                <a 
-                  href="https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
-                >
-                  Get Started
-                </a>
-              </div>
-              
-              <div className="space-y-4 text-sm flex-grow mb-8">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">2,000 mins of calling per month</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">15 concurrent calls</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Self-setup</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Twilio phone number integration</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Basic analytics dashboard</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Email support</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Secure Stripe payments</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Post Call Analysis</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Growth Plan becomes Standard (no highlight) */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
-            >
-              
-              <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Standard</h3>
-                <p className="text-sm text-gray-600 mb-4">For businesses with low call volumes</p>
+                <p className="text-sm text-gray-600 mb-4">Grow with deeper analytics and higher call volumes</p>
                 <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$549</span>
+                  <span className="text-3xl font-bold text-gray-900">$599</span>
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
                 <a 
@@ -377,140 +368,40 @@ const Pricing = () => {
               <div className="space-y-4 text-sm flex-grow mb-8">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">3,000 mins, then $0.16/min</span>
+                  <span className="text-gray-700">3,000 calling minutes included</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">25 concurrent calls</span>
+                  <span className="text-gray-700">Up to 25 concurrent calls</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All Starter features, plus:</span>
+                  <span className="text-gray-700">Advanced analytics &amp; reporting</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-brand-teal font-semibold"><strong>Custom Caller ID (Display Your Number)</strong></span>
+                  <span className="text-gray-700">Email support</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-brand-teal font-semibold"><strong>Branded Caller ID (Display Business Name)</strong></span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Assisted setup in 30 minutes</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Advanced analytics and reporting</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Priority email support</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Multi-domain support</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Custom voice training</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">API access</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Post Call Analysis</span>
+                  <span className="text-gray-700">Same-rate overages at $0.16/min</span>
                 </div>
               </div>
             </motion.div>
 
-            {/* Pro Plan becomes Growth - Most Popular */}
+            {/* Pro Plan */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="glass p-8 relative flex flex-col min-h-[600px] card-hover group border-2 border-brand-teal shadow-xl scale-105 z-10"
-            >
-              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
-                <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
-                  Most Popular
-                </span>
-              </div>
-              <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Growth</h3>
-                <p className="text-sm text-gray-600 mb-4">For businesses with higher call volumes</p>
-                <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$849</span>
-                  <span className="text-gray-500 text-sm">/month</span>
-                </div>
-                <a 
-                  href="https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
-                >
-                  Get Started
-                </a>
-              </div>
-              
-              <div className="space-y-4 text-sm flex-grow mb-8">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">5,000 mins, then $0.16/min</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">50 concurrent calls</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All Standard features, plus:</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Real-time analytics dashboard</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Dedicated account manager</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All domain specializations</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Advanced voice customization</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Full API access</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Priority feature requests</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Post Call Analysis</span>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Premium Plan becomes Pro */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
               className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
             >
+              
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Pro</h3>
-                <p className="text-sm text-gray-600 mb-4">For performance, scalability & support</p>
+                <p className="text-sm text-gray-600 mb-4">Enterprise readiness with compliance and SLAs</p>
                 <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$1249</span>
+                  <span className="text-3xl font-bold text-gray-900">$1,499</span>
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
                 <a 
@@ -526,51 +417,140 @@ const Pricing = () => {
               <div className="space-y-4 text-sm flex-grow mb-8">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">7,500 mins, then $0.16/min</span>
+                  <span className="text-gray-700">7,500 calling minutes included</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">80 concurrent calls</span>
+                  <span className="text-gray-700">Up to 80 concurrent calls</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">All Growth features, plus:</span>
+                  <span className="text-gray-700">SIP trunk integration</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">SIP Trunk Integration</span>
+                  <span className="text-gray-700">Guaranteed uptime (SLA)</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Guaranteed Uptime (SLA)</span>
+                  <span className="text-gray-700">Custom integrations</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Custom Integrations</span>
+                  <span className="text-gray-700">SOC2/HIPAA/GDPR compliance</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Compliance (SOC2, HIPAA, GDPR)</span>
+                  <span className="text-gray-700">Premium onboarding</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Growth Plan - Most Popular */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+              className="glass p-8 relative flex flex-col min-h-[600px] card-hover group border-2 border-brand-teal shadow-xl scale-105 z-10"
+            >
+              <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
+                <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
+                  Most Popular
+                </span>
+              </div>
+              <div className="mb-6">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Growth</h3>
+                <p className="text-sm text-gray-600 mb-4">For businesses with higher call volumes</p>
+                <div className="mb-4">
+                  <span className="text-3xl font-bold text-gray-900">$999</span>
+                  <span className="text-gray-500 text-sm">/month</span>
+                </div>
+                <a 
+                  href="https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
+                >
+                  Get Started
+                </a>
+              </div>
+              
+              <div className="space-y-4 text-sm flex-grow mb-8">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">5,000 calling minutes included</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Solution Architect</span>
+                  <span className="text-gray-700">Up to 50 concurrent calls</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Premium Onboarding, Training, Support</span>
+                  <span className="text-gray-700">Real-time analytics dashboard</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Custom Caller ID (Display Your Number)</span>
+                  <span className="text-gray-700">Priority email support</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Branded Caller ID (Display Business Name)</span>
+                  <span className="text-gray-700">Multilingual agent</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Post Call Analysis</span>
+                  <span className="text-gray-700">Same-rate overages at $0.16/min</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Enterprise Summary Card */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
+            >
+              <div className="mb-6">
+                <h3 className="text-3xl font-bold text-gray-900 mb-2">Enterprise</h3>
+                <p className="text-sm text-gray-600 mb-4">Tailored deployments for high-volume, multi-country teams</p>
+                <div className="mb-4">
+                  <span className="text-3xl font-bold text-gray-900">From $1,999</span>
+                  <span className="text-gray-500 text-sm">/month</span>
+                </div>
+                <a 
+                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
+                >
+                  Contact Sales
+                </a>
+              </div>
+              
+              <div className="space-y-4 text-sm flex-grow mb-8">
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Flexible minute-based pricing</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Unlimited concurrent calls</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Dedicated solution architect</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Advanced SIP trunk &amp; API integrations</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">Enterprise-grade compliance</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                  <span className="text-gray-700">24/7 premium support</span>
                 </div>
               </div>
             </motion.div>
@@ -595,6 +575,9 @@ const Pricing = () => {
                       <p className="text-xl text-white/95 mb-10 leading-relaxed">
                         Tailored solutions with dedicated support, custom integrations, and enterprise-grade security for your unique requirements.
                       </p>
+                      <div className="text-lg font-semibold text-white/90 mb-10">
+                        Starts from $1,999/month with flexible minute-based pricing.
+                      </div>
                       <div className="flex flex-col sm:flex-row gap-4">
                         <a 
                           href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
@@ -709,11 +692,11 @@ const Pricing = () => {
               
               {/* Plan Cards - Desktop */}
               {[
-                { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/aFa4gz2RL5fbc913dt8g00l', popular: false },
                 { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
-                { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
-                { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
-                { name: 'Pro', price: '$1249', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false }
+                { name: 'Standard', price: '$599', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
+                { name: 'Growth', price: '$999', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
+                { name: 'Pro', price: '$1,499', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false },
+                { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai-voiceagents-demo/45', popular: false }
               ].map((plan) => (
                 <div key={plan.name} className="text-center">
                   <div className={`rounded-xl p-4 hover:shadow-lg transition-all duration-300 h-full flex flex-col group card-hover ${
@@ -728,7 +711,7 @@ const Pricing = () => {
                     )}
                     <h3 className={`text-xl font-bold text-gray-900 mb-2 ${plan.popular ? 'mt-2' : ''}`}>{plan.name}</h3>
                     <div className="text-2xl font-bold mb-1 text-brand-teal">{plan.price}</div>
-                    <div className="text-xs text-gray-600 mb-3">/month</div>
+                    <div className="text-xs text-gray-600 mb-3">{plan.name === 'Enterprise' ? 'custom' : '/month'}</div>
                     <a 
                       href={plan.url}
                       target="_blank"
@@ -737,7 +720,7 @@ const Pricing = () => {
                         plan.popular ? 'bg-gradient-to-r from-brand-gold to-orange-400' : 'bg-gradient-to-r from-brand-teal to-brand-blue'
                       }`}
                     >
-                      Get Started
+                      {plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
                     </a>
                   </div>
                 </div>
@@ -754,11 +737,11 @@ const Pricing = () => {
               <div className="p-4 overflow-x-auto">
                 <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
                   {[
-                    { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/aFa4gz2RL5fbc913dt8g00l', popular: false },
                     { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
-                    { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
-                    { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
-                    { name: 'Pro', price: '$1249', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false }
+                    { name: 'Standard', price: '$599', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
+                    { name: 'Growth', price: '$999', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
+                    { name: 'Pro', price: '$1,499', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false },
+                    { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai-voiceagents-demo/45', popular: false }
                   ].map((plan) => (
                     <div key={plan.name} className="flex-shrink-0 w-36">
                       <div className={`rounded-xl p-3 hover:shadow-lg transition-all duration-300 h-full flex flex-col group card-hover ${
@@ -773,7 +756,7 @@ const Pricing = () => {
                         )}
                         <h3 className={`text-lg font-bold text-gray-900 mb-2 text-center ${plan.popular ? 'mt-2' : ''}`}>{plan.name}</h3>
                         <div className="text-xl font-bold mb-1 text-brand-teal text-center">{plan.price}</div>
-                        <div className="text-xs text-gray-600 mb-3 text-center">/month</div>
+                        <div className="text-xs text-gray-600 mb-3 text-center">{plan.name === 'Enterprise' ? 'custom' : '/month'}</div>
                         <a 
                           href={plan.url}
                           target="_blank"
@@ -782,7 +765,7 @@ const Pricing = () => {
                             plan.popular ? 'bg-gradient-to-r from-brand-gold to-orange-400' : 'bg-gradient-to-r from-brand-teal to-brand-blue'
                           }`}
                         >
-                          Get Started
+                          {plan.name === 'Enterprise' ? 'Contact Sales' : 'Get Started'}
                         </a>
                       </div>
                     </div>
@@ -792,869 +775,68 @@ const Pricing = () => {
             </div>
           </div>
 
-          {/* Interactive Comparison Tabs */}
-          <TabbedInterface
-            variant="underline"
-            tabs={[
-              {
-                id: 'costs',
-                label: 'Costs & Usage',
-                icon: DollarSign,
-                content: (
-                  <div className="glass rounded-2xl border-0 shadow-lg overflow-hidden">
-                    {/* Desktop Table View */}
-                    <div className="hidden lg:block">
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
-                        <div className="flex items-center justify-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Trial</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Minutes included</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">250</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">2,000</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">3,000</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">5,000</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="inline-block px-4 py-2 bg-gray-100 text-gray-800 rounded-lg text-lg font-semibold">7,500</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Mobile Card View */}
-                    <div className="lg:hidden">
-                      <div className="p-4 space-y-4">
-                        {/* Minutes included */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Minutes included</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">250</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">2,000</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">3,000</div>
-                            </div>
-                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
-                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">5,000</div>
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <div className="text-gray-800 font-semibold">7,500</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    
-                    {/* Continue Desktop Table */}
-                    <div className="hidden lg:block">
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Extra Minute</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">$0.16</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">$0.16</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">$0.16</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">$0.16</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">$0.16</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Concurrent Calls</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">5</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">15</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">25</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">50</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">80</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Extra Concurrent Call</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">$7/call</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">$7/call</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">$7/call</span>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Continue Mobile Card View */}
-                    <div className="lg:hidden">
-                      <div className="p-4 space-y-4">
-                        {/* Extra Minute */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Extra Minute Cost</h3>
-                          <div className="text-center p-4 bg-gray-50 rounded-lg">
-                            <div className="text-xl font-bold text-brand-teal">$0.16</div>
-                            <div className="text-sm text-gray-600 mt-1">Same rate for all plans</div>
-                          </div>
-                        </div>
-
-                        {/* Concurrent Calls */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Concurrent Calls</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">5</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">15</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">25</div>
-                            </div>
-                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
-                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">50</div>
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <div className="text-gray-800 font-semibold">80</div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Extra Concurrent Call */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Extra Concurrent Call</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">$7/call</div>
-                            </div>
-                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
-                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">$7/call</div>
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <div className="text-gray-800 font-semibold">$7/call</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+          {/* Plan Feature Summary */}
+          <div className="mt-20">
+            <div className="glass rounded-3xl overflow-hidden shadow-2xl">
+              {/* Desktop Summary Table */}
+              <div className="hidden lg:block">
+                <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
+                  <div className="flex items-center justify-center">
+                    <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
                   </div>
-                )
-              },
-              {
-                id: 'features',
-                label: 'Core Features',
-                icon: Zap,
-                content: (
-                  <div className="glass rounded-2xl border-0 shadow-lg overflow-hidden">
-                    {/* Desktop Table View */}
-                    <div className="hidden lg:block">
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
-                        <div className="flex items-center justify-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Trial</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Number of Assistants</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">1</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">5</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">10</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">20</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">Unlimited</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Multi-language</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Batch Campaigns</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Invite Team Members</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">2</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">3</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">4</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">5</span>
-                        </div>
-                      </div>
+                  {planLabels.map((plan) => (
+                    <div key={`summary-header-${plan}`} className="text-center">
+                      <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">{plan}</span>
                     </div>
-
-                    {/* Mobile Card View */}
-                    <div className="lg:hidden">
-                      <div className="p-4 space-y-4">
-                        {/* Number of Assistants */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Number of Assistants</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">1</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">5</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">10</div>
-                            </div>
-                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
-                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">20</div>
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <div className="text-gray-800 font-semibold">Unlimited</div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Multi-language */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Multi-language Support</h3>
-                          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
-                            <Check className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                            <div className="text-green-800 font-semibold">Available on all plans</div>
-                          </div>
-                        </div>
-
-                        {/* Batch Campaigns */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Batch Campaigns</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
-                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Invite Team Members */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Invite Team Members</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">2</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">3</div>
-                            </div>
-                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
-                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 font-semibold">4</div>
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <div className="text-gray-800 font-semibold">5</div>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
+                  ))}
+                </div>
+                {planComparisonSummary.map((row) => (
+                  <div
+                    key={row.label}
+                    className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20"
+                  >
+                    <div className="flex items-center justify-center">
+                      <span className="text-xl font-semibold text-gray-900">{row.label}</span>
                     </div>
+                    {row.values.map((value, index) => (
+                      <div key={`${row.label}-${planLabels[index]}`} className="text-center">
+                        <span className="text-lg font-medium text-gray-800">{value}</span>
+                      </div>
+                    ))}
                   </div>
-                )
-              },
-              {
-                id: 'support',
-                label: 'Support & Success',
-                icon: Headphones,
-                content: (
-                  <div className="glass rounded-2xl border-0 shadow-lg overflow-hidden">
-                    {/* Desktop Table View */}
-                    <div className="hidden lg:block">
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
-                        <div className="flex items-center justify-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Support</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Trial</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Support Level</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">Email Support</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">Email Support</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">Priority Email Support</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">Dedicated Account Manager</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">Dedicated Account Manager</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Onboarding via Zoom</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center text-center">
-                          <span className="text-xl font-semibold text-gray-900">Early Access to New Features</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">Solution Architect</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
+                ))}
+              </div>
+
+              {/* Mobile Summary Cards */}
+              <div className="lg:hidden">
+                <div className="divide-y divide-white/20">
+                  {planLabels.map((plan, planIndex) => (
+                    <div key={`summary-mobile-${plan}`} className="p-6">
+                      <h3 className="text-xl font-semibold text-gray-900 mb-4 text-center">
+                        {plan}
+                        {plan === 'Growth' && (
+                          <span className="ml-2 text-brand-teal text-xs font-semibold uppercase tracking-wide">Popular</span>
+                        )}
+                      </h3>
+                      <div className="space-y-3">
+                        {planComparisonSummary.map((row) => (
+                          <div
+                            key={`${plan}-${row.label}`}
+                            className="flex items-start justify-between bg-white/60 backdrop-blur-sm rounded-xl px-4 py-3 border border-white/20"
+                          >
+                            <span className="text-sm font-medium text-gray-600">{row.label}</span>
+                            <span className="text-sm font-semibold text-gray-900 text-right w-1/2">
+                              {row.values[planIndex]}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                     </div>
-
-                    {/* Mobile Card View */}
-                    <div className="lg:hidden">
-                      <div className="p-4 space-y-4">
-                        {/* Support Level */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Support Level</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 text-sm font-semibold">Email Support</div>
-                            </div>
-                            <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 text-sm font-semibold">Email Support</div>
-                            </div>
-                            <div className="text-center p-3 bg-blue-50 rounded-lg border border-blue-200">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 text-sm font-semibold">Priority Email</div>
-                            </div>
-                            <div className="text-center p-3 bg-yellow-50 rounded-lg border border-brand-gold/30">
-                              <div className="font-bold text-brand-teal mb-1">Growth ⭐</div>
-                              <div className="text-gray-800 text-sm font-semibold">Account Manager</div>
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-purple-50 rounded-lg border border-purple-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <div className="text-gray-800 text-sm font-semibold">Account Manager</div>
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Onboarding via Zoom */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Onboarding via Zoom</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Growth</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Early Access to New Features */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Early Access to New Features</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Growth</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                        </div>
-
-                        {/* Solution Architect */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Solution Architect</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Starter</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Growth</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              },
-              {
-                id: 'security',
-                label: 'Security & Compliance',
-                icon: ShieldCheck,
-                content: (
-                  <div className="glass rounded-2xl border-0 shadow-lg overflow-hidden">
-                    {/* Desktop Table View */}
-                    <div className="hidden lg:block">
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
-                        <div className="flex items-center justify-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Security Feature</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Trial</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Starter</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Standard</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Growth</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Pro</span>
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">HIPAA Compliance</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">SOC2 Security</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20">
-                        <div className="flex items-center justify-center">
-                          <span className="text-xl font-semibold text-gray-900">GDPR Compliance</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                      </div>
-                      
-                      <div className="grid grid-cols-6 gap-4 p-6">
-                        <div className="flex items-center justify-center text-center">
-                          <span className="text-xl font-semibold text-gray-900">Guaranteed Uptime (SLA)</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <span className="text-lg font-medium">—</span>
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                        <div className="text-center">
-                          <Check className="w-6 h-6 text-brand-teal mx-auto" />
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Mobile Card View */}
-                    <div className="lg:hidden">
-                      <div className="p-4 space-y-4">
-                        {/* HIPAA Compliance */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">HIPAA Compliance</h3>
-                          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
-                            <Check className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                            <div className="text-green-800 font-semibold">Available on all plans</div>
-                          </div>
-                        </div>
-
-                        {/* SOC2 Security */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">SOC2 Security</h3>
-                          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
-                            <Check className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                            <div className="text-green-800 font-semibold">Available on all plans</div>
-                          </div>
-                        </div>
-
-                        {/* GDPR Compliance */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">GDPR Compliance</h3>
-                          <div className="text-center p-4 bg-green-50 rounded-lg border border-green-200">
-                            <Check className="w-8 h-8 text-green-600 mx-auto mb-2" />
-                            <div className="text-green-800 font-semibold">Available on all plans</div>
-                          </div>
-                        </div>
-
-                        {/* Guaranteed Uptime (SLA) */}
-                        <div className="bg-white/50 backdrop-blur-sm rounded-xl p-4 border border-white/20">
-                          <h3 className="text-lg font-semibold text-gray-900 mb-4 text-center">Guaranteed Uptime (SLA)</h3>
-                          <div className="grid grid-cols-2 gap-3">
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Trial</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Standard</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-gray-50 rounded-lg">
-                              <div className="font-bold text-brand-teal mb-1">Growth</div>
-                              <div className="text-gray-800 font-semibold">—</div>
-                            </div>
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                          <div className="mt-3">
-                            <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
-                              <div className="font-bold text-brand-teal mb-1">Pro</div>
-                              <Check className="w-5 h-5 text-green-600 mx-auto" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )
-              }
-            ]}
-          />
-        </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
       </section>
 
       {/* Features Section */}

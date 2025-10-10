@@ -59,8 +59,8 @@ export const generateServiceSchema = (
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Starter Plan',
-          description: '2,000 calling minutes per month, up to 15 concurrent calls, self-setup, Twilio integration, basic analytics, email support, post-call analysis'
+          name: 'Starter',
+          description: 'Includes 2,000 calling minutes per month, up to 15 concurrent calls, self-setup, Twilio number integration, basic analytics dashboard, email support, and post-call analysis.'
         },
         price: '399',
         priceCurrency: 'USD'
@@ -69,8 +69,8 @@ export const generateServiceSchema = (
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Standard Plan',
-          description: '3,000 calling minutes per month (then $0.16/min), up to 25 concurrent calls, advanced analytics & reporting, email support'
+          name: 'Standard',
+          description: 'Includes 3,000 calling minutes per month (then $0.16/min thereafter), up to 25 concurrent calls, advanced analytics & reporting, and email support.'
         },
         price: '599',
         priceCurrency: 'USD'
@@ -79,8 +79,8 @@ export const generateServiceSchema = (
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Growth Plan',
-          description: '5,000 calling minutes per month (then $0.16/min), up to 50 concurrent calls, real-time analytics dashboard, priority email support, multilingual agent'
+          name: 'Growth (Most Popular)',
+          description: 'Includes 5,000 calling minutes per month (then $0.16/min thereafter), up to 50 concurrent calls, real-time analytics dashboard, priority email support, Multilingual Agent.'
         },
         price: '999',
         priceCurrency: 'USD'
@@ -89,8 +89,8 @@ export const generateServiceSchema = (
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Pro Plan',
-          description: '7,500 calling minutes per month (then $0.16/min), up to 80 concurrent calls, SIP trunk integration, guaranteed uptime (SLA), custom integrations, SOC2/HIPAA/GDPR compliance, premium onboarding'
+          name: 'Pro',
+          description: 'Includes 7,500 calling minutes per month (then $0.16/min thereafter), up to 80 concurrent calls, SIP trunk integration, guaranteed uptime (SLA), custom integrations, SOC2/HIPAA/GDPR compliance, and premium onboarding.'
         },
         price: '1499',
         priceCurrency: 'USD'
@@ -99,15 +99,16 @@ export const generateServiceSchema = (
         '@type': 'Offer',
         itemOffered: {
           '@type': 'Service',
-          name: 'Enterprise Plan',
-          description: 'Flexible minute-based pricing, unlimited concurrent calls, dedicated solution architect, advanced SIP trunk & API integrations, enterprise-grade compliance, 24/7 premium support'
+          name: 'Enterprise',
+          description: 'Tailored for high-volume, multi-country operations with flexible minute-based pricing, unlimited concurrent calls, dedicated solution architect, advanced SIP trunk and API integrations, enterprise-grade compliance, and 24/7 premium support.'
         },
         price: '1999',
         priceCurrency: 'USD',
         priceSpecification: {
           '@type': 'PriceSpecification',
           minPrice: '1999',
-          priceCurrency: 'USD'
+          priceCurrency: 'USD',
+          description: 'Starts from $1,999/month'
         }
       }
     ]
