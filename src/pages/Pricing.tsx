@@ -503,58 +503,6 @@ const Pricing = () => {
               </div>
             </motion.div>
 
-            {/* Enterprise Summary Card */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
-            >
-              <div className="mb-6">
-                <h3 className="text-3xl font-bold text-gray-900 mb-2">Enterprise</h3>
-                <p className="text-sm text-gray-600 mb-4">Tailored deployments for high-volume, multi-country teams</p>
-                <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">From $1,999</span>
-                  <span className="text-gray-500 text-sm">/month</span>
-                </div>
-                <a 
-                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
-                >
-                  Contact Sales
-                </a>
-              </div>
-              
-              <div className="space-y-4 text-sm flex-grow mb-8">
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Flexible minute-based pricing</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Unlimited concurrent calls</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Dedicated solution architect</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Advanced SIP trunk &amp; API integrations</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">Enterprise-grade compliance</span>
-                </div>
-                <div className="flex items-center gap-2">
-                  <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                  <span className="text-gray-700">24/7 premium support</span>
-                </div>
-              </div>
-            </motion.div>
-
             {/* Enterprise Plan */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
