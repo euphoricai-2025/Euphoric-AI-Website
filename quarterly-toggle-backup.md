@@ -91,17 +91,17 @@ const getDisplayPrice = (basePrice) => {
 ## Price Display Usage in Cards
 
 ```tsx
-// Standard Plan - Line 240
+// Starter Plan - Line 240
 <span className="text-3xl font-bold text-gray-900">${getDisplayPrice(399)}</span>
 
-// Growth Plan - Line 303  
-<span className="text-3xl font-bold text-gray-900">${getDisplayPrice(549)}</span>
+// Standard Plan - Line 303  
+<span className="text-3xl font-bold text-gray-900">${getDisplayPrice(599)}</span>
 
-// Pro Plan - Line 379
-<span className="text-3xl font-bold text-gray-900">${getDisplayPrice(849)}</span>
+// Growth Plan - Line 379
+<span className="text-3xl font-bold text-gray-900">${getDisplayPrice(999)}</span>
 
-// Premium Plan - Line 447
-<span className="text-3xl font-bold text-gray-900">${getDisplayPrice(1249)}</span>
+// Pro Plan - Line 447
+<span className="text-3xl font-bold text-gray-900">${getDisplayPrice(1499)}</span>
 ```
 
 ## Conditional Stripe Links - "As You Grow" Section
@@ -195,17 +195,17 @@ const getDisplayPrice = (basePrice) => {
 ## Comparison Chart Price Display
 
 ```tsx
-// Standard Plan - Line 685
+// Starter Plan - Line 685
 <div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(399)}</div>
 
-// Growth Plan - Line 702
-<div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(549)}</div>
+// Standard Plan - Line 702
+<div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(599)}</div>
 
-// Pro Plan - Line 719
-<div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(849)}</div>
+// Growth Plan - Line 719
+<div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(999)}</div>
 
-// Premium Plan - Line 736
-<div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(1249)}</div>
+// Pro Plan - Line 736
+<div className="text-2xl font-bold mb-1 text-brand-teal">${getDisplayPrice(1499)}</div>
 ```
 
 ## How to Restore

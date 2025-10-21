@@ -11,6 +11,21 @@ const Pricing = () => {
   
   const plans = [
     {
+      name: 'Trial',
+      price: 99,
+      minutes: '500 calling minutes per month',
+      concurrentCalls: 'Up to 5 concurrent calls',
+      description: 'Try our platform with limited features',
+      popular: false,
+      features: [
+        '500 calling minutes per month',
+        'Up to 5 concurrent calls',
+        'Self-setup',
+        'Basic analytics',
+        'Email support'
+      ]
+    },
+    {
       name: 'Starter',
       price: 399,
       minutes: '2,000 calling minutes per month',
@@ -118,20 +133,21 @@ const Pricing = () => {
     }
   ];
 
-  const planLabels = ['Starter', 'Standard', 'Growth', 'Pro', 'Enterprise'];
+  const planLabels = ['Trial', 'Starter', 'Standard', 'Growth', 'Pro', 'Enterprise'];
 
   const planComparisonSummary = [
     {
       label: 'Included minutes',
-      values: ['2,000', '3,000', '5,000', '7,500', 'Flexible']
+      values: ['500', '2,000', '3,000', '5,000', '7,500', 'Flexible']
     },
     {
       label: 'Concurrent calls',
-      values: ['15', '25', '50', '80', 'Unlimited']
+      values: ['5', '15', '25', '50', '80', 'Unlimited']
     },
     {
       label: 'Analytics & insights',
       values: [
+        'Basic analytics',
         'Basic analytics dashboard',
         'Advanced analytics & reporting',
         'Real-time analytics dashboard',
@@ -144,6 +160,7 @@ const Pricing = () => {
       values: [
         'Email support',
         'Email support',
+        'Email support',
         'Priority email support',
         'Priority email + premium onboarding',
         '24/7 premium support'
@@ -152,6 +169,7 @@ const Pricing = () => {
     {
       label: 'Key extras',
       values: [
+        'Self-setup',
         'Post-call analysis',
         'Same-rate overages at $0.16/min',
         'Multilingual agent',
@@ -272,31 +290,27 @@ const Pricing = () => {
 
           {/* Pricing Cards */}
           <div className="flex justify-center">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-7xl">
-            {/* Starter Plan */}
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-6 max-w-7xl">
+            {/* Trial Plan */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8, delay: 0 }}
-              whileHover={{ scale: 1.05, y: -5 }}
-              className="relative group cursor-pointer"
+              className="relative"
             >
               <div className="relative">
-                {/* Animated Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/10 via-brand-blue/5 to-brand-teal/10 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
-                
                 {/* Card Content */}
-                <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1 flex flex-col min-h-[600px]">
+                <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg transition-all duration-300 flex flex-col min-h-[600px]">
                   <div className="mb-6">
-                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
-                    <p className="text-sm text-gray-600 mb-4">Launch your AI calling agent with guided self-setup</p>
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Trial</h3>
+                    <p className="text-sm text-gray-600 mb-4">Try our platform with limited features</p>
                     <div className="mb-4">
-                      <span className="text-3xl font-bold text-gray-900">$399</span>
+                      <span className="text-3xl font-bold text-gray-900">$99</span>
                       <span className="text-gray-500 text-sm">/month</span>
                     </div>
-                    <a 
-                      href="https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c"
+                    <a
+                      href="https://buy.stripe.com/bJeeVddwp8rn2yr15l8g00p"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
@@ -304,7 +318,61 @@ const Pricing = () => {
                       Get Started
                     </a>
                   </div>
-              
+
+                  <div className="space-y-3 text-sm">
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">500 calling minutes included</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">Up to 5 concurrent calls</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">Self-setup workflow</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">Basic analytics</span>
+                    </div>
+                    <div className="flex items-center gap-2">
+                      <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
+                      <span className="text-gray-700">Email support</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Starter Plan */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.1 }}
+              className="relative"
+            >
+              <div className="relative">
+                {/* Card Content */}
+                <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg transition-all duration-300 flex flex-col min-h-[600px]">
+                  <div className="mb-6">
+                    <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
+                    <p className="text-sm text-gray-600 mb-4">Launch your AI calling agent with guided self-setup</p>
+                    <div className="mb-4">
+                      <span className="text-3xl font-bold text-gray-900">$399</span>
+                      <span className="text-gray-500 text-sm">/month</span>
+                    </div>
+                    <a
+                      href="https://buy.stripe.com/7sY8wPcslcHD1undS78g00q"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
+                    >
+                      Get Started
+                    </a>
+                  </div>
+
                   <div className="space-y-3 text-sm">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -335,20 +403,21 @@ const Pricing = () => {
                       <span className="text-gray-700">Post-call analysis</span>
                     </div>
                   </div>
-                  
-                  {/* Shine Effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-1000 rounded-2xl"></div>
                 </div>
               </div>
             </motion.div>
 
             {/* Standard Plan */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.1 }}
-              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative"
             >
+              <div className="relative">
+                <div className="glass-soft p-8 relative flex flex-col min-h-[600px] transition-all duration-300 rounded-2xl"
+              >
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Standard</h3>
                 <p className="text-sm text-gray-600 mb-4">Grow with deeper analytics and higher call volumes</p>
@@ -356,8 +425,8 @@ const Pricing = () => {
                   <span className="text-3xl font-bold text-gray-900">$599</span>
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
-                <a 
-                  href="https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k"
+                <a
+                  href="https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
@@ -365,7 +434,7 @@ const Pricing = () => {
                   Get Started
                 </a>
               </div>
-              
+
               <div className="space-y-4 text-sm flex-grow mb-8">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -388,15 +457,20 @@ const Pricing = () => {
                   <span className="text-gray-700">Same-rate overages at $0.16/min</span>
                 </div>
               </div>
+                </div>
+              </div>
             </motion.div>
 
             {/* Growth Plan - Most Popular */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.2 }}
-              className="glass p-8 relative flex flex-col min-h-[600px] card-hover group border-2 border-brand-teal shadow-xl scale-105 z-10"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
             >
+              <div className="relative">
+                <div className="glass p-8 relative flex flex-col min-h-[600px] border-2 border-brand-teal shadow-xl transition-all duration-300 rounded-2xl">
               <div className="absolute -top-3 left-1/2 transform -translate-x-1/2 z-20">
                 <span className="bg-gradient-to-r from-brand-teal to-brand-blue text-white px-4 py-1.5 rounded-full text-xs font-semibold shadow-lg whitespace-nowrap">
                   Most Popular
@@ -410,7 +484,7 @@ const Pricing = () => {
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
                 <a
-                  href="https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e"
+                  href="https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
@@ -445,15 +519,21 @@ const Pricing = () => {
                   <span className="text-gray-700">Same-rate overages at $0.16/min</span>
                 </div>
               </div>
+                </div>
+              </div>
             </motion.div>
 
             {/* Pro Plan */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-              className="glass-soft p-8 relative flex flex-col min-h-[600px] card-hover group"
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="relative"
             >
+              <div className="relative">
+                <div className="glass-soft p-8 relative flex flex-col min-h-[600px] transition-all duration-300 rounded-2xl"
+              >
 
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Pro</h3>
@@ -463,7 +543,7 @@ const Pricing = () => {
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
                 <a
-                  href="https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f"
+                  href="https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
@@ -502,14 +582,16 @@ const Pricing = () => {
                   <span className="text-gray-700">Premium onboarding</span>
                 </div>
               </div>
+                </div>
+              </div>
             </motion.div>
 
             {/* Enterprise Plan */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="lg:col-span-4 mt-12"
+              transition={{ duration: 0.6, delay: 0.5 }}
+              className="lg:col-span-5 mt-12"
             >
               <div className="glass rounded-3xl overflow-hidden shadow-2xl">
                 <div className="grid md:grid-cols-2">
@@ -635,17 +717,18 @@ const Pricing = () => {
           {/* Mobile-Optimized Plan Comparison Header */}
           <div className="glass rounded-3xl overflow-hidden mb-8 shadow-2xl">
             {/* Desktop View */}
-            <div className="hidden lg:grid lg:grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/10 to-brand-blue/10 backdrop-blur-sm">
+            <div className="hidden lg:grid lg:grid-cols-7 gap-4 p-6 bg-gradient-to-r from-brand-teal/10 to-brand-blue/10 backdrop-blur-sm">
               <div className="flex items-center justify-center">
                 <span className="text-4xl font-bold text-gray-900">Plans</span>
               </div>
-              
+
               {/* Plan Cards - Desktop */}
               {[
-                { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
-                { name: 'Standard', price: '$599', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
-                { name: 'Growth', price: '$999', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
-                { name: 'Pro', price: '$1,499', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false },
+                { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/bJeeVddwp8rn2yr15l8g00p', popular: false },
+                { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/7sY8wPcslcHD1undS78g00q', popular: false },
+                { name: 'Standard', price: '$599', url: 'https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r', popular: false },
+                { name: 'Growth', price: '$999', url: 'https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s', popular: true },
+                { name: 'Pro', price: '$1,499', url: 'https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t', popular: false },
                 { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai-voiceagents-demo/45', popular: false }
               ].map((plan) => (
                 <div key={plan.name} className="text-center">
@@ -687,10 +770,11 @@ const Pricing = () => {
               <div className="p-4 overflow-x-auto">
                 <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
                   {[
-                    { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/dRm8wPeAtcHD1unaFV8g00c', popular: false },
-                    { name: 'Standard', price: '$599', url: 'https://buy.stripe.com/bJe6oH1NH0YV0qj3dt8g00k', popular: false },
-                    { name: 'Growth', price: '$999', url: 'https://buy.stripe.com/dRm3cv3VPcHDc91dS78g00e', popular: true },
-                    { name: 'Pro', price: '$1,499', url: 'https://buy.stripe.com/3cIbJ10JD8rnfld4hx8g00f', popular: false },
+                    { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/bJeeVddwp8rn2yr15l8g00p', popular: false },
+                    { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/7sY8wPcslcHD1undS78g00q', popular: false },
+                    { name: 'Standard', price: '$599', url: 'https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r', popular: false },
+                    { name: 'Growth', price: '$999', url: 'https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s', popular: true },
+                    { name: 'Pro', price: '$1,499', url: 'https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t', popular: false },
                     { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai-voiceagents-demo/45', popular: false }
                   ].map((plan) => (
                     <div key={plan.name} className="flex-shrink-0 w-36">
@@ -730,7 +814,7 @@ const Pricing = () => {
             <div className="glass rounded-3xl overflow-hidden shadow-2xl">
               {/* Desktop Summary Table */}
               <div className="hidden lg:block">
-                <div className="grid grid-cols-6 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
+                <div className="grid grid-cols-7 gap-4 p-6 bg-gradient-to-r from-brand-teal/5 to-brand-blue/5 backdrop-blur-sm">
                   <div className="flex items-center justify-center">
                     <span className="text-lg font-semibold text-gray-600 uppercase tracking-wider">Feature</span>
                   </div>
@@ -743,7 +827,7 @@ const Pricing = () => {
                 {planComparisonSummary.map((row) => (
                   <div
                     key={row.label}
-                    className="grid grid-cols-6 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20"
+                    className="grid grid-cols-7 gap-4 p-6 bg-white/50 backdrop-blur-sm border-b border-white/20"
                   >
                     <div className="flex items-center justify-center">
                       <span className="text-xl font-semibold text-gray-900">{row.label}</span>
