@@ -310,7 +310,7 @@ const Pricing = () => {
                       <span className="text-gray-500 text-sm">/month</span>
                     </div>
                     <a
-                      href="https://buy.stripe.com/bJeeVddwp8rn2yr15l8g00p"
+                      href="https://buy.stripe.com/00w8wPcsl7nj4Gz5lB8g00u"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
@@ -319,10 +319,10 @@ const Pricing = () => {
                     </a>
                   </div>
 
-                  <div className="space-y-3 text-sm">
+                  <div className="space-y-3 text-sm flex-grow">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
-                      <span className="text-gray-700">500 calling minutes included</span>
+                      <span className="text-gray-700">200 calling minutes included</span>
                     </div>
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
@@ -358,7 +358,7 @@ const Pricing = () => {
                 <div className="relative glass rounded-2xl p-8 border border-brand-teal/30 shadow-lg transition-all duration-300 flex flex-col min-h-[600px]">
                   <div className="mb-6">
                     <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
-                    <p className="text-sm text-gray-600 mb-4">Launch your AI calling agent with guided self-setup</p>
+                    <p className="text-sm text-gray-600 mb-4">AI calling agent with guided self-setup</p>
                     <div className="mb-4">
                       <span className="text-3xl font-bold text-gray-900">$399</span>
                       <span className="text-gray-500 text-sm">/month</span>
@@ -373,7 +373,7 @@ const Pricing = () => {
                     </a>
                   </div>
 
-                  <div className="space-y-3 text-sm">
+                  <div className="space-y-3 text-sm flex-grow">
                     <div className="flex items-center gap-2">
                       <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
                       <span className="text-gray-700">2,000 calling minutes included</span>
@@ -420,7 +420,7 @@ const Pricing = () => {
               >
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Standard</h3>
-                <p className="text-sm text-gray-600 mb-4">Grow with deeper analytics and higher call volumes</p>
+                <p className="text-sm text-gray-600 mb-4">Deeper analytics and higher call volumes</p>
                 <div className="mb-4">
                   <span className="text-3xl font-bold text-gray-900">$599</span>
                   <span className="text-gray-500 text-sm">/month</span>
@@ -429,13 +429,13 @@ const Pricing = () => {
                   href="https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
+                  className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
                 >
                   Get Started
                 </a>
               </div>
 
-              <div className="space-y-4 text-sm flex-grow mb-8">
+              <div className="space-y-4 text-sm flex-grow">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
                   <span className="text-gray-700">3,000 calling minutes included</span>
@@ -487,13 +487,13 @@ const Pricing = () => {
                   href="https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full btn-gold text-center py-3 px-6 font-semibold mt-auto"
+                  className="w-full bg-gradient-to-r from-brand-gold to-orange-400 text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
                 >
                   Get Started
                 </a>
               </div>
 
-              <div className="space-y-4 text-sm flex-grow mb-8">
+              <div className="space-y-4 text-sm flex-grow">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
                   <span className="text-gray-700">5,000 calling minutes included</span>
@@ -537,7 +537,7 @@ const Pricing = () => {
 
               <div className="mb-6">
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Pro</h3>
-                <p className="text-sm text-gray-600 mb-4">Enterprise readiness with compliance and SLAs</p>
+                <p className="text-sm text-gray-600 mb-4">Enterprise readiness, compliance and SLAs</p>
                 <div className="mb-4">
                   <span className="text-3xl font-bold text-gray-900">$1,499</span>
                   <span className="text-gray-500 text-sm">/month</span>
@@ -546,13 +546,13 @@ const Pricing = () => {
                   href="https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-full btn-primary text-center py-3 px-6 font-semibold mt-auto"
+                  className="w-full bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-3 px-6 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 text-center block"
                 >
                   Get Started
                 </a>
               </div>
 
-              <div className="space-y-4 text-sm flex-grow mb-8">
+              <div className="space-y-4 text-sm flex-grow">
                 <div className="flex items-center gap-2">
                   <CheckCircle className="w-4 h-4 text-brand-teal flex-shrink-0" />
                   <span className="text-gray-700">7,500 calling minutes included</span>
