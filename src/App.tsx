@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import { BannerProvider } from './contexts/BannerContext';
 import BlackFridayBanner from './components/BlackFridayBanner';
 import Header from './components/Header';
 import Footer from './components/Footer';
@@ -58,12 +59,13 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <Router>
-          <ScrollToTop />
-          <div className="min-h-screen bg-euphoric-surface">
-            <BlackFridayBanner />
-            <Header />
-            <main>
+        <BannerProvider>
+          <Router>
+            <ScrollToTop />
+            <div className="min-h-screen bg-euphoric-surface">
+              <BlackFridayBanner />
+              <Header />
+              <main>
               <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/homev2" element={<HomeV2 />} />
@@ -130,6 +132,7 @@ function App() {
             <Footer />
           </div>
         </Router>
+        </BannerProvider>
       </AuthProvider>
     </ThemeProvider>
   );

@@ -2,9 +2,11 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, ChevronDown } from 'lucide-react';
 import { useAuth } from '../contexts/AuthContext';
+import { useBanner } from '../contexts/BannerContext';
 
 const Header = () => {
   const { user, signOut } = useAuth();
+  const { isBannerVisible } = useBanner();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const [openMobileDropdown, setOpenMobileDropdown] = useState<string | null>(null);
@@ -137,7 +139,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed w-full top-[5.5rem] z-50 glass-nav">
+    <header className={`fixed w-full ${isBannerVisible ? 'top-[5rem]' : 'top-0'} z-50 glass-nav transition-all duration-300`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
