@@ -43,16 +43,16 @@ const BlackFridayBanner = () => {
   if (!isBannerVisible) return null;
 
   return (
-    <div className="fixed top-0 w-full bg-gradient-to-r from-[#1a2a2d] via-[#1e3a3f] to-[#2a2520] border-b border-brand-teal/20 z-[60]">
+    <div className="fixed top-0 w-full bg-gradient-to-br from-[#0a4d4d] via-[#0d2847] to-[#0a1a2e] border-b border-[#6498a0]/20 z-[60]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-2 gap-3 sm:gap-4">
           {/* Left side - Text content */}
           <div className="flex-1 min-w-0">
             <h3 className="text-white font-bold text-xs sm:text-sm md:text-base mb-0.5">
-              Black Friday Event | FLASH SALE
+              BLACK FRIDAY FLASH SALE
             </h3>
-            <p className="text-gray-300 text-[10px] sm:text-xs md:text-sm">
-              50% OFF implementation cost & middleware software. 10% OFF monthly subscription for first 3 months.
+            <p className="text-gray-200 text-[10px] sm:text-xs md:text-sm">
+              50% OFF setup + middleware • 10% OFF monthly subscription for first 3 months
             </p>
           </div>
 
@@ -100,9 +100,9 @@ const BlackFridayBanner = () => {
             {/* CTA Button */}
             <Link
               to="/pricing"
-              className="bg-gradient-to-r from-brand-teal to-brand-blue hover:from-brand-blue hover:to-brand-teal text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-[10px] sm:text-xs md:text-sm transition-all duration-300 whitespace-nowrap shadow-lg"
+              className="bg-[#b8935f] hover:bg-[#a98064] text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-[10px] sm:text-xs md:text-sm transition-all duration-300 whitespace-nowrap shadow-lg"
             >
-              Explore Plans
+              Claim Offer →
             </Link>
 
             {/* Close button */}
