@@ -494,14 +494,14 @@ audio::-webkit-media-controls-pause-button {
 }
 
 /* Black Friday Banner Offset */
-/* Banner height ~72px (4.5rem) + Header height 64px (4rem) = 136px (8.5rem) */
+/* Banner height ~88px (5.5rem) + Header height 64px (4rem) = 152px (9.5rem) */
 .pt-with-banner {
-  padding-top: 8.5rem;
+  padding-top: 9.5rem;
 }
 
 /* For when banner is dismissed or expired, fallback to normal header height */
 @media (max-width: 640px) {
   .pt-with-banner {
-    padding-top: 9rem; /* Slightly more on mobile for banner */
+    padding-top: 10.5rem; /* Slightly more on mobile for banner */
   }
 }
