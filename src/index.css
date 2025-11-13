@@ -1,8 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 /* Brand Color Variables - EXACT brand colors only */
 :root {
@@ -491,4 +491,17 @@ audio::-webkit-media-controls-pause-button {
 
 .animate-marquee-vertical {
   animation: marquee-vertical var(--duration, 40s) infinite linear;
+}
+
+/* Black Friday Banner Offset */
+/* Banner height ~72px (4.5rem) + Header height 64px (4rem) = 136px (8.5rem) */
+.pt-with-banner {
+  padding-top: 8.5rem;
+}
+
+/* For when banner is dismissed or expired, fallback to normal header height */
+@media (max-width: 640px) {
+  .pt-with-banner {
+    padding-top: 9rem; /* Slightly more on mobile for banner */
+  }
 }

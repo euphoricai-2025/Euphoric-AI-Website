@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
+import BlackFridayBanner from './components/BlackFridayBanner';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -60,6 +61,7 @@ function App() {
         <Router>
           <ScrollToTop />
           <div className="min-h-screen bg-euphoric-surface">
+            <BlackFridayBanner />
             <Header />
             <main>
               <Routes>
