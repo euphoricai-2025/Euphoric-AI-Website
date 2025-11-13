@@ -43,7 +43,7 @@ const BlackFridayBanner = () => {
   if (!isBannerVisible) return null;
 
   return (
-    <div className="fixed top-0 w-full bg-gradient-to-r from-gray-900 via-blue-900 to-gray-900 border-b border-blue-500/20 z-[60]">
+    <div className="fixed top-0 w-full bg-gradient-to-r from-[#1a2a2d] via-[#1e3a3f] to-[#2a2520] border-b border-brand-teal/20 z-[60]">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between py-2 gap-3 sm:gap-4">
           {/* Left side - Text content */}
@@ -100,7 +100,7 @@ const BlackFridayBanner = () => {
             {/* CTA Button */}
             <Link
               to="/pricing"
-              className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-[10px] sm:text-xs md:text-sm transition-colors whitespace-nowrap"
+              className="bg-gradient-to-r from-brand-teal to-brand-blue hover:from-brand-blue hover:to-brand-teal text-white font-semibold px-3 py-1.5 sm:px-4 sm:py-2 rounded-lg text-[10px] sm:text-xs md:text-sm transition-all duration-300 whitespace-nowrap shadow-lg"
             >
               Explore Plans
             </Link>
