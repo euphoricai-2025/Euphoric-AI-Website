@@ -8,6 +8,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Book from './pages/domains/Book';
+import Trial from './pages/Trial';
 
 function NewApp() {
   return (
@@ -34,6 +35,7 @@ function NewAppContent() {
       {!isDashboard && <Header />}
       <main>
         <Routes>
+          <Route path="/trial" element={<Trial />} />
           <Route path="/domain/book" element={<Book />} />
         </Routes>
       </main>
