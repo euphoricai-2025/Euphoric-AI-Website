@@ -36,7 +36,7 @@ function NewAppContent() {
       <main>
         <Routes>
           <Route path="/trial" element={<Trial />} />
-          <Route path="/domain/book" element={<Book />} />
+          <Route path="/book" element={<Book />} />
         </Routes>
       </main>
       {!isDashboard && <Footer />}
