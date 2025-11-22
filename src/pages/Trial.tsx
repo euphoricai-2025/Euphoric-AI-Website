@@ -65,12 +65,28 @@ const Trial = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-12 max-w-3xl mx-auto"
+              className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-8 max-w-3xl mx-auto"
             >
               <TextAnimate animation="blurInUp" by="word" once>
                 Experience the power of AI voice agents with a free trial. Transform your customer conversations and scale your business with intelligent automation.
               </TextAnimate>
             </motion.p>
+
+            {/* Countdown Timer */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.35 }}
+              className="mb-12"
+            >
+              <a href="https://link.quickadpro.com/email-tracking/b91232f2088?contactId={{contact.id}}" target="_blank" rel="noopener noreferrer">
+                <img
+                  style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto' }}
+                  src="https://services.leadconnectorhq.com/countdown-timer/render/69217669d182b6093efee823?uniqueId={{contact.id}}"
+                  alt="Countdown Timer"
+                />
+              </a>
+            </motion.div>
 
             {/* Main CTA Card */}
             <motion.div
