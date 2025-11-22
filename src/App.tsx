@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
 import { BannerProvider } from './contexts/BannerContext';
@@ -54,6 +54,15 @@ import Careers from './pages/Careers';
 import Internships from './pages/Internships';
 import Languages from './pages/Languages';
 import ThankYou from './pages/ThankYou';
+import Trial from './pages/Trial';
+import DashboardLayout from './pages/dashboard/DashboardLayout';
+import DashboardOverview from './pages/dashboard/DashboardOverview';
+import AgentsPage from './pages/dashboard/AgentsPage';
+import CampaignsPage from './pages/dashboard/CampaignsPage';
+import NumbersPage from './pages/dashboard/NumbersPage';
+import AnalyticsPage from './pages/dashboard/AnalyticsPage';
+import ContactsPage from './pages/dashboard/ContactsPage';
+import DashboardLogin from './pages/DashboardLogin';
 
 function App() {
   return (
@@ -62,11 +71,24 @@ function App() {
         <BannerProvider>
           <Router>
             <ScrollToTop />
-            <div className="min-h-screen bg-euphoric-surface">
-              <BlackFridayBanner />
-              <Header />
-              <main>
-              <Routes>
+            <AppContent />
+          </Router>
+        </BannerProvider>
+      </AuthProvider>
+    </ThemeProvider>
+  );
+}
+
+function AppContent() {
+  const location = useLocation();
+  const isDashboard = location.pathname.startsWith('/dashboard');
+
+  return (
+    <div className="min-h-screen bg-euphoric-surface">
+      {!isDashboard && <BlackFridayBanner />}
+      {!isDashboard && <Header />}
+      <main>
+        <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/homev2" element={<HomeV2 />} />
                 <Route path="/about" element={<About />} />
@@ -127,14 +149,24 @@ function App() {
                 <Route path="/internships" element={<Internships />} />
                 <Route path="/languages" element={<Languages />} />
                 <Route path="/thank-you" element={<ThankYou />} />
-              </Routes>
-            </main>
-            <Footer />
-          </div>
-        </Router>
-        </BannerProvider>
-      </AuthProvider>
-    </ThemeProvider>
+                <Route path="/trial" element={<Trial />} />
+
+                {/* Dashboard Login (No Banner, No Footer) */}
+                <Route path="/dashboard-login" element={<DashboardLogin />} />
+
+                {/* Dashboard Routes (No Banner, No Footer) */}
+                <Route path="/dashboard" element={<DashboardLayout />}>
+                  <Route index element={<DashboardOverview />} />
+                  <Route path="agents" element={<AgentsPage />} />
+                  <Route path="campaigns" element={<CampaignsPage />} />
+                  <Route path="numbers" element={<NumbersPage />} />
+                  <Route path="contacts" element={<ContactsPage />} />
+                  <Route path="analytics" element={<AnalyticsPage />} />
+                </Route>
+        </Routes>
+      </main>
+      {!isDashboard && <Footer />}
+    </div>
   );
 }
 
