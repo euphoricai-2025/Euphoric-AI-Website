@@ -28,7 +28,6 @@ import Insurance from './pages/domains/Insurance';
 import Logistics from './pages/domains/Logistics';
 import RetailConsumer from './pages/domains/RetailConsumer';
 import TravelHospitality from './pages/domains/TravelHospitality';
-import Book from './pages/domains/Book';
 import LeadQualificationUseCase from './pages/use-cases/LeadQualification';
 import AppointmentBookingUseCase from './pages/use-cases/AppointmentBooking';
 import CustomerSupportAgentUseCase from './pages/use-cases/CustomerSupportAgent';
@@ -111,7 +110,6 @@ function AppContent() {
                 <Route path="/logistics" element={<Logistics />} />
                 <Route path="/retail-consumer" element={<RetailConsumer />} />
                 <Route path="/travel-hospitality" element={<TravelHospitality />} />
-                <Route path="/domain/book" element={<Book />} />
                 {/* Redirect merged use case paths to domain pages */}
                 <Route path="/use-cases/healthcare" element={<Navigate to="/healthcare" replace />} />
                 <Route path="/use-cases/finance" element={<Navigate to="/financial-services" replace />} />
