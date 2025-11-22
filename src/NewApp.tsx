@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
 import Book from './pages/domains/Book';
 import Trial from './pages/Trial';
+import OfferExpired from './pages/OfferExpired';
 
 function NewApp() {
   return (
@@ -28,6 +29,16 @@ function NewApp() {
 function NewAppContent() {
   const location = useLocation();
   const isDashboard = location.pathname.startsWith('/dashboard');
+  const isOfferExpired = location.pathname === '/images/offer-expired.jpg';
+
+  // Render OfferExpired page without any layout
+  if (isOfferExpired) {
+    return (
+      <Routes>
+        <Route path="/images/offer-expired.jpg" element={<OfferExpired />} />
+      </Routes>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-euphoric-surface">
