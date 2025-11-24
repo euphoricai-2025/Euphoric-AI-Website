@@ -28,6 +28,7 @@ import Insurance from './pages/domains/Insurance';
 import Logistics from './pages/domains/Logistics';
 import RetailConsumer from './pages/domains/RetailConsumer';
 import TravelHospitality from './pages/domains/TravelHospitality';
+import Book from './pages/domains/Book';
 import LeadQualificationUseCase from './pages/use-cases/LeadQualification';
 import AppointmentBookingUseCase from './pages/use-cases/AppointmentBooking';
 import CustomerSupportAgentUseCase from './pages/use-cases/CustomerSupportAgent';
@@ -55,6 +56,7 @@ import Internships from './pages/Internships';
 import Languages from './pages/Languages';
 import ThankYou from './pages/ThankYou';
 import Trial from './pages/Trial';
+import OfferExpired from './pages/OfferExpired';
 import DashboardLayout from './pages/dashboard/DashboardLayout';
 import DashboardOverview from './pages/dashboard/DashboardOverview';
 import AgentsPage from './pages/dashboard/AgentsPage';
@@ -82,6 +84,16 @@ function App() {
 function AppContent() {
   const location = useLocation();
   const isDashboard = location.pathname.startsWith('/dashboard');
+  const isOfferExpired = location.pathname === '/images/offer-expired.jpg';
+
+  // Render OfferExpired page without any layout
+  if (isOfferExpired) {
+    return (
+      <Routes>
+        <Route path="/images/offer-expired.jpg" element={<OfferExpired />} />
+      </Routes>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-euphoric-surface">
@@ -110,6 +122,7 @@ function AppContent() {
                 <Route path="/logistics" element={<Logistics />} />
                 <Route path="/retail-consumer" element={<RetailConsumer />} />
                 <Route path="/travel-hospitality" element={<TravelHospitality />} />
+                <Route path="/book" element={<Book />} />
                 {/* Redirect merged use case paths to domain pages */}
                 <Route path="/use-cases/healthcare" element={<Navigate to="/healthcare" replace />} />
                 <Route path="/use-cases/finance" element={<Navigate to="/financial-services" replace />} />
