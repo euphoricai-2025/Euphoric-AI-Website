@@ -88,11 +88,7 @@ function AppContent() {
 
   // Render OfferExpired page without any layout
   if (isOfferExpired) {
-    return (
-      <Routes>
-        <Route path="/images/offer-expired.jpg" element={<OfferExpired />} />
-      </Routes>
-    );
+    return <OfferExpired />;
   }
 
   return (
@@ -163,6 +159,7 @@ function AppContent() {
                 <Route path="/languages" element={<Languages />} />
                 <Route path="/thank-you" element={<ThankYou />} />
                 <Route path="/trial" element={<Trial />} />
+                <Route path="/images/offer-expired.jpg" element={<OfferExpired />} />
 
                 {/* Dashboard Login (No Banner, No Footer) */}
                 <Route path="/dashboard-login" element={<DashboardLogin />} />
