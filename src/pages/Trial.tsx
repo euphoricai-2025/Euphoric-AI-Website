@@ -83,25 +83,17 @@ const Trial = () => {
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
             {/* Main Heading with Enhanced Gradient */}
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.1 }}
+            <h1
               className="font-bold mb-8 leading-tight tracking-tight"
               style={{ fontSize: 'clamp(2.5rem, 5vw, 5.5rem)' }}
             >
               <span className="bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent animate-gradient-x">
                 Activate Your 7-Day Free Trial
               </span>
-            </motion.h1>
+            </h1>
 
             {/* Countdown Timer with Premium Styling */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-10 relative"
-            >
+            <div className="mb-10 relative">
               <div className="relative inline-block">
                 {/* Glow effect behind timer */}
                 <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/30 via-brand-teal/30 to-brand-gold/30 blur-2xl rounded-3xl scale-110"></div>
@@ -118,7 +110,7 @@ const Trial = () => {
                   </a>
                 </div>
               </div>
-            </motion.div>
+            </div>
 
             {/* Subheading with Brand Color */}
             <p className="text-xl md:text-2xl text-brand-teal leading-relaxed mb-16 max-w-4xl mx-auto font-medium">
