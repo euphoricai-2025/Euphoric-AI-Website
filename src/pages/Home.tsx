@@ -279,16 +279,12 @@ const Home = () => {
                 <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">Smarter AI Voice Agents</span>
                 <br />
                 <span className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
-                  <TypingAnimation startOnView={true} duration={150} className="bg-gradient-to-r from-gray-600 via-gray-700 to-brand-gold bg-clip-text text-transparent">
-                    Ready in 30 Minutes
-                  </TypingAnimation>
+                  Ready in 30 Minutes
                 </span>
               </h1>
 
               <p className="text-xl text-gray-600 mb-4 leading-relaxed no-word-break">
-                <TextAnimate animation="blurInUp" by="word" once>
-                  Handle calls, qualify leads, answer from your knowledge base, route to humans, book appointments, and update your CRM—24/7.
-                </TextAnimate>
+                Handle calls, qualify leads, answer from your knowledge base, route to humans, book appointments, and update your CRM—24/7.
               </p>
 
               <p className="text-lg text-gray-500 mb-8 leading-relaxed">

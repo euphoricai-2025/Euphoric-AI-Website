@@ -1,40 +1,27 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { X } from 'lucide-react';
 import { useBanner } from '../contexts/BannerContext';
 
 const BlackFridayBanner = () => {
   const { isBannerVisible, setIsBannerVisible } = useBanner();
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0
-  });
+  const bannerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const calculateTimeLeft = () => {
-      const endDate = new Date('2025-11-30T23:59:59').getTime();
-      const now = new Date().getTime();
-      const difference = endDate - now;
-
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)),
-          minutes: Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60)),
-          seconds: Math.floor((difference % (1000 * 60)) / 1000)
-        });
-      } else {
-        setIsBannerVisible(false);
+    const updateBannerHeight = () => {
+      if (bannerRef.current) {
+        const height = bannerRef.current.offsetHeight;
+        document.documentElement.style.setProperty('--banner-height', `${height}px`);
       }
     };
 
-    calculateTimeLeft();
-    const timer = setInterval(calculateTimeLeft, 1000);
+    updateBannerHeight();
+    window.addEventListener('resize', updateBannerHeight);
 
-    return () => clearInterval(timer);
-  }, [setIsBannerVisible]);
+    return () => {
+      window.removeEventListener('resize', updateBannerHeight);
+    };
+  }, []);
 
   const handleDismiss = () => {
     setIsBannerVisible(false);
@@ -43,60 +30,21 @@ const BlackFridayBanner = () => {
   if (!isBannerVisible) return null;
 
   return (
-    <div className="fixed top-0 w-full bg-gradient-to-br from-[#0a4d4d] via-[#0d2847] to-[#0a1a2e] border-b border-[#6498a0]/20 z-[60]">
-      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between py-2 gap-3 sm:gap-4">
+    <div ref={bannerRef} className="fixed top-0 w-full bg-gradient-to-br from-[#0a4d4d] via-[#0d2847] to-[#0a1a2e] border-b border-[#6498a0]/20 z-[60] min-h-[62px] py-2">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8 h-full">
+        <div className="flex items-center justify-between gap-3 sm:gap-4">
           {/* Left side - Text content */}
-          <div className="flex-1 min-w-0">
-            <h3 className="text-white font-bold text-xs sm:text-sm md:text-base mb-0.5">
+          <div className="flex-1 min-w-0 pr-2">
+            <h3 className="text-white font-bold text-[9px] sm:text-sm md:text-base mb-0.5">
               BLACK FRIDAY FLASH SALE
             </h3>
-            <p className="text-gray-200 text-[10px] sm:text-xs md:text-sm">
+            <p className="text-gray-200 text-[8px] sm:text-xs md:text-sm line-clamp-2">
               50% OFF setup + middleware • 10% OFF monthly subscription for first 3 months
             </p>
           </div>
 
-          {/* Right side - Timer and CTA */}
+          {/* Right side - CTA */}
           <div className="flex items-center gap-2 sm:gap-3">
-            {/* Countdown Timer */}
-            <div className="flex gap-1.5">
-              <div className="flex flex-col items-center gap-0.5">
-                <div className="bg-white/10 backdrop-blur-sm rounded px-2 py-1 min-w-[2rem] sm:min-w-[2.5rem]">
-                  <p className="text-white text-sm sm:text-base md:text-lg font-bold text-center leading-tight">
-                    {String(timeLeft.days).padStart(2, '0')}
-                  </p>
-                </div>
-                <p className="text-gray-400 text-[9px] sm:text-[10px]">Days</p>
-              </div>
-
-              <div className="flex flex-col items-center gap-0.5">
-                <div className="bg-white/10 backdrop-blur-sm rounded px-2 py-1 min-w-[2rem] sm:min-w-[2.5rem]">
-                  <p className="text-white text-sm sm:text-base md:text-lg font-bold text-center leading-tight">
-                    {String(timeLeft.hours).padStart(2, '0')}
-                  </p>
-                </div>
-                <p className="text-gray-400 text-[9px] sm:text-[10px]">Hrs</p>
-              </div>
-
-              <div className="flex flex-col items-center gap-0.5">
-                <div className="bg-white/10 backdrop-blur-sm rounded px-2 py-1 min-w-[2rem] sm:min-w-[2.5rem]">
-                  <p className="text-white text-sm sm:text-base md:text-lg font-bold text-center leading-tight">
-                    {String(timeLeft.minutes).padStart(2, '0')}
-                  </p>
-                </div>
-                <p className="text-gray-400 text-[9px] sm:text-[10px]">Min</p>
-              </div>
-
-              <div className="hidden sm:flex flex-col items-center gap-0.5">
-                <div className="bg-white/10 backdrop-blur-sm rounded px-2 py-1 min-w-[2rem] sm:min-w-[2.5rem]">
-                  <p className="text-white text-sm sm:text-base md:text-lg font-bold text-center leading-tight">
-                    {String(timeLeft.seconds).padStart(2, '0')}
-                  </p>
-                </div>
-                <p className="text-gray-400 text-[9px] sm:text-[10px]">Sec</p>
-              </div>
-            </div>
-
             {/* CTA Button */}
             <Link
               to="/pricing"

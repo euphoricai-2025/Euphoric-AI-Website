@@ -87,7 +87,7 @@ const Trial = () => {
               className="font-bold mb-8 leading-tight tracking-tight bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent"
               style={{ fontSize: 'clamp(2.5rem, 5vw, 5.5rem)' }}
             >
-              Activate Your 7-Day Free Trial
+              Activate Your <span className="whitespace-nowrap">7-Day</span> Free Trial
             </h1>
 
             {/* Countdown Timer with Premium Styling */}
@@ -154,7 +154,7 @@ const Trial = () => {
                               <Icon className="w-7 h-7 text-white" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-lg font-bold text-brand-blue mb-2 leading-tight">
+                              <h3 className="text-lg font-bold text-black mb-2 leading-tight">
                                 {item.title}
                               </h3>
                               <p className="text-gray-600 text-sm leading-relaxed">
@@ -216,7 +216,7 @@ const Trial = () => {
                               </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-brand-blue mb-3">
+                            <h3 className="text-xl font-bold text-black mb-3">
                               {item.title}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
