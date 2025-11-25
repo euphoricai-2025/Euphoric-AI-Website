@@ -82,14 +82,12 @@ const Trial = () => {
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
-            {/* Main Heading with Enhanced Gradient */}
+            {/* Main Heading with Static Gradient */}
             <h1
-              className="font-bold mb-8 leading-tight tracking-tight"
+              className="font-bold mb-8 leading-tight tracking-tight bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent"
               style={{ fontSize: 'clamp(2.5rem, 5vw, 5.5rem)' }}
             >
-              <span className="bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent animate-gradient-x">
-                Activate Your 7-Day Free Trial
-              </span>
+              Activate Your 7-Day Free Trial
             </h1>
 
             {/* Countdown Timer with Premium Styling */}
