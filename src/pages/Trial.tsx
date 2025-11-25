@@ -110,8 +110,8 @@ const Trial = () => {
               </div>
             </div>
 
-            {/* Subheading with Brand Color */}
-            <p className="text-xl md:text-2xl text-brand-teal leading-relaxed mb-16 max-w-4xl mx-auto font-medium">
+            {/* Subheading with Black Font */}
+            <p className="text-xl md:text-2xl text-black leading-relaxed mb-16 max-w-4xl mx-auto font-medium">
               Join the Trial Activation Call to unlock your Euphoric AI account and explore how AI Voice Agents can transform your lead conversions and customer support.
             </p>
 
