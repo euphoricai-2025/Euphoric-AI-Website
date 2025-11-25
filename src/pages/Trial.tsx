@@ -65,59 +65,68 @@ const Trial = () => {
   ];
 
   return (
-    <div className="pt-16 bg-euphoric-surface min-h-screen">
+    <div className="pt-16 min-h-screen bg-gradient-to-br from-gray-50 via-white to-euphoric-50">
       <SEO
-        title="Claim Your Trial - Euphoric AI"
-        description="Start your free trial of Euphoric AI voice agents. Experience the power of AI-driven customer conversations with no commitment required."
+        title="Activate Your 7-Day Free Trial - Euphoric AI"
+        description="Join the Trial Activation Call to unlock your Euphoric AI account and explore how AI Voice Agents can transform your lead conversions and customer support."
         canonicalUrl="/trial"
       />
 
       {/* Hero Section */}
       <section className="py-20 relative overflow-hidden">
-        {/* Background Elements */}
-        <div className="absolute inset-0 opacity-30">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-brand-teal/30 to-brand-blue/30 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-brand-gold/30 to-brand-teal/30 rounded-full blur-3xl"></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-br from-brand-blue/20 to-brand-teal/20 rounded-full blur-3xl"></div>
+        {/* Enhanced Background Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-20 left-10 w-96 h-96 bg-gradient-to-br from-brand-blue/20 via-brand-teal/15 to-transparent rounded-full blur-3xl animate-pulse-slow"></div>
+          <div className="absolute bottom-20 right-10 w-96 h-96 bg-gradient-to-br from-brand-gold/20 via-brand-teal/15 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '1s' }}></div>
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-gradient-to-br from-brand-teal/10 via-brand-blue/10 to-transparent rounded-full blur-3xl animate-pulse-slow" style={{ animationDelay: '2s' }}></div>
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-6xl mx-auto text-center">
-            {/* Main Heading */}
+            {/* Main Heading with Enhanced Gradient */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1 }}
               className="font-bold mb-8 leading-tight tracking-tight"
-              style={{ fontSize: 'clamp(2.5rem, 5vw, 5rem)' }}
+              style={{ fontSize: 'clamp(2.5rem, 5vw, 5.5rem)' }}
             >
-              <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent animate-gradient-x">
                 Activate Your 7-Day Free Trial
               </span>
             </motion.h1>
 
-            {/* Countdown Timer */}
+            {/* Countdown Timer with Premium Styling */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="mb-10"
+              className="mb-10 relative"
             >
-              <a href="https://link.quickadpro.com/email-tracking/b91232f2088?contactId={{contact.id}}" target="_blank" rel="noopener noreferrer">
-                <img
-                  style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', maxWidth: '600px', width: '100%' }}
-                  src="https://services.leadconnectorhq.com/countdown-timer/render/69217669d182b6093efee823?uniqueId={{contact.id}}"
-                  alt="Limited Time Offer - Countdown Timer"
-                />
-              </a>
+              <div className="relative inline-block">
+                {/* Glow effect behind timer */}
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/30 via-brand-teal/30 to-brand-gold/30 blur-2xl rounded-3xl scale-110"></div>
+
+                {/* Timer with glass morphism effect */}
+                <div className="relative bg-white/60 backdrop-blur-xl rounded-3xl p-6 border border-white/40 shadow-2xl">
+                  <a href="https://link.quickadpro.com/email-tracking/b91232f2088?contactId={{contact.id}}" target="_blank" rel="noopener noreferrer" className="block">
+                    <img
+                      style={{ display: 'block', marginLeft: 'auto', marginRight: 'auto', maxWidth: '600px', width: '100%' }}
+                      src="https://services.leadconnectorhq.com/countdown-timer/render/69217669d182b6093efee823?uniqueId={{contact.id}}"
+                      alt="Limited Time Offer - Countdown Timer"
+                      className="rounded-2xl"
+                    />
+                  </a>
+                </div>
+              </div>
             </motion.div>
 
-            {/* Subheading */}
+            {/* Subheading with Brand Color */}
             <motion.p
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xl md:text-2xl text-gray-700 leading-relaxed mb-16 max-w-4xl mx-auto font-medium"
+              className="text-xl md:text-2xl text-gray-800 leading-relaxed mb-16 max-w-4xl mx-auto font-medium"
             >
               <TextAnimate animation="blurInUp" by="word" once>
                 Join the Trial Activation Call to unlock your Euphoric AI account and explore how AI Voice Agents can transform your lead conversions and customer support.
@@ -131,9 +140,14 @@ const Trial = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="mb-20"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-12">
-                What This Call Covers
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent">
+                  What This Call Covers
+                </span>
               </h2>
+              <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+                A comprehensive walkthrough designed to set you up for success
+              </p>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                 {callCovers.map((item, index) => {
@@ -147,17 +161,18 @@ const Trial = () => {
                       className="relative group"
                     >
                       <div className="relative h-full">
-                        {/* Background Glow */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/20 via-brand-blue/15 to-brand-gold/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                        {/* Animated Gradient Glow */}
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold rounded-2xl opacity-75 group-hover:opacity-100 blur group-hover:blur-lg transition duration-500 animate-gradient-xy"></div>
 
                         {/* Card Content */}
-                        <div className="relative h-full bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-brand-teal/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
-                          <div className="flex items-start gap-4 mb-4">
-                            <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-brand-teal via-brand-blue to-brand-gold rounded-xl flex items-center justify-center shadow-lg">
-                              <Icon className="w-6 h-6 text-white" />
+                        <div className="relative h-full bg-white rounded-2xl p-6 transition-all duration-300 group-hover:-translate-y-2">
+                          <div className="flex items-start gap-4">
+                            {/* Gradient Icon Container */}
+                            <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-brand-blue via-brand-teal to-brand-gold rounded-xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-all duration-300 group-hover:scale-110">
+                              <Icon className="w-7 h-7 text-white" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight">
+                              <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight group-hover:text-brand-blue transition-colors duration-300">
                                 {item.title}
                               </h3>
                               <p className="text-gray-600 text-sm leading-relaxed">
@@ -165,6 +180,9 @@ const Trial = () => {
                               </p>
                             </div>
                           </div>
+
+                          {/* Hover Shine Effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-full transition-all duration-1000 rounded-2xl"></div>
                         </div>
                       </div>
                     </motion.div>
@@ -180,15 +198,17 @@ const Trial = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="mb-20"
             >
-              <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-6">
-                What Happens After the Call
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
+                <span className="bg-gradient-to-r from-brand-gold via-brand-teal to-brand-blue bg-clip-text text-transparent">
+                  What Happens After the Call
+                </span>
               </h2>
 
-              <p className="text-xl text-gray-700 mb-10 max-w-3xl mx-auto">
+              <p className="text-xl text-gray-700 mb-10 max-w-3xl mx-auto font-medium">
                 You will receive:
               </p>
 
-              <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
+              <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
                 {afterCallItems.map((item, index) => {
                   const Icon = item.icon;
                   return (
@@ -200,21 +220,31 @@ const Trial = () => {
                       className="relative group"
                     >
                       <div className="relative h-full">
-                        {/* Background Glow */}
-                        <div className="absolute inset-0 bg-gradient-to-br from-brand-gold/20 via-brand-teal/15 to-brand-blue/20 rounded-2xl blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                        {/* Animated Gradient Border */}
+                        <div className="absolute -inset-0.5 bg-gradient-to-r from-brand-gold via-brand-teal to-brand-blue rounded-3xl opacity-75 group-hover:opacity-100 blur group-hover:blur-lg transition duration-500 animate-gradient-x"></div>
 
                         {/* Card Content */}
-                        <div className="relative h-full bg-white/90 backdrop-blur-sm rounded-2xl p-6 border border-brand-gold/30 shadow-lg hover:shadow-2xl transition-all duration-300 group-hover:-translate-y-1">
+                        <div className="relative h-full bg-white rounded-3xl p-8 transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-2xl">
                           <div className="flex flex-col items-center text-center">
-                            <div className="w-16 h-16 bg-gradient-to-br from-brand-gold via-brand-teal to-brand-blue rounded-full flex items-center justify-center shadow-lg mb-4">
-                              <Icon className="w-8 h-8 text-white" />
+                            {/* Icon with Gradient Background and Pulse Animation */}
+                            <div className="relative mb-6">
+                              <div className="absolute inset-0 bg-gradient-to-br from-brand-gold via-brand-teal to-brand-blue rounded-full opacity-20 blur-xl group-hover:blur-2xl transition-all duration-500"></div>
+                              <div className="relative w-20 h-20 bg-gradient-to-br from-brand-gold via-brand-teal to-brand-blue rounded-full flex items-center justify-center shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
+                                <Icon className="w-10 h-10 text-white" />
+                              </div>
                             </div>
-                            <h3 className="text-xl font-bold text-gray-900 mb-3">
+
+                            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-teal transition-colors duration-300">
                               {item.title}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
                               {item.description}
                             </p>
+                          </div>
+
+                          {/* Number Badge */}
+                          <div className="absolute top-4 right-4 w-8 h-8 bg-gradient-to-br from-brand-gold via-brand-teal to-brand-blue rounded-full flex items-center justify-center text-white font-bold text-sm shadow-lg">
+                            {index + 1}
                           </div>
                         </div>
                       </div>
@@ -228,7 +258,13 @@ const Trial = () => {
       </section>
 
       {/* Calendly Embed Section */}
-      <section className="py-20 relative overflow-hidden bg-gradient-to-br from-white/40 via-white/20 to-white/40">
+      <section className="py-20 relative overflow-hidden bg-gradient-to-br from-euphoric-50 via-white to-gray-50">
+        {/* Background Decorative Elements */}
+        <div className="absolute inset-0">
+          <div className="absolute top-0 left-1/4 w-96 h-96 bg-gradient-to-br from-brand-blue/10 to-transparent rounded-full blur-3xl"></div>
+          <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-gradient-to-br from-brand-gold/10 to-transparent rounded-full blur-3xl"></div>
+        </div>
+
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="max-w-5xl mx-auto">
             <motion.div
@@ -238,8 +274,17 @@ const Trial = () => {
               transition={{ duration: 0.8 }}
               className="text-center mb-12"
             >
-              <h2 className="text-3xl md:text-5xl font-bold text-gray-900 mb-6">
-                Book Your Trial Activation Call
+              <div className="inline-flex items-center gap-2 px-6 py-2 rounded-full bg-gradient-to-r from-brand-blue/10 via-brand-teal/10 to-brand-gold/10 border border-brand-teal/20 mb-6">
+                <Sparkles className="w-5 h-5 text-brand-gold" />
+                <span className="text-sm font-semibold bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent">
+                  Limited Time Offer
+                </span>
+              </div>
+
+              <h2 className="text-4xl md:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold bg-clip-text text-transparent">
+                  Book Your Trial Activation Call
+                </span>
               </h2>
               <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
                 Choose a time that works best for you. Our team will guide you through the activation process and answer all your questions.
@@ -255,21 +300,21 @@ const Trial = () => {
               className="relative"
             >
               <div className="relative">
-                {/* Background Glow */}
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-teal/20 via-brand-blue/15 to-brand-gold/20 rounded-3xl blur-2xl"></div>
+                {/* Animated Gradient Border */}
+                <div className="absolute -inset-1 bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold rounded-3xl opacity-75 blur-lg animate-gradient-x"></div>
 
-                {/* Calendly Widget Container */}
-                <div className="relative bg-white/90 backdrop-blur-sm rounded-3xl p-4 md:p-8 border border-brand-teal/30 shadow-2xl">
+                {/* Calendly Widget Container with Glass Effect */}
+                <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl p-6 md:p-10 shadow-2xl">
                   <div
-                    className="calendly-inline-widget"
-                    data-url="https://calendly.com/euphoricai-ai-voiceagents-demo/45?hide_gdpr_banner=1&primary_color=3dd8d8"
+                    className="calendly-inline-widget rounded-2xl overflow-hidden"
+                    data-url="https://calendly.com/euphoricai-ai-voiceagents-demo/45?hide_gdpr_banner=1&primary_color=42a4bf"
                     style={{ minWidth: '320px', height: '700px' }}
                   ></div>
                 </div>
               </div>
             </motion.div>
 
-            {/* Alternative Contact */}
+            {/* Alternative Contact with Enhanced Styling */}
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -277,16 +322,25 @@ const Trial = () => {
               transition={{ duration: 0.8, delay: 0.4 }}
               className="text-center mt-12"
             >
-              <p className="text-gray-600 mb-6">
-                Prefer to speak with our sales team directly?
-              </p>
-              <Link
-                to="/contact"
-                className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-white border-2 border-brand-teal text-brand-teal font-bold rounded-xl shadow-lg hover:bg-brand-teal hover:text-white hover:shadow-2xl hover:scale-105 transition-all duration-300"
-              >
-                <Phone className="w-5 h-5" />
-                Contact Sales Team
-              </Link>
+              <div className="relative inline-block">
+                <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/20 via-brand-teal/20 to-brand-gold/20 blur-xl rounded-2xl"></div>
+                <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-brand-teal/20">
+                  <p className="text-gray-700 mb-6 text-lg font-medium">
+                    Prefer to speak with our sales team directly?
+                  </p>
+                  <Link
+                    to="/contact"
+                    className="group inline-flex items-center justify-center gap-3 px-10 py-4 bg-gradient-to-r from-brand-blue via-brand-teal to-brand-gold text-white font-bold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 relative overflow-hidden"
+                  >
+                    {/* Button Shine Effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent opacity-0 group-hover:opacity-100 group-hover:translate-x-full transition-all duration-1000"></div>
+
+                    <Phone className="w-5 h-5 relative z-10" />
+                    <span className="relative z-10">Contact Sales Team</span>
+                    <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform relative z-10" />
+                  </Link>
+                </div>
+              </div>
             </motion.div>
           </div>
         </div>
