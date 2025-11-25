@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Sparkles, CheckCircle, ArrowRight, Phone, Calendar, Users, Settings, PlayCircle, BookOpen } from 'lucide-react';
-import { TextAnimate } from '../components/magicui/text-animate';
 import SEO from '../components/SEO';
 
 const Trial = () => {
@@ -122,16 +121,9 @@ const Trial = () => {
             </motion.div>
 
             {/* Subheading with Brand Color */}
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xl md:text-2xl text-brand-teal leading-relaxed mb-16 max-w-4xl mx-auto font-medium"
-            >
-              <TextAnimate animation="blurInUp" by="word" once>
-                Join the Trial Activation Call to unlock your Euphoric AI account and explore how AI Voice Agents can transform your lead conversions and customer support.
-              </TextAnimate>
-            </motion.p>
+            <p className="text-xl md:text-2xl text-brand-teal leading-relaxed mb-16 max-w-4xl mx-auto font-medium">
+              Join the Trial Activation Call to unlock your Euphoric AI account and explore how AI Voice Agents can transform your lead conversions and customer support.
+            </p>
 
             {/* What This Call Covers Section */}
             <motion.div
