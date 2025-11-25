@@ -289,7 +289,7 @@ const Trial = () => {
                 <div className="relative bg-white/95 backdrop-blur-xl rounded-3xl p-6 md:p-10 shadow-2xl">
                   <div
                     className="calendly-inline-widget rounded-2xl overflow-hidden"
-                    data-url="https://calendly.com/euphoricai-ai-voiceagents-demo/45?hide_gdpr_banner=1&primary_color=42a4bf"
+                    data-url="https://calendly.com/euphoricai-ai-voiceagents-demo/trial-activation-call?hide_gdpr_banner=1&primary_color=42a4bf"
                     style={{ minWidth: '320px', height: '700px' }}
                   ></div>
                 </div>
