@@ -110,8 +110,8 @@ const Trial = () => {
               </div>
             </div>
 
-            {/* Subheading with Black Font */}
-            <p className="text-xl md:text-2xl text-black leading-relaxed mb-16 max-w-4xl mx-auto font-medium">
+            {/* Subheading with Gray Font */}
+            <p className="text-xl md:text-2xl text-gray-600 leading-relaxed mb-16 max-w-4xl mx-auto font-medium">
               Join the Trial Activation Call to unlock your Euphoric AI account and explore how AI Voice Agents can transform your lead conversions and customer support.
             </p>
 
@@ -154,7 +154,7 @@ const Trial = () => {
                               <Icon className="w-7 h-7 text-white" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-lg font-bold text-black mb-2 leading-tight">
+                              <h3 className="text-lg font-bold text-gray-600 mb-2 leading-tight">
                                 {item.title}
                               </h3>
                               <p className="text-gray-600 text-sm leading-relaxed">
@@ -216,7 +216,7 @@ const Trial = () => {
                               </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-black mb-3">
+                            <h3 className="text-xl font-bold text-gray-600 mb-3">
                               {item.title}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
