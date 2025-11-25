@@ -21,27 +21,27 @@ const Trial = () => {
   const callCovers = [
     {
       icon: Users,
-      title: 'Understanding your business & use-case',
+      title: 'Understanding Your Business & Use-Case',
       description: 'We dive deep into your specific needs and challenges'
     },
     {
       icon: CheckCircle,
-      title: 'Confirming compatibility with Euphoric AI',
+      title: 'Confirming Compatibility With Euphoric AI',
       description: 'Ensure our solution is the perfect fit for your workflow'
     },
     {
       icon: Settings,
-      title: 'Activating your 7-day trial account',
+      title: 'Activating Your 7-Day Trial Account',
       description: 'Get immediate access to your personalized trial environment'
     },
     {
       icon: PlayCircle,
-      title: 'Showing how the test environment works',
+      title: 'Showing How The Test Environment Works',
       description: 'Live walkthrough of features and capabilities'
     },
     {
       icon: Calendar,
-      title: 'Scheduling your onboarding call',
+      title: 'Scheduling Your Onboarding Call',
       description: 'Book your dedicated implementation session'
     }
   ];
@@ -49,17 +49,17 @@ const Trial = () => {
   const afterCallItems = [
     {
       icon: CheckCircle,
-      title: 'Trial account credentials',
+      title: 'Trial Account Credentials',
       description: 'Secure login details for your personalized dashboard'
     },
     {
       icon: Calendar,
-      title: 'Onboarding calendar link',
+      title: 'Onboarding Calendar Link',
       description: 'Schedule your full implementation session'
     },
     {
       icon: BookOpen,
-      title: 'Steps to prepare your FAQs and call flows',
+      title: 'Steps To Prepare Your FAQs And Call Flows',
       description: 'Guidance to get the most from your trial period'
     }
   ];
@@ -126,7 +126,7 @@ const Trial = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-xl md:text-2xl text-gray-800 leading-relaxed mb-16 max-w-4xl mx-auto font-medium"
+              className="text-xl md:text-2xl text-brand-teal leading-relaxed mb-16 max-w-4xl mx-auto font-medium"
             >
               <TextAnimate animation="blurInUp" by="word" once>
                 Join the Trial Activation Call to unlock your Euphoric AI account and explore how AI Voice Agents can transform your lead conversions and customer support.
@@ -145,7 +145,7 @@ const Trial = () => {
                   What This Call Covers
                 </span>
               </h2>
-              <p className="text-lg text-gray-600 mb-12 max-w-2xl mx-auto">
+              <p className="text-lg text-brand-gray mb-12 max-w-2xl mx-auto">
                 A comprehensive walkthrough designed to set you up for success
               </p>
 
@@ -172,7 +172,7 @@ const Trial = () => {
                               <Icon className="w-7 h-7 text-white" />
                             </div>
                             <div className="flex-1">
-                              <h3 className="text-lg font-bold text-gray-900 mb-2 leading-tight group-hover:text-brand-blue transition-colors duration-300">
+                              <h3 className="text-lg font-bold text-brand-blue mb-2 leading-tight">
                                 {item.title}
                               </h3>
                               <p className="text-gray-600 text-sm leading-relaxed">
@@ -204,7 +204,7 @@ const Trial = () => {
                 </span>
               </h2>
 
-              <p className="text-xl text-gray-700 mb-10 max-w-3xl mx-auto font-medium">
+              <p className="text-xl text-brand-teal mb-10 max-w-3xl mx-auto font-medium">
                 You will receive:
               </p>
 
@@ -234,7 +234,7 @@ const Trial = () => {
                               </div>
                             </div>
 
-                            <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-brand-teal transition-colors duration-300">
+                            <h3 className="text-xl font-bold text-brand-blue mb-3">
                               {item.title}
                             </h3>
                             <p className="text-gray-600 leading-relaxed">
@@ -286,7 +286,7 @@ const Trial = () => {
                   Book Your Trial Activation Call
                 </span>
               </h2>
-              <p className="text-xl text-gray-700 leading-relaxed max-w-3xl mx-auto">
+              <p className="text-xl text-brand-gray leading-relaxed max-w-3xl mx-auto">
                 Choose a time that works best for you. Our team will guide you through the activation process and answer all your questions.
               </p>
             </motion.div>
@@ -325,7 +325,7 @@ const Trial = () => {
               <div className="relative inline-block">
                 <div className="absolute inset-0 bg-gradient-to-r from-brand-blue/20 via-brand-teal/20 to-brand-gold/20 blur-xl rounded-2xl"></div>
                 <div className="relative bg-white/80 backdrop-blur-sm rounded-2xl p-8 border border-brand-teal/20">
-                  <p className="text-gray-700 mb-6 text-lg font-medium">
+                  <p className="text-brand-teal mb-6 text-lg font-medium">
                     Prefer to speak with our sales team directly?
                   </p>
                   <Link
