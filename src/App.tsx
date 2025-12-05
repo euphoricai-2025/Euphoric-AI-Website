@@ -2,8 +2,6 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 import { AuthProvider } from './contexts/AuthContext';
 import { ThemeProvider } from './contexts/ThemeContext';
-import { BannerProvider } from './contexts/BannerContext';
-import BlackFridayBanner from './components/BlackFridayBanner';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop';
@@ -70,12 +68,10 @@ function App() {
   return (
     <ThemeProvider>
       <AuthProvider>
-        <BannerProvider>
-          <Router>
-            <ScrollToTop />
-            <AppContent />
-          </Router>
-        </BannerProvider>
+        <Router>
+          <ScrollToTop />
+          <AppContent />
+        </Router>
       </AuthProvider>
     </ThemeProvider>
   );
@@ -93,7 +89,6 @@ function AppContent() {
 
   return (
     <div className="min-h-screen bg-euphoric-surface">
-      {!isDashboard && <BlackFridayBanner />}
       {!isDashboard && <Header />}
       <main>
         <Routes>

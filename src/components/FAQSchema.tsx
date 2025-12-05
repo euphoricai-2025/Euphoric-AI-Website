@@ -79,7 +79,7 @@ export const commonFAQs: FAQItem[] = [
   },
   {
     question: "What is the pricing model for Euphoric AI?",
-    answer: "Euphoric AI offers five flexible plans: Starter ($399/month with 2,000 minutes), Standard ($599/month with 3,000 minutes), Growth ($999/month with 5,000 minutes - Most Popular), Pro ($1,499/month with 7,500 minutes), and Enterprise (starts from $1,999/month with flexible pricing). Overages are billed at $0.16/min. All plans are monthly with no long-term contracts required."
+    answer: "Euphoric AI offers five flexible plans: Trial ($99/month with 500 minutes), Starter ($349/month with 2,000 minutes), Standard ($549/month with 3,000 minutes), Growth ($849/month with 5,000 minutes - Most Popular), Pro ($1,249/month with 7,500 minutes), and Enterprise (starts from $1,999/month with flexible pricing). Overages are billed at $0.16/min. All plans are monthly with no long-term contracts required."
   },
   {
     question: "How quickly can I deploy Euphoric AI voice agents?",

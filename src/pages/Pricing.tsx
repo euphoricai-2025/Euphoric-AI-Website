@@ -27,7 +27,7 @@ const Pricing = () => {
     },
     {
       name: 'Starter',
-      price: 399,
+      price: 349,
       minutes: '2,000 calling minutes per month',
       concurrentCalls: 'Up to 15 concurrent calls',
       description: 'Perfect for teams launching their first AI voice agent',
@@ -44,7 +44,7 @@ const Pricing = () => {
     },
     {
       name: 'Standard',
-      price: 599,
+      price: 549,
       minutes: '3,000 calling minutes per month',
       concurrentCalls: 'Up to 25 concurrent calls',
       description: 'Growing teams with advanced analytics needs',
@@ -59,7 +59,7 @@ const Pricing = () => {
     },
     {
       name: 'Growth',
-      price: 999,
+      price: 849,
       minutes: '5,000 calling minutes per month',
       concurrentCalls: 'Up to 50 concurrent calls',
       description: 'Most popular plan with multilingual support',
@@ -75,7 +75,7 @@ const Pricing = () => {
     },
     {
       name: 'Pro',
-      price: 1499,
+      price: 1249,
       minutes: '7,500 calling minutes per month',
       concurrentCalls: 'Up to 80 concurrent calls',
       description: 'Enterprise-ready with compliance and SLAs',
@@ -360,7 +360,7 @@ const Pricing = () => {
                     <h3 className="text-3xl font-bold text-gray-900 mb-2">Starter</h3>
                     <p className="text-sm text-gray-600 mb-4">AI calling agent with guided self-setup</p>
                     <div className="mb-4">
-                      <span className="text-3xl font-bold text-gray-900">$399</span>
+                      <span className="text-3xl font-bold text-gray-900">$349</span>
                       <span className="text-gray-500 text-sm">/month</span>
                     </div>
                     <a
@@ -422,7 +422,7 @@ const Pricing = () => {
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Standard</h3>
                 <p className="text-sm text-gray-600 mb-4">Deeper analytics and higher call volumes</p>
                 <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$599</span>
+                  <span className="text-3xl font-bold text-gray-900">$549</span>
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
                 <a
@@ -480,7 +480,7 @@ const Pricing = () => {
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Growth</h3>
                 <p className="text-sm text-gray-600 mb-4">For businesses with higher call volumes</p>
                 <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$999</span>
+                  <span className="text-3xl font-bold text-gray-900">$849</span>
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
                 <a
@@ -539,7 +539,7 @@ const Pricing = () => {
                 <h3 className="text-3xl font-bold text-gray-900 mb-2">Pro</h3>
                 <p className="text-sm text-gray-600 mb-4">Enterprise readiness, compliance and SLAs</p>
                 <div className="mb-4">
-                  <span className="text-3xl font-bold text-gray-900">$1,499</span>
+                  <span className="text-3xl font-bold text-gray-900">$1,249</span>
                   <span className="text-gray-500 text-sm">/month</span>
                 </div>
                 <a
@@ -725,10 +725,10 @@ const Pricing = () => {
               {/* Plan Cards - Desktop */}
               {[
                 { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/bJeeVddwp8rn2yr15l8g00p', popular: false },
-                { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/7sY8wPcslcHD1undS78g00q', popular: false },
-                { name: 'Standard', price: '$599', url: 'https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r', popular: false },
-                { name: 'Growth', price: '$999', url: 'https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s', popular: true },
-                { name: 'Pro', price: '$1,499', url: 'https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t', popular: false },
+                { name: 'Starter', price: '$349', url: 'https://buy.stripe.com/7sY8wPcslcHD1undS78g00q', popular: false },
+                { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r', popular: false },
+                { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s', popular: true },
+                { name: 'Pro', price: '$1,249', url: 'https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t', popular: false },
                 { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai-voiceagents-demo/45', popular: false }
               ].map((plan) => (
                 <div key={plan.name} className="text-center">
@@ -771,10 +771,10 @@ const Pricing = () => {
                 <div className="flex gap-4 pb-4" style={{ width: 'max-content' }}>
                   {[
                     { name: 'Trial', price: '$99', url: 'https://buy.stripe.com/bJeeVddwp8rn2yr15l8g00p', popular: false },
-                    { name: 'Starter', price: '$399', url: 'https://buy.stripe.com/7sY8wPcslcHD1undS78g00q', popular: false },
-                    { name: 'Standard', price: '$599', url: 'https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r', popular: false },
-                    { name: 'Growth', price: '$999', url: 'https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s', popular: true },
-                    { name: 'Pro', price: '$1,499', url: 'https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t', popular: false },
+                    { name: 'Starter', price: '$349', url: 'https://buy.stripe.com/7sY8wPcslcHD1undS78g00q', popular: false },
+                    { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r', popular: false },
+                    { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s', popular: true },
+                    { name: 'Pro', price: '$1,249', url: 'https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t', popular: false },
                     { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai-voiceagents-demo/45', popular: false }
                   ].map((plan) => (
                     <div key={plan.name} className="flex-shrink-0 w-36">

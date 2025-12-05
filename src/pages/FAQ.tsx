@@ -68,7 +68,7 @@ const FAQ = () => {
       questions: [
         {
           question: 'How much does Euphoric AI cost?',
-          answer: 'We offer five flexible plans: Starter ($399/mo with 2,000 mins), Standard ($599/mo with 3,000 mins), Growth ($999/mo with 5,000 mins), Pro ($1,499/mo with 7,500 mins), and Enterprise (from $1,999/mo with flexible pricing). Overages are billed at $0.16/min. Check our pricing page for complete details.'
+          answer: 'We offer five flexible plans: Trial ($99/mo with 500 mins), Starter ($349/mo with 2,000 mins), Standard ($549/mo with 3,000 mins), Growth ($849/mo with 5,000 mins), Pro ($1,249/mo with 7,500 mins), and Enterprise (from $1,999/mo with flexible pricing). Overages are billed at $0.16/min. Check our pricing page for complete details.'
         },
         {
           question: 'Are there any setup fees or hidden costs?',
