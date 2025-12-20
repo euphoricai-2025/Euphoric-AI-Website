@@ -381,7 +381,7 @@ class CloserXAPI {
     return this.request<{ imported: number; failed: number }>('/contacts/upload', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${this.apiKey}`,
+        'Authorization': `Bearer ${this.getApiKey()}`,
       },
       body: formData,
     });
