@@ -103,7 +103,7 @@ function AppContent() {
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-conditions" element={<TermsConditions />} />
-                <Route path="/refund-policy" element={<RefundPolicy />} />
+                <Route path="/refund-cancellations" element={<RefundPolicy />} />
                 <Route path="/real-estate" element={<RealEstate />} />
                 <Route path="/healthcare" element={<Healthcare />} />
                 <Route path="/ecommerce" element={<Ecommerce />} />

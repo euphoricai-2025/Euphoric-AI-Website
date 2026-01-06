@@ -44,7 +44,7 @@ function NewAppContent() {
         <Routes>
           <Route path="/trial" element={<Trial />} />
           <Route path="/book" element={<Book />} />
-          <Route path="/refund-policy" element={<RefundPolicy />} />
+          <Route path="/refund-cancellations" element={<RefundPolicy />} />
         </Routes>
       </main>
       {!isDashboard && <Footer />}

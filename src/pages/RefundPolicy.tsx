@@ -144,7 +144,7 @@ const RefundPolicy = () => {
                       <li>Log in to your Euphoric AI dashboard</li>
                       <li>Navigate to Account Settings → Billing</li>
                       <li>Click "Cancel Subscription" and follow the prompts</li>
-                      <li>Alternatively, contact us at <a href="mailto:hello@euphoricai.io" className="text-brand-teal hover:underline">hello@euphoricai.io</a></li>
+                      <li>Alternatively, contact us at <a href="mailto:support@euphoricai.io" className="text-brand-teal hover:underline">support@euphoricai.io</a></li>
                     </ul>
                   </div>
 
@@ -206,7 +206,7 @@ const RefundPolicy = () => {
                   <div className="font-semibold text-gray-900">Contact Information:</div>
                   <div className="flex items-center gap-2 text-gray-700">
                     <Mail className="w-4 h-4" />
-                    <span>Email: <a href="mailto:hello@euphoricai.io" className="text-brand-teal hover:underline">hello@euphoricai.io</a></span>
+                    <span>Email: <a href="mailto:support@euphoricai.io" className="text-brand-teal hover:underline">support@euphoricai.io</a></span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-700">
                     <Globe className="w-4 h-4" />
@@ -268,7 +268,7 @@ const RefundPolicy = () => {
                   <div className="font-semibold text-gray-900">Euphoric Innovations LLC</div>
                   <div className="flex items-center gap-2 text-gray-700">
                     <Mail className="w-4 h-4" />
-                    <span>Email: <a href="mailto:hello@euphoricai.io" className="text-brand-teal hover:underline">hello@euphoricai.io</a></span>
+                    <span>Email: <a href="mailto:support@euphoricai.io" className="text-brand-teal hover:underline">support@euphoricai.io</a></span>
                   </div>
                   <div className="flex items-center gap-2 text-gray-700">
                     <Globe className="w-4 h-4" />
