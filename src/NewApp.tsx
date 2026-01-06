@@ -8,6 +8,7 @@ import ScrollToTop from './components/ScrollToTop';
 import Book from './pages/domains/Book';
 import Trial from './pages/Trial';
 import OfferExpired from './pages/OfferExpired';
+import RefundPolicy from './pages/RefundPolicy';
 
 function NewApp() {
   return (
@@ -43,6 +44,7 @@ function NewAppContent() {
         <Routes>
           <Route path="/trial" element={<Trial />} />
           <Route path="/book" element={<Book />} />
+          <Route path="/refund-policy" element={<RefundPolicy />} />
         </Routes>
       </main>
       {!isDashboard && <Footer />}
