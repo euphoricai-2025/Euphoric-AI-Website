@@ -740,7 +740,7 @@ const AnalyticsReporting = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                href="https://calendly.com/euphoricai-ai/demo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="bg-white text-brand-teal hover:bg-gray-100 font-semibold py-4 px-8 rounded-lg transition-all duration-200 hover:scale-[1.02] hover:shadow-lg flex items-center justify-center"

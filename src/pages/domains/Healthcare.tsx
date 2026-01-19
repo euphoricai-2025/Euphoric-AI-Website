@@ -114,7 +114,7 @@ const Healthcare = () => {
     setSubmitStatus({ type: null, message: '' });
     setTimeout(() => {
       setIsSubmitting(false);
-      window.location.href = 'https://calendly.com/euphoricai-ai-voiceagents-demo/45';
+      window.location.href = 'https://calendly.com/euphoricai-ai/demo';
     }, 2000);
   };
 
@@ -251,7 +251,7 @@ const Healthcare = () => {
                   <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a
-                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                  href="https://calendly.com/euphoricai-ai/demo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline inline-flex items-center justify-center gap-2"
@@ -737,7 +737,7 @@ const Healthcare = () => {
                 <ArrowRight className="ml-2 w-4 h-4" />
               </Link>
               <a
-                href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                href="https://calendly.com/euphoricai-ai/demo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="border-2 border-white text-white hover:bg-white hover:text-brand-teal inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"

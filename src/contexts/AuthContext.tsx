@@ -55,7 +55,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           // Store session data
           localStorage.setItem('supabase.auth.token', JSON.stringify(session));
           // Redirect to Calendly for new registrations
-          window.location.href = 'https://calendly.com/euphoricai-ai-voiceagents-demo/45';
+          window.location.href = 'https://calendly.com/euphoricai-ai/demo';
         }
       }
     });
@@ -107,7 +107,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         localStorage.setItem('supabase.auth.token', JSON.stringify(data.session));
         
         // Redirect to Calendly for onboarding
-        window.location.href = 'https://calendly.com/euphoricai-ai-voiceagents-demo/45';
+        window.location.href = 'https://calendly.com/euphoricai-ai/demo';
       }
     } catch (error) {
       if (error instanceof Error && error.message === 'User already registered') {

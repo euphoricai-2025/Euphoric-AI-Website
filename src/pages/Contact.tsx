@@ -308,7 +308,7 @@ const Contact = () => {
                       <Send className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </button>
                     <a
-                      href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                      href="https://calendly.com/euphoricai-ai/demo"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="flex-1 bg-white border-2 border-brand-teal text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-brand-teal hover:text-white hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 text-lg"

@@ -123,7 +123,7 @@ const StickyNav: React.FC<StickyNavProps> = ({ sections }) => {
                 
                 {/* CTA Button */}
                 <a
-                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                  href="https://calendly.com/euphoricai-ai/demo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-blue-500 to-purple-500 hover:from-blue-600 hover:to-purple-600 text-white px-4 py-2 rounded-xl font-medium text-sm transition-all duration-200 transform hover:scale-105 flex items-center space-x-2 ml-4"
@@ -206,7 +206,7 @@ const StickyNav: React.FC<StickyNavProps> = ({ sections }) => {
 
                     {/* Mobile CTA */}
                     <a
-                      href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                      href="https://calendly.com/euphoricai-ai/demo"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="w-full bg-gradient-to-r from-blue-500 to-purple-500 text-white p-4 rounded-xl font-semibold transition-all duration-200 transform hover:scale-105 flex items-center justify-center space-x-2 mt-6"

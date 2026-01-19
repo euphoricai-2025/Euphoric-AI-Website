@@ -269,7 +269,7 @@ const Pricing = () => {
                 </Link>
               ) : (
                 <a
-                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                  href="https://calendly.com/euphoricai-ai/demo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold py-4 px-8 rounded-xl hover:shadow-lg hover:scale-105 transition-all duration-300 inline-flex items-center justify-center gap-3 group text-lg"
@@ -611,7 +611,7 @@ const Pricing = () => {
                       </div>
                       <div className="flex flex-col sm:flex-row gap-4">
                         <a 
-                          href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                          href="https://calendly.com/euphoricai-ai/demo"
                           target="_blank"
                           rel="noopener noreferrer"
                           className="bg-white text-brand-teal font-bold py-4 px-8 rounded-xl hover:bg-white/90 transition-all duration-300 shadow-lg hover:shadow-xl inline-block text-center"
@@ -729,7 +729,7 @@ const Pricing = () => {
                 { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r', popular: false },
                 { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s', popular: true },
                 { name: 'Pro', price: '$1,249', url: 'https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t', popular: false },
-                { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai-voiceagents-demo/45', popular: false }
+                { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai/demo', popular: false }
               ].map((plan) => (
                 <div key={plan.name} className="text-center">
                   <div className={`rounded-xl p-4 hover:shadow-lg transition-all duration-300 h-full flex flex-col group card-hover ${
@@ -775,7 +775,7 @@ const Pricing = () => {
                     { name: 'Standard', price: '$549', url: 'https://buy.stripe.com/14A4gzgIB9vrdd54hx8g00r', popular: false },
                     { name: 'Growth', price: '$849', url: 'https://buy.stripe.com/9B63cvgIBdLH4GzbJZ8g00s', popular: true },
                     { name: 'Pro', price: '$1,249', url: 'https://buy.stripe.com/14A9AT7815fbb4X6pF8g00t', popular: false },
-                    { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai-voiceagents-demo/45', popular: false }
+                    { name: 'Enterprise', price: 'From $1,999', url: 'https://calendly.com/euphoricai-ai/demo', popular: false }
                   ].map((plan) => (
                     <div key={plan.name} className="flex-shrink-0 w-36">
                       <div className={`rounded-xl p-3 hover:shadow-lg transition-all duration-300 h-full flex flex-col group card-hover ${
@@ -1073,7 +1073,7 @@ const Pricing = () => {
                 </Link>
               ) : (
                 <a
-                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                  href="https://calendly.com/euphoricai-ai/demo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-gold inline-flex items-center justify-center gap-2 group px-8 py-4 text-lg font-semibold"

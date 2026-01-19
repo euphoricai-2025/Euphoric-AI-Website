@@ -64,7 +64,7 @@ const Book = () => {
     setIsSubmitting(true);
     setTimeout(() => {
       setIsSubmitting(false);
-      window.location.href = 'https://calendly.com/euphoricai-ai-voiceagents-demo/45';
+      window.location.href = 'https://calendly.com/euphoricai-ai/demo';
     }, 2000);
   };
 
@@ -201,7 +201,7 @@ const Book = () => {
                   <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
                 <a
-                  href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                  href="https://calendly.com/euphoricai-ai/demo"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="btn-outline-teal inline-flex items-center justify-center gap-2"
@@ -593,7 +593,7 @@ const Book = () => {
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <a
-                href="https://calendly.com/euphoricai-ai-voiceagents-demo/45"
+                href="https://calendly.com/euphoricai-ai/demo"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white/10 backdrop-blur-md border-2 border-white text-white font-bold rounded-xl hover:bg-white/20 hover:shadow-2xl hover:scale-105 transition-all duration-300"
