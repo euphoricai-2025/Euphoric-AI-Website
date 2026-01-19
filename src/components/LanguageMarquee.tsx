@@ -458,7 +458,7 @@ export function LanguagesShowcase() {
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold mb-6 tracking-tight">
             <span className="bg-gradient-to-r from-brand-teal via-brand-blue to-brand-gold bg-clip-text text-transparent">
-              We support over 35+ languages
+              We support over 52+ languages
             </span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -524,7 +524,7 @@ export function LanguagesShowcase() {
                 className="inline-flex items-center justify-center px-6 py-3 bg-gradient-to-r from-brand-teal to-brand-blue text-white font-medium rounded-lg hover:shadow-lg transition-all duration-300 hover:-translate-y-0.5"
               >
                 <Globe className="w-5 h-5 mr-2" />
-                View All 35+ Languages
+                View All 52+ Languages
               </Link>
             </div>
 

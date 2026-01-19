@@ -22,7 +22,7 @@ const ThankYou = () => {
     {
       icon: MessageCircle,
       title: 'Natural Conversations',
-      description: 'AI agents that understand context and respond naturally in 35+ languages',
+      description: 'AI agents that understand context and respond naturally in 52+ languages',
       gradient: 'from-brand-teal to-brand-blue'
     },
     {
@@ -48,7 +48,7 @@ const ThankYou = () => {
   const stats = [
     { value: '99.9%', label: 'Uptime' },
     { value: '250ms', label: 'Response Time' },
-    { value: '35+', label: 'Languages' },
+    { value: '52+', label: 'Languages' },
     { value: '24/7', label: 'Always Active' }
   ];
 

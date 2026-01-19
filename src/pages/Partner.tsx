@@ -65,7 +65,7 @@ const Partner = () => {
       title: 'Multilingual Support',
       description: (
         <>
-          Multilingual AI voice agents supporting <strong>35+ languages</strong>
+          Multilingual AI voice agents supporting <strong>52+ languages</strong>
         </>
       )
     },

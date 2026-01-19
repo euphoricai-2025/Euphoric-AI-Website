@@ -34,7 +34,7 @@ const FAQ = () => {
         },
         {
           question: 'How natural do the AI voices sound?',
-          answer: 'Our AI agents use advanced voice synthesis technology with natural-sounding voices in 35+ languages. Customers often cannot tell they are speaking with an AI agent.'
+          answer: 'Our AI agents use advanced voice synthesis technology with natural-sounding voices in 52+ languages. Customers often cannot tell they are speaking with an AI agent.'
         },
         {
           question: 'Can I customize my AI agent\'s personality and responses?',

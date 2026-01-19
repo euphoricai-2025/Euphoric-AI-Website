@@ -320,7 +320,7 @@ const HomeV2 = () => {
                             <Languages className="w-5 h-5 text-white" />
                           </div>
                           <div>
-                            <p className="text-sm font-semibold text-gray-900">35+ Languages</p>
+                            <p className="text-sm font-semibold text-gray-900">52+ Languages</p>
                             <p className="text-xs text-gray-600">Switch between multiple languages</p>
                           </div>
                         </div>
@@ -614,7 +614,7 @@ const HomeV2 = () => {
               <div className="bg-gradient-to-br from-brand-gray to-brand-blue w-16 h-16 rounded-2xl flex items-center justify-center mb-6">
                 <Globe className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4">35+ Languages</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4">52+ Languages</h3>
               <p className="text-gray-600 leading-relaxed">
                 Serve customers globally with multilingual support. Switch languages mid-conversation.
               </p>

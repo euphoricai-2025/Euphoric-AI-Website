@@ -157,7 +157,7 @@ const CustomerSupportAgentUseCase = () => {
       results: 'Expand global support coverage by 300% and improve customer satisfaction scores by 45%',
       icon: Globe,
       features: [
-        'Native-level fluency in 35+ languages with cultural context',
+        'Native-level fluency in 52+ languages with cultural context',
         'Technical troubleshooting guides and step-by-step assistance',
         'Visual aid generation and screen-sharing integration',
         'Product-specific knowledge and compatibility checking',
@@ -170,7 +170,7 @@ const CustomerSupportAgentUseCase = () => {
   const results = [
     { metric: '75%', label: 'Instant Query Resolution', description: 'From comprehensive knowledge base' },
     { metric: '60%', label: 'Better First-Call Resolution', description: 'Smart escalation management' },
-    { metric: '300%', label: 'Global Support Expansion', description: '35+ languages supported' },
+    { metric: '300%', label: 'Global Support Expansion', description: '52+ languages supported' },
     { metric: '2min', label: 'Average Resolution Time', description: 'Down from 24 hours' }
   ];
 

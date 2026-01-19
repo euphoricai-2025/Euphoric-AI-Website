@@ -81,7 +81,7 @@ const About = () => {
               transition={{ duration: 0.8, delay: 0.3 }}
               className="text-lg text-gray-500 max-w-2xl mx-auto"
             >
-              Ready in 30 minutes. Serving customers in 35+ languages. Trusted by businesses worldwide.
+              Ready in 30 minutes. Serving customers in 52+ languages. Trusted by businesses worldwide.
             </motion.p>
           </div>
         </div>

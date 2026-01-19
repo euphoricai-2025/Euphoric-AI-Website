@@ -288,7 +288,7 @@ const Home = () => {
               </p>
 
               <p className="text-lg text-gray-500 mb-8 leading-relaxed">
-                Our <span className="font-bold">multilingual</span> agents speak 35+ languages, helping you connect with customers worldwide in a natural, authentic way.
+                Our <span className="font-bold">multilingual</span> agents speak 52+ languages, helping you connect with customers worldwide in a natural, authentic way.
               </p>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
