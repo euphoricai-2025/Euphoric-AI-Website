@@ -1,0 +1,265 @@
+{
+  "name": "Call Recording Analysis - Euphoric AI",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "call-recording-analysis",
+        "options": {}
+      },
+      "id": "webhook-trigger",
+      "name": "Webhook - Receive Recording",
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2,
+      "position": [250, 300],
+      "webhookId": "call-recording-analysis"
+    },
+    {
+      "parameters": {
+        "url": "={{ $json.recording_url }}",
+        "options": {
+          "response": {
+            "response": {
+              "responseFormat": "file"
+            }
+          }
+        }
+      },
+      "id": "download-audio",
+      "name": "Download Audio File",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [470, 300]
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "gemini-2.0-flash-exp",
+          "mode": "list",
+          "cachedResultName": "gemini-2.0-flash-exp"
+        },
+        "text": "Analyze this call recording and provide:\n\n1. **TRANSCRIPTION**: Full word-for-word transcript of the conversation\n\n2. **SENTIMENT ANALYSIS**:\n   - Overall sentiment score: -1 (very negative) to +1 (very positive)\n   - Customer sentiment: How did the customer feel?\n   - Agent performance: How well did the AI agent handle the call?\n\n3. **KEY INSIGHTS**:\n   - Main topics discussed\n   - Customer pain points mentioned\n   - Objections raised\n   - Questions asked\n\n4. **OUTCOME SIGNALS**:\n   - Interest level (1-10)\n   - Purchase/booking intent (1-10)\n   - Follow-up recommended? (yes/no)\n   - Urgency level (low/medium/high)\n\n5. **IMPROVEMENT SUGGESTIONS**:\n   - What could the agent have done better?\n   - Missed opportunities\n\nFormat the response as JSON with these exact keys:\n{\n  \"transcription\": \"...\",\n  \"sentiment\": {\n    \"overall_score\": 0.0,\n    \"customer_sentiment\": \"...\",\n    \"agent_performance\": \"...\"\n  },\n  \"insights\": {\n    \"topics\": [],\n    \"pain_points\": [],\n    \"objections\": [],\n    \"questions\": []\n  },\n  \"signals\": {\n    \"interest_level\": 0,\n    \"purchase_intent\": 0,\n    \"follow_up_recommended\": false,\n    \"urgency\": \"low\"\n  },\n  \"improvements\": []\n}",
+        "options": {
+          "temperature": 0.3
+        }
+      },
+      "id": "gemini-analyze",
+      "name": "Gemini - Analyze Call",
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [690, 300],
+      "credentials": {
+        "googleGeminiApi": {
+          "id": "google-gemini-creds",
+          "name": "Google Gemini API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Parse the Gemini response and structure the output\nconst geminiResponse = $input.first().json;\nconst webhookData = $('Webhook - Receive Recording').first().json;\n\nlet analysis;\ntry {\n  // Try to parse JSON from the response\n  const responseText = geminiResponse.text || geminiResponse.content || JSON.stringify(geminiResponse);\n  const jsonMatch = responseText.match(/\\{[\\s\\S]*\\}/);\n  analysis = jsonMatch ? JSON.parse(jsonMatch[0]) : { raw_response: responseText };\n} catch (e) {\n  analysis = { raw_response: geminiResponse, parse_error: e.message };\n}\n\nreturn {\n  // Call metadata\n  call_id: webhookData.call_id,\n  contact_name: webhookData.contact_name,\n  contact_number: webhookData.contact_number,\n  duration_seconds: webhookData.duration_seconds,\n  outcome: webhookData.outcome,\n  campaign: webhookData.campaign,\n  timestamp: webhookData.timestamp,\n  recording_url: webhookData.recording_url,\n  \n  // Analysis results\n  analysis: analysis,\n  \n  // Quick access fields\n  transcription: analysis.transcription || null,\n  sentiment_score: analysis.sentiment?.overall_score || null,\n  interest_level: analysis.signals?.interest_level || null,\n  follow_up_needed: analysis.signals?.follow_up_recommended || false,\n  \n  // Processed at\n  analyzed_at: new Date().toISOString()\n};"
+      },
+      "id": "process-results",
+      "name": "Process Results",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [910, 300]
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict"
+          },
+          "conditions": [
+            {
+              "id": "condition-high-interest",
+              "leftValue": "={{ $json.interest_level }}",
+              "rightValue": 7,
+              "operator": {
+                "type": "number",
+                "operation": "gte"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "id": "check-interest",
+      "name": "High Interest?",
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2,
+      "position": [1130, 300]
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $env.NOTIFICATION_EMAIL || 'monil@euphoricai.io' }}",
+        "subject": "🔥 High Interest Call: {{ $json.contact_name }} (Score: {{ $json.interest_level }}/10)",
+        "message": "=<h2>🔥 High Interest Call Detected!</h2>\n\n<table style=\"border-collapse: collapse; width: 100%;\">\n<tr><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\"><strong>Contact:</strong></td><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\">{{ $json.contact_name }}</td></tr>\n<tr><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\"><strong>Phone:</strong></td><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\">{{ $json.contact_number }}</td></tr>\n<tr><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\"><strong>Interest Level:</strong></td><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\">{{ $json.interest_level }}/10</td></tr>\n<tr><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\"><strong>Sentiment:</strong></td><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\">{{ $json.sentiment_score }}</td></tr>\n<tr><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\"><strong>Campaign:</strong></td><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\">{{ $json.campaign }}</td></tr>\n<tr><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\"><strong>Duration:</strong></td><td style=\"padding: 8px; border-bottom: 1px solid #ddd;\">{{ Math.floor($json.duration_seconds / 60) }}m {{ $json.duration_seconds % 60 }}s</td></tr>\n</table>\n\n<h3>📝 Transcription</h3>\n<div style=\"background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 10px 0;\">\n{{ $json.transcription }}\n</div>\n\n<h3>💡 Key Insights</h3>\n<p><strong>Topics:</strong> {{ $json.analysis.insights?.topics?.join(', ') || 'N/A' }}</p>\n<p><strong>Pain Points:</strong> {{ $json.analysis.insights?.pain_points?.join(', ') || 'N/A' }}</p>\n<p><strong>Objections:</strong> {{ $json.analysis.insights?.objections?.join(', ') || 'N/A' }}</p>\n\n<h3>🎯 Action Recommended</h3>\n<p>{{ $json.follow_up_needed ? '✅ Follow-up recommended' : '❌ No immediate follow-up needed' }}</p>\n<p><strong>Urgency:</strong> {{ $json.analysis.signals?.urgency || 'N/A' }}</p>\n\n<p><a href=\"{{ $json.recording_url }}\" style=\"background: #42a4bf; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; display: inline-block; margin-top: 15px;\">🎧 Listen to Recording</a></p>",
+        "options": {}
+      },
+      "id": "send-email-high",
+      "name": "Email - High Interest Alert",
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [1350, 200],
+      "credentials": {
+        "smtp": {
+          "id": "smtp-creds",
+          "name": "SMTP"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "append",
+        "documentId": {
+          "__rl": true,
+          "value": "={{ $env.GOOGLE_SHEET_ID }}",
+          "mode": "id"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "Call Analysis",
+          "mode": "name"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Timestamp": "={{ $json.analyzed_at }}",
+            "Contact Name": "={{ $json.contact_name }}",
+            "Phone": "={{ $json.contact_number }}",
+            "Duration": "={{ $json.duration_seconds }}",
+            "Campaign": "={{ $json.campaign }}",
+            "Sentiment Score": "={{ $json.sentiment_score }}",
+            "Interest Level": "={{ $json.interest_level }}",
+            "Follow Up": "={{ $json.follow_up_needed }}",
+            "Outcome": "={{ $json.outcome }}",
+            "Recording URL": "={{ $json.recording_url }}"
+          }
+        },
+        "options": {}
+      },
+      "id": "save-to-sheets",
+      "name": "Save to Google Sheets",
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.4,
+      "position": [1350, 400],
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "google-sheets-creds",
+          "name": "Google Sheets"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "respondWith": "json",
+        "responseBody": "={\n  \"success\": true,\n  \"message\": \"Call analyzed successfully\",\n  \"sentiment_score\": {{ $json.sentiment_score }},\n  \"interest_level\": {{ $json.interest_level }},\n  \"follow_up_needed\": {{ $json.follow_up_needed }}\n}",
+        "options": {}
+      },
+      "id": "respond-webhook",
+      "name": "Respond to Webhook",
+      "type": "n8n-nodes-base.respondToWebhook",
+      "typeVersion": 1.1,
+      "position": [1570, 300]
+    }
+  ],
+  "connections": {
+    "Webhook - Receive Recording": {
+      "main": [
+        [
+          {
+            "node": "Download Audio File",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Download Audio File": {
+      "main": [
+        [
+          {
+            "node": "Gemini - Analyze Call",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Gemini - Analyze Call": {
+      "main": [
+        [
+          {
+            "node": "Process Results",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Process Results": {
+      "main": [
+        [
+          {
+            "node": "High Interest?",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "High Interest?": {
+      "main": [
+        [
+          {
+            "node": "Email - High Interest Alert",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Save to Google Sheets",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Email - High Interest Alert": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Save to Google Sheets": {
+      "main": [
+        [
+          {
+            "node": "Respond to Webhook",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1"
+  },
+  "staticData": null,
+  "tags": [],
+  "triggerCount": 0,
+  "pinData": {}
+}
