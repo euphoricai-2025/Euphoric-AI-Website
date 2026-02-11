@@ -268,7 +268,7 @@ const AppointmentBookingUseCase = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
                 <Link
-                  to="/pricing"
+                  to="/contact"
                   className="btn-gold inline-flex items-center justify-center gap-2 group"
                 >
                   Get Started
@@ -593,7 +593,7 @@ const AppointmentBookingUseCase = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/pricing"
+                to="/contact"
                 className="bg-white text-brand-teal hover:bg-gray-100 inline-flex items-center justify-center px-8 py-3 rounded-lg text-base font-medium transition-colors"
               >
                 Get Started Today

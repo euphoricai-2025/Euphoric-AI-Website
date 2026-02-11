@@ -678,10 +678,10 @@ const HomeV2 = () => {
                 <ArrowRight className="ml-2 w-5 h-5" />
               </a>
               <Link
-                to="/pricing"
+                to="/contact"
                 className="border-2 border-white/30 hover:border-white text-white hover:bg-white/10 px-8 py-4 rounded-xl font-semibold transition-all duration-200 inline-flex items-center justify-center"
               >
-                View Pricing
+                Contact Us
               </Link>
             </motion.div>
           </div>

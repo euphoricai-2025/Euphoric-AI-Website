@@ -227,10 +227,10 @@ const AnimatedStats = () => {
                 <ArrowUp className="ml-2 w-5 h-5 group-hover:translate-y-[-2px] transition-transform" />
               </a>
               <a
-                href="/pricing"
+                href="/contact"
                 className="border-2 border-gray-300 hover:border-brand-blue text-gray-700 hover:text-brand-blue px-8 py-4 rounded-xl font-semibold transition-all duration-200 inline-flex items-center justify-center"
               >
-                View Pricing
+                Contact Us
               </a>
             </div>
           </div>

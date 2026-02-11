@@ -194,7 +194,7 @@ const Book = () => {
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12">
                 <Link
-                  to="/pricing"
+                  to="/contact"
                   className="btn-gold inline-flex items-center justify-center gap-2 group"
                 >
                   Get Started
@@ -586,7 +586,7 @@ const Book = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link
-                to="/pricing"
+                to="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 bg-white text-brand-teal font-bold rounded-xl shadow-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 group"
               >
                 Get Started Now

@@ -946,12 +946,12 @@ const Home = () => {
                 <ArrowRight className="ml-2 w-5 h-5 relative z-10 group-hover:translate-x-1 transition-transform" />
               </a>
               <Link
-                to="/pricing"
+                to="/contact"
                 className="relative overflow-hidden border-2 border-white/80 hover:border-white text-white hover:text-white bg-transparent hover:bg-white/10 px-8 py-4 rounded-xl font-bold transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl inline-flex items-center justify-center group backdrop-blur-sm"
               >
                 {/* Subtle background glow */}
                 <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                <span className="relative z-10">View Pricing</span>
+                <span className="relative z-10">Contact Us</span>
               </Link>
             </motion.div>
           </div>

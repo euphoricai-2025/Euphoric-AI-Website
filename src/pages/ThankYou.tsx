@@ -296,10 +296,10 @@ const ThankYou = () => {
 
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
                     <Link
-                      to="/pricing"
+                      to="/contact"
                       className="inline-flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-brand-teal to-brand-blue text-white font-bold rounded-xl shadow-lg hover:shadow-2xl hover:scale-105 transition-all duration-300 group"
                     >
-                      View Pricing
+                      Contact Us
                       <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                     </Link>
 

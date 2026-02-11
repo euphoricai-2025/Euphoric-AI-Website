@@ -46,8 +46,7 @@ const Header = () => {
         ]
       }
     },
-    { name: 'Pricing', path: '/pricing' },
-    { 
+    {
       name: 'AI Automations', 
       path: '#', 
       megaDropdown: {

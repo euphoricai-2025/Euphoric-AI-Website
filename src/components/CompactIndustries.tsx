@@ -160,7 +160,7 @@ const CompactIndustries = () => {
                 <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </Link>
               <Link
-                to="/pricing"
+                to="/contact"
                 className="border-2 border-gray-300 hover:border-brand-blue text-gray-700 hover:text-brand-blue px-8 py-4 rounded-xl font-semibold transition-all duration-200 inline-flex items-center justify-center"
               >
                 See All Industries
