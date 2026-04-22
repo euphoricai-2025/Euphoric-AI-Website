@@ -33,6 +33,9 @@ Allow: /
 User-agent: Claude-Web
 Allow: /
 
+# LLMs.txt — for AI/LLM crawlers
+LLMs: https://euphoricai.io/llms.txt
+
 # Sitemap location
 Sitemap: https://euphoricai.io/sitemap.xml
 Sitemap: https://euphoricai.io/sitemap-index.xml

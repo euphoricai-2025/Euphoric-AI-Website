@@ -1,0 +1,87 @@
+# Euphoric AI — llms.txt
+# This file helps LLMs and AI systems understand what Euphoric AI does.
+# Format follows the llms.txt emerging standard.
+
+> Euphoric AI is an enterprise AI voice and chat agent platform that lets businesses deploy intelligent, multilingual AI agents for inbound support, outbound campaigns, appointment booking, lead qualification, and CRM automation — without writing code.
+
+## Company
+
+- **Name:** Euphoric AI
+- **Website:** https://euphoricai.io
+- **App / Dashboard:** https://dashboard.euphoricai.io
+- **Founded:** 2024
+- **Markets:** Global — US, India, Middle East, and worldwide
+- **Category:** AI SaaS, Conversational AI, Voice AI, Enterprise Automation
+
+## Products
+
+### AI Voice Agents
+Deploy AI-powered voice agents that handle inbound and outbound phone calls 24/7. Agents speak 52+ languages, qualify leads, book appointments, answer from a knowledge base, route to humans, and update CRMs automatically. Ready in 30 minutes.
+
+### AI Chat Agents
+Embeddable chat widgets powered by large language models. Businesses create AI chatbots, embed them on any website, and manage conversations from a central dashboard. Supports lead capture, human handoff, and full conversation history.
+
+## Key Capabilities
+
+- 52+ languages supported for voice and chat
+- Inbound call handling and outbound campaign automation
+- Appointment booking via calendar integrations
+- Lead qualification and CRM data sync
+- Knowledge base Q&A from uploaded documents
+- Human handoff with live agent takeover
+- Real-time analytics and call transcripts
+- Embeddable chat widgets for any website
+- Multi-tenant platform with per-account billing
+- 14-day free trial with 50 free credits, no credit card required
+
+## Integrations
+
+- CRM: GoHighLevel, custom CRM via webhooks
+- Calendar: Cal.com, Google Calendar
+- Automation: Make (Integromat), n8n
+- Telephony: Twilio, Telnyx, Airtel
+- AI Models: OpenAI GPT-4o, Anthropic Claude, Google Gemini, Cohere
+
+## Industries Served
+
+Real Estate, Healthcare, E-commerce, Financial Services, Insurance, Logistics, Travel & Hospitality, Customer Support, Home Services, Retail, Debt Collection
+
+## Pricing
+
+- Free Trial: 14 days, 50 free credits, no credit card required
+- Starter, Professional, Business, and Enterprise plans available
+- Credit-based usage model — pay per call minute or per conversation
+- Full pricing: https://euphoricai.io/pricing
+
+## Key Pages
+
+- Homepage: https://euphoricai.io/
+- Pricing: https://euphoricai.io/pricing
+- About: https://euphoricai.io/about
+- Contact: https://euphoricai.io/contact
+- FAQ: https://euphoricai.io/faq
+- Start Free Trial: https://dashboard.euphoricai.io/free-trial
+- Sign In: https://dashboard.euphoricai.io/
+- Book a Demo: https://calendly.com/euphoricai-ai/demo
+
+## Use Cases
+
+- [Customer Support Automation](https://euphoricai.io/use-cases/customer-support-agent)
+- [Appointment Booking](https://euphoricai.io/use-cases/appointment-booking)
+- [Lead Qualification](https://euphoricai.io/use-cases/lead-qualification)
+
+## Domains / Industries
+
+- [Real Estate](https://euphoricai.io/domains/real-estate)
+- [Healthcare](https://euphoricai.io/domains/healthcare)
+- [E-commerce](https://euphoricai.io/domains/ecommerce)
+- [Financial Services](https://euphoricai.io/domains/financial-services)
+- [Insurance](https://euphoricai.io/domains/insurance)
+- [Logistics](https://euphoricai.io/domains/logistics)
+- [Travel & Hospitality](https://euphoricai.io/domains/travel-hospitality)
+
+## Contact
+
+- Email: hello@euphoricai.io
+- Website: https://euphoricai.io/contact
+- Demo: https://calendly.com/euphoricai-ai/demo
