@@ -301,13 +301,13 @@ const Home = () => {
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
                   </a>
                 ) : (
-                  <Link
-                    to="/signup"
+                  <a
+                    href="https://dashboard.euphoricai.io/free-trial"
                     className="btn-gold inline-flex items-center justify-center gap-2 group"
                   >
-                    Get Started
+                    Start Free Trial
                     <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-                  </Link>
+                  </a>
                 )}
                 <a
                   href="https://calendly.com/euphoricai-ai/demo"

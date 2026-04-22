@@ -358,18 +358,12 @@ const Header = () => {
                 </div>
               ) : (
                 <>
-                  <Link
-                    to="/signin"
+                  <a
+                    href="https://dashboard.euphoricai.io/"
                     className="px-4 py-2 text-sm font-medium text-gray-700 hover:text-brand-teal transition-colors rounded-lg hover:bg-white/20 focus:outline-none"
                   >
                     Sign In
-                  </Link>
-                  <Link
-                    to="/signup"
-                    className="btn-gold text-sm focus:outline-none"
-                  >
-                    Register
-                  </Link>
+                  </a>
                 </>
               )}
             </div>
@@ -598,20 +592,13 @@ const Header = () => {
                   </div>
                 ) : (
                   <div className="space-y-2">
-                    <Link
-                      to="/signin"
+                    <a
+                      href="https://dashboard.euphoricai.io/"
                       onClick={() => setIsMenuOpen(false)}
                       className="block px-4 py-3 text-base font-medium text-gray-700 hover:text-brand-teal hover:bg-white/5 transition-colors focus:outline-none"
                     >
                       Sign In
-                    </Link>
-                    <Link
-                      to="/signup"
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block mx-4 py-3 btn-gold text-base text-center focus:outline-none"
-                    >
-                      Register
-                    </Link>
+                    </a>
                   </div>
                 )}
               </div>
