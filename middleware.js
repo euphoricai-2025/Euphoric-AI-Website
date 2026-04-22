@@ -57,7 +57,7 @@ function isBot(userAgent) {
 
 export default async function middleware(request) {
   const userAgent = request.headers.get('user-agent') || '';
-  const prerenderToken = process.env.PRERENDER_TOKEN;
+  const prerenderToken = process.env.PRERENDERIO_LLM_Crawling || process.env.PRERENDER_TOKEN;
   const url = new URL(request.url);
 
   // Skip if no Prerender token configured
