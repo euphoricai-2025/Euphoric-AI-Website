@@ -1,4 +1,21 @@
 {
+  "redirects": [
+    {
+      "source": "/signup",
+      "destination": "https://dashboard.euphoricai.io/signup",
+      "permanent": false
+    },
+    {
+      "source": "/signin",
+      "destination": "https://dashboard.euphoricai.io/",
+      "permanent": false
+    },
+    {
+      "source": "/trial",
+      "destination": "https://dashboard.euphoricai.io/free-trial",
+      "permanent": false
+    }
+  ],
   "rewrites": [
     {
       "source": "/api/:path*",
