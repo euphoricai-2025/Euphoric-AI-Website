@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 
 const SignUp = () => {
   useEffect(() => {
-    window.location.href = 'https://euphoricai.io/signup';
+    window.location.href = 'https://dashboard.euphoricai.io/signup';
   }, []);
 
   return null;
